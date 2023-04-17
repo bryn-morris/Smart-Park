@@ -11,6 +11,7 @@ sqlalchemy-serializer = "*"
 flask-restful = "*"
 flask-cors = "*"
 ipdb = "*"
+flask-alembic = "*"
 
 [dev-packages]
 

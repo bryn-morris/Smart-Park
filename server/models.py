@@ -8,7 +8,7 @@ class User(db.Model, SerializerMixin):
 
     __tablename__ = 'users'
 
-    serialize_rules = ('-dogs',)
+    serialize_rules = ('-dogs', '-created_at','-updated_at')
 
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String)
@@ -19,7 +19,7 @@ class User(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
-    dogs = db.relationship('Dog', back_populates = 'user')
+    dogs = db.relationship('Dog', back_populates = 'user', cascade="all, delete-orphan")
 
 class Dog(db.Model, SerializerMixin):
 
@@ -48,7 +48,7 @@ class Visit(db.Model, SerializerMixin):
 
     __tablename__ = 'visits'
 
-    serialize_rules = ('-dog_park','dog')
+    serialize_rules = ('-dog_park','dog', '-created_at','-updated_at')
     
     id = db.Column(db.Integer, primary_key=True)
     length_of_stay = db.Column(db.Integer)
@@ -57,12 +57,12 @@ class Visit(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
     
     dogs_id = db.Column(db.Integer, db.ForeignKey('dogs.id'))
-    dogs_id2 = db.Column(db.Integer, db.ForeignKey('dogs.id'))
-    dogs_id3 = db.Column(db.Integer, db.ForeignKey('dogs.id'))
+    # dogs_id2 = db.Column(db.Integer, db.ForeignKey('dogs.id'))
+    # dogs_id3 = db.Column(db.Integer, db.ForeignKey('dogs.id'))
     dog_parks_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))
     
-    dog_park = db.relationship('Dog_Park', back_populates = 'visits', cascade="all, delete-orphan")
-    dog = db.relationship('Dog', back_populates = 'visits', cascade="all, delete-orphan")
+    dog_park = db.relationship('Dog_Park', back_populates = 'visits')
+    dog = db.relationship('Dog', back_populates = 'visits')
 
 class Dog_Park(db.Model, SerializerMixin):
 

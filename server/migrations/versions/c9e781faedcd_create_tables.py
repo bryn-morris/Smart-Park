@@ -1,8 +1,8 @@
-"""Models Created
+"""create tables
 
-Revision ID: e1b8683af596
+Revision ID: c9e781faedcd
 Revises: ece3668a050c
-Create Date: 2023-04-17 15:31:21.438756
+Create Date: 2023-04-17 17:27:30.011719
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e1b8683af596'
+revision = 'c9e781faedcd'
 down_revision = 'ece3668a050c'
 branch_labels = None
 depends_on = None
@@ -56,13 +56,9 @@ def upgrade():
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('dogs_id', sa.Integer(), nullable=True),
-    sa.Column('dogs_id2', sa.Integer(), nullable=True),
-    sa.Column('dogs_id3', sa.Integer(), nullable=True),
     sa.Column('dog_parks_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['dog_parks_id'], ['dog_parks.id'], name=op.f('fk_visits_dog_parks_id_dog_parks')),
     sa.ForeignKeyConstraint(['dogs_id'], ['dogs.id'], name=op.f('fk_visits_dogs_id_dogs')),
-    sa.ForeignKeyConstraint(['dogs_id2'], ['dogs.id'], name=op.f('fk_visits_dogs_id2_dogs')),
-    sa.ForeignKeyConstraint(['dogs_id3'], ['dogs.id'], name=op.f('fk_visits_dogs_id3_dogs')),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

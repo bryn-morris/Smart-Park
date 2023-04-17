@@ -12,6 +12,7 @@ flask-restful = "*"
 flask-cors = "*"
 ipdb = "*"
 flask-alembic = "*"
+faker = "*"
 
 [dev-packages]
 

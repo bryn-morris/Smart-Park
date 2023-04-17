@@ -10,32 +10,38 @@ from faker import Faker
 from app import app
 from models import db
 
-from models import db, Many1, Many2, SampleJoin
+from models import db, User, Dog, Visit, Dog_Park
 
 with app.app_context():
 
     faker = Faker()
 
     print("Deleting data...")
-    Many1.query.delete()
-    Many2.query.delete()
-    SampleJoin.query.delete()
+    User.query.delete()
+    Dog.query.delete()
+    Visit.query.delete()
+    Dog_Park.query.delete()
 
-    print("Creating Many1s...")
+    print("Creating Users...")
 
-    Many1s_list = [Many1(topic = faker.sentence(), year = faker.year(), page_count = random.randint(1,10)) for _ in range(1,20)]
+    users_list = [User( username= faker.user_name(),  password= faker.word(), image = faker.image_url()) for _ in range(1,5)]
 
-    print("Creating Many2s...")
+    print("Creating Dogs...")
 
-    Many2s_list = [Many2(topic = faker.sentence(), year = faker.year(), page_count = random.randint(1,10)) for _ in range(1,20)]
+    dogs_list = [Dog(name = faker.name(), breed = faker.name(), weight = randint(5,100), age = randint(1,10), image = faker.image_url()) for _ in range(1,10)]
 
-    print("Creating SampleJoins...")
+    print("Creating Visits...")
 
-    SampleJoin_list = [SampleJoin(many1_id = random.randint(1,20), many2_id = random.randint(1,20)) for _ in range(1,30)]
+    visits_list = [Visit(dogs_id = randint(1,10), dog_parks_id = randint(1,5), length_of_stay = randint(1,120)) for _ in range(1,20)]
+
+    print("Creating Dog Parks...")
+
+    dog_parks_list = [Dog_Park(name = faker.name(), address = faker.address(), rating = randint(1,5), amenities = faker.sentence()) for _ in range(1,5)]
     
-    db.session.add_all(Many2s_list)
-    db.session.add_all(Many1s_list)
-    db.session.add_all(SampleJoin_list)
+    db.session.add_all(users_list)
+    db.session.add_all(dogs_list)
+    db.session.add_all(visits_list)
+    db.session.add_all(dog_parks_list)
     db.session.commit()
 
     print("Seeding done!")

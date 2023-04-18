@@ -28,7 +28,7 @@ with app.app_context():
 
     print("Creating Dogs...")
 
-    dogs_list = [Dog(name = faker.name(), breed = faker.name(), weight = randint(5,100), age = randint(1,10), image = faker.image_url()) for _ in range(1,10)]
+    dogs_list = [Dog(name = faker.name(), breed = faker.name(), weight = randint(5,100), age = randint(1,10), image = faker.image_url(), user_id = randint(1,5)) for _ in range(1,10) ]
 
     print("Creating Visits...")
 

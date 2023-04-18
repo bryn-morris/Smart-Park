@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import CheckIn from "./CheckIn";
+import Header from "./Header"
+import DogPark from "./DogPark"
 
 function App() {
   return (

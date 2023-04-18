@@ -13,7 +13,7 @@ function Header() {
             <div>Dog Parks</div>
           </NavLink>
           <NavLink
-            to="/form" exact>
+            to="/checkin" exact>
             <div>Check In</div>
           </NavLink>
         </div>

@@ -22,13 +22,13 @@ class Dog_Parks(Resource):
                 'amenities',
                 'address',
                 'rating',
+                'image'
             )
 
         ) for dp in Dog_Park.query.all()
         ]
 
         return make_response(dog_parks, 200)
-    
 
 api.add_resource(Dog_Parks, '/dogparks')
         

@@ -36,7 +36,7 @@ with app.app_context():
 
     print("Creating Dog Parks...")
 
-    dog_parks_list = [Dog_Park(name = faker.name(), address = faker.address(), rating = randint(1,5), amenities = faker.sentence()) for _ in range(1,5)]
+    dog_parks_list = [Dog_Park(name = faker.name(), address = faker.address(), rating = randint(1,5), amenities = faker.sentence(), image = faker.image_url()) for _ in range(1,5)]
     
     db.session.add_all(users_list)
     db.session.add_all(dogs_list)

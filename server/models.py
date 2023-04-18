@@ -75,6 +75,7 @@ class Dog_Park(db.Model, SerializerMixin):
     address = db.Column(db.String)
     rating = db.Column(db.Integer)
     amenities = db.Column(db.String)
+    image = db.Column(db.String)
 
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())

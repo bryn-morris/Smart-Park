@@ -1,8 +1,20 @@
 import React from 'react'
+import DogParkCard from './DogParkCard'
 
-function DogPark() {
+function DogPark({dogParks}) {
+
+  const dogParkComponents = dogParks.map((eachDogPark)=>{
+      return (
+      <DogParkCard
+        key = {eachDogPark.id}
+        {...eachDogPark}
+      />)
+   })
+
   return (
-    <div>DogPark</div>
+    <div>
+      {dogParkComponents}
+    </div>
   )
 }
 

@@ -6,6 +6,15 @@ import Header from "./Header"
 import DogPark from "./DogPark"
 
 function App() {
+
+  const [dogParks, setDogParks] = useState([])
+
+  useEffect(()=>{
+    fetch('http://127.0.0.1:5555/dogparks')
+      .then(r=> r.json())
+      .then(setDogParks)
+  }, [])
+
   return (
     <div>
       <Header />
@@ -15,7 +24,7 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark/>
+            <DogPark dogParks = {dogParks}/>
           </Route>
           <Route exact path="/checkin">
             <CheckIn/>

@@ -12,5 +12,11 @@ from models import User, Dog, Visit, Dog_Park
 
 # Views go here!
 
+class Dog_Parks(Resource):
+    def get(self):
+        dog_parks = []
+        
+
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

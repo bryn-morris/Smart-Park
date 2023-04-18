@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
+import CheckIn from "./CheckIn";
 
 function App() {
   return (
@@ -10,6 +11,12 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/dogparks">
+            <DogPark/>
+          </Route>
+          <Route exact path="/checkin">
+            <CheckIn/>
           </Route>
         </Switch>
       </main>

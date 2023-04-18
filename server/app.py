@@ -28,6 +28,8 @@ class Dog_Parks(Resource):
         ]
 
         return make_response(dog_parks, 200)
+    
+    
 
 api.add_resource(Dog_Parks, '/dogparks')
         

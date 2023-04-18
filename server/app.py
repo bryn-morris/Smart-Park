@@ -29,7 +29,20 @@ class Dog_Parks(Resource):
         ]
 
         return make_response(dog_parks, 200)
-
+    
+    def post(self):
+        data = request.get_json()
+        dogpark = Dog_Park(
+            name = data['name'],
+            amenities = data['amenities'],
+            address = data['address'],
+            rating = data['rating'],
+            image = data['image']
+            )
+        db.session.add(dogpark)
+        db.session.commit()
+        return make_response(dogpark.to_dict(), 201)
+    
 api.add_resource(Dog_Parks, '/dogparks')
         
 class Dogs(Resource):

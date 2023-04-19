@@ -215,6 +215,12 @@ def delete_visit(id):
 
     return make_response({}, 204)
 
+class Reviews(Resource):
+    def get(self):
+        reviews = [r.to_dict() for r in Review.query.all()]
+        return make_response(reviews, 201)
+api.add_resource(Reviews, '/reviews')
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

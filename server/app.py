@@ -120,5 +120,22 @@ class DogById(Resource):
 api.add_resource(DogById, '/dogs/<int:id>')
 
 
+class Check_In_To_Park(Resource):
+
+    def post(self):
+        print(request.get_json())
+        newVisit = Visit(
+            length_of_stay = request.get_json()['lengthOfStay'].replace(' min',''),
+            dogs_id = Dog.query.filter(Dog.name == request.get_json()['dogName']).one().id,
+            dog_parks_id = Dog_Park.query.filter(Dog_Park.name == request.get_json()['dogParkName']).one().id,
+        ) 
+        db.session.add(newVisit)
+        db.session.commit()
+        return make_response(newVisit.to_dict(), 200)
+
+
+api.add_resource(Check_In_To_Park, '/visits')
+
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

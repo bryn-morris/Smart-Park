@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function CheckOutForm({handleFormSubmission, dogParks, currentCheckInID}){
+function CheckOutForm({handleFormSubmission, dogParks}){
 
     const emptyFormObj = {
         dogParkName: '',

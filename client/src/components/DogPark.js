@@ -4,7 +4,7 @@ import DogParkForm from './DogParkForm'
 
 
 
-function DogPark({dogParks}) {
+function DogPark({dogParks, addDogParkToState,test}) {
 
   const dogParkComponents = dogParks.map((eachDogPark)=>{
       return (
@@ -16,7 +16,10 @@ function DogPark({dogParks}) {
 
   return (
   <div>
-    <DogParkForm/>
+    <DogParkForm 
+      dogParks = {dogParks}
+      addDogParkToState = {addDogParkToState}
+    />
     <div>
       {dogParkComponents}
     </div>

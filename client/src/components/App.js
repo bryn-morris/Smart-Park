@@ -8,6 +8,7 @@ import MyAccount from "./MyAccount"
 import DogParkForm from "./DogParkForm";
 import AboutUs from "./AboutUs";
 
+
 function App() {
 
 
@@ -30,6 +31,8 @@ function App() {
     }
   }, [])
 
+  const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
+
   function handleFormSubmission(formObj){
     // Update Backend with post to a route that creates a Visit Instance
     fetch('/visits', {
@@ -40,7 +43,7 @@ function App() {
     .then(r=>r.json())
     .then(newVisit => {
       setCurrentCheckInID(newVisit.id)
-
+      setAccidentalCheckin(true)
       sessionStorage.setItem('currentCheckInID', newVisit.id)
     })
   }
@@ -55,12 +58,6 @@ function App() {
     })
   }
 
-  const propsObjectToHome = {
-    handleFormSubmission: handleFormSubmission,
-    dogParks: dogParks,
-    deleteCheckIn: deleteCheckIn,
-    currentCheckInID: currentCheckInID
-  }
   const [dogs, setDogs] = useState([])
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogs')
@@ -70,8 +67,7 @@ function App() {
 
   const showRemainingDogs = (id) => {
     const newDogArray = dogs.filter(dogObj => {
-      if(dogObj.id !== id)
-      {
+      if(dogObj.id !== id){
         return true
       }
     })
@@ -85,13 +81,47 @@ function App() {
     setDogs(changedDogArr)
   }
 
-  
-
-
   const addDogParkToState = (newDogParkObj) => {
     setDogParks([newDogParkObj, ...dogParks]) 
   }
 
+  const [seconds, setSeconds] = useState(0)
+
+  function startTimer(){
+    setInterval(()=>{
+      setSeconds(seconds => seconds+1)
+    }, 1000)
+  }
+
+  function endTimer(){
+    clearInterval(setSeconds(0))
+  }
+
+  function checkOut () {
+    fetch(`/visits/${parseInt(currentCheckInID)}`,{
+      method: 'PATCH',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({actualLengthOfStay: seconds})
+    })
+      .then(r=>r.json())
+      .then(updatedVisit => {
+        setCurrentCheckInID(null)
+        sessionStorage.clear()
+      })
+  }
+
+  const propsObjectToHome = {
+    handleFormSubmission: handleFormSubmission,
+    dogParks: dogParks,
+    deleteCheckIn: deleteCheckIn,
+    currentCheckInID: currentCheckInID,
+    setAccidentalCheckin: setAccidentalCheckin,
+    accidentalCheckin: accidentalCheckin,
+    checkOut: checkOut,
+    endTimer: endTimer,
+    startTimer: startTimer,
+  }
+  
   return (
     <div>
       <Header />
@@ -103,13 +133,10 @@ function App() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark dogParks = {dogParks}/>
+            <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState}/>
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs}/>
-          </Route>
-          <Route exact path="/dogparks">
-            <DogParkForm addDogParkToState={addDogParkToState}/>
           </Route>
           <Route exact path="/checkin">
             <CheckIn/>

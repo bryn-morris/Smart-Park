@@ -123,7 +123,7 @@ api.add_resource(DogById, '/dogs/<int:id>')
 class Check_In_To_Park(Resource):
 
     def post(self):
-        print(request.get_json())
+
         newVisit = Visit(
             length_of_stay = request.get_json()['lengthOfStay'].replace(' min',''),
             dogs_id = Dog.query.filter(Dog.name == request.get_json()['dogName']).one().id,
@@ -132,9 +132,17 @@ class Check_In_To_Park(Resource):
         db.session.add(newVisit)
         db.session.commit()
         return make_response(newVisit.to_dict(), 200)
-
-
+    
 api.add_resource(Check_In_To_Park, '/visits')
+
+@app.route('/visits/<int:id>', methods = ['DELETE'])
+def delete_visit(id):
+
+    selVisit = Visit.query.filter(Visit.id == id).one()
+    db.session.delete(selVisit)
+    db.session.commit()
+
+    return make_response({}, 204)
 
 
 if __name__ == '__main__':

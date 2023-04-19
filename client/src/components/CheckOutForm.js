@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function CheckOutForm({handleFormSubmission, setIsModalOpen, dogParks}){
+function CheckOutForm({handleFormSubmission, dogParks, currentCheckInID}){
 
     const emptyFormObj = {
         dogParkName: '',
@@ -13,8 +13,7 @@ function CheckOutForm({handleFormSubmission, setIsModalOpen, dogParks}){
     const handleFormSubmit = (e) => {
         e.preventDefault();
         handleFormSubmission(formObject)
-        setFormObject(emptyFormObj)
-        setIsModalOpen(false)
+        setFormObject(emptyFormObj) 
     }
 
     const handleFormInputChange = (e) => {

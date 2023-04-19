@@ -106,6 +106,7 @@ function App() {
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs}/>
+          </Route>
           <Route exact path="/dogparks">
             <DogParkForm addDogParkToState={addDogParkToState}/>
           </Route>

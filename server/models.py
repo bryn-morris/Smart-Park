@@ -57,8 +57,6 @@ class Visit(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
     
     dogs_id = db.Column(db.Integer, db.ForeignKey('dogs.id'))
-    # dogs_id2 = db.Column(db.Integer, db.ForeignKey('dogs.id'))
-    # dogs_id3 = db.Column(db.Integer, db.ForeignKey('dogs.id'))
     dog_parks_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))
     
     dog_park = db.relationship('Dog_Park', back_populates = 'visits')
@@ -92,3 +90,23 @@ class Dog_Park(db.Model, SerializerMixin):
     #         raise AttributeError('Please select a valid field of study!: AI,Robotics, Machine Learning, Vision, or Cybersecurity')
     #     else:
     #         return attr
+
+    reviews = db.relationship('Review', back_populates='dog_park', cascade="all, delete-orphan")
+
+
+class Review(db.Model, SerializerMixin):
+
+    __tablename__ = 'reviews'
+
+    serialize_rules = ('-dog_park','-created_at','-updated_at')
+
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String)
+    comment = db.Column(db.String)
+    rating = db.Column(db.Integer)
+    dog_park_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))
+    
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
+
+    dog_park = db.relationship('Dog_Park', back_populates = 'reviews')

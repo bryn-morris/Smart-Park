@@ -10,7 +10,7 @@ from faker import Faker
 from app import app
 from models import db
 
-from models import db, User, Dog, Visit, Dog_Park
+from models import db, User, Dog, Visit, Dog_Park, Review
 
 with app.app_context():
 
@@ -38,10 +38,16 @@ with app.app_context():
 
     dog_parks_list = [Dog_Park(name = faker.name(), address = faker.address(), rating = randint(1,5), amenities = faker.sentence(), image = faker.image_url()) for _ in range(1,5)]
     
+    print("Creating Reviews...")
+
+    reviews_list = [Review(name= faker.user_name(),  comment= faker.sentence(), rating = randint(1,5), dog_park_id=randint(1,5)) for _ in range(1,10)]
+
     db.session.add_all(users_list)
     db.session.add_all(dogs_list)
     db.session.add_all(visits_list)
     db.session.add_all(dog_parks_list)
+    db.session.add_all(reviews_list)
+    
     db.session.commit()
 
     print("Seeding done!")

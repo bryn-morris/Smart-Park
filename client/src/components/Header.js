@@ -20,6 +20,10 @@ function Header() {
             to="/myaccount" exact>
             <div>My Account</div>
           </NavLink>
+          <NavLink
+          to="/aboutus" exact>
+            <div>About Us</div>
+          </NavLink>
         </div>
       </nav>
     );

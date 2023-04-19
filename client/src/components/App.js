@@ -6,6 +6,7 @@ import Header from "./Header"
 import DogPark from "./DogPark"
 import MyAccount from "./MyAccount"
 import DogParkForm from "./DogParkForm";
+import AboutUs from "./AboutUs";
 
 function App() {
 
@@ -112,6 +113,9 @@ function App() {
           </Route>
           <Route exact path="/checkin">
             <CheckIn/>
+          </Route>
+          <Route exact path="/aboutus">
+            <AboutUs/>
           </Route>
         </Switch>
       </main>

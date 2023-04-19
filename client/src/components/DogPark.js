@@ -5,9 +5,11 @@ import Reviews from './Reviews'
 
 
 
-function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedReviews}) {
-
-  
+function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedReviews, addNewReview}) {
+  const [showDPForm, setShowDPForm] = useState(false)
+  const handleShowDPForm = () =>{
+    setShowDPForm(!showDPForm)
+  }
 
   const dogParkComponents = dogParks.map((eachDogPark)=>{
       return (
@@ -15,6 +17,7 @@ function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedRevi
         key = {eachDogPark.id}
         {...eachDogPark}
         handleParkSelection={handleParkSelection}
+        addNewReview={addNewReview}
       />)
    })
 
@@ -23,20 +26,24 @@ function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedRevi
     return (<Reviews key = {review.id} {...review}/>)
   })
 
-
   return (
   <div>
-    <DogParkForm 
-      dogParks = {dogParks}
-      addDogParkToState = {addDogParkToState}
-    />
+    {showDPForm ? (
+      <div>
+        <DogParkForm dogParks = {dogParks} addDogParkToState = {addDogParkToState}/> 
+        <button onClick={handleShowDPForm}>Hide Form</button>
+      </div>
+      ) : (
+      <button onClick={handleShowDPForm}>Add Dog Park</button>
+      )
+    }
+    
     <div>
       {reviewComponents}
     </div>
     <div>
       {dogParkComponents}
     </div>
-    
   </div>
   )
 }

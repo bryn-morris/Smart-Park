@@ -57,6 +57,7 @@ function App() {
     })
   }
 
+  //fetch for dogs
   const [dogs, setDogs] = useState([])
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogs')
@@ -64,30 +65,35 @@ function App() {
       .then(setDogs)
   }, [])
 
+  //show dogs after adding one
   const createDog = (newDog) => {
     setDogs([...dogs, newDog])
   }
-
+  
+  //show dogs after deleting one
   const showRemainingDogs = (id) => {
-    const newDogArray = dogs.filter(dogObj => {
-      if(dogObj.id !== id){
-        return true
-      }
-    })
-    setDogs(newDogArray)
-  }
+      const newDogArray = dogs.filter(dogObj => {
+        if(dogObj.id !== id){
+          return true
+        }
+      })
+      setDogs(newDogArray)
+    }
 
+  //show dogs after editing one  
   const updatedDogs = (editedDog) => {
-    const changedDogArr = dogs.map(dog => {
-      return (dog.id !== editedDog.id ? dog : editedDog)
-    })
-    setDogs(changedDogArr)
-  }
-
+      const changedDogArr = dogs.map(dog => {
+        return (dog.id !== editedDog.id ? dog : editedDog)
+      })
+      setDogs(changedDogArr)
+    }
+  
+  //show dog parks after adding one
   const addDogParkToState = (newDogParkObj) => {
-    setDogParks([newDogParkObj, ...dogParks]) 
-  }
-
+      setDogParks([newDogParkObj, ...dogParks]) 
+    }
+  
+  //checkin & checkout stuff  
   const [seconds, setSeconds] = useState(0)
 
   function startTimer(){
@@ -113,7 +119,6 @@ function App() {
       })
   }
 
-
   const propsObjectToHome = {
     handleFormSubmission: handleFormSubmission,
     dogParks: dogParks,
@@ -135,17 +140,20 @@ function App() {
       .then(setReviews)
   }, [])
 
-  
-
+  //display reviews for specific park
   const [parkId, setParkId] = useState('')
   const handleParkSelection = (id) => {
      setParkId(id)
-  }
-
+    }
   const selectedReviews = reviews.filter(review => {
         if(review.dog_park_id == parkId)
         return true
     })
+
+  //add newreview  
+  const addNewReview = (newReview) => {
+    setReviews([newReview, ...reviews])
+  }
 
   
   return (
@@ -159,7 +167,7 @@ function App() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews}/>
+            <DogPark dogParks={dogParks} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews} addNewReview={addNewReview}/>
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>

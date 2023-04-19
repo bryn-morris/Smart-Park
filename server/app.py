@@ -8,7 +8,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import User, Dog, Visit, Dog_Park
+from models import User, Dog, Visit, Dog_Park, Review
 
 
 # Views go here!
@@ -80,10 +80,6 @@ class CurrentSession(Resource):
                 200
             )
 api.add_resource(CurrentSession, '/current_session')
-
-
-
-
 
 
 class Dog_Parks(Resource):
@@ -219,7 +215,25 @@ class Reviews(Resource):
     def get(self):
         reviews = [r.to_dict() for r in Review.query.all()]
         return make_response(reviews, 201)
+
+    def post(self):
+        data = request.get_json()
+        new_review = Review(
+            name = data['name'],
+            comment = data['comment'],
+            rating = data['rating'],
+            dog_park_id = data['dog_park_id'],
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+        return make_response(
+            new_review.to_dict(),
+            201
+        )
+
 api.add_resource(Reviews, '/reviews')
+
 
 
 if __name__ == '__main__':

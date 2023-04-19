@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import CheckIn from "./CheckIn";
-import Header from "./Header"
-import DogPark from "./DogPark"
-import MyAccount from "./MyAccount"
-import DogParkForm from "./DogParkForm";
+import Header from "./Header";
+import DogPark from "./DogPark";
+import MyAccount from "./MyAccount";
 import AboutUs from "./AboutUs";
 
 
@@ -114,6 +113,7 @@ function App() {
       })
   }
 
+
   const propsObjectToHome = {
     handleFormSubmission: handleFormSubmission,
     dogParks: dogParks,
@@ -125,6 +125,28 @@ function App() {
     endTimer: endTimer,
     startTimer: startTimer,
   }
+
+  //fetch for reviews
+  
+  const [reviews, setReviews] = useState([])
+  useEffect(()=>{
+    fetch('http://127.0.0.1:5555/reviews')
+      .then(r=> r.json())
+      .then(setReviews)
+  }, [])
+
+  
+
+  const [parkId, setParkId] = useState('')
+  const handleParkSelection = (id) => {
+     setParkId(id)
+  }
+
+  const selectedReviews = reviews.filter(review => {
+        if(review.dog_park_id == parkId)
+        return true
+    })
+
   
   return (
     <div>
@@ -137,7 +159,7 @@ function App() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState}/>
+            <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews}/>
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>

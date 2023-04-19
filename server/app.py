@@ -8,7 +8,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import User, Dog, Visit, Dog_Park
+from models import User, Dog, Visit, Dog_Park, Review
 
 # Views go here!
 
@@ -43,6 +43,16 @@ class Dog_Parks(Resource):
         return make_response(dogpark.to_dict(), 201)
     
 api.add_resource(Dog_Parks, '/dogparks')
+
+class DogParkById(Resource):
+    def get(self, id):
+        dog_park = Dog_Park.query.filter_by(id=id).first()
+        if dog_park == None:
+            return make_response({'error': 'Dog Park not found'})
+        return make_response(dog_park.to_dict(rules = ('reviews',)), 201)
+
+api.add_resource(DogParkById, '/dogparks/<int:id>')
+
         
 class Dogs(Resource):
     def get(self):
@@ -132,6 +142,8 @@ class Check_In_To_Park(Resource):
     
 api.add_resource(Check_In_To_Park, '/visits')
 
+
+
 @app.route('/visits/<int:id>', methods = ['DELETE'])
 def delete_visit(id):
 
@@ -140,6 +152,12 @@ def delete_visit(id):
     db.session.commit()
 
     return make_response({}, 204)
+
+class Reviews(Resource):
+    def get(self):
+        reviews = [r.to_dict() for r in Review.query.all()]
+        return make_response(reviews, 201)
+api.add_resource(Reviews, '/reviews')
 
 
 if __name__ == '__main__':

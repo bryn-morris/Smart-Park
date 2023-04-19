@@ -65,6 +65,10 @@ function App() {
       .then(setDogs)
   }, [])
 
+  const createDog = (newDog) => {
+    setDogs([...dogs, newDog])
+  }
+
   const showRemainingDogs = (id) => {
     const newDogArray = dogs.filter(dogObj => {
       if(dogObj.id !== id){
@@ -136,7 +140,7 @@ function App() {
             <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState}/>
           </Route>
           <Route exact path="/myaccount">
-            <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs}/>
+            <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>
           </Route>
           <Route exact path="/checkin">
             <CheckIn/>

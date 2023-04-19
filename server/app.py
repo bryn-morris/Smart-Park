@@ -146,7 +146,10 @@ def delete_or_patch_visit(id):
     
     if request.method == 'PATCH':
 
-        selVisit.actual_length_of_stay = request.get_json()['stayTime']
+        selVisit.actual_length_of_stay = request.get_json()['actualLengthOfStay']
+
+        db.session.add(selVisit)
+        db.session.commit()
 
         return make_response(selVisit.to_dict(), 200)
 

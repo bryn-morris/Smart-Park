@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 
-function DogParkForm(addDogParkToState) {
+function DogParkForm({addDogParkToState}) {
     const [name, setName] = useState('');
     const [amenities, setAmenities] = useState('');
     const [address, setAddress] = useState('');
     const [rating, setRating] = useState('');
     const [image, setImage] = useState('');
+
+
   
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,7 +22,7 @@ function DogParkForm(addDogParkToState) {
           body: formData
         })
         .then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => addDogParkToState(data))
         .catch(error => console.error(error));
       }
   

@@ -5,7 +5,7 @@ import CheckIn from "./CheckIn";
 import Header from "./Header"
 import DogPark from "./DogPark"
 import MyAccount from "./MyAccount"
-import DogParkForm from "./DogParkForm";
+
 
 function App() {
 
@@ -58,8 +58,9 @@ function App() {
     handleFormSubmission: handleFormSubmission,
     dogParks: dogParks,
     deleteCheckIn: deleteCheckIn,
-    currentCheckInID: currentCheckInID
+    currentCheckInID: currentCheckInID,
   }
+
   const [dogs, setDogs] = useState([])
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogs')
@@ -69,8 +70,7 @@ function App() {
 
   const showRemainingDogs = (id) => {
     const newDogArray = dogs.filter(dogObj => {
-      if(dogObj.id !== id)
-      {
+      if(dogObj.id !== id){
         return true
       }
     })
@@ -84,12 +84,14 @@ function App() {
     setDogs(changedDogArr)
   }
 
-  
 
 
   const addDogParkToState = (newDogParkObj) => {
     setDogParks([newDogParkObj, ...dogParks]) 
   }
+
+  const test = 'test'
+  
 
   return (
     <div>
@@ -102,13 +104,10 @@ function App() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark dogParks = {dogParks}/>
+            <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState} test = {test}/>
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs}/>
-          </Route>
-          <Route exact path="/dogparks">
-            <DogParkForm addDogParkToState={addDogParkToState}/>
           </Route>
           <Route exact path="/checkin">
             <CheckIn/>

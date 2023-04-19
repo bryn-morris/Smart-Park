@@ -7,6 +7,10 @@ import DogPark from "./DogPark"
 
 function App() {
 
+
+  //  Only show thanks for checking on modal/cancel checkin modal once. After that
+  // change modal button to check out and present checkout modal to check out???
+  
   const [dogParks, setDogParks] = useState([])
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
 
@@ -18,9 +22,8 @@ function App() {
 
     //use sessionStorage to check if currently checked in 
     const sessionCheckInID = sessionStorage.getItem('currentCheckInID')
-    if (sessionCheckInID) {
+    if (sessionCheckInID){
       setCurrentCheckInID(sessionCheckInID)
-      console.log(sessionCheckInID)
     }
   }, [])
 
@@ -37,16 +40,23 @@ function App() {
 
       sessionStorage.setItem('currentCheckInID', newVisit.id)
     })
-
-    // Update FrontEnd and maybe change Element on Home page to show
-    // that you are checked in?
   }
 
   function deleteCheckIn(){
     fetch(`/visits/${parseInt(currentCheckInID)}`, {
       method: 'DELETE',
       })
-    .then(setCurrentCheckInID(null))
+    .then(()=>{
+      setCurrentCheckInID(null)
+      sessionStorage.clear()
+    })
+  }
+
+  const propsObjectToHome = {
+    handleFormSubmission: handleFormSubmission,
+    dogParks: dogParks,
+    deleteCheckIn: deleteCheckIn,
+    currentCheckInID: currentCheckInID
   }
 
   return (
@@ -56,10 +66,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home 
-              handleFormSubmission = {handleFormSubmission}
-              dogParks = {dogParks}
-              deleteCheckIn = {deleteCheckIn}
-              currentCheckInID = {currentCheckInID}
+              {...propsObjectToHome}
             />
           </Route>
           <Route exact path="/dogparks">

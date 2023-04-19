@@ -14,7 +14,7 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
 
     const deleteDog = () => {
         fetch (`http://127.0.0.1:5555/dogs/${id}`, {method:"DELETE"})
-            (showRemainingDogs(id))
+            .then(showRemainingDogs(id))
         }
 
 
@@ -38,7 +38,7 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
 
   return (
     <div>
-        <img src = {image}/>
+        <img src = {image} alt = 'dog'/>
         <h1>{name}</h1>
         <h2>{breed}</h2>
         <h3>{weight}</h3>
@@ -57,7 +57,7 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
                 </select>
                 <br />
                 <input type="text" placeholder="New info..." onChange={handleNewInfo} value={newInfo} />
-                <button type="submit" className="primary" onClick={console.log('hello')}>Done</button>
+                <button type="submit" className="primary">Done</button>
             </form>
             ) : (
                 <button onClick={handleEditForm}> Edit Dog</button>

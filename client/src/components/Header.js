@@ -13,10 +13,6 @@ function Header() {
             <div>Dog Parks</div>
           </NavLink>
           <NavLink
-            to="/checkin" exact>
-            <div>Check In</div>
-          </NavLink>
-          <NavLink
             to="/myaccount" exact>
             <div>My Account</div>
           </NavLink>

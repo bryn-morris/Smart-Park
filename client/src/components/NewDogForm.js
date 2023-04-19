@@ -25,7 +25,8 @@ function NewDogForm({createDog}) {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newDog)
       })
-        .then(createDog(newDog))
+        .then(r=>r.json())
+        .then(dogResponse =>createDog(dogResponse))
         e.target.reset()
     }
   

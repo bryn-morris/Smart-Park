@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
-import CheckIn from "./CheckIn";
 import Header from "./Header";
 import DogPark from "./DogPark";
 import MyAccount from "./MyAccount";
@@ -69,11 +68,7 @@ function App() {
   }
 
   const showRemainingDogs = (id) => {
-    const newDogArray = dogs.filter(dogObj => {
-      if(dogObj.id !== id){
-        return true
-      }
-    })
+    const newDogArray = dogs.filter(dogObj => dogObj.id !== id)
     setDogs(newDogArray)
   }
 
@@ -130,7 +125,7 @@ function App() {
   
   const [reviews, setReviews] = useState([])
   useEffect(()=>{
-    fetch('http://127.0.0.1:5555/reviews')
+    fetch('/reviews')
       .then(r=> r.json())
       .then(setReviews)
   }, [])
@@ -142,12 +137,8 @@ function App() {
      setParkId(id)
   }
 
-  const selectedReviews = reviews.filter(review => {
-        if(review.dog_park_id == parkId)
-        return true
-    })
+  const selectedReviews = reviews.filter(review => review.dog_park_id === parkId)
 
-  
   return (
     <div>
       <Header />
@@ -163,9 +154,6 @@ function App() {
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>
-          </Route>
-          <Route exact path="/checkin">
-            <CheckIn/>
           </Route>
           <Route exact path="/aboutus">
             <AboutUs/>

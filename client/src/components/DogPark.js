@@ -1,14 +1,12 @@
-import React, {useState} from 'react'
+import React from 'react'
 import DogParkCard from './DogParkCard'
 import DogParkForm from './DogParkForm'
 import Reviews from './Reviews'
 
 
-
 function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedReviews}) {
 
   
-
   const dogParkComponents = dogParks.map((eachDogPark)=>{
       return (
       <DogParkCard

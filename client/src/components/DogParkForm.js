@@ -23,6 +23,12 @@ function DogParkForm({addDogParkToState}) {
         .then(r => r.json())
         .then(data => addDogParkToState(data))
         .catch(error => console.error(error));
+
+        setName('')
+        setAmenities('')
+        setAddress('')
+        setRating('')
+        setImage('')
       }
   
     return (

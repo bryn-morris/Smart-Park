@@ -8,7 +8,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import User, Dog, Visit, Dog_Park
+from models import User, Dog, Visit, Dog_Park, Review
 
 
 # Views go here!
@@ -81,11 +81,6 @@ class CurrentSession(Resource):
             )
 api.add_resource(CurrentSession, '/current_session')
 
-
-
-
-
-
 class Dog_Parks(Resource):
     def get(self):
 
@@ -105,6 +100,7 @@ class Dog_Parks(Resource):
         return make_response(dog_parks, 200)
     
     def post(self):
+
         dogpark = Dog_Park(
             name = request.form['name'],
             amenities = request.form['amenities'],
@@ -112,9 +108,28 @@ class Dog_Parks(Resource):
             rating = request.form['rating'],
             image = request.form['image']
             )
+        
         db.session.add(dogpark)
         db.session.commit()
         return make_response(dogpark.to_dict(), 201)
+
+        # try:
+        #     dogpark = Dog_Park(
+        #     name = request.form['name'],
+        #     amenities = request.form['amenities'],
+        #     address = request.form['address'],
+        #     rating = request.form['rating'],
+        #     image = request.form['image']
+        #     )
+        # except ValueError:
+        #     response_body = {'message':'hey u goofed put in a url pls'}
+        #     return make_response(response_body, 409)
+        # else:
+        #     db.session.add(dogpark)
+        #     db.session.commit()
+        #     return make_response(dogpark.to_dict(), 201)
+        
+        
     
 api.add_resource(Dog_Parks, '/dogparks')
         

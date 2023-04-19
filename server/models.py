@@ -103,16 +103,15 @@ class Dog_Park(db.Model, SerializerMixin):
     visits = db.relationship('Visit', back_populates = 'dog_park', cascade="all, delete-orphan")
     dogs = association_proxy('visits', 'dog')
 
-    # @validates('year')
-    # def year_validation(self, key, attr):
-    #     valid_fields = ['AI','Robotics', 'Machine Learning', 'Vision', 'Cybersecurity']
-    #     if attr not in valid_fields:
-    #         raise AttributeError('Please select a valid field of study!: AI,Robotics, Machine Learning, Vision, or Cybersecurity')
-    #     else:
-    #         return attr
-
     reviews = db.relationship('Review', back_populates='dog_park', cascade="all, delete-orphan")
 
+    # @validates('image')
+    # def image_url_validation(self, key, attr):
+    #     if not attr:
+    #         raise ValueError
+    #     else:
+    #         return attr
+            
 
 class Review(db.Model, SerializerMixin):
 

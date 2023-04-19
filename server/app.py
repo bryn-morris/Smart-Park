@@ -3,14 +3,88 @@
 # Standard library imports
 
 # Remote library imports
-from flask import make_response, request
+from flask import make_response, request, session, jsonify
 from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import User, Dog, Visit, Dog_Park, Review
+from models import User, Dog, Visit, Dog_Park
+
 
 # Views go here!
+
+
+class Signup(Resource):
+    def post(self):
+        data = request.get_json()
+        temp_user = User(
+            username = data['username'],
+            image = data['image'],
+            _password = data['password']
+        )
+        temp_user.password_hash = temp_user._password
+        new_password = temp_user._password
+
+        new_user = User(
+            username = data['username'],
+            image = data['image'],
+            _password = new_password
+        )
+        db.session.add(new_user)
+        db.session.commit()
+
+        return make_response(
+            {},
+            200
+        )
+api.add_resource(Signup, '/signup')
+        
+
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+        user = User.query.filter(
+            User.username == data['username']
+        ).first()
+
+        password = User.query.filter(
+            User._password == data['password']
+        ).first()
+        
+        if not password:
+            return make_response(
+                {'error': 'User either does not exist or username/password incorrect'},
+                404
+            )
+
+        session['user_id'] = user.id
+        return make_response(
+            user.to_dict(),
+            200
+        )
+api.add_resource(Login, '/login')
+
+class Logout(Resource):
+    def delete(self):
+        session.pop('user_id', None)
+        return session.get('user_id')
+
+api.add_resource(Logout, '/logout')
+
+class CurrentSession(Resource):
+    def get(self):
+        user = User.query.get(session.get('user_id'))
+        if user:
+            return make_response(
+                user.to_dict(),
+                200
+            )
+api.add_resource(CurrentSession, '/current_session')
+
+
+
+
+
 
 class Dog_Parks(Resource):
     def get(self):
@@ -43,16 +117,6 @@ class Dog_Parks(Resource):
         return make_response(dogpark.to_dict(), 201)
     
 api.add_resource(Dog_Parks, '/dogparks')
-
-class DogParkById(Resource):
-    def get(self, id):
-        dog_park = Dog_Park.query.filter_by(id=id).first()
-        if dog_park == None:
-            return make_response({'error': 'Dog Park not found'})
-        return make_response(dog_park.to_dict(rules = ('reviews',)), 201)
-
-api.add_resource(DogParkById, '/dogparks/<int:id>')
-
         
 class Dogs(Resource):
     def get(self):
@@ -142,36 +206,15 @@ class Check_In_To_Park(Resource):
     
 api.add_resource(Check_In_To_Park, '/visits')
 
-
-@app.route('/visits/<int:id>', methods = ['PATCH', 'DELETE'])
-def delete_or_patch_visit(id):
+@app.route('/visits/<int:id>', methods = ['DELETE'])
+def delete_visit(id):
 
     selVisit = Visit.query.filter(Visit.id == id).one()
+    db.session.delete(selVisit)
+    db.session.commit()
 
-    if request.method == 'DELETE':
-        
-        db.session.delete(selVisit)
-        db.session.commit()
-
-        return make_response({}, 204)
-    
-    if request.method == 'PATCH':
-
-        selVisit.actual_length_of_stay = request.get_json()['actualLengthOfStay']
-
-        db.session.add(selVisit)
-        db.session.commit()
-
-        return make_response(selVisit.to_dict(), 200)
-
-class Reviews(Resource):
-    def get(self):
-        reviews = [r.to_dict() for r in Review.query.all()]
-        return make_response(reviews, 201)
-api.add_resource(Reviews, '/reviews')
+    return make_response({}, 204)
 
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
-
-

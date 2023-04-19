@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import MyDogCards from './MyDogCards'
+import NewDogForm from './NewDogForm'
 
 
 
-function MyAccount({dogs, showRemainingDogs, updatedDogs}) {
+function MyAccount({dogs, showRemainingDogs, updatedDogs, createDog}) {
     
 
     const myDogs = dogs.map((dog)=>{
@@ -13,6 +14,9 @@ function MyAccount({dogs, showRemainingDogs, updatedDogs}) {
 
   return (
     <div>
+      <div>
+        <NewDogForm createDog={createDog}/>
+      </div>
         {myDogs}
     </div>
   )

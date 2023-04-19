@@ -88,8 +88,6 @@ class DogById(Resource):
             200
         )
 
-
-
     def delete(self, id):
         dog = Dog.query.filter_by(id=id).first()
         if not dog:
@@ -109,7 +107,7 @@ class DogById(Resource):
         dog = Dog.query.filter_by(id=id).first()
 
         for key in data.keys():
-            setattr( dog, key, data[key])
+            setattr(dog, key, data[key])
         db.session.add(dog)
         db.session.commit()
         return make_response(

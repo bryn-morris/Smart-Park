@@ -16,6 +16,10 @@ function Header() {
             to="/checkin" exact>
             <div>Check In</div>
           </NavLink>
+          <NavLink
+            to="/myaccount" exact>
+            <div>My Account</div>
+          </NavLink>
         </div>
       </nav>
     );

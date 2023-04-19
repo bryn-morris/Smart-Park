@@ -24,7 +24,7 @@ with app.app_context():
 
     print("Creating Users...")
 
-    users_list = [User( username= faker.user_name(),  password= faker.word(), image = faker.image_url()) for _ in range(1,5)]
+    users_list = [User( username= faker.user_name(),  _password= faker.word(), image = faker.image_url()) for _ in range(1,5)]
 
     print("Creating Dogs...")
 

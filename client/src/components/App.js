@@ -4,6 +4,7 @@ import Home from "./Home";
 import CheckIn from "./CheckIn";
 import Header from "./Header"
 import DogPark from "./DogPark"
+import DogParkForm from "./DogParkForm";
 
 function App() {
 
@@ -15,6 +16,10 @@ function App() {
       .then(setDogParks)
   }, [])
 
+  const addDogParkToState = (newDogParkObj) => {
+    setDogParks([newDogParkObj, ...dogParks]) 
+  }
+
   return (
     <div>
       <Header />
@@ -25,6 +30,9 @@ function App() {
           </Route>
           <Route exact path="/dogparks">
             <DogPark dogParks = {dogParks}/>
+          </Route>
+          <Route exact path="/dogparks">
+            <DogParkForm addDogParkToState={addDogParkToState}/>
           </Route>
           <Route exact path="/checkin">
             <CheckIn/>

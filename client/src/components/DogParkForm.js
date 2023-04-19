@@ -1,84 +1,53 @@
 import React, {useState} from 'react'
-import { useHistory } from "react-router-dom";
 
-function DogParkForm({ addDogParkState }) {
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [rating, setRating] = useState("");
-    const [amenities, setAmenities] = useState("");
-    const [image, setImage] = useState("");
-    let history = useHistory();
+function DogParkForm(addDogParkToState) {
+    const [name, setName] = useState('');
+    const [amenities, setAmenities] = useState('');
+    const [address, setAddress] = useState('');
+    const [rating, setRating] = useState('');
+    const [image, setImage] = useState('');
   
     const handleSubmit = (e) => {
-      e.preventDefault();
-      let newDogParkObj= {
-        name: name,
-        address: address,
-        rating: rating,
-        amenities: amenities,
-        image: image,
-      };
-      fetch("http://localhost:4000/dogparks", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newDogParkObj),
-      })
-        .then((r) => r.json())
-        .then(addDogParkState);
-      e.target.reset();
-      history.push("/dogparks");
-    };
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('amenities', amenities);
+        formData.append('address', address);
+        formData.append('rating', rating);
+        formData.append('image', image);
+        fetch('/dogparks', {
+          method: 'POST',
+          body: formData
+        })
+        .then(r => r.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+      }
+  
     return (
-        <div>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>
-                Enter Name of Dog Park:
-              </label>
-              <input
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label>
-                Enter Address:
-              </label>
-              <input
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div>
-              <label>
-                Enter Rating:
-              </label>
-              <input
-                onChange={(e) => setRating(e.target.value)}
-              />
-            </div>
-            <div>
-              <label>
-                Enter Amenities of Dog Park:
-              </label>
-              <textarea
-                onChange={(e) => setAmenities(e.target.value)}
-              />
-            </div>
-            <div>
-              <label>
-                Enter Image of Dog Park:
-              </label>
-              <input
-                onChange={(e) => setImage(e.target.value)}
-              />
-            </div>
-            <div>
-              <button className="btn btn-primary btn-customized mt-4">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </label>
+        <label>
+          Amenities:
+          <input type="text" value={amenities} onChange={(e) => setAmenities(e.target.value)} />
+        </label>
+        <label>
+          Address:
+          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
+        </label>
+        <label>
+          Rating:
+          <input type="text" value={rating} onChange={(e) => setRating(e.target.value)} />
+        </label>
+        <label>
+          Image:
+          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
     );
   }
-
 export default DogParkForm

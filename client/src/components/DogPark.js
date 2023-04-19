@@ -15,9 +15,12 @@ function DogPark({dogParks}) {
    })
 
   return (
+  <div>
+    <DogParkForm/>
     <div>
       {dogParkComponents}
     </div>
+  </div>
   )
 }
 

@@ -132,15 +132,26 @@ class Check_In_To_Park(Resource):
     
 api.add_resource(Check_In_To_Park, '/visits')
 
-@app.route('/visits/<int:id>', methods = ['DELETE'])
-def delete_visit(id):
+@app.route('/visits/<int:id>', methods = ['PATCH', 'DELETE'])
+def delete_or_patch_visit(id):
 
     selVisit = Visit.query.filter(Visit.id == id).one()
-    db.session.delete(selVisit)
-    db.session.commit()
 
-    return make_response({}, 204)
+    if request.method == 'DELETE':
+        
+        db.session.delete(selVisit)
+        db.session.commit()
+
+        return make_response({}, 204)
+    
+    if request.method == 'PATCH':
+
+        selVisit.actual_length_of_stay = request.get_json()['stayTime']
+
+        return make_response(selVisit.to_dict(), 200)
 
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
+
+

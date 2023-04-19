@@ -52,6 +52,7 @@ class Visit(db.Model, SerializerMixin):
     
     id = db.Column(db.Integer, primary_key=True)
     length_of_stay = db.Column(db.Integer)
+    actual_length_of_stay = db.Column(db.Integer)
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())

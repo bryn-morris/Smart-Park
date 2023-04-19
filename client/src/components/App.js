@@ -29,6 +29,8 @@ function App() {
     }
   }, [])
 
+  const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
+
   function handleFormSubmission(formObj){
     // Update Backend with post to a route that creates a Visit Instance
     fetch('/visits', {
@@ -39,7 +41,7 @@ function App() {
     .then(r=>r.json())
     .then(newVisit => {
       setCurrentCheckInID(newVisit.id)
-
+      setAccidentalCheckin(true)
       sessionStorage.setItem('currentCheckInID', newVisit.id)
     })
   }
@@ -52,13 +54,6 @@ function App() {
       setCurrentCheckInID(null)
       sessionStorage.clear()
     })
-  }
-
-  const propsObjectToHome = {
-    handleFormSubmission: handleFormSubmission,
-    dogParks: dogParks,
-    deleteCheckIn: deleteCheckIn,
-    currentCheckInID: currentCheckInID,
   }
 
   const [dogs, setDogs] = useState([])
@@ -84,15 +79,47 @@ function App() {
     setDogs(changedDogArr)
   }
 
-
-
   const addDogParkToState = (newDogParkObj) => {
     setDogParks([newDogParkObj, ...dogParks]) 
   }
 
-  const test = 'test'
-  
+  const [seconds, setSeconds] = useState(0)
 
+  function startTimer(){
+    setInterval(()=>{
+      setSeconds(seconds => seconds+1)
+    }, 1000)
+  }
+
+  function endTimer(){
+    clearInterval(setSeconds(0))
+  }
+
+  function checkOut () {
+    fetch(`/visits/${parseInt(currentCheckInID)}`,{
+      method: 'PATCH',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({actualLengthOfStay: seconds})
+    })
+      .then(r=>r.json())
+      .then(updatedVisit => {
+        setCurrentCheckInID(null)
+        sessionStorage.clear()
+      })
+  }
+
+  const propsObjectToHome = {
+    handleFormSubmission: handleFormSubmission,
+    dogParks: dogParks,
+    deleteCheckIn: deleteCheckIn,
+    currentCheckInID: currentCheckInID,
+    setAccidentalCheckin: setAccidentalCheckin,
+    accidentalCheckin: accidentalCheckin,
+    checkOut: checkOut,
+    endTimer: endTimer,
+    startTimer: startTimer,
+  }
+  
   return (
     <div>
       <Header />
@@ -104,7 +131,7 @@ function App() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState} test = {test}/>
+            <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState}/>
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs}/>

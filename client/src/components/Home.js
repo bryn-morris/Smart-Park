@@ -2,14 +2,30 @@ import {useState} from 'react'
 import { Button, Modal} from 'semantic-ui-react'
 import CheckOutForm from './CheckOutForm'
 
-function Home({handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID}) {
+function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID, setAccidentalCheckin, accidentalCheckin}) {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
+  
 
   const handleDeleteCheckIn = () => {
     setIsModalOpen(false)
+    setAccidentalCheckin(false)
     deleteCheckIn()
+    endTimer()
   }
+
+  const handleModalClose = () => {
+    setIsModalOpen(false)
+    setAccidentalCheckin(false)
+  }
+
+  const handleCheckOut = () => {
+    setIsModalOpen(false)
+    checkOut()
+    endTimer()
+  }
+
+  const accidentalCheckInMessage = 'Thanks for checking in :D ! If that checkin was a mistake you can delete below!'
 
   return (
     <div>
@@ -21,47 +37,50 @@ function Home({handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID})
       <div className="modalContainer">    
                  
                 <Modal
-                    onClose={() => setIsModalOpen(false)}
+                    onClose={() => handleModalClose()}
                     onOpen={() => setIsModalOpen(true)}
                     open={isModalOpen}
-                    trigger={<Button className = "big ui button modalbutton">Check in!</Button>}
+                    trigger={<Button className = "big ui button modalbutton">{currentCheckInID ? 'Check Out!' : 'Check in!'}</Button>}
                     size= 'small'
                 >
-                <Modal.Header>Let's Check In!</Modal.Header>
-                    <Modal.Content>
-                        {currentCheckInID ? 
-                         'Thanks for checking in :D !':
-                         <CheckOutForm 
-                          setIsModalOpen = {setIsModalOpen} 
-                          handleFormSubmission = {handleFormSubmission}
-                          dogParks = {dogParks}
-                          currentCheckInID= {currentCheckInID}
-                        />
-                        }
-                    </Modal.Content>
-                    <Modal.Actions>
-                        {currentCheckInID ?
-                          <div>
+                <Modal.Header>{currentCheckInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>
+                    {currentCheckInID && accidentalCheckin === false ?
+                      <Modal.Content>
+                        <Button
+                          onClick={handleCheckOut}
+                        >
+                          Want to Check Out?
+                        </Button>
+                      </Modal.Content> :
+                      <Modal.Content>
+                          {accidentalCheckin ? 
+                          accidentalCheckInMessage:
+                          <CheckOutForm
+                            handleFormSubmission = {handleFormSubmission}
+                            dogParks = {dogParks}
+                          />
+                          }
+                      </Modal.Content>
+                    }
+                    {currentCheckInID ?
+                      <Modal.Actions>
+                        {accidentalCheckin ? 
                           <Button 
                             onClick={handleDeleteCheckIn}>
-                              Cancel Check-In?
-                          </Button>
-                         
-                          {/* Edit Checkin Button Maybe?>
-                          <Button
-                            onClick={deleteCheckIn}
-                          > 
-                            Edit Check-In?
-                          </Button> */}
-                          </div>:
-                          <Button
-                            form="checkInForm" 
-                            type="submit" 
-                          >
-                            Submit
-                          </Button>
+                            Cancel Check-In?
+                          </Button>:
+                          null
                         }
-                    </Modal.Actions> 
+                      </Modal.Actions>:
+                      <Modal.Actions>
+                            <Button
+                              form="checkInForm" 
+                              type="submit"
+                              onClick={startTimer} 
+                            >
+                              Submit
+                            </Button>
+                        </Modal.Actions>}
                 </Modal>
 
             </div>

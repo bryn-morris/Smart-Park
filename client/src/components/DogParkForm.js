@@ -7,7 +7,6 @@ function DogParkForm({addDogParkToState}) {
     const [rating, setRating] = useState('');
     const [image, setImage] = useState('');
 
-
   
     const handleSubmit = (e) => {
         e.preventDefault();

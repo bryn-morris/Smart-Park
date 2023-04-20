@@ -38,7 +38,7 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
         )
       }
     </div>
-    <div>
+    <div className="dog-parks-container">
     {dogParkComponents}
     </div>
   </div>

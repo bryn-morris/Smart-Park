@@ -1,0 +1,55 @@
+.dpcName {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .dpcImg {
+    max-width: 100%;
+    height: 500px;
+    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .dpcontainer {
+    height: 650px;
+    border: 3px solid black;
+    padding: 20px;
+  }
+
+  .dptitle{
+    font-size: 30px;
+    text-align: center
+ 
+  }
+
+  .dog-parks-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+  .AboutUsText {
+    font-size: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .dog-bone-button {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4spXO4VkbttJgT75qnhruHkdPudkAti-aAXpZholErhvZme8t0QGxzPXSrj--HRkZ1NE&usqp=CAU');
+    background-size: 150px;
+    background-repeat: no-repeat;
+    border: none;
+    width: 150px;
+    height: 70px;
+    cursor: pointer;
+  }
+
+  .aboutImg {
+    max-width: 100%;
+    height: 550px;
+    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto;
+  }

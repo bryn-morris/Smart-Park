@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Form} from 'semantic-ui-react'
+import {Form, Dropdown} from 'semantic-ui-react'
 
 function CheckOutForm({handleFormSubmission, dogParks, dogs}){
 
@@ -18,15 +18,33 @@ function CheckOutForm({handleFormSubmission, dogParks, dogs}){
     }
 
     const handleFormInputChange = (e) => {
+        console.log(e.target)
         setFormObject(
             ()=>{return{...formObject, [e.target.name]: e.target.value}}
         )
     }
 
+    // const dogParkOptions = dogParks.map((eachDP)=>{
+    //     return {
+    //         key: eachDP.id,
+    //         icon: 'tree',
+    //         text: eachDP.name,
+    //     }
+    // })
+    
     return(
         <div>
             <Form id = "checkInForm" onSubmit={handleFormSubmit} className ="ui form">
                 <label>Dog Park:</label>
+                {/* <Dropdown
+                    placeholder = 'Choose Your Dog Park!'
+                    fluid
+                    selection
+                    name = 'dogParkName'
+                    options = {dogParkOptions}
+                    value = {formObject.dogParkName}
+                    onChange = {handleFormInputChange}
+                /> */}
                 <select onChange={handleFormInputChange} name="dogParkName" value={formObject.dogParkName}>
                     <option defaultValue='Dog Park' hidden>Dog Park</option>
                     {dogParks.map((eachDP)=>{

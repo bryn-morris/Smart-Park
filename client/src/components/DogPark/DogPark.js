@@ -60,8 +60,7 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
                 </Button> 
             </Modal.Actions>
         </Modal>
-    <div>
-      {/* Dog Park Cards */}
+    <div className="dog-parks-container">
       {dogParkComponents}
     </div>
   </div>

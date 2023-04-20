@@ -150,7 +150,7 @@ function App() {
   //       return true
   //   })
 
-  //add newreview  
+  // add new review  
   const addNewReview = (newReview) => {
     setReviews([newReview, ...reviews])
   }

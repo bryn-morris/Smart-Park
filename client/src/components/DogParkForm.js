@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
+import {Form} from 'semantic-ui-react'
 
-function DogParkForm({addDogParkToState}) {
+function DogParkForm({handleAddDogPark}) {
     const [name, setName] = useState('');
     const [amenities, setAmenities] = useState('');
     const [address, setAddress] = useState('');
@@ -16,14 +17,8 @@ function DogParkForm({addDogParkToState}) {
         formData.append('address', address);
         formData.append('rating', rating);
         formData.append('image', image);
-        fetch('/dogparks', {
-          method: 'POST',
-          body: formData
-        })
-        .then(r=>r.ok ?
-          r.json().then(data => addDogParkToState(data)) :
-          alert('Please enter a valid url!')
-        ) 
+        
+        handleAddDogPark(formData) 
 
         setName('')
         setAmenities('')
@@ -33,7 +28,7 @@ function DogParkForm({addDogParkToState}) {
       }
   
     return (
-      <form onSubmit={handleSubmit}>
+      <Form id  = "dogParkForm" onSubmit={handleSubmit}>
         <label>
           Name:
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -55,7 +50,7 @@ function DogParkForm({addDogParkToState}) {
           <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
         </label>
         <button type="submit">Submit</button>
-      </form>
+      </Form>
     );
   }
 export default DogParkForm

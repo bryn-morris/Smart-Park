@@ -6,39 +6,28 @@ import DogPark from "./DogPark/DogPark";
 import MyAccount from "./MyAccount/MyAccount";
 import AboutUs from "./AboutUs";
 
-function Main({currentUser}) {
+function Main() {
  
-  //  Only show thanks for checking on modal/cancel checkin modal once. After that
-  // change modal button to check out and present checkout modal to check out???
-  
+
   const [dogParks, setDogParks] = useState([])
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
   const [dogs, setDogs] = useState([])
+  const [currentUser, setCurrentUser] =useState(null)
 
-  // need to get dogs associated with user through session in our fetch
-  // const [user, setUser] = useState(false)
-  // fetch('http://127.0.0.1:5555/login'), {
-  //   method: "POST",
-  //   headers: {"Content-Type": "application/json"},
-  //   body: JSON.stringify(currentUser)
-  // }
-  // .then(r=>r.json())
-  // .then(console.log('success!'))
-  
-  
-  
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/current-session')
       .then(r => {
         if (r.status === 200){
           r.json()
-          .then(obj => setDogs(obj.dogs))
+          .then(obj => {
+            setDogs(obj.dogs)
+            setCurrentUser(obj)
+          })
         } else {
           console.log('hello')
         }
       })
   },[] )
-
 
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogparks')
@@ -131,19 +120,6 @@ function Main({currentUser}) {
       })
   }
 
-
-  const propsObjectToHome = {
-    handleFormSubmission: handleFormSubmission,
-    dogParks: dogParks,
-    deleteCheckIn: deleteCheckIn,
-    currentCheckInID: currentCheckInID,
-    setAccidentalCheckin: setAccidentalCheckin,
-    accidentalCheckin: accidentalCheckin,
-    checkOut: checkOut,
-    endTimer: endTimer,
-    startTimer: startTimer,
-  }
-
   const find_dog_park_by_id = (createdReview) => {
       
     // filter through dog parks to get the dog park associatd with the dog 
@@ -160,31 +136,6 @@ function Main({currentUser}) {
 
     )}
 
-  
-  // if (user === !user){
-  //   return(
-  //     <div>
-  //       <Route exact path="/login">
-  //         <LogIn/>
-  //       </Route>
-  //     </div>
-  //   )
-  // }
-  // else{
-
-  //fetch for reviews
-  
-  // const [reviews, setReviews] = useState([])
-  // useEffect(()=>{
-  //   fetch('/reviews')
-  //     .then(r=> r.json())
-  //     .then(setReviews)
-  // }, [])
-
-
-  // add newreview  
-  
-
   //search for dog park
   const [searchedPark, setSearchedPark] = useState('')
   
@@ -194,6 +145,34 @@ function Main({currentUser}) {
   
   const filteredParks = dogParks.filter(park => park.name.toLowerCase().includes(searchedPark))
 
+  const propsObjectToHome = {
+    handleFormSubmission: handleFormSubmission,
+    dogParks: dogParks,
+    deleteCheckIn: deleteCheckIn,
+    currentCheckInID: currentCheckInID,
+    setAccidentalCheckin: setAccidentalCheckin,
+    accidentalCheckin: accidentalCheckin,
+    checkOut: checkOut,
+    endTimer: endTimer,
+    startTimer: startTimer,
+    dogs: dogs
+  }
+
+  const propsObjectToMyAccount = {
+    dogs : dogs,
+    showRemainingDogs: showRemainingDogs,
+    updatedDogs: updatedDogs,
+    createDog: createDog,
+    currentUser: currentUser,
+  }
+
+  const propsObjectToDogPark = {
+    specificPark: specificPark,
+    finddpbi: find_dog_park_by_id,
+    dogParks: filteredParks,
+    addDogParkToState: addDogParkToState,
+  }
+
   return (
     <div>
       <Header/>
@@ -201,14 +180,14 @@ function Main({currentUser}) {
         <Switch>
           <Route exact path="/">
             <Home 
-              {...propsObjectToHome} dogs={dogs}
+              {...propsObjectToHome}
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark specificPark={specificPark} finddpbi = {find_dog_park_by_id} dogParks={filteredParks} addDogParkToState={addDogParkToState} />
+            <DogPark {...propsObjectToDogPark} />
           </Route>
           <Route exact path="/myaccount">
-            <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>
+            <MyAccount {...propsObjectToMyAccount}/>
           </Route>
           <Route exact path="/aboutus">
             <AboutUs/>
@@ -218,6 +197,5 @@ function Main({currentUser}) {
     </div>
   );
 }
-// }
 
 export default Main;

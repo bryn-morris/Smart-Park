@@ -4,7 +4,7 @@ import NewDogForm from './NewDogForm'
 
 
 
-function MyAccount({dogs, showRemainingDogs, updatedDogs, createDog}) {
+function MyAccount({dogs, showRemainingDogs, updatedDogs, createDog, currentUser}) {
     
 
     const myDogs = dogs.map((dog)=>{
@@ -15,7 +15,7 @@ function MyAccount({dogs, showRemainingDogs, updatedDogs, createDog}) {
   return (
     <div>
       <div>
-        <NewDogForm createDog={createDog}/>
+        <NewDogForm createDog={createDog} dogs={dogs} currentUser={currentUser}/>
       </div>
         {myDogs}
     </div>

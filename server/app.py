@@ -246,26 +246,31 @@ class Reviews(Resource):
     def get(self):
         reviews = [r.to_dict() for r in Review.query.all()]
         return make_response(reviews, 201)
-
+    
     def post(self):
-        data = request.get_json()
-        new_review = Review(
-            name = data['name'],
-            comment = data['comment'],
-            rating = data['rating'],
-            dog_park_id = data['dog_park_id'],
-        )
 
-        db.session.add(new_review)
-        db.session.commit()
-        return make_response(
+        try:
+            data = request.get_json()
+            new_review = Review(
+                name = data['name'],
+                comment = data['comment'],
+                rating = data['rating'],
+                dog_park_id = data['dog_park_id'],
+            )
+        except:
+            
+            response_body = {'message': 'Hey you goober, enter between 1-5'}
+            return make_response(response_body, 409)
+
+        else:
+            db.session.add(new_review)
+            db.session.commit()
+            return make_response(
             new_review.to_dict(),
-            201
+            201 
         )
 
 api.add_resource(Reviews, '/reviews')
-
-
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

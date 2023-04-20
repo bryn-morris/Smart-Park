@@ -37,7 +37,8 @@ function Main() {
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogparks')
       .then(r=> r.json())
-      .then(setDogParks)
+      .then(data => setDogParks(data))
+      
 
     //use sessionStorage to check if currently checked in 
     const sessionCheckInID = sessionStorage.getItem('currentCheckInID')
@@ -138,6 +139,22 @@ function Main() {
     startTimer: startTimer,
   }
 
+  const find_dog_park_by_id = (createdReview) => {
+      
+    // filter through dog parks to get the dog park associatd with the dog 
+    // park id inside of created review
+
+    dogParks.map( (eachDP) => {
+      if (eachDP.id === createdReview.dog_park_id){
+        eachDP.reviews.push(createdReview)
+        return eachDP
+      } else{
+        return eachDP
+      }
+    }
+    
+    )}
+
   
   // if (user === !user){
   //   return(
@@ -152,18 +169,16 @@ function Main() {
 
   //fetch for reviews
   
-  const [reviews, setReviews] = useState([])
-  useEffect(()=>{
-    fetch('/reviews')
-      .then(r=> r.json())
-      .then(setReviews)
-  }, [])
+  // const [reviews, setReviews] = useState([])
+  // useEffect(()=>{
+  //   fetch('/reviews')
+  //     .then(r=> r.json())
+  //     .then(setReviews)
+  // }, [])
 
 
   // add newreview  
-  const addNewReview = (newReview) => {
-    setReviews([newReview, ...reviews])
-  }
+  
 
   //search for dog park
   const [searchedPark, setSearchedPark] = useState('')
@@ -185,7 +200,7 @@ function Main() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark specificPark={specificPark} dogParks={filteredParks} addNewReview={addNewReview} addDogParkToState={addDogParkToState} />
+            <DogPark specificPark={specificPark} finddpbi = {find_dog_park_by_id} dogParks={filteredParks} addDogParkToState={addDogParkToState} />
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>

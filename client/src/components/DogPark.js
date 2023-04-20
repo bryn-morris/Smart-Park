@@ -5,18 +5,18 @@ import DogParkForm from './DogParkForm'
 
 
 
-function DogPark({dogParks, addDogParkToState, addNewReview, specificPark}) {
+function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
   const [showDPForm, setShowDPForm] = useState(false)
   const handleShowDPForm = () =>{
     setShowDPForm(!showDPForm)
   }
-
+  
   const dogParkComponents = dogParks.map((eachDogPark)=>{
       return (
       <DogParkCard
         key = {eachDogPark.id}
         {...eachDogPark}
-        addNewReview={addNewReview}
+        finddpbi = {finddpbi}
       />)
    })
 

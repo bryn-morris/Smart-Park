@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Reviews from './Reviews'
 
-function DogParkCard({id, name, address, amenities, rating, image, reviews, addNewReview}){
+function DogParkCard({id, name, address, amenities, rating, image, reviews, finddpbi}){
   const [showFront, setShowFront] = useState(true);
   const [showReviewForm, setShowReviewForm] = useState(false)
   const [showReviews, setShowReviews]=useState(false)
@@ -41,28 +41,29 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, addN
       dog_park_id: dogPark
     }
 
-    fetch("http://127.0.0.1:5555/reviews", {
+
+    fetch("/reviews", {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(newReview)
         })
-      .then(r=>r.json())
-      .then(review => addNewReview(review))
-
+      .then(r=> r.ok? 
+        r.json().then(review => finddpbi(review)):
+        r.json().then(r => alert(r.message))
+      )
+  
     setUsersName('')
     setComment('')
     setNewRating('')
   }
 
   const reviewComponents = () => {
-    if (reviews === []) {
+    if (reviews.length === 0) {
       return null
     } else {
-      reviews.map(review => {
-      return <Reviews key={review.id} {...review}/>
-      })}
+      return (reviews.map(review => <Reviews key={review.id} {...review}/>))}
     }
 
 
@@ -96,9 +97,9 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, addN
             {showReviewForm ? (
                 <div>
                   <form onSubmit={handleSubmit}>
-                    <input type="text" value={usersName} onChange={handleUsersName}/>
-                    <input type="text" value={comment} onChange={handleComment}/>
-                    <input type="text" value={newRating} onChange={handleNewRating}/>
+                    <input type="text" value={usersName} onChange={handleUsersName} placeholder='username'/>
+                    <input type="text" value={comment} onChange={handleComment} placeholder = 'comment'/>
+                    <input type="text" value={newRating} onChange={handleNewRating} placeholder = "rating 1-5"/>
                     <button>Submit</button>
                   </form>
                   <button onClick={handleShowReviewForm}>Hide Form</button>

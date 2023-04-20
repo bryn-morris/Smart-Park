@@ -128,3 +128,10 @@ class Review(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
     dog_park = db.relationship('Dog_Park', back_populates = 'reviews')
+    
+    @validates('rating')
+    def rating_validation(self, key, attr):
+        if int(attr) in [1,2,3,4,5]:
+            return attr
+        else:
+            raise AttributeError

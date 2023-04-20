@@ -42,7 +42,7 @@ function LogIn() {
                 <h2>Welcome back, Sign in here</h2>
                 <form onSubmit={handleSubmit}>
                 <input onChange={(e) => setUsername(e.target.value)} type="text" name="username" placeholder="username" />
-                <input onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="password" />
+                <input onChange={(e) => setPassword(e.target.value)} type="password" name="password" placeholder="password" />
                 <button type="submit">Submit</button>
                 </form>
             </div>

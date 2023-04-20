@@ -6,6 +6,7 @@ function Reviews({name, comment, rating}) {
         <h2>{name}</h2>
         <h3>{comment}</h3>
         <h1>{rating}</h1>
+        <br></br>
     </div>
     )
   }

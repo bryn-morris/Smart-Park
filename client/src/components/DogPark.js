@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 import DogParkCard from './DogParkCard'
 import DogParkForm from './DogParkForm'
+import SearchDogPark from './SearchDogPark'
 
 
 
 
 function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
   const [showDPForm, setShowDPForm] = useState(false)
+
   const handleShowDPForm = () =>{
     setShowDPForm(!showDPForm)
   }
@@ -23,24 +25,21 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
   return (
   <div>
     <div>
-      <label htmlFor="search">Search Dog Parks:</label>
-        <input
-          type="text"
-          placeholder="Type a Dog Park name to search..."
-          onChange={(e) => specificPark(e.target.value)}
-        />
+      <SearchDogPark specificPark = {specificPark}/>
     </div>
-    {showDPForm ? (
-      <div>
-        <DogParkForm dogParks = {dogParks} addDogParkToState = {addDogParkToState}/> 
-        <button onClick={handleShowDPForm}>Hide Form</button>
-      </div>
-      ) : (
-      <button onClick={handleShowDPForm}>Add Dog Park</button>
-      )
-    }
     <div>
-      {dogParkComponents}
+      {showDPForm ? (
+        <div>
+          <DogParkForm dogParks = {dogParks} addDogParkToState = {addDogParkToState}/> 
+          <button onClick={handleShowDPForm}>Hide Form</button>
+        </div>
+        ) : (
+        <button onClick={handleShowDPForm}>Add Dog Park</button>
+        )
+      }
+    </div>
+    <div>
+    {dogParkComponents}
     </div>
   </div>
   )

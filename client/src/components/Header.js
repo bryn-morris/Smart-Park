@@ -2,6 +2,12 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 function Header() {
+
+
+  function refreshPage() {
+    window.location.reload(true);
+  }
+
     return (
       <nav>
         <div className="navigation">
@@ -19,6 +25,12 @@ function Header() {
           <NavLink
           to="/aboutus" exact>
             <div>About Us</div>
+          </NavLink>
+          <NavLink
+          to="/login" exact>
+            <div>
+              <button onClick={refreshPage}>Logout</button>
+            </div>
           </NavLink>
         </div>
       </nav>

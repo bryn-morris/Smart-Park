@@ -1,18 +1,21 @@
 import React, {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+// import {useHistory} from 'react-router-dom'
 import { Route } from "react-router-dom";
 import Main from "./Main"
 
 function LogIn() {
-    
+
+    const [session, setSession] = useState(false)
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
+    if (session === false){
     
-    let history = useHistory();
     const user = {
       username: username,
       password: password,
     }
+
     
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -24,10 +27,8 @@ function LogIn() {
         .then(r => {
             if (r.status === 200){
             r.json()
-            history.push('/login')
-            console.log('success')
+            setSession(!session)
             } else {
-            history.push('/login')
             console.log('failure')
             }
       })
@@ -45,13 +46,18 @@ function LogIn() {
                 <button type="submit">Submit</button>
                 </form>
             </div>
-        <main>
-            {/* <Route exact path="/login">
-                <Main/>
-            </Route> */}
-        </main>
       </div>
     );
+    }
+    else{
+        return (
+            <main>
+                <Route path="/">
+                    <Main/>
+                </Route>
+            </main>
+        )
+    }
 }
 
 export default LogIn;

@@ -5,9 +5,6 @@ import Header from "./Header";
 import DogPark from "./DogPark";
 import MyAccount from "./MyAccount";
 import AboutUs from "./AboutUs";
-import LogIn from "./LogIn";
-import SignUp from "./SignUp";
-
 
 function Main() {
 

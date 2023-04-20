@@ -20,9 +20,10 @@ function DogParkForm({addDogParkToState}) {
           method: 'POST',
           body: formData
         })
-        .then(r => r.json())
-        .then(data => addDogParkToState(data))
-        .catch(error => console.error(error));
+        .then(r=>r.ok ?
+          r.json().then(data => addDogParkToState(data)) :
+          alert('Please enter a valid url!')
+        ) 
 
         setName('')
         setAmenities('')

@@ -56,9 +56,15 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, addN
     setNewRating('')
   }
 
-  const reviewComponents = reviews.map(review => {
-    return <Reviews key={review.id} {...review}/>
-  })
+  const reviewComponents = () => {
+    if (reviews === []) {
+      return null
+    } else {
+      reviews.map(review => {
+      return <Reviews key={review.id} {...review}/>
+      })}
+    }
+
 
   return (
     <div >
@@ -79,7 +85,7 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, addN
         <div>
             {showReviews ? (
               <div>
-                {reviewComponents}
+                {reviewComponents()}
                 <button onClick={handleShowReviews}>Hide Reviews</button>
               </div>
             ):(

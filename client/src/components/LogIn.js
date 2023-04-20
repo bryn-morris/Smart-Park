@@ -3,6 +3,9 @@ import React, {useState} from 'react'
 import { Route } from "react-router-dom";
 import Main from "./Main"
 
+const sessionUser = []
+
+
 function LogIn() {
 
     const [session, setSession] = useState(false)
@@ -11,10 +14,12 @@ function LogIn() {
 
     if (session === false){
     
-    const user = {
+    const newUser = {
       username: username,
       password: password,
     }
+
+    sessionUser.push(newUser)
 
     
     const handleSubmit = (e) => {
@@ -22,7 +27,7 @@ function LogIn() {
       fetch("http://127.0.0.1:5555/login", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(user)
+        body: JSON.stringify(newUser)
       })
         .then(r => {
             if (r.status === 200){
@@ -50,10 +55,11 @@ function LogIn() {
     );
     }
     else{
+        const currentUser = sessionUser.pop()
         return (
             <main>
                 <Route path="/">
-                    <Main/>
+                    <Main currentUser={currentUser}/>
                 </Route>
             </main>
         )

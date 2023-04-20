@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { Button, Modal} from 'semantic-ui-react'
 import CheckOutForm from './CheckOutForm'
 
-function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID, setAccidentalCheckin, accidentalCheckin}) {
+function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID, setAccidentalCheckin, accidentalCheckin, dogs}) {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   
@@ -56,6 +56,7 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
                           {accidentalCheckin ? 
                           accidentalCheckInMessage:
                           <CheckOutForm
+                            dogs={dogs}
                             handleFormSubmission = {handleFormSubmission}
                             dogParks = {dogParks}
                           />

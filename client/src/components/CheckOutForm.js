@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function CheckOutForm({handleFormSubmission, dogParks}){
+function CheckOutForm({handleFormSubmission, dogParks, dogs}){
 
     const emptyFormObj = {
         dogParkName: '',
@@ -36,9 +36,9 @@ function CheckOutForm({handleFormSubmission, dogParks}){
                 <label>Dog:</label>
                 <select onChange={handleFormInputChange} name="dogName" value={formObject.dogName}>
                     <option defaultValue = 'Dog' hidden>Dog</option>
-                    <option>Brittany Baker</option>
-                    <option>Dog</option>
-                    <option>Dog</option>
+                    {dogs.map((eachD)=>{
+                        return(<option key={eachD.id} >{eachD.name}</option>)
+                    })}
                 </select>
                 <br/>
                 <label>Length of Stay in Minutes:</label>

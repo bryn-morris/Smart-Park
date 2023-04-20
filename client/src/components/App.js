@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import SignUp from './Logging/SignUp'
 import LogIn from './Logging/LogIn'
 
@@ -14,9 +14,6 @@ function App() {
       setLogin(!login)
     }
 
-    const handleHideSignup=()=>{
-
-    }
 
   return (
 

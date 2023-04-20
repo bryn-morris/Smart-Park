@@ -2,16 +2,12 @@ import React, {useState} from 'react'
 import DogParkCard from './DogParkCard'
 import DogParkForm from './DogParkForm'
 import SearchDogPark from './SearchDogPark'
-
-
+import {Button, Modal} from 'semantic-ui-react'
 
 
 function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
-  const [showDPForm, setShowDPForm] = useState(false)
 
-  const handleShowDPForm = () =>{
-    setShowDPForm(!showDPForm)
-  }
+  const [isModalOpen, setIsModalOpen] = useState(false)
   
   const dogParkComponents = dogParks.map((eachDogPark)=>{
       return (
@@ -22,12 +18,49 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
       />)
    })
 
+   function handleAddDogPark (newDogPark) {
+
+      fetch('/dogparks', {
+        method: 'POST',
+        body: newDogPark
+      })
+      .then(r=>r.ok ?
+        r.json().then(data => addDogParkToState(data)) :
+        alert('Please enter a valid url!')
+      )
+
+   }
+
   return (
   <div>
+    {/* Search */}
     <div>
       <SearchDogPark specificPark = {specificPark}/>
     </div>
-    <div>
+    {/* Dog Park Form */}
+      <Modal
+          onClose={() => setIsModalOpen(false)}
+          onOpen={() => setIsModalOpen(true)}
+          open={isModalOpen}
+          trigger={<Button className = "big ui button modalbutton">Add Dog Park</Button>}
+          size= 'small'
+      >
+      <Modal.Header>Let's add a Dog Park</Modal.Header>
+            <Modal.Content>
+                <DogParkForm 
+                  dogParks = {dogParks}
+                  handleAddDogPark = {handleAddDogPark}
+                />
+            </Modal.Content>
+            <Modal.Actions>
+                <Button
+                  form = "dogParkForm"
+                  type = "submit"
+                >Submit
+                </Button> 
+            </Modal.Actions>
+        </Modal>
+    {/* <div>
       {showDPForm ? (
         <div>
           <DogParkForm dogParks = {dogParks} addDogParkToState = {addDogParkToState}/> 
@@ -37,9 +70,10 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
         <button onClick={handleShowDPForm}>Add Dog Park</button>
         )
       }
-    </div>
+    </div> */}
     <div>
-    {dogParkComponents}
+      {/* Dog Park Cards */}
+      {dogParkComponents}
     </div>
   </div>
   )

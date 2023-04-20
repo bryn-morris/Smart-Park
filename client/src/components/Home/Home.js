@@ -6,7 +6,7 @@ import PawPrintIcons from './PawPrintIcons'
 function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID, setAccidentalCheckin, accidentalCheckin, dogs}) {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedIcon, setSelectedIcon] =useState(null)
+  const [selectedIcon, setSelectedIcon] =useState(1)
 
   useEffect(() => {
     const timer = setInterval(() => {

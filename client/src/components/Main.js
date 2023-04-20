@@ -144,7 +144,6 @@ function Main({currentUser}) {
     startTimer: startTimer,
   }
 
-<<<<<<< HEAD
   const find_dog_park_by_id = (createdReview) => {
       
     // filter through dog parks to get the dog park associatd with the dog 
@@ -172,8 +171,6 @@ function Main({currentUser}) {
   //   )
   // }
   // else{
-=======
->>>>>>> login
 
   //fetch for reviews
   

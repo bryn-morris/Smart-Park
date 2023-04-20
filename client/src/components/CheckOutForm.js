@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Form} from 'semantic-ui-react'
 
 function CheckOutForm({handleFormSubmission, dogParks}){
 
@@ -24,7 +25,7 @@ function CheckOutForm({handleFormSubmission, dogParks}){
 
     return(
         <div>
-            <form id = "checkInForm" onSubmit={handleFormSubmit} className ="ui form">
+            <Form id = "checkInForm" onSubmit={handleFormSubmit} className ="ui form">
                 <label>Dog Park:</label>
                 <select onChange={handleFormInputChange} name="dogParkName" value={formObject.dogParkName}>
                     <option defaultValue='Dog Park' hidden>Dog Park</option>
@@ -52,7 +53,7 @@ function CheckOutForm({handleFormSubmission, dogParks}){
                     <option>120 min</option>
                 </select>
                 <br/>
-            </form>
+            </Form>
         </div>
     )
 }

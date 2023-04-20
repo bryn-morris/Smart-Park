@@ -19,7 +19,6 @@ function Main() {
   // need to get dogs associated with user through session in our fetch
   const [user, setUser] = useState(false)
 
-
   
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/current-session')
@@ -152,7 +151,7 @@ function Main() {
         return eachDP
       }
     }
-    
+
     )}
 
   

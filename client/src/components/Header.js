@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 function Header() {
 
-
   function refreshPage() {
     window.location.reload(true);
   }

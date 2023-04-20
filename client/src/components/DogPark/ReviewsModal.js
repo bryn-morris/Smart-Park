@@ -42,12 +42,7 @@ function ReviewModal ({id, finddpbi, reviews}) {
         return null
       } else {
         return (
-          
-          reviews.map(
-            
-              review => <Reviews key={review.id} {...review}/>
-
-            )
+          reviews.map(review => <Reviews key={review.id} {...review}/>)
           )}
       }
 

@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
+import {Form, Button, Modal} from 'semantic-ui-react'
 
 
 function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, updatedDogs}) {
-    const [editForm, setEditForm] = useState(false)
     const [dogAttribute, setDogAttribute]= useState('')
     const [newInfo, setNewInfo] = useState('')
+    const [isModalOpen, setIsModalOpen] = useState(null)
     const handleAttributeChange = e => setDogAttribute(e.target.value)
     const handleNewInfo = e => setNewInfo(e.target.value)
     
-    const handleEditForm = () => {
-        setEditForm(!editForm)
-      }
 
     const deleteDog = () => {
         fetch (`http://127.0.0.1:5555/dogs/${id}`, {method:"DELETE"})
             .then(showRemainingDogs(id))
         }
-
 
     const handleDogEdit = (e) => {
         e.preventDefault()
@@ -35,7 +32,6 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
             setDogAttribute('')
         }
 
-
   return (
     <div>
         <img src = {image} alt = 'dog'/>
@@ -44,27 +40,43 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
         <h3>{weight}</h3>
         <h3>{age}</h3>
         
-        {editForm ? (
-            <form onSubmit={handleDogEdit}>
-                <h3>Edit Dog</h3>
-                <select onChange={handleAttributeChange} value={dogAttribute}>
-                    <option>What to edit</option>
-                    <option>name</option>
-                    <option>weight</option>
-                    <option>age</option>
-                    <option>image</option>
-                    <option>breed</option>
-                </select>
-                <br />
-                <input type="text" placeholder="New info..." onChange={handleNewInfo} value={newInfo} />
-                <button type="submit" className="primary">Done</button>
-            </form>
-            ) : (
-                <button onClick={handleEditForm}> Edit Dog</button>
-            )
-        }
+        
+        <Modal
+            onClose={() =>setIsModalOpen(false)}
+            onOpen={() => setIsModalOpen(true)}
+            open={isModalOpen}
+            trigger={<Button className = "big ui button modalbutton">Edit Dog</Button>}
+            size= 'small'
+        >
+        <Modal.Header>Edit Doggo!</Modal.Header>
+              <Modal.Content>
+                <Form onSubmit={handleDogEdit}>
+                    <label>What is it you want to edit?</label>
+                    <select onChange={handleAttributeChange} value={dogAttribute}>
+                        <option defaultValue = 'What To Edit' hidden>What to edit</option>
+                        <option>name</option>
+                        <option>weight</option>
+                        <option>age</option>
+                        <option>image</option>
+                        <option>breed</option>
+                    </select>
+                    <br />
+                    <input type="text" placeholder="New info..." onChange={handleNewInfo} value={newInfo} />
+                </Form>
+              </Modal.Content>
 
-        <button onClick={deleteDog}>X</button>
+              <Modal.Actions>
+                  <Button
+                    form = "addDog"
+                    type = "submit"
+                  >Submit
+                  </Button>
+                  <Button
+                    onClick={deleteDog}
+                  >Delete
+                  </Button>
+              </Modal.Actions>
+        </Modal>
     </div>
   )
 }

@@ -11,7 +11,6 @@ function SearchDogPark ({specificPark}) {
                 />
         </div>
     )
-
 }
 
 export default SearchDogPark

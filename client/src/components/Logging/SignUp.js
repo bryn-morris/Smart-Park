@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useHistory, Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import Main from '../Main'
 
 

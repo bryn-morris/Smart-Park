@@ -8,7 +8,6 @@ import AboutUs from "./AboutUs";
 
 function Main() {
  
-
   const [dogParks, setDogParks] = useState([])
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
   const [dogs, setDogs] = useState([])

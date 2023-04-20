@@ -60,17 +60,6 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
                 </Button> 
             </Modal.Actions>
         </Modal>
-    {/* <div>
-      {showDPForm ? (
-        <div>
-          <DogParkForm dogParks = {dogParks} addDogParkToState = {addDogParkToState}/> 
-          <button onClick={handleShowDPForm}>Hide Form</button>
-        </div>
-        ) : (
-        <button onClick={handleShowDPForm}>Add Dog Park</button>
-        )
-      }
-    </div> */}
     <div>
       {/* Dog Park Cards */}
       {dogParkComponents}

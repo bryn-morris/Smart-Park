@@ -43,8 +43,6 @@ with app.app_context():
 
     # dogs_list = [Dog(name = faker.name(), breed = faker.name(), weight = randint(5,100), age = randint(1,10), image = faker.image_url(), user_id = randint(1,5)) for _ in range(1,10) ]
 
-    
-
     print("Creating Dog Parks...")
 
     dp1 = Dog_Park(name = 'Chaos Central', address = "102 Whilwind Ave, Chicago, IL, 20039", rating = 4, amenities = 'constant wind, drinking fountain, turf', image = 'https://images.unsplash.com/photo-1494947665470-20322015e3a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')
@@ -62,7 +60,6 @@ with app.app_context():
     v3 = Visit(dog = d3, dog_park = dp1, length_of_stay = 45)
     v4 = Visit(dog = d2, dog_park = dp4, length_of_stay = 35)
     v5 = Visit(dog = d4, dog_park = dp4, length_of_stay = 45)
-
 
     # visits_list = [Visit(dogs_id = randint(1,10), dog_parks_id = randint(1,5), length_of_stay = randint(1,120)) for _ in range(1,20)]
     

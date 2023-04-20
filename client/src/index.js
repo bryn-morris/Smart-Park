@@ -5,7 +5,6 @@ import App from "./components/App";
 import { BrowserRouter } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(

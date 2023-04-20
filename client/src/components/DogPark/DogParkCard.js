@@ -28,14 +28,6 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, find
         </div>
         <div>
           <ReviewModal id = {id} finddpbi = {finddpbi}  reviews={reviews}/>
-            {/* {showReviews ? (
-              <div>
-                {reviewComponents()}
-                <button onClick={handleShowReviews}>Hide Reviews</button>
-              </div>
-            ):(
-              <button onClick={handleShowReviews}>Reviews</button>
-            )} */}
         </div>
         
     </div>

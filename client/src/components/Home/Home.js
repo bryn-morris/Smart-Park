@@ -6,7 +6,6 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   
-
   const handleDeleteCheckIn = () => {
     setIsModalOpen(false)
     setAccidentalCheckin(false)

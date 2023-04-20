@@ -1,6 +1,5 @@
 function Reviews({name, comment, rating}) {
 
-  
     return (
     <div>
         <h2>{name}</h2>

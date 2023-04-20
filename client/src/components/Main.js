@@ -156,6 +156,11 @@ function Main() {
 
   const selectedReviews = reviews.filter(review => review.dog_park_id === parkId)
 
+  // add newreview  
+  const addNewReview = (newReview) => {
+    setReviews([newReview, ...reviews])
+  }
+
   // if (user === !user){
   //   return(
   //     <div>
@@ -178,7 +183,7 @@ function Main() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark dogParks = {dogParks} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews}/>
+            <DogPark addNewReview={addNewReview} dogParks = {dogParks} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews}/>
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>

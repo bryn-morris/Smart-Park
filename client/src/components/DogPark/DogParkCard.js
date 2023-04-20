@@ -11,25 +11,6 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, find
     };
   
   return (
-    <div >
-        <div onClick={handleFlip}>
-          <h1>{name}</h1>
-            {showFront ? (
-              <div>
-                <img src={image} alt={name} />
-                {`Rating: ${rating}`}
-              </div>
-            ) : (
-                <div>
-                  <p>{`Amenities: ${amenities}`}</p>
-                  <p>{`Address: ${address}`}</p>
-                </div>
-            )}
-        </div>
-        <div>
-          <ReviewModal id = {id} finddpbi = {finddpbi}  reviews={reviews}/>
-        </div>
-        
   <div className="dpcontainer">
       <div onClick={handleFlip}>
         <h1 className="dpcName">{name}</h1>
@@ -56,5 +37,4 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, find
 }
 
 export default DogParkCard
-
     

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import ReviewModal from '../ReviewsModal'
+import ReviewModal from './ReviewsModal'
 
 function DogParkCard({id, name, address, amenities, rating, image, reviews, finddpbi}){
   const [showFront, setShowFront] = useState(true);

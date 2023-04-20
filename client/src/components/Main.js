@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./Home/Home";
 import Header from "./Header";
-import DogPark from "./DogPark";
-import MyAccount from "./MyAccount";
+import DogPark from "./DogPark/DogPark";
+import MyAccount from "./MyAccount/MyAccount";
 import AboutUs from "./AboutUs";
 
 function Main({currentUser}) {

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory, Route} from 'react-router-dom'
-import Main from './Main'
+import Main from '../Main'
 
 
 function SignUp() {

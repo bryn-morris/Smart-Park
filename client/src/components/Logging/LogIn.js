@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 // import {useHistory} from 'react-router-dom'
 import { Route } from "react-router-dom";
-import Main from "./Main"
+import Main from "../Main"
 
 const sessionUser = []
 

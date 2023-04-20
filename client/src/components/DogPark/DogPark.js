@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import DogParkCard from './DogParkCard'
 import DogParkForm from './DogParkForm'
-import SearchDogPark from '../SearchDogPark'
+import SearchDogPark from './SearchDogPark'
 import {Button, Modal} from 'semantic-ui-react'
 
 

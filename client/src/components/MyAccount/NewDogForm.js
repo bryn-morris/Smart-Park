@@ -34,7 +34,7 @@ function NewDogForm({createDog, dogs, currentUser}) {
   
     
     return (
-      <div className="new-dog-form">
+      <div style={{float:'right'}}className="new-dog-form">
         <Modal
             onClose={() =>setIsModalOpen(false)}
             onOpen={() => setIsModalOpen(true)}

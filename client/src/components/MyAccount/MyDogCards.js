@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {Form, Button, Modal} from 'semantic-ui-react'
+import DogCard from './DogCard'
 
 
 function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, updatedDogs}) {
@@ -33,12 +34,8 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
         }
 
   return (
-    <div>
-        <img src = {image} alt = 'dog'/>
-        <h1>{name}</h1>
-        <h2>{breed}</h2>
-        <h3>{weight}</h3>
-        <h3>{age}</h3>
+    <div style={{margin:"auto", alignSelf:"center", width:"20%", padding:"30px"}}>
+        <DogCard name = {name} breed = {breed} weight = {weight} age = {age} image = {image}/>
         
         
         <Modal

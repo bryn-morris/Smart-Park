@@ -11,7 +11,31 @@ from config import app, db, api
 from models import User, Dog, Visit, Dog_Park, Review
 
 
+
 # Views go here!
+
+class Users(Resource):
+    def get(self):
+        users = User.query.all()
+        return make_response(
+            [user.to_dict for user in users],
+            200
+        )
+api.add_resource(Users, '/users')
+
+class UserById(Resource):
+    def get(self, id):
+        user = User.query.filter_by(id=id).first()
+        if not user:
+            return make_response(
+                {'error': 'User not found'},
+                404
+            )
+        return make_response(
+            user.to_dict(rules = ('dogs',)),
+            200
+        )
+api.add_resource(UserById, '/users/<int:id>')
 
 
 class Signup(Resource):
@@ -47,21 +71,18 @@ class Login(Resource):
             User.username == data['username']
         ).first()
 
-        password = User.query.filter(
-            User._password == data['password']
-        ).first()
-        
-        if not password:
-            return make_response(
-                {'error': 'User either does not exist or username/password incorrect'},
-                404
-            )
+        password = data['password']
+        if not user:
+            return {'error': 'Must enter a valid username and password'}, 404
 
-        session['user_id'] = user.id
-        return make_response(
-            user.to_dict(),
-            200
-        )
+        
+        elif user.authenticate(password):
+            session['user_id'] = user.id
+            return make_response(
+                user.to_dict(),
+                200
+            )
+        return {'error': 'Must enter a valid username and password'}, 404
 api.add_resource(Login, '/login')
 
 class Logout(Resource):
@@ -73,13 +94,23 @@ api.add_resource(Logout, '/logout')
 
 class CurrentSession(Resource):
     def get(self):
+
         user = User.query.get(session.get('user_id'))
-        if user:
+        if not user:
             return make_response(
-                user.to_dict(),
-                200
+                {'error': 'User not found'},
+                404
             )
-api.add_resource(CurrentSession, '/current_session')
+    
+        return make_response(
+            user.to_dict(),
+            200
+        )
+api.add_resource(CurrentSession, '/current-session')
+
+
+
+
 
 class Dog_Parks(Resource):
     def get(self):

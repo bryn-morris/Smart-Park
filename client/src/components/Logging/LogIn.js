@@ -6,7 +6,7 @@ import Main from "../Main"
 const sessionUser = []
 
 
-function LogIn() {
+function LogIn({handleSignupClick}) {
 
     const [session, setSession] = useState(false)
     const [username, setUsername] = useState("")
@@ -40,9 +40,13 @@ function LogIn() {
         e.target.reset()
     }
   
-    
+    const setSignupState = (e) => {
+      handleSignupClick(e)
+    }
+
     return (
         <div>
+          <div class="ui center aligned huge header">Welcome to SmartPark!</div>
           <div className="new-user-form">
             <div class="ui sizer vertical segment">
               <h2 class="ui center aligned large header" >Login Here</h2>
@@ -56,6 +60,9 @@ function LogIn() {
                   </div>
                 <button class='fluid ui button' type="submit">Submit</button>
                 </form>
+                <div class='ui basic buttons'>
+                    <button onClick={setSignupState} class='ui button'>Don't have an accout? Create one!</button>
+                </div>
             </div>
       </div>
     );

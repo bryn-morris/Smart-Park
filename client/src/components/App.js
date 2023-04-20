@@ -18,10 +18,24 @@ function App() {
   return (
 
     <div>
-      {
+
+      
+      
+          {signUp ? (
+                  <div>
+                    <SignUp handleSignupClick = {handleSignupClick}/>
+                  </div>
+                ):(
+                  <div>
+                    <LogIn handleSignupClick = {handleSignupClick}/>
+                  </div>
+                )} 
+    </div>
+  )}
+      /* {/* {
         login ? (
           <div>
-            <LogIn/>
+            
             <div class='ui basic buttons'>
               <button class='ui button' onClick={handleLoginClick}>Hide LogIn</button>
             </div>
@@ -30,22 +44,13 @@ function App() {
           <div>
             <button class="massive fluid ui button" onClick={handleLoginClick}>Login</button>
               <div class="ui sizer vertical segment">
-                <div class="ui center aligned huge header">Welcome to SmartPark!</div>
+                
               </div>
-              {signUp ? (
-                  <div>
-                    <SignUp/>
-                    <div class='ui basic buttons'>
-                      <button class="ui button" onClick={handleSignupClick}>Hide Signup</button>
-                    </div>
-                  </div>
-                ):(
-                  <button class="massive fluid ui button" onClick={handleSignupClick}>Create Account</button>
-                )}
+              
           </div>
         )}
     </div>
   )
-}
+} */
 
 export default App

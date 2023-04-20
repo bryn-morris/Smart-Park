@@ -155,6 +155,17 @@ function App() {
     setReviews([newReview, ...reviews])
   }
 
+  //search for dog park
+  const [searchedPark, setSearchedPark] = useState('')
+  
+  const specificPark = (park) => {
+    setSearchedPark(park.toLowerCase())
+  }
+  
+  const filteredParks = dogParks.filter(park => {
+      if (park.name.toLowerCase().includes(searchedPark))
+      return true
+  })
   
   return (
     <div>
@@ -167,7 +178,7 @@ function App() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark dogParks={dogParks} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews} addNewReview={addNewReview}/>
+            <DogPark specificPark={specificPark} dogParks={filteredParks} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews} addNewReview={addNewReview}/>
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>

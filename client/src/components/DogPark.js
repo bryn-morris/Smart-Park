@@ -5,7 +5,7 @@ import Reviews from './Reviews'
 
 
 
-function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedReviews, addNewReview}) {
+function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedReviews, addNewReview, specificPark}) {
   const [showDPForm, setShowDPForm] = useState(false)
   const handleShowDPForm = () =>{
     setShowDPForm(!showDPForm)
@@ -28,6 +28,14 @@ function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedRevi
 
   return (
   <div>
+    <div>
+      <label htmlFor="search">Search Dog Parks:</label>
+        <input
+          type="text"
+          placeholder="Type a Dog Park name to search..."
+          onChange={(e) => specificPark(e.target.value)}
+        />
+    </div>
     {showDPForm ? (
       <div>
         <DogParkForm dogParks = {dogParks} addDogParkToState = {addDogParkToState}/> 
@@ -37,7 +45,6 @@ function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedRevi
       <button onClick={handleShowDPForm}>Add Dog Park</button>
       )
     }
-    
     <div>
       {reviewComponents}
     </div>

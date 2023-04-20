@@ -1,6 +1,6 @@
 import React from 'react'
-import SignUp from './SignUp'
-import LogIn from './LogIn'
+import SignUp from './Logging/SignUp'
+import LogIn from './Logging/LogIn'
 
 function App() {
   return (

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Form} from 'semantic-ui-react'
 
 function NewDogForm({createDog}) {
     
@@ -34,7 +35,7 @@ function NewDogForm({createDog}) {
     return (
       <div className="new-dog-form">
         <h2>Let's add your pup!</h2>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <input onChange={(e) => setUserID(e.target.value)} type="number" name="userID" placeholder="Owner's ID" />
           <input onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="Dog name" />
           <input onChange={(e) => setBreed(e.target.value)} type="text" name="breed" placeholder="Breed" />
@@ -42,7 +43,7 @@ function NewDogForm({createDog}) {
           <input onChange={(e) => setAge(e.target.value)} type="number" name="age" placeholder="Dog Age" />
           <input onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="URL to Dog Profile photo" />
           <button type="submit">Submit</button>
-        </form>
+        </Form>
       </div>
     );
 }

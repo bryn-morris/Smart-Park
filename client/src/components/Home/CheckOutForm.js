@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Form, Dropdown} from 'semantic-ui-react'
+import {Form} from 'semantic-ui-react'
 
 function CheckOutForm({handleFormSubmission, dogParks, dogs}){
 

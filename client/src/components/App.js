@@ -4,15 +4,15 @@ import LogIn from './Logging/LogIn'
 
 function App() {
     const [signUp, setSignUp] = useState(false)
-    const [login, setLogin] = useState(false)
+    // const [login, setLogin] = useState(false)
     
   
     const handleSignupClick=() =>{
         setSignUp(!signUp)
     }
-    const handleLoginClick=() =>{
-      setLogin(!login)
-    }
+    // const handleLoginClick=() =>{
+    //   setLogin(!login)
+    // }
 
 
   return (

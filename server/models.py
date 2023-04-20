@@ -104,12 +104,12 @@ class Dog_Park(db.Model, SerializerMixin):
 
     reviews = db.relationship('Review', back_populates='dog_park', cascade="all, delete-orphan")
 
-    # @validates('image')
-    # def image_url_validation(self, key, attr):
-    #     if not attr:
-    #         raise ValueError
-    #     else:
-    #         return attr
+    @validates('image')
+    def image_url_validation(self, key, attr):
+        if 'http' and '://' in attr:
+            return attr
+        else:
+            raise ValueError
             
 
 class Review(db.Model, SerializerMixin):

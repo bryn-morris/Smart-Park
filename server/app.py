@@ -127,35 +127,21 @@ class Dog_Parks(Resource):
     
     def post(self):
 
-        dogpark = Dog_Park(
+        try:
+            dogpark = Dog_Park(
             name = request.form['name'],
             amenities = request.form['amenities'],
             address = request.form['address'],
             rating = request.form['rating'],
             image = request.form['image']
             )
-        
-        db.session.add(dogpark)
-        db.session.commit()
-        return make_response(dogpark.to_dict(), 201)
-
-        # try:
-        #     dogpark = Dog_Park(
-        #     name = request.form['name'],
-        #     amenities = request.form['amenities'],
-        #     address = request.form['address'],
-        #     rating = request.form['rating'],
-        #     image = request.form['image']
-        #     )
-        # except ValueError:
-        #     response_body = {'message':'hey u goofed put in a url pls'}
-        #     return make_response(response_body, 409)
-        # else:
-        #     db.session.add(dogpark)
-        #     db.session.commit()
-        #     return make_response(dogpark.to_dict(), 201)
-        
-        
+        except ValueError:
+            response_body = {'message':'hey u goofed put in a valid url pls'}
+            return make_response(response_body, 409)
+        else:
+            db.session.add(dogpark)
+            db.session.commit()
+            return make_response(dogpark.to_dict(), 201)
     
 api.add_resource(Dog_Parks, '/dogparks')
         

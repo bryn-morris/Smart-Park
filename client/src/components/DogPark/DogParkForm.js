@@ -48,7 +48,6 @@ function DogParkForm({handleAddDogPark}) {
           Image:
           <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
         </label>
-        <button type="submit">Submit</button>
       </Form>
     );
   }

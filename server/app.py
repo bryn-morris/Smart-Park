@@ -205,6 +205,8 @@ class DogById(Resource):
         )
     
     def patch(self, id):
+
+        print(request.get_json())
         data = request.get_json()
         dog = Dog.query.filter_by(id=id).first()
 
@@ -224,6 +226,8 @@ class Check_In_To_Park(Resource):
 
     def post(self):
 
+        print(request.get_json())
+
         newVisit = Visit(
             length_of_stay = request.get_json()['lengthOfStay'].replace(' min',''),
             dogs_id = Dog.query.filter(Dog.name == request.get_json()['dogName']).one().id,
@@ -235,14 +239,27 @@ class Check_In_To_Park(Resource):
     
 api.add_resource(Check_In_To_Park, '/visits')
 
-@app.route('/visits/<int:id>', methods = ['DELETE'])
-def delete_visit(id):
+@app.route('/visits/<int:id>', methods = ['DELETE', 'PATCH'])
+def visit_by_id(id):
 
     selVisit = Visit.query.filter(Visit.id == id).one()
-    db.session.delete(selVisit)
-    db.session.commit()
 
-    return make_response({}, 204)
+    if request.method == 'DELETE':
+
+        db.session.delete(selVisit)
+        db.session.commit()
+
+        return make_response({}, 204)
+    
+    if request.method == 'PATCH':
+
+        for key in request.get_json():
+            setattr(selVisit, key , request.get_json()[key] )
+        
+        db.session.add(selVisit)
+        db.session.commit()
+
+        return make_response(selVisit.to_dict(), 200)
 
 class Reviews(Resource):
     def get(self):

@@ -12,14 +12,18 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
     
 
     const deleteDog = () => {
-        fetch (`http://127.0.0.1:5555/dogs/${id}`, {method:"DELETE"})
+
+        setIsModalOpen(false)
+
+        fetch (`/dogs/${id}`, {method:"DELETE"})
             .then(showRemainingDogs(id))
         }
 
     const handleDogEdit = (e) => {
         e.preventDefault()
+        setIsModalOpen(false)
     
-        fetch (`http://127.0.0.1:5555/dogs/${id}`, {
+        fetch (`/dogs/${id}`, {
                 method:"PATCH", 
                 headers:{"Content-type":"application/json"}, 
                 body: JSON.stringify({
@@ -47,7 +51,7 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
         >
         <Modal.Header>Edit Doggo!</Modal.Header>
               <Modal.Content>
-                <Form onSubmit={handleDogEdit}>
+                <Form id = "editDog" onSubmit={handleDogEdit}>
                     <label>What is it you want to edit?</label>
                     <select onChange={handleAttributeChange} value={dogAttribute}>
                         <option defaultValue = 'What To Edit' hidden>What to edit</option>
@@ -64,7 +68,7 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
 
               <Modal.Actions>
                   <Button
-                    form = "addDog"
+                    form = "editDog"
                     type = "submit"
                   >Submit
                   </Button>

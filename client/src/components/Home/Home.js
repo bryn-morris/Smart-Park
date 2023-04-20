@@ -24,6 +24,10 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
     endTimer()
   }
 
+  const handleUserClose = () => {
+    setIsModalOpen(false)
+  }
+
   const accidentalCheckInMessage = 'Thanks for checking in :D ! If that checkin was a mistake you can delete below!'
 
   return (
@@ -64,11 +68,19 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
                     }
                     {currentCheckInID ?
                       <Modal.Actions>
-                        {accidentalCheckin ? 
-                          <Button 
-                            onClick={handleDeleteCheckIn}>
-                            Cancel Check-In?
-                          </Button>:
+                        {accidentalCheckin ?
+                          <div>
+                            <Button 
+                              onClick={handleDeleteCheckIn}>
+                                Cancel Check-In?
+                            </Button>
+                            {/* <Button
+                              onClick={handleUserClose} 
+                            >
+                              Close
+                            </Button> */}
+                          </div>
+                          :
                           null
                         }
                       </Modal.Actions>:
@@ -79,6 +91,11 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
                               onClick={startTimer} 
                             >
                               Submit
+                            </Button>
+                            <Button
+                              onClick={handleUserClose} 
+                            >
+                              Close
                             </Button>
                         </Modal.Actions>}
                 </Modal>

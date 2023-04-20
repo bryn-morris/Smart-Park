@@ -175,9 +175,9 @@ function Main() {
   }
 
   return (
-    <div>
+    <div className='pageContainer'>
       <Header/>
-      <main>
+      <main className = 'pageContent'>
         <Switch>
           <Route exact path="/">
             <Home 

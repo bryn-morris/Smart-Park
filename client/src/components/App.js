@@ -10,7 +10,7 @@ function App() {
     
   return (
 
-    <div>
+    <div >
       {signUp ? (
               <div>
                 <SignUp handleSignupClick = {handleSignupClick}/>

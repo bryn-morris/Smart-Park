@@ -21,6 +21,7 @@ with app.app_context():
     Dog.query.delete()
     Visit.query.delete()
     Dog_Park.query.delete()
+    Review.query.delete()
 
     print("Creating Users...")
 
@@ -42,16 +43,7 @@ with app.app_context():
 
     # dogs_list = [Dog(name = faker.name(), breed = faker.name(), weight = randint(5,100), age = randint(1,10), image = faker.image_url(), user_id = randint(1,5)) for _ in range(1,10) ]
 
-    print("Creating Visits...")
     
-    v1 = Visit(dog = d1, dog_park = dp2, length_of_stay = 30)
-    v2 = Visit(dog = d2, dog_park = dp5, length_of_stay = 60)
-    v3 = Visit(dog = d3, dog_park = dp1, length_of_stay = 45)
-    v4 = Visit(dog = d2, dog_park = dp4, length_of_stay = 35)
-    v5 = Visit(dog = d4, dog_park = dp4, length_of_stay = 45)
-
-
-    # visits_list = [Visit(dogs_id = randint(1,10), dog_parks_id = randint(1,5), length_of_stay = randint(1,120)) for _ in range(1,20)]
 
     print("Creating Dog Parks...")
 
@@ -63,21 +55,32 @@ with app.app_context():
 
     # dog_parks_list = [Dog_Park(name = faker.name(), address = faker.address(), rating = randint(1,5), amenities = faker.sentence(), image = faker.image_url()) for _ in range(1,5)]
     
+    print("Creating Visits...")
+    
+    v1 = Visit(dog = d1, dog_park = dp2, length_of_stay = 30)
+    v2 = Visit(dog = d2, dog_park = dp5, length_of_stay = 60)
+    v3 = Visit(dog = d3, dog_park = dp1, length_of_stay = 45)
+    v4 = Visit(dog = d2, dog_park = dp4, length_of_stay = 35)
+    v5 = Visit(dog = d4, dog_park = dp4, length_of_stay = 45)
+
+
+    # visits_list = [Visit(dogs_id = randint(1,10), dog_parks_id = randint(1,5), length_of_stay = randint(1,120)) for _ in range(1,20)]
+    
     print("Creating Reviews...")
 
-    r1 = Review(name=mads, comment='Wow I have never seen my pup so excited. She loved riding the waves in the pool!', rating=4, dog_park=dp4)
-    r2 = Review(name=beau, comment='Gorgeous and so peaceful. Great time to relax for me and my kitten...I mean dog.', rating=5, dog_park=dp2)
-    r3 = Review(name=damon, comment='Great spot for my doggo to get his energy out! Cannot beat unlimited tennis balls.', rating=4, dog_park=dp5)
-    r4 = Review(name=bryn, comment='Basil had the time of his life.. he took a nap in the sun and could not have been happier.', rating=4, dog_park=dp2)
-    r5 = Review(name=birdie, comment='What da hecko.. I luv dirt and could dig dig dig here! Doggos go here now!', rating=5, dog_park=dp3)
+    r1 = Review(name='mads', comment='Wow I have never seen my pup so excited. She loved riding the waves in the pool!', rating=4, dog_park=dp4)
+    r2 = Review(name='beau', comment='Gorgeous and so peaceful. Great time to relax for me and my kitten...I mean dog.', rating=5, dog_park=dp2)
+    r3 = Review(name='damon', comment='Great spot for my doggo to get his energy out! Cannot beat unlimited tennis balls.', rating=4, dog_park=dp5)
+    r4 = Review(name='bryn', comment='Basil had the time of his life.. he took a nap in the sun and could not have been happier.', rating=4, dog_park=dp2)
+    r5 = Review(name='birdie', comment='What da hecko.. I luv dirt and could dig dig dig here! Doggos go here now!', rating=5, dog_park=dp3)
 
     # reviews_list = [Review(name= faker.user_name(),  comment= faker.sentence(), rating = randint(1,5), dog_park_id=randint(1,5)) for _ in range(1,10)]
 
-    db.session.add_all(d1, d2, d3, d4, d5)
-    db.session.add_all(u1, u2, u3, u4)
-    db.session.add_all(v1, v2, v3, v4)
-    db.session.add_all(dp1, dp2, dp3, dp4, dp5)
-    db.session.add_all(r1,r2,r3,r4,r5)
+    db.session.add_all([d1, d2, d3, d4, d5])
+    db.session.add_all([u1, u2, u3, u4])
+    db.session.add_all([v1, v2, v3, v4])
+    db.session.add_all([dp1, dp2, dp3, dp4, dp5])
+    db.session.add_all([r1,r2,r3,r4,r5])
     
     db.session.commit()
 

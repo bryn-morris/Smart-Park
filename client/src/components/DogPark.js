@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import DogParkCard from './DogParkCard'
 import DogParkForm from './DogParkForm'
 
 
 
 
-function DogPark({dogParks, addDogParkToState, addNewReview}) {
+function DogPark({dogParks, addDogParkToState, addNewReview, specificPark}) {
   const [showDPForm, setShowDPForm] = useState(false)
   const handleShowDPForm = () =>{
     setShowDPForm(!showDPForm)

@@ -172,10 +172,7 @@ function Main() {
     setSearchedPark(park.toLowerCase())
   }
   
-  const filteredParks = dogParks.filter(park => {
-      if (park.name.toLowerCase().includes(searchedPark))
-      return true
-  })
+  const filteredParks = dogParks.filter(park => park.name.toLowerCase().includes(searchedPark))
 
   return (
     <div>

@@ -25,21 +25,21 @@ with app.app_context():
 
     print("Creating Users...")
 
-    u1 = User( username= 'beau_the_wizrd',  _password= faker.word(), image = 'https://t3.ftcdn.net/jpg/02/47/26/12/360_F_247261221_eGirP3pgZpNU8RY3yRG1qEslnRkNGKCk.jpg')
-    u2 = User( username= 'bryn_the_wizrd',  _password= faker.word(), image = 'https://i.pinimg.com/originals/92/a2/27/92a2274106026911bfb86ba6763fd921.jpg')
-    u3 = User( username= 'damon_the_wizrd',  _password= faker.word(), image = 'https://static.vecteezy.com/system/resources/previews/002/007/779/original/cool-cartoon-wizard-vector.jpg')
-    u4 = User( username= 'mads_the_wizrd',  _password= faker.word(), image = 'https://www.kindpng.com/picc/m/732-7323240_how-to-wizard-robes-cartoon-hd-png-download.png')
+    u1 = User( username= 'beau_the_wizrd',  _password= 'password', image = 'https://t3.ftcdn.net/jpg/02/47/26/12/360_F_247261221_eGirP3pgZpNU8RY3yRG1qEslnRkNGKCk.jpg')
+    u2 = User( username= 'bryn_the_wizrd',  _password= 'password', image = 'https://i.pinimg.com/originals/92/a2/27/92a2274106026911bfb86ba6763fd921.jpg')
+    u3 = User( username= 'damon_the_wizrd',  _password= 'password', image = 'https://static.vecteezy.com/system/resources/previews/002/007/779/original/cool-cartoon-wizard-vector.jpg')
+    u4 = User( username= 'mads_the_wizrd',  _password= 'password', image = 'https://www.kindpng.com/picc/m/732-7323240_how-to-wizard-robes-cartoon-hd-png-download.png')
 
 
     # users_list = [User( username= faker.user_name(),  _password= faker.word(), image = faker.image_url()) for _ in range(1,5)]
 
     print("Creating Dogs...")
 
-    d1 = Dog(name = 'Cosmo', breed = 'Kitten', weight = 2, age = 1, image = 'https://weu-az-web-ca-cdn.azureedge.net/mediacontainer/medialibraries/mypetdoctor/images/blog-images/grey-kitten.webp?ext=.webp', user = u1)
-    d2 = Dog(name = 'Basil', breed = 'Great Dane', weight = 140, age = 5, image = 'https://www.purina.co.uk/sites/default/files/styles/square_medium_440x440/public/2022-07/Great%20Dane2.jpg?h=ed3b5c5b&itok=fATbM8s9', user = u2)
-    d3 = Dog(name = 'Ammo', breed = 'Lab', weight = 80, age = 5, image = faker.image_url(), user = u3)
-    d4 = Dog(name = 'Birdie', breed = 'NewfyDoodle', weight = 60, age = 1, image = faker.image_url(), user = u4)
-    d5 = Dog(name = 'Zeke', breed = 'Great Pyrenees', weight = 150, age = 9, image = faker.image_url(), user = u4)
+    d1 = Dog(name = 'Cosmo', breed = 'Kitten', weight = 6, age = 1, image = 'https://i.imgur.com/YTc5Ku0.jpeg', user = u1)
+    d2 = Dog(name = 'Basil', breed = 'Great Dane', weight = 145, age = 5, image = 'https://i.imgur.com/lSwtAWn.jpeg', user = u2)
+    d3 = Dog(name = 'Ammo', breed = 'Lab', weight = 96, age = 5, image = 'https://i.imgur.com/eMVwIo8.jpeg', user = u3)
+    d4 = Dog(name = 'Birdie', breed = 'NewfyDoodle', weight = 62, age = 1, image = 'https://i.imgur.com/9KLzxrt.jpeg', user = u4)
+    d5 = Dog(name = 'Zeke', breed = 'Great Pyrenees', weight = 150, age = 9, image = 'https://i.imgur.com/V5K0YjC.jpeg', user = u4)
 
     # dogs_list = [Dog(name = faker.name(), breed = faker.name(), weight = randint(5,100), age = randint(1,10), image = faker.image_url(), user_id = randint(1,5)) for _ in range(1,10) ]
 
@@ -47,11 +47,11 @@ with app.app_context():
 
     print("Creating Dog Parks...")
 
-    dp1 = Dog_Park(name = 'Chaos Central', address = "102 Whilwind Ave, Chicago, IL, 20039", rating = 4, amenities = 'constant wind, drinking fountain, turf', image = faker.image_url())
-    dp2 = Dog_Park(name = 'Open Meadows', address = "2983 Green St, Bend, OR, 69401", rating = 5, amenities = 'gentle rolling hills, quiet breeze, birds chirping', image = faker.image_url())
-    dp3 = Dog_Park(name = 'Dirt Bowl', address = "73 Dessert St, Phoenix, AZ, 98703", rating = 2, amenities = 'dust, cactus', image = faker.image_url())
-    dp4 = Dog_Park(name = 'Splash Park', address = "19 Ocean View, Oceanside, CA, 302036", rating = 4, amenities = 'constant wind, drinking fountain, turf', image = faker.image_url())
-    dp5 = Dog_Park(name = 'Fetch Zone', address = "36 Trailside Run, Boston, MA, 80372", rating = 5, amenities = 'endless tennis balls, 73 fenced in acres', image = faker.image_url())
+    dp1 = Dog_Park(name = 'Chaos Central', address = "102 Whilwind Ave, Chicago, IL, 20039", rating = 4, amenities = 'constant wind, drinking fountain, turf', image = 'https://images.unsplash.com/photo-1494947665470-20322015e3a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')
+    dp2 = Dog_Park(name = 'Open Meadows', address = "2983 Green St, Bend, OR, 69401", rating = 5, amenities = 'gentle rolling hills, quiet breeze, birds chirping', image = 'https://images.unsplash.com/photo-1621851327323-bc467dd48d86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80')
+    dp3 = Dog_Park(name = 'Dirt Bowl', address = "73 Dessert St, Phoenix, AZ, 98703", rating = 2, amenities = 'dust, cactus', image = 'https://images.unsplash.com/photo-1470208564179-dd5b52a0d010?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1262&q=80')
+    dp4 = Dog_Park(name = 'Splash Park', address = "19 Ocean View, Oceanside, CA, 302036", rating = 4, amenities = 'pool, puddles, fountains', image = 'https://images.unsplash.com/photo-1600179787118-5cac22037b2f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')
+    dp5 = Dog_Park(name = 'Fetch Zone', address = "36 Trailside Run, Boston, MA, 80372", rating = 5, amenities = 'endless tennis balls, 73 fenced in acres', image = 'https://images.unsplash.com/photo-1569992274375-e56b14e234f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1175&q=80')
 
     # dog_parks_list = [Dog_Park(name = faker.name(), address = faker.address(), rating = randint(1,5), amenities = faker.sentence(), image = faker.image_url()) for _ in range(1,5)]
     

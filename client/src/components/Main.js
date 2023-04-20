@@ -6,31 +6,38 @@ import DogPark from "./DogPark";
 import MyAccount from "./MyAccount";
 import AboutUs from "./AboutUs";
 
-function Main() {
-
-
+function Main({currentUser}) {
+ 
   //  Only show thanks for checking on modal/cancel checkin modal once. After that
   // change modal button to check out and present checkout modal to check out???
   
   const [dogParks, setDogParks] = useState([])
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
-  
+  const [dogs, setDogs] = useState([])
 
   // need to get dogs associated with user through session in our fetch
-  const [user, setUser] = useState(false)
-
+  // const [user, setUser] = useState(false)
+  // fetch('http://127.0.0.1:5555/login'), {
+  //   method: "POST",
+  //   headers: {"Content-Type": "application/json"},
+  //   body: JSON.stringify(currentUser)
+  // }
+  // .then(r=>r.json())
+  // .then(console.log('success!'))
+  
+  
   
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/current-session')
       .then(r => {
         if (r.status === 200){
           r.json()
-          .then(setUser(!user))
+          .then(obj => setDogs(obj.dogs))
         } else {
           console.log('hello')
         }
       })
-  }, [user])
+  },[] )
 
 
   useEffect(()=>{
@@ -73,12 +80,11 @@ function Main() {
     })
   }
 
-  const [dogs, setDogs] = useState([])
-  useEffect(()=>{
-    fetch('http://127.0.0.1:5555/dogs')
-      .then(r=> r.json())
-      .then(setDogs)
-  }, [])
+  // useEffect(()=>{
+  //   fetch(`http://127.0.0.1:5555/dogs`)
+  //     .then(r=> r.json())
+  //     .then(setDogs)
+  // }, [])
 
   const createDog = (newDog) => {
     setDogs([...dogs, newDog])
@@ -138,6 +144,7 @@ function Main() {
     startTimer: startTimer,
   }
 
+<<<<<<< HEAD
   const find_dog_park_by_id = (createdReview) => {
       
     // filter through dog parks to get the dog park associatd with the dog 
@@ -165,6 +172,8 @@ function Main() {
   //   )
   // }
   // else{
+=======
+>>>>>>> login
 
   //fetch for reviews
   
@@ -195,7 +204,7 @@ function Main() {
         <Switch>
           <Route exact path="/">
             <Home 
-              {...propsObjectToHome}
+              {...propsObjectToHome} dogs={dogs}
             />
           </Route>
           <Route exact path="/dogparks">

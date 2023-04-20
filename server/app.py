@@ -11,12 +11,13 @@ from config import app, db, api
 from models import User, Dog, Visit, Dog_Park, Review
 
 # Views go here!
+session_user = []
 
 class Users(Resource):
     def get(self):
         users = User.query.all()
         return make_response(
-            [user.to_dict for user in users],
+            [user.to_dict() for user in users],
             200
         )
 api.add_resource(Users, '/users')
@@ -76,6 +77,7 @@ class Login(Resource):
         
         elif user.authenticate(password):
             session['user_id'] = user.id
+            session_user.append(user.to_dict(rules=('dogs',)))
             return make_response(
                 user.to_dict(),
                 200
@@ -93,7 +95,7 @@ api.add_resource(Logout, '/logout')
 class CurrentSession(Resource):
     def get(self):
 
-        user = User.query.get(session.get('user_id'))
+        user = session_user[0]
         if not user:
             return make_response(
                 {'error': 'User not found'},
@@ -101,7 +103,7 @@ class CurrentSession(Resource):
             )
     
         return make_response(
-            user.to_dict(),
+            user,
             200
         )
 api.add_resource(CurrentSession, '/current-session')

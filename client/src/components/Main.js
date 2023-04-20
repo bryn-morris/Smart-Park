@@ -138,29 +138,7 @@ function Main() {
     startTimer: startTimer,
   }
 
-  //fetch for reviews
   
-  const [reviews, setReviews] = useState([])
-  useEffect(()=>{
-    fetch('/reviews')
-      .then(r=> r.json())
-      .then(setReviews)
-  }, [])
-
-  
-
-  const [parkId, setParkId] = useState('')
-  const handleParkSelection = (id) => {
-     setParkId(id)
-  }
-
-  const selectedReviews = reviews.filter(review => review.dog_park_id === parkId)
-
-  // add newreview  
-  const addNewReview = (newReview) => {
-    setReviews([newReview, ...reviews])
-  }
-
   // if (user === !user){
   //   return(
   //     <div>
@@ -171,6 +149,21 @@ function Main() {
   //   )
   // }
   // else{
+
+  //fetch for reviews
+  
+  const [reviews, setReviews] = useState([])
+  useEffect(()=>{
+    fetch('/reviews')
+      .then(r=> r.json())
+      .then(setReviews)
+  }, [])
+
+
+  // add newreview  
+  const addNewReview = (newReview) => {
+    setReviews([newReview, ...reviews])
+  }
 
   //search for dog park
   const [searchedPark, setSearchedPark] = useState('')
@@ -195,7 +188,7 @@ function Main() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark specificPark={specificPark} dogParks={filteredParks} addNewReview={addNewReview} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews}/>
+            <DogPark specificPark={specificPark} dogParks={filteredParks} addNewReview={addNewReview} addDogParkToState={addDogParkToState} />
           </Route>
           <Route exact path="/myaccount">
             <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>

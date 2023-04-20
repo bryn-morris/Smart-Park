@@ -1,8 +1,10 @@
 import React, {useState} from "react";
+import Reviews from './Reviews'
 
-function DogParkCard({id, name, address, amenities, rating, image, handleParkSelection, addNewReview}){
+function DogParkCard({id, name, address, amenities, rating, image, reviews, addNewReview}){
   const [showFront, setShowFront] = useState(true);
   const [showReviewForm, setShowReviewForm] = useState(false)
+  const [showReviews, setShowReviews]=useState(false)
 
   const[usersName, setUsersName] = useState('')
   const[comment, setComment] = useState('')
@@ -17,9 +19,9 @@ function DogParkCard({id, name, address, amenities, rating, image, handleParkSel
       setShowFront(!showFront);
     };
   
-  //get id to show specific dog park reviews
-  const handleParkClick = () =>{
-      handleParkSelection(id)
+  //show reviews on dog park card
+  const handleShowReviews = () =>{
+     setShowReviews(!showReviews)
     }
   
   //show&hide review form and get id for specific dog park
@@ -54,21 +56,35 @@ function DogParkCard({id, name, address, amenities, rating, image, handleParkSel
     setNewRating('')
   }
 
+  const reviewComponents = reviews.map(review => {
+    return <Reviews key={review.id} {...review}/>
+  })
+
   return (
     <div >
         <div onClick={handleFlip}>
           <h1>{name}</h1>
             {showFront ? (
+              <div>
                 <img src={image} alt={name} />
+                {`Rating: ${rating}`}
+              </div>
             ) : (
-                <p>{`Amenities: ${amenities}`}</p>
+                <div>
+                  <p>{`Amenities: ${amenities}`}</p>
+                  <p>{`Address: ${address}`}</p>
+                </div>
             )}
-            <p>
-              {showFront ? `Rating: ${rating}` : `Address: ${address}`}
-            </p>
         </div>
         <div>
-          <button onClick={handleParkClick}>Reviews</button>
+            {showReviews ? (
+              <div>
+                {reviewComponents}
+                <button onClick={handleShowReviews}>Hide Reviews</button>
+              </div>
+            ):(
+              <button onClick={handleShowReviews}>Reviews</button>
+            )}
         </div>
         <div>
             {showReviewForm ? (

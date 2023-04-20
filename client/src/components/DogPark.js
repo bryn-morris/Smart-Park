@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import DogParkCard from './DogParkCard'
 import DogParkForm from './DogParkForm'
-import Reviews from './Reviews'
 
 
 
-function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedReviews, addNewReview}) {
+
+function DogPark({dogParks, addDogParkToState, selectedReviews, addNewReview}) {
   const [showDPForm, setShowDPForm] = useState(false)
   const handleShowDPForm = () =>{
     setShowDPForm(!showDPForm)
@@ -16,15 +16,9 @@ function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedRevi
       <DogParkCard
         key = {eachDogPark.id}
         {...eachDogPark}
-        handleParkSelection={handleParkSelection}
         addNewReview={addNewReview}
       />)
    })
-
-
-  const reviewComponents = selectedReviews.map(review =>{
-    return (<Reviews key = {review.id} {...review}/>)
-  })
 
   return (
   <div>
@@ -37,10 +31,6 @@ function DogPark({dogParks, addDogParkToState, handleParkSelection, selectedRevi
       <button onClick={handleShowDPForm}>Add Dog Park</button>
       )
     }
-    
-    <div>
-      {reviewComponents}
-    </div>
     <div>
       {dogParkComponents}
     </div>

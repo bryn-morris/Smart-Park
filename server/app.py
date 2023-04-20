@@ -92,7 +92,8 @@ class Dog_Parks(Resource):
                 'amenities',
                 'address',
                 'rating',
-                'image'
+                'image',
+                'reviews'
             )
 
         ) for dp in Dog_Park.query.all()

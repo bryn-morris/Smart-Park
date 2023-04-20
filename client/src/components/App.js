@@ -131,7 +131,7 @@ function App() {
     startTimer: startTimer,
   }
 
-  //fetch for reviews
+  // //fetch for reviews
   
   const [reviews, setReviews] = useState([])
   useEffect(()=>{
@@ -140,15 +140,15 @@ function App() {
       .then(setReviews)
   }, [])
 
-  //display reviews for specific park
-  const [parkId, setParkId] = useState('')
-  const handleParkSelection = (id) => {
-     setParkId(id)
-    }
-  const selectedReviews = reviews.filter(review => {
-        if(review.dog_park_id == parkId)
-        return true
-    })
+  // //display reviews for specific park
+  // const [parkId, setParkId] = useState('')
+  // const handleParkSelection = (id) => {
+  //    setParkId(id)
+  //   }
+  // const selectedReviews = reviews.filter(review => {
+  //       if(review.dog_park_id == parkId)
+  //       return true
+  //   })
 
   //add newreview  
   const addNewReview = (newReview) => {
@@ -167,10 +167,10 @@ function App() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark dogParks={dogParks} addDogParkToState={addDogParkToState} handleParkSelection={handleParkSelection} selectedReviews={selectedReviews} addNewReview={addNewReview}/>
+            <DogPark dogParks={dogParks} addDogParkToState={addDogParkToState} addNewReview={addNewReview}/>
           </Route>
           <Route exact path="/myaccount">
-            <MyAccount dogs = {dogs} showRemainingDogs = {showRemainingDogs} updatedDogs = {updatedDogs} createDog={createDog}/>
+            <MyAccount dogs={dogs} showRemainingDogs={showRemainingDogs} updatedDogs={updatedDogs} createDog={createDog}/>
           </Route>
           <Route exact path="/checkin">
             <CheckIn/>

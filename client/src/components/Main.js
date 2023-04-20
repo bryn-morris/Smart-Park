@@ -44,8 +44,6 @@ function Main() {
   const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
 
   function handleFormSubmission(formObj){
-
-    console.log(formObj)
     // Update Backend with post to a route that creates a Visit Instance
     fetch('/visits', {
       method: 'POST',
@@ -97,15 +95,17 @@ function Main() {
   }
 
   const [seconds, setSeconds] = useState(0)
+  const [intervalID, setIntervalID] = useState(null)
 
   function startTimer(){
-    setInterval(()=>{
+    setIntervalID(setInterval(()=>{
       setSeconds(seconds => seconds+1)
-    }, 1000)
+    }, 1000))
   }
 
   function endTimer(){
-    clearInterval(setSeconds(0))
+    clearInterval(intervalID)
+    setSeconds(0)
   }
 
   function checkOut () {

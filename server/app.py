@@ -253,8 +253,7 @@ def visit_by_id(id):
     
     if request.method == 'PATCH':
 
-        for key in request.get_json():
-            setattr(selVisit, key , request.get_json()[key] )
+        selVisit.actual_length_of_stay = request.get_json()['actualLengthOfStay']
         
         db.session.add(selVisit)
         db.session.commit()

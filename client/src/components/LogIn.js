@@ -38,12 +38,18 @@ function LogIn() {
     
     return (
         <div>
-            <div className="new-user-form">
-                <h2>Welcome back, Sign in here</h2>
-                <form onSubmit={handleSubmit}>
-                <input onChange={(e) => setUsername(e.target.value)} type="text" name="username" placeholder="username" />
-                <input onChange={(e) => setPassword(e.target.value)} type="password" name="password" placeholder="password" />
-                <button type="submit">Submit</button>
+          <div className="new-user-form">
+            <div class="ui sizer vertical segment">
+              <h2 class="ui center aligned large header" >Login Here</h2>
+          </div>
+                <form class="ui form" onSubmit={handleSubmit}>
+                  <div class='field'>
+                    <input onChange={(e) => setUsername(e.target.value)} type="text" name="username" placeholder="username" />
+                  </div>
+                  <div class='field'>
+                    <input onChange={(e) => setPassword(e.target.value)} type="password" name="password" placeholder="password" />
+                  </div>
+                <button class='fluid ui button' type="submit">Submit</button>
                 </form>
             </div>
       </div>

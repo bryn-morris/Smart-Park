@@ -40,12 +40,20 @@ function SignUp() {
   
     return (
       <div className="new-user-form">
-        <h2>Sign up here</h2>
-        <form onSubmit={handleSubmit}>
-          <input onChange={(e) => setUsername(e.target.value)} type="text" name="username" placeholder="username" />
-          <input onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="password" />
-          <input onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="profile photo URL" />
-          <button type="submit">Submit</button>
+        <div class="ui sizer vertical segment">
+          <h2 class="ui center aligned large header" >Create a New Account</h2>
+        </div>
+        <form class='ui form' onSubmit={handleSubmit}>
+          <div class='field'>
+            <input onChange={(e) => setUsername(e.target.value)} type="text" name="username" placeholder="username" />
+          </div>
+          <div class='field'>
+            <input onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="password" />
+          </div>
+          <div class='field'>
+            <input onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="profile photo URL" />
+          </div>
+            <button class='fluid ui button' type="submit">Submit</button>
         </form>
       </div>
     );

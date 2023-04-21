@@ -33,16 +33,19 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
 
   return (
   <div>
+    <h1 className="dpHeader">Dog Parks</h1>
+    
     {/* Search */}
     <div>
       <SearchDogPark specificPark = {specificPark}/>
     </div>
+    
     {/* Dog Park Form */}
       <Modal
           onClose={() => setIsModalOpen(false)}
           onOpen={() => setIsModalOpen(true)}
           open={isModalOpen}
-          trigger={<Button className = "big ui button modalbutton">Add Dog Park</Button>}
+          trigger={<Button style={{margin:20}}className = "big ui button black modalbutton">Add Dog Park</Button>}
           size= 'small'
       >
       <Modal.Header>Let's add a Dog Park</Modal.Header>

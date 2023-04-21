@@ -34,12 +34,12 @@ function NewDogForm({createDog, dogs, currentUser}) {
   
     
     return (
-      <div style={{float:'right'}}className="new-dog-form">
+      <div style={{float:'right', margin:20}}className="new-dog-form">
         <Modal
             onClose={() =>setIsModalOpen(false)}
             onOpen={() => setIsModalOpen(true)}
             open={isModalOpen}
-            trigger={<Button className = "big ui button modalbutton">Add Dog</Button>}
+            trigger={<Button className = "big ui button black modalbutton">Add Dog</Button>}
             size= 'small'
         >
         <Modal.Header>Let's Add A Doggo!</Modal.Header>

@@ -12,6 +12,7 @@ function MyAccount({dogs, showRemainingDogs, updatedDogs, createDog, currentUser
 
   return (
     <div style={{backgroundImage:"url('https://img.freepik.com/free-photo/grungy-gray-marble-textured-background_53876-108405.jpg?w=2000')"}}>
+      <h1 className='accountHeader'>My Account</h1>
       <div>
         <NewDogForm createDog={createDog} dogs={dogs} currentUser={currentUser}/>
       </div>

@@ -17,8 +17,8 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, find
         {showFront ? (
           <div>
             <img className="dpcImg" src={image} alt={name} />
-            <div className="dpcName">
-              {`Rating: ${rating}`}
+            <div className="dpcName" >
+              {`⭐${rating} Stars⭐`}
             </div>
           </div>
         ) : (

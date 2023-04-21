@@ -33,7 +33,7 @@ function AboutUs() {
                         <img className='aboutImg'
                             src='https://fox5sandiego.com/wp-content/uploads/sites/15/2022/07/Carlsbad-dog-park-072822-copy-e1659016132684.jpg'
                             alt='Dog Park' />
-                        <div>
+                        <div className='footer'>
                             <footer>
                                 <p>
                                     Email us at:

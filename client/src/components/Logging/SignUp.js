@@ -43,7 +43,7 @@ function SignUp({handleSignupClick}) {
   
     return (
       <div>
-      <div class="ui center aligned huge header">Welcome to SmartPark!</div>
+      <div class="ui center aligned huge header" style={{margin:40}}>Welcome to SmartPark!</div>
       <div className="new-user-form">
         <div class="ui sizer vertical segment">
           <h2 class="ui center aligned large header" >Create a New Account</h2>

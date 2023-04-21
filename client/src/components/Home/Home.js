@@ -32,18 +32,18 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
 
   return (
     <div>
-      <div>Smart Parks (Project Title)</div>
-      {currentCheckInID ? 'You\'re all checked in!' : null}
-      <img 
+      <div className='homeHeader'>Smart Park</div>
+      {currentCheckInID ? <div className='checkedIn'>You're all checked in!</div> : null}
+      {/* <img 
         src = 'https://images.unsplash.com/photo-1514373941175-0a141072bbc8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80' 
-        alt = 'Dog Playing with Ball'/>
+        alt = 'Dog Playing with Ball'/> */}
       <div className="modalContainer">    
                  
                 <Modal
                     onClose={() => handleModalClose()}
                     onOpen={() => setIsModalOpen(true)}
                     open={isModalOpen}
-                    trigger={<Button className = "big ui button modalbutton">{currentCheckInID ? 'Check Out!' : 'Check in!'}</Button>}
+                    trigger={<Button className = "massive ui button green modalbutton">{currentCheckInID ? 'Check Out!' : 'Check in!'}</Button>}
                     size= 'small'
                 >
                 <Modal.Header>{currentCheckInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>

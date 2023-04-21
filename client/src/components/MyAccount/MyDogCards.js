@@ -46,7 +46,7 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
             onClose={() =>setIsModalOpen(false)}
             onOpen={() => setIsModalOpen(true)}
             open={isModalOpen}
-            trigger={<Button className = "big ui button modalbutton">Edit Dog</Button>}
+            trigger={<Button className = "big ui button black modalbutton">Edit Dog</Button>}
             size= 'small'
         >
         <Modal.Header>Edit Doggo!</Modal.Header>

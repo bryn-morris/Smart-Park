@@ -52,14 +52,14 @@ function ReviewModal ({id, finddpbi, reviews}) {
                     onClose={() => handleModalClose()}
                     onOpen={() => setIsModalOpen(true)}
                     open={isModalOpen}
-                    trigger={<Button className = "big ui button modalbutton">Reviews</Button>}
+                    trigger={<Button className = "big ui black button modalbutton">Reviews</Button>}
                     size= 'small'
                 >
                 <Modal.Header>{modalContent ? 'Review Form' : 'Reviews' }</Modal.Header>
       
                       <Modal.Content>
                           {modalContent ?
-                            <ReviewForm handleAddReview = {handleAddReview}/> :
+                            <ReviewForm handleAddReview = {handleAddReview} setIsModalOpen={setIsModalOpen}/> :
                             reviewComponents()
                           }
                       </Modal.Content>

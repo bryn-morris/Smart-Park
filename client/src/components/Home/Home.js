@@ -41,7 +41,7 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
 
   return (
     <div className='homePage'>
-      <div className='homeHeader'>Smart Park</div>
+      <div className='homeHeader'>SmartPark</div>
       <PawPrintIcons selectedIcon={selectedIcon}/>
       {currentCheckInID ? <div className='checkedIn'>You're all checked in!</div> : null}
       {/* <img 

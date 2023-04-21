@@ -15,7 +15,7 @@ function ReviewForm ({handleAddReview}) {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         handleAddReview(formObject)
-        setFormObject(emptyFormObj) 
+        setFormObject(emptyFormObj)
     }
 
     const handleFormInputChange = (e) => {

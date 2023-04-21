@@ -131,7 +131,7 @@ function CheckOutForm({handleFormSubmission, dogParks, dogs}){
                     })}
                 </select>
                 <br/>
-                <label>Length of Stay in Minutes:</label>
+                <label>Estimated Length of Stay:</label>
                 {/* <Dropdown
                     placeholder = 'Choose Your Time!'
                     fluid

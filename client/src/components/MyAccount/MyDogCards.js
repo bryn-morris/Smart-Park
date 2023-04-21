@@ -3,7 +3,7 @@ import {Form, Button, Modal} from 'semantic-ui-react'
 import DogCard from './DogCard'
 
 
-function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, updatedDogs}) {
+function MyDogCards({dog_parks, id, name, breed, weight, age, image, showRemainingDogs, updatedDogs}) {
     const [dogAttribute, setDogAttribute]= useState('')
     const [newInfo, setNewInfo] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(null)
@@ -39,7 +39,7 @@ function MyDogCards({id, name, breed, weight, age, image, showRemainingDogs, upd
 
   return (
     <div style={{margin:"auto", alignSelf:"center", width:"20%", padding:"30px"}}>
-        <DogCard name = {name} breed = {breed} weight = {weight} age = {age} image = {image}/>
+        <DogCard dog_parks = {dog_parks} name = {name} breed = {breed} weight = {weight} age = {age} image = {image}/>
         
         
         <Modal

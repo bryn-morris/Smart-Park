@@ -1,7 +1,10 @@
 import React from 'react'
 import {Card, Image} from 'semantic-ui-react'
 
-function DogCard({name, breed, weight, age, image}) {
+function DogCard({name, breed, weight, age, image, dog_parks}) {
+
+  console.log(dog_parks)
+
   return (
     <Card>
         <Image src={image} wrapped ui={false} />
@@ -14,6 +17,9 @@ function DogCard({name, breed, weight, age, image}) {
         <Card.Description>
             Weight: {weight} lbs
         </Card.Description>
+        {/* <Card.Description>
+            Parks Visited: {dog_parks}
+        </Card.Description> */}
         </Card.Content>
     </Card>
   )

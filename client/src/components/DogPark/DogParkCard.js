@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import ReviewModal from './ReviewsModal'
+import ReviewsModal from './ReviewsModal'
 
 function DogParkCard({id, name, address, amenities, rating, image, reviews, finddpbi}){
   const [showFront, setShowFront] = useState(true);
@@ -29,7 +29,7 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, find
         )}
       </div>
       <div>
-        <ReviewModal id={id} finddpbi={finddpbi} reviews={reviews} />
+        <ReviewsModal id={id} finddpbi={finddpbi} reviews={reviews} />
       </div>
 
     </div>

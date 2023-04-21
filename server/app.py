@@ -89,6 +89,7 @@ class Logout(Resource):
     def delete(self):
         session.pop('user_id', None)
         return session.get('user_id')
+        
 
 api.add_resource(Logout, '/logout')
 
@@ -152,7 +153,7 @@ class Dogs(Resource):
         dogs = Dog.query.all()
 
         return make_response(
-            [dog.to_dict(rules = ('user',)) for dog in dogs],
+            [dog.to_dict(rules = ('user','dog_parks')) for dog in dogs],
             200
         )
     

@@ -8,6 +8,12 @@ function Header() {
     window.location.reload(true);
   }
 
+  // function refreshPage () {
+  //   fetch('/logout', {method:"DELETE",})
+  //       .then((r)=> r.json())
+  //       .then(response => console.log(response));
+  // }
+
     return (
       <Menu className = 'navBar' inverted>
         <Menu.Item as={NavLink} to="/" exact>

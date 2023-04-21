@@ -1,316 +1,118 @@
-# Phase 4 Full-Stack Application Project Template
 
-## Learning Goals
-
-- Discuss the basic directory structure of a full-stack Flask/React application.
-- Carry out the first steps in creating your Phase 4 project.
-
-***
-
+# SmartPark
+## Collaborators: Bryn Morris, Damon Butler, Beau Kim, Madaline Fitzpatrick
 ## Introduction
+This is a full-stack program created during Phase IIII of Flatiron School's Full Stack Software Engineering Program.
+
+The program allows a user to "log in" to SmartPark and manage their dogs and dog park visits. Basic user solutions include:
+1. Browse available dog parks
+2. Check into and out of a dog park
+3. Write and view reviews for a dog park
+4. Add and edit dogs in my account
+4. Learn more about SmartPark
+
+## Languages
+Python
+SQL
+JavaScript
+React
 
-Fork and clone this lesson for a template for your full-stack application. Take
-a look at the directory structure before we begin:
-
-```console
-$ tree -L 2
-$ # the -L argument limits the depth at which we look into the directory structure
-.
-├── CONTRIBUTING.md
-├── LICENSE.md
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-├── client
-│   ├── README.md
-│   ├── node_modules
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public
-│   └── src
-└── server
-    ├── app.py
-    ├── config.py
-    ├── migrations
-    ├── models.py
-    └── seed.py
-```
+## Program Composition
+=> The following section describes each program component and its functionality
 
-> **Note: You may already know some or all of the material covered in this
-> lesson. We hope that having it all in one place will help you in designing
-> and developing your project, regardless of where you're starting off.**
+This project was created with Create React App.
+To start the app in development mode, run npm start. Then open http://localhost:4000 in your browser.
+After starting the app, you will be taken to the login page.
 
-***
+### Logging In/Signing Up:
+Enter your username and password to access the home page.
+If you need to sign up, click "Don't have an account? Create one!" on the home page to open the sign-up form.
 
-## Where Do I Start?
+### Navbar
+There is a navbar at the top of the page that allows users to easily switch between each feature on the application.
 
-Just as with your Phase 3 Project, this will likely be one of the biggest
-projects you've undertaken so far. Your first task should be creating a Git
-repository to keep track of your work and roll back any undesired changes.
+### Home Page & Checking-in/out
+On the home page, you can check in to the park you have arrived at by clicking the big green paw. You'll see a check-in modal with drop-downs of dog parks, dogs, and estimated length of stay. Select your choices, and you'll be checked in to the park you choose. There is also an option to cancel the check-in if it was done by mistake. Once your visit is finished, click the green paw to see the check-out modal.
 
-### Removing Existing Git Configuration
+### Dog Parks
+In the navbar users can click on the dog parks tag to be taken to a  list of dog parks that are already registed in the app. Clicking on a dog park image will flip it to show information about the amenities and address of the dog park they are interested in. Users can also click the reviews in the bottom left hand corner of each dog park card to see a modal containing the reviews that each dog park has.
+Users can also add a dog park, and add reviews. If incorrect information is entered on the image, or rating of a dog park the users will see an alert telling them what was entered wrong and the information needed to fix it.
 
-If you're using this template, start off by removing the existing metadata for
-Github and Canvas. Run the following command to carry this out:
+### About Us
+The About Us page contains a description of the app and our goals. If you click on the dog treat at the top of the page, you'll be redirected to dog mode. The text on the page will change so that your dog can read about the app too, and "Who Let the Dogs Out" will play.
 
-```console
-$ rm -rf .git .canvas
-```
+### My Account
+On the My Account page, you can see the information on the dogs you have registered on your account. You can add new dogs or edit dogs that are already registered. If you choose to add or edit a dog, you'll be presented with a modal and can choose what information you want to change or a form to add a new dog.
 
-The `rm` command removes files from your computer's memory. The `-r` flag tells
-the console to remove _recursively_, which allows the command to remove
-directories and the files within them. `-f` removes them permanently.
 
-`.git` contains this directory's configuration to track changes and push to
-Github (you want to track and push _your own_ changes instead), and `.canvas`
-contains the metadata to create a Canvas page from your Git repo. You don't have
-the permissions to edit our Canvas course, so it's not worth keeping around.
 
-### Creating Your Own Git Repo
+### MODELS
+Our models file contains the following 5 models which constitute the framework for our project.db tables.
+Each table in our database contains a primary key represented by an id.
+The individual properties of each table are listed below:
 
-First things first- rename this directory! Once you have an idea for a name,
-move one level up with `cd ..` and run `mv python-p4-project-template
-<new-directory-name>` to change its name.
+1. User
+- username: string
+- image: user's avatar as string
+- password: string(hashed)
 
-> **Note: `mv` actually stands for "move", but your computer interprets this
-> rename as a move from a directory with the old name to a directory with
-> a new name.**
+2. Dog
+- name: string
+- breed: string
+- weight: integer
+- age: integer
+- image: dog's photo as string
+- user_id: interger, foreign key
 
-`cd` back into your new directory and run `git init` to create a local git
-repository. Add all of your local files to version control with `git add --all`,
-then commit them with `git commit -m'initial commit`. (You can change the
-message here- this one is just a common choice.)
+3. Visit
+- length_of_stay: (estimated by user) integer
+- dogs_id: integer, foreign key
+- dog_parks_id: integer, foreign key
+- actual_length_of_stay: integer
 
-Navigate to [GitHub](github.com). In the upper-right corner of the page, click
-on the "+" dropdown menu, then select "New repository". Enter the name of your
-local repo, choose whether you would like it to be public or private, make sure
-"Initialize this repository with a README" is unchecked (you already have one),
-then click "Create repository".
+4. Dog_Park
+- name: string
+- address: string
+- rating: integer between 1-5
+- amenities: string
+- image: dog park photo as string
 
-Head back to the command line and enter `git remote add origin <project name>
-<github url>`. This will map the remote repository to your local repository.
-Finally, push your first commit with `git push -u origin main`.
+5. Reviews
+- name: The start date of the vacation represented as a datetime
+- comment: The end date of the vacation represented as a datetime
+- rating: The reason for the vacation represented as a string
+- dog_park_id: A foreign key representing the id of the traveler associated with the vacation
 
-Your project is now version-controlled locally and online. This will allow you
-to create different versions of your project and pick up your work on a
-different machine if the need arises.
+Dog can have many Visits and can have many DogParks through Visit. DogPark can have many Vitits and can have many Dogs through Visit. Visit belongs to both Dog and DogPark. User can have many Dogs. DogPark can have many Reviews.
+    User -----< Dog -----< Vist >----- DogPark -----< Reviews
 
-***
+## Flask
+The backend methods are built using Flask Restful. Various CRUD functionality for each class defined below. 
 
-## Generating Your Pipenv
+1. Dogs:
+- create
+- read
+- update
+- delete
 
-You might have noticed in the file structure- there's already a Pipfile! That
-being said, we haven't put much in there- just Python version 3.8 and ipdb.
+2. Users:
+- create
 
-Install any dependencies you know you'll need for your project, like SQLAlchemy
-and Alembic, before you begin. You can do this straight from the command line:
+3. DogParks
+- create
+- read
 
-```console
-$ pipenv install flask flask-sqlalchemy flask-migrate sqlalchemy-serializer flask-restful flask-cors
-```
+4. Visits
+- create
+- update
 
-> _Sheesh!_
+5. Reviews
+- create
+- read
 
-From here, you should run your second commit:
+### DATABASE
+We set up our datbase using SQLalchemy, Flask, and seed.py for customized data. We took advantage of SQLalchemy's relationship, backpopulates, and association_proxy to create relationships between models in our database. We used Flask-Alembic to manage our migration versions.
 
-```console
-$ git add Pipfile Pipfile.lock
-$ git commit -m'add dependencies to pipenv'
-$ git push
-```
 
-Now that your environment is set up, run `pipenv shell` to enter it.
 
-***
 
-## Generating Your Database
-
-Once you're in your environment, you can start development wherever you'd like.
-We think it's easiest to start with setting up your database.
-
-`cd` into the `server/` directory, then run `flask db init migrations` to set up
-Flask-Migrate.
-
-Navigate to `models.py` and start creating your models. Remember
-to regularly run `flask db revision --autogenerate -m'<descriptive message>'`
-and `flask db upgrade head` to track your modifications to the database and
-create checkpoints in case you ever need to roll those modifications back.
-
-> **Tip: It's always a good idea to start with an empty revision! This allows
-> you to roll all the way back while still holding onto your database. You can
-> create this empty revision with `flask db revision -m'Create DB'`.**
-
-If you want to seed your database, now would be a great time to write out your
-`seed.py` script and run it to generate some test data. You may want to use
-Pipenv to install Faker to save you some time.
-
-***
-
-## Generating Your Full-Stack Application
-
-You've already made a few, but let's take a look at the structure of your
-newest full-stack application.
-
-### `client/`
-
-The `client/` directory contains all of your frontend code. We've already used
-`npm` to install your standard dependencies, including React. We've also
-configured a proxy to the server for your backend at `localhost:5555` in
-`package.json`. Feel free to change this to another port- just remember to
-configure your Flask app to use another port as well!
-
-### `server/`
-
-The `server/` directory contains all of your backend code.
-
-`app.py` is your Flask application. You'll want to use Flask to build a simple
-API backend like we have in previous modules. You should use Flask-RESTful for
-your routes.
-
-You should be familiar with `models.py` and `seed.py` by now, but remember that
-you will need to use Flask-SQLAlchemy, Flask-Migrate, and SQLAlchemy-Serializer
-instead of SQLAlchemy and Alembic in your models. Don't forget to set an app
-context in your seed file as well:
-
-```py
-with app.app_context():
-    # seed here!
-
-```
-
-#### `config.py`
-
-When developing a large Python application, you might run into a common issue:
-_circular imports_. A circular import occurs when two modules import from one
-another, such as `app.py` and `models.py`. When you create a circular import and
-attempt to run your app, you'll see the following error:
-
-```console
-ImportError: cannot import name
-```
-
-If you're going to need an object in multiple modules like `app` or `db`,
-creating a _third_ module to instantiate these objects can save you a great
-deal of circular grief. Here's a good start to a Flask config file (you may
-need more if you intend to include features like authentication and passwords):
-
-```py
-# Standard library imports
-
-# Remote library imports
-from flask import Flask
-from flask_cors import CORS
-from flask_migrate import Migrate
-from flask_restful import Api
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import MetaData
-
-# Local imports
-
-# Instantiate app, set attributes
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
-
-# Define metadata, instantiate db
-metadata = MetaData(naming_convention={
-    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-})
-db = SQLAlchemy(metadata=metadata)
-migrate = Migrate(app, db)
-db.init_app(app)
-
-# Instantiate REST API
-api = Api(app)
-
-# Instantiate CORS
-CORS(app)
-
-```
-
-Now let's review that last line...
-
-#### CORS
-
-CORS (Cross-Origin Reference Sharing) is a system that uses HTTP headers to
-determine whether resources from different servers-of-origin can be accessed.
-If you're using the fetch API to connect your frontend to your Flask backend,
-you need to configure CORS on your Flask application instance. Lucky for us,
-that only takes one line:
-
-```py
-CORS(app)
-
-```
-
-By default, Flask-CORS enables CORS on all routes in your application with all
-fetching servers. You can also specify the resources that allow CORS. The
-following specifies that routes beginning with `api/` allow CORS from any
-originating server:
-
-```py
-CORS(app, resources={r"/api/*": {"origins": "*"}})
-
-```
-
-You can also set this up resource-by-resource by importing and using the
-`@cross_origin` decorator:
-
-```py
-@app.route("/")
-@cross_origin()
-def howdy():
-  return "Howdy partner!"
-
-```
-
-***
-
-## Updating Your README.md
-
-`README.md` is a Markdown file that describes your project. These files can be
-used in many different ways- you may have noticed that we use them to generate
-entire Canvas lessons- but they're most commonly used as homepages for online
-Git repositories. **When you develop something that you want other people to
-use, you need to have a README.**
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this lesson's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README should serve as a template for your own- go through the important
-files in your project and describe what they do. Each file that you edit
-(you can ignore your migration files) should get at least a paragraph. Each
-function should get a small blurb.
-
-You should descibe your application first, and with a good level of
-detail. The rest should be ordered by importance to the user. (Probably
-routes next, then models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
-***
-
-## Conclusion
-
-A lot of work goes into a full-stack application, but it all relies on concepts
-that you've practiced thoroughly throughout this phase. Hopefully this template
-and guide will get you off to a good start with your Phase 4 Project.
-
-Happy coding!
-
-***
-
-## Resources
-
-- [Setting up a respository - Atlassian](https://www.atlassian.com/git/tutorials/setting-up-a-repository)
-- [Create a repo- GitHub Docs](https://docs.github.com/en/get-started/quickstart/create-a-repo)
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
-- [Python Circular Imports - StackAbuse](https://stackabuse.com/python-circular-imports/)
-- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/)

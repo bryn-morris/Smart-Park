@@ -1,316 +1,126 @@
-# Phase 4 Full-Stack Application Project Template
+<!-- All team notes at the bottom with the README guidance from the CLI project template! -->
 
-## Learning Goals
+# SmartPark
 
-- Discuss the basic directory structure of a full-stack Flask/React application.
-- Carry out the first steps in creating your Phase 4 project.
-
-***
+## Collaborators: Bryn Morris, Beau Kim, Damon Butler & Madaline Fitzpatrick
 
 ## Introduction
 
-Fork and clone this lesson for a template for your full-stack application. Take
-a look at the directory structure before we begin:
-
-```console
-$ tree -L 2
-$ # the -L argument limits the depth at which we look into the directory structure
-.
-├── CONTRIBUTING.md
-├── LICENSE.md
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-├── client
-│   ├── README.md
-│   ├── node_modules
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public
-│   └── src
-└── server
-    ├── app.py
-    ├── config.py
-    ├── migrations
-    ├── models.py
-    └── seed.py
-```
-
-> **Note: You may already know some or all of the material covered in this
-> lesson. We hope that having it all in one place will help you in designing
-> and developing your project, regardless of where you're starting off.**
-
-***
+This is a Command Line Interface program created during Phase III of Flatiron School's Full Stack Software Engineering Program.
 
-## Where Do I Start?
-
-Just as with your Phase 3 Project, this will likely be one of the biggest
-projects you've undertaken so far. Your first task should be creating a Git
-repository to keep track of your work and roll back any undesired changes.
+This program is a reservations solution for travel lovers!
+The program allows a user to "log in" to Flats After FlatIron and manage their travel plans. Basic user solutions include:
 
-### Removing Existing Git Configuration
+1. Browsing available destinations
+2. Book a travel reservation
+3. Manage current reservation information
+4. Update user's "profile" information
 
-If you're using this template, start off by removing the existing metadata for
-Github and Canvas. Run the following command to carry this out:
+## Languages
 
-```console
-$ rm -rf .git .canvas
-```
+Python
+SQL
 
-The `rm` command removes files from your computer's memory. The `-r` flag tells
-the console to remove _recursively_, which allows the command to remove
-directories and the files within them. `-f` removes them permanently.
+## Program Composition
 
-`.git` contains this directory's configuration to track changes and push to
-Github (you want to track and push _your own_ changes instead), and `.canvas`
-contains the metadata to create a Canvas page from your Git repo. You don't have
-the permissions to edit our Canvas course, so it's not worth keeping around.
+=> The following section describes each program component and its functionality
 
-### Creating Your Own Git Repo
+### CLI
 
-First things first- rename this directory! Once you have an idea for a name,
-move one level up with `cd ..` and run `mv python-p4-project-template
-<new-directory-name>` to change its name.
+Users can "log in" to the program by entering their cAsE SeNsItIvE information upon entering the program
 
-> **Note: `mv` actually stands for "move", but your computer interprets this
-> rename as a move from a directory with the old name to a directory with
-> a new name.**
+Users are given a main menu from which to execute three main actions:
+Booking a new vacation, viewing/managing current vacations and profile, and exploring.
 
-`cd` back into your new directory and run `git init` to create a local git
-repository. Add all of your local files to version control with `git add --all`,
-then commit them with `git commit -m'initial commit`. (You can change the
-message here- this one is just a common choice.)
+1. Booking a vacation
+   User is able to enter their desired start and end dates, and are presented with all properties available during the desired dates. User can choose to view any property in greater detail before deciding to book. User can decide to book the vacation, and will sign a "log" with the reason for their stay. Vacation will persist to database, and the user can view their newly booked vacation in their personal profile.
 
-Navigate to [GitHub](github.com). In the upper-right corner of the page, click
-on the "+" dropdown menu, then select "New repository". Enter the name of your
-local repo, choose whether you would like it to be public or private, make sure
-"Initialize this repository with a README" is unchecked (you already have one),
-then click "Create repository".
+2. Browse/ Explore
+   User may choose to explore all the different properties that out service currently has available to customers! User may browse and gain inspiration for a trip prior to booking their own travel plans. User can look at previous traveler's that have stayed in a particular domicile, and their reason for their stay.
 
-Head back to the command line and enter `git remote add origin <project name>
-<github url>`. This will map the remote repository to your local repository.
-Finally, push your first commit with `git push -u origin main`.
+3. View / Update
+   User may manage their own personal information and manage travel plans. User name and/or location may be changed at any time. They can also view all travel reservations that have been booked through Flats after Flatiron, both previous and future reservations.
 
-Your project is now version-controlled locally and online. This will allow you
-to create different versions of your project and pick up your work on a
-different machine if the need arises.
+Life happens! We do allow users to reschedule or cancel plans if the need arises. However, reservations are first-come first-serve. If someone else already has a reservation for a particular domicile, those dates are unavailable. The user may instead choose a different date OR perhaps another domicile might be available.
 
-***
+We also offer free cancellation. Users may need to cancel their travel plans. If the need arises, we understand.
 
-## Generating Your Pipenv
+#### CLI FUNCTIONS
 
-You might have noticed in the file structure- there's already a Pipfile! That
-being said, we haven't put much in there- just Python version 3.8 and ipdb.
+def START()
 
-Install any dependencies you know you'll need for your project, like SQLAlchemy
-and Alembic, before you begin. You can do this straight from the command line:
+Our start() function is called at the instantiation of a new instance of the CLI class. It displays a main menu, welcoming the user to our program and displaying ASCII art of one of our properties. Moreover, it prompts the user to either book, view/update their profile, or browse the list of properties. It also contains functionality to allow our user to return to the title menu(where they can log in as a different user) or navigate back to the main menu.
 
-```console
-$ pipenv install flask flask-sqlalchemy flask-migrate sqlalchemy-serializer flask-restful flask-cors
-```
+def TRAVELER()
 
-> _Sheesh!_
+This function serves as our basic login validation. It checks to see if the user is already in our database (requiring the exact name and city), and assigns the instance of our CLI class an attribute associated with that traveler in the database. If the user's information does not appear in the database, we create a new instance of the Traveler class and commit it to our database.
 
-From here, you should run your second commit:
+def BOOK()
 
-```console
-$ git add Pipfile Pipfile.lock
-$ git commit -m'add dependencies to pipenv'
-$ git push
-```
+The book() function in our CLI file allows a user to book a new vacation. Upon being called, it prompts the user to enter a start and end date for their new trip. The function has validation in place to ensure that the dates are valid and that their end date is after the start date. Based on their entries, we then display a list of domiciles that are available in their time range. We then allow the user to see the details of an available property by prompting them to enter the number of a property in the enumerated list. Once the details are displayed, the user is asked whether or not they would like to book their reservation. If they decide to book, the user signs the log book for the property and prompts them to give a reason for the visit. Once this is completed, they receive a confirmation message and their new vacation is added to the database. Otherwise, they are sent back to the list of properties where they can choose another or return to the main menu.
 
-Now that your environment is set up, run `pipenv shell` to enter it.
+def VIEW_UPDATE()
 
-***
+Our view_update() function is a way for the user to see the information about their profile. It displays they entered at the start of the program as well as any vacations associated with that user. Provided the user has vacations to edit, we then prompt the user for input asking them whether or not they would like to edit a vacation. If the user agrees to edit, we allow them to specify which vacation they would like to update or delete. We then prompt them to enter 'U' to update said vacation, or 'D' to delete. If the user decides to update, we prompt them to enter 1, 2, or 3 to update the start date, end date, or domicile of their chosen vacation. If the user would like to edit a date, we have date validation in place to ensure that their new date does not conflict with any existing vacations for that domicile. If the user decides to edit a domicile, we display a list of domiciles that have availability during their current vacation dates and prompt them to enter the number of a domicile they would like to visit instead.
 
-## Generating Your Database
+def BROWSE()
 
-Once you're in your environment, you can start development wherever you'd like.
-We think it's easiest to start with setting up your database.
+Upon being called, our CLI Browse() function will display a list of all the properties in the database. The function will then prompt the user for input, asking them to specify the number of a property in the enumerated list. Depending on their selection, they will be able to see the details of that property. The function then asks for more user input, asking them to enter 'B' to display past bookings for the property or 'M' to return to the main menu.
 
-`cd` into the `server/` directory, then run `flask db init migrations` to set up
-Flask-Migrate.
+### MODELS
 
-Navigate to `models.py` and start creating your models. Remember
-to regularly run `flask db revision --autogenerate -m'<descriptive message>'`
-and `flask db upgrade head` to track your modifications to the database and
-create checkpoints in case you ever need to roll those modifications back.
+Our models file contains the following three models which constitute the framework for our project.db tables.
 
-> **Tip: It's always a good idea to start with an empty revision! This allows
-> you to roll all the way back while still holding onto your database. You can
-> create this empty revision with `flask db revision -m'Create DB'`.**
+Each table in our database contains a primary key represented by an id and inherits from our Base class.
 
-If you want to seed your database, now would be a great time to write out your
-`seed.py` script and run it to generate some test data. You may want to use
-Pipenv to install Faker to save you some time.
+The individual properties of each table are listed below:
 
-***
+1. Domicile
 
-## Generating Your Full-Stack Application
+- name: The name of the domicile represented as a string
+- dest_location: The location of the domicile represented as a string
+- sleep_capacity: The sleep capacity of the domicile represented as an integer
+- local_amenities: The local amenities of the domicile represented as a string
+- property_type: The property type of the domicile represented as a string
 
-You've already made a few, but let's take a look at the structure of your
-newest full-stack application.
+2. Travler
 
-### `client/`
+- first_name: The first name of the traveler represented as a string
+- last_name: The last name of the traveler represented as a string
+- location: The location of the traveler represented as a string
 
-The `client/` directory contains all of your frontend code. We've already used
-`npm` to install your standard dependencies, including React. We've also
-configured a proxy to the server for your backend at `localhost:5555` in
-`package.json`. Feel free to change this to another port- just remember to
-configure your Flask app to use another port as well!
+3. Vacation
 
-### `server/`
+- start_date: The start date of the vacation represented as a datetime
+- end_date: The end date of the vacation represented as a datetime
+- rsn_for_visit: The reason for the vacation represented as a string
+- Traveler_id: A foreign key representing the id of the traveler associated with the vacation
+- Domicile_id: A foreign key representing the id of the domicile associated with the vacation
 
-The `server/` directory contains all of your backend code.
+Domiciles can have many vacations. Travelers can have many vacations. Vacation belongs to both Traveler and Domicile.
 
-`app.py` is your Flask application. You'll want to use Flask to build a simple
-API backend like we have in previous modules. You should use Flask-RESTful for
-your routes.
+    Traveler -----< Vacation >----- Domicile
 
-You should be familiar with `models.py` and `seed.py` by now, but remember that
-you will need to use Flask-SQLAlchemy, Flask-Migrate, and SQLAlchemy-Serializer
-instead of SQLAlchemy and Alembic in your models. Don't forget to set an app
-context in your seed file as well:
+### SEED
 
-```py
-with app.app_context():
-    # seed here!
+Seed Data generated for database using Faker and Random;
+Each time seed data is re-run, old data is first cleared from the database and new data is generated and populates the database.
 
-```
+8 Travelers: - first name: randomly generated - last name randomly generated - location: randomly generated city
 
-#### `config.py`
+8 Properties: - property type: randomly selected choice from a property list - property name: randomly selected based on random choice associated with property type - sleep capacity: randomly selected based on range associated with property type - location: randomly generated city - local amenities: randomly selected choice from an amenities list
 
-When developing a large Python application, you might run into a common issue:
-_circular imports_. A circular import occurs when two modules import from one
-another, such as `app.py` and `models.py`. When you create a circular import and
-attempt to run your app, you'll see the following error:
+16 Vacations: - start date: randomly selected between 2021-01-02 and 2024-12-31 - end date: corresponds to a start date, set to be a number of days after its start date, where the number of days is randomly selected from a range of 2 - 40 days. - traveler: randomly assigned to a traveler instance in the Traveler table - domicile: randomly assigned to a domicile instance in the domicile table - reason for visit: randomly selected choice from a curated reasons list
 
-```console
-ImportError: cannot import name
-```
+### DATABASE
 
-If you're going to need an object in multiple modules like `app` or `db`,
-creating a _third_ module to instantiate these objects can save you a great
-deal of circular grief. Here's a good start to a Flask config file (you may
-need more if you intend to include features like authentication and passwords):
+We set up our datbase using SQLalchemy and Alembic. We took advantage of SQLalchemy's relationship, backref, and association_proxy to create relationships between models in our database. We used Alembic to manage our migration versions.
 
-```py
-# Standard library imports
+### HELPERS
 
-# Remote library imports
-from flask import Flask
-from flask_cors import CORS
-from flask_migrate import Migrate
-from flask_restful import Api
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import MetaData
+welcome_images = a tuple storing ASCII art representing several different domiciles st which one might choose to stay. This tuple is used in the CLI script to display one ASCII art piece at random when a user begins the program.
 
-# Local imports
+### DEBUG
 
-# Instantiate app, set attributes
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
+This debug is a sandbox file used only for the purposes of debugging and query selection
 
-# Define metadata, instantiate db
-metadata = MetaData(naming_convention={
-    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-})
-db = SQLAlchemy(metadata=metadata)
-migrate = Migrate(app, db)
-db.init_app(app)
-
-# Instantiate REST API
-api = Api(app)
-
-# Instantiate CORS
-CORS(app)
-
-```
-
-Now let's review that last line...
-
-#### CORS
-
-CORS (Cross-Origin Reference Sharing) is a system that uses HTTP headers to
-determine whether resources from different servers-of-origin can be accessed.
-If you're using the fetch API to connect your frontend to your Flask backend,
-you need to configure CORS on your Flask application instance. Lucky for us,
-that only takes one line:
-
-```py
-CORS(app)
-
-```
-
-By default, Flask-CORS enables CORS on all routes in your application with all
-fetching servers. You can also specify the resources that allow CORS. The
-following specifies that routes beginning with `api/` allow CORS from any
-originating server:
-
-```py
-CORS(app, resources={r"/api/*": {"origins": "*"}})
-
-```
-
-You can also set this up resource-by-resource by importing and using the
-`@cross_origin` decorator:
-
-```py
-@app.route("/")
-@cross_origin()
-def howdy():
-  return "Howdy partner!"
-
-```
-
-***
-
-## Updating Your README.md
-
-`README.md` is a Markdown file that describes your project. These files can be
-used in many different ways- you may have noticed that we use them to generate
-entire Canvas lessons- but they're most commonly used as homepages for online
-Git repositories. **When you develop something that you want other people to
-use, you need to have a README.**
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this lesson's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README should serve as a template for your own- go through the important
-files in your project and describe what they do. Each file that you edit
-(you can ignore your migration files) should get at least a paragraph. Each
-function should get a small blurb.
-
-You should descibe your application first, and with a good level of
-detail. The rest should be ordered by importance to the user. (Probably
-routes next, then models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
-***
-
-## Conclusion
-
-A lot of work goes into a full-stack application, but it all relies on concepts
-that you've practiced thoroughly throughout this phase. Hopefully this template
-and guide will get you off to a good start with your Phase 4 Project.
-
-Happy coding!
-
-***
-
-## Resources
-
-- [Setting up a respository - Atlassian](https://www.atlassian.com/git/tutorials/setting-up-a-repository)
-- [Create a repo- GitHub Docs](https://docs.github.com/en/get-started/quickstart/create-a-repo)
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
-- [Python Circular Imports - StackAbuse](https://stackabuse.com/python-circular-imports/)
-- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/)

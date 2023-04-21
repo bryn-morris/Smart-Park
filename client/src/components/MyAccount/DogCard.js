@@ -3,8 +3,6 @@ import {Card, Image} from 'semantic-ui-react'
 
 function DogCard({name, breed, weight, age, image, dog_parks}) {
 
-  console.log(dog_parks)
-
   return (
     <Card>
         <Image src={image} wrapped ui={false} />

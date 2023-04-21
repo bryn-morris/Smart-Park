@@ -5,7 +5,7 @@ import { Menu, Icon } from 'semantic-ui-react';
 function Header() {
 
   function refreshPage() {
-    window.location.reload(true);
+    window.location.href = '/';
   }
 
   // function refreshPage () {

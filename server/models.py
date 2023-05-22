@@ -39,11 +39,11 @@ class User(db.Model, SerializerMixin):
         return bcrypt.check_password_hash(
             self._password, password.encode('utf-8'))
     
-    @validates('_password')
-    def pass_hashing(self, key, attr):
+    # @validates('_password')
+    # def pass_hashing(self, key, attr):
 
-        password_hash = bcrypt.generate_password_hash(attr.encode('utf-8'))
-        return password_hash.decode('utf-8')
+    #     password_hash = bcrypt.generate_password_hash(attr.encode('utf-8'))
+    #     return password_hash.decode('utf-8')
 
 class Dog(db.Model, SerializerMixin):
 

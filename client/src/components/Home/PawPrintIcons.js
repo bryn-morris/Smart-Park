@@ -4,7 +4,6 @@ function PawPrintIcons ({selectedIcon}) {
 
     const iconNameList = Array.from({ length: 12 }, () => 'paw');
 
-    
     const icons = iconNameList.slice(0, selectedIcon + 1);
 
     return(

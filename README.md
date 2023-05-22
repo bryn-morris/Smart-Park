@@ -20,7 +20,7 @@ React
 ## Program Composition
 => The following section describes each program component and its functionality
 
-This project was created with Create React App.
+The frontend was created with Create React App.
 To start the app in development mode, run npm start. Then open http://localhost:4000 in your browser.
 After starting the app, you will be taken to the login page.
 
@@ -43,8 +43,6 @@ The About Us page contains a description of the app and our goals. If you click 
 
 ### My Account
 On the My Account page, you can see the information on the dogs you have registered on your account. You can add new dogs or edit dogs that are already registered. If you choose to add or edit a dog, you'll be presented with a modal and can choose what information you want to change or a form to add a new dog.
-
-
 
 ### MODELS
 Our models file contains the following 5 models which constitute the framework for our project.db tables.

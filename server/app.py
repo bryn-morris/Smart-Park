@@ -6,6 +6,7 @@
 from flask import make_response, request, session, jsonify
 from flask_restful import Resource
 
+
 # Local imports
 from config import app, db, api
 from models import User, Dog, Visit, Dog_Park, Review
@@ -207,7 +208,6 @@ class DogById(Resource):
     
     def patch(self, id):
 
-        print(request.get_json())
         data = request.get_json()
         dog = Dog.query.filter_by(id=id).first()
 
@@ -226,8 +226,6 @@ api.add_resource(DogById, '/dogs/<int:id>')
 class Check_In_To_Park(Resource):
 
     def post(self):
-
-        print(request.get_json())
 
         newVisit = Visit(
             length_of_stay = request.get_json()['lengthOfStay'].replace(' min',''),

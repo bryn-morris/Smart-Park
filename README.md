@@ -1,8 +1,10 @@
 
 # SmartPark
-## Collaborators: Bryn Morris, Damon Butler, Beau Kim, Madaline Fitzpatrick
-## Introduction
+
+## Description
 This is a full-stack program created during Phase IIII of Flatiron School's Full Stack Software Engineering Program.
+
+### Project Design
 
 The program allows a user to "log in" to SmartPark and manage their dogs and dog park visits. Basic user solutions include:
 1. Browse available dog parks
@@ -11,11 +13,36 @@ The program allows a user to "log in" to SmartPark and manage their dogs and dog
 4. Add and edit dogs in my account
 4. Learn more about SmartPark
 
-## Languages
+### Languages
+
+Linux - Ubuntu
 Python
 SQL
 JavaScript
 React
+
+## Collaborators: 
+
+#### [Bryn Morris](https://github.com/bryn-morris)
+#### [Damon Butler](https://github.com/DamonButler)
+#### [Beau Kim](https://github.com/chasecivillion)
+#### [Madaline Fitzpatrick](https://github.com/madalinefitz)
+
+## Installation
+
+This application was built using Node Package Manager and pipenv. As such, in order to install and run the necessary dependencies, use the following commands from within the client directory:
+
+        npm install && npm start
+
+This will start the frontend server.
+
+In order to have the necessary dependencies installed and to create an active environment within the new shell, you will need to use the following commands from within the server directory:
+
+        pipenv install && pipenv shell
+
+finally, run the following command to run the backend server:
+
+        python app.py
 
 ## Program Composition
 => The following section describes each program component and its functionality

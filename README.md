@@ -30,13 +30,13 @@ React
 
 ## Installation
 
-This application was built using Node Package Manager and pipenv. As such, in order to install and run the necessary dependencies, use the following commands from within the client directory:
+This application was built using Node Package Manager and pipenv. As such, in order to install and run the necessary dependencies, use the following commands:
 
         npm install && npm start
 
 This will start the frontend server.
 
-In order to have the necessary dependencies installed and to create an active environment within the new shell, you will need to use the following commands from within the server directory:
+In order to have the necessary dependencies installed and to create an active environment within the new shell, you will need to use the following commands:
 
         pipenv install && pipenv shell
 

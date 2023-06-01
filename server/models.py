@@ -117,14 +117,15 @@ class Review(db.Model, SerializerMixin):
     serialize_rules = ('-dog_park','-created_at','-updated_at')
 
     id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String)
     comment = db.Column(db.String)
     rating = db.Column(db.Integer)
     dog_park_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))
-    
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
+    user = db.relationship('User', back_populates = 'reviews')
     dog_park = db.relationship('Dog_Park', back_populates = 'reviews')
     
     @validates('rating')

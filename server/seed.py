@@ -65,11 +65,11 @@ with app.app_context():
     
     print("Creating Reviews...")
 
-    r1 = Review(name='mads', comment='Wow I have never seen my pup so excited. She loved riding the waves in the pool!', rating=4, dog_park=dp4)
-    r2 = Review(name='beau', comment='Gorgeous and so peaceful. Great time to relax for me and my kitten...I mean dog.', rating=5, dog_park=dp2)
-    r3 = Review(name='damon', comment='Great spot for my doggo to get his energy out! Cannot beat unlimited tennis balls.', rating=4, dog_park=dp5)
-    r4 = Review(name='bryn', comment='Basil had the time of his life.. he took a nap in the sun and could not have been happier.', rating=4, dog_park=dp2)
-    r5 = Review(name='birdie', comment='What da hecko.. I luv dirt and could dig dig dig here! Doggos go here now!', rating=5, dog_park=dp3)
+    r1 = Review(comment='Wow I have never seen my pup so excited. She loved riding the waves in the pool!', rating=4, dog_park=dp4)
+    r2 = Review(comment='Gorgeous and so peaceful. Great time to relax for me and my kitten...I mean dog.', rating=5, dog_park=dp2)
+    r3 = Review(comment='Great spot for my doggo to get his energy out! Cannot beat unlimited tennis balls.', rating=4, dog_park=dp5)
+    r4 = Review(comment='Basil had the time of his life.. he took a nap in the sun and could not have been happier.', rating=4, dog_park=dp2)
+    r5 = Review(comment='What da hecko.. I luv dirt and could dig dig dig here! Doggos go here now!', rating=5, dog_park=dp3)
 
     # reviews_list = [Review(name= faker.user_name(),  comment= faker.sentence(), rating = randint(1,5), dog_park_id=randint(1,5)) for _ in range(1,10)]
 

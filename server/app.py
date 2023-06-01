@@ -72,10 +72,10 @@ class Login(Resource):
         ).first()
 
         password = data['password']
+        import ipdb; ipdb.set_trace()
         if not user:
             return {'error': 'Must enter a valid username and password'}, 404
 
-        
         elif user.authenticate(password):
             session['user_id'] = user.id
             session_user.append(user.to_dict(rules=('dogs',)))
@@ -91,7 +91,6 @@ class Logout(Resource):
         session.pop('user_id', None)
         return session.get('user_id')
         
-
 api.add_resource(Logout, '/logout')
 
 class CurrentSession(Resource):

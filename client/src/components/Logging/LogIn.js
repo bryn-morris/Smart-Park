@@ -52,7 +52,6 @@ function LogIn({handleSignupClick}) {
     handleSignupClick(e)
   }
 
-
   if (session === false){
 
     return (
@@ -88,7 +87,7 @@ function LogIn({handleSignupClick}) {
                       onClick={setSignupState} 
                       className='ui button'
                     >
-                      Don't have an accout? Create one!
+                      Don't have an account? Create one!
                     </button>
                 </div>
             </div>

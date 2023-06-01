@@ -6,15 +6,9 @@ function Header({setCurrentUser}) {
 
   function refreshPage() {
     window.location.href = '/';
-    fetch('/logout', {method:"DELETE",})
+    fetch('/logout', {method:"DELETE",}).then("successfully logged out")
     setCurrentUser(null)
   }
-
-  // function refreshPage () {
-  //   fetch('/logout', {method:"DELETE",})
-  //       .then((r)=> r.json())
-  //       .then(response => console.log(response));
-  // }
 
     return (
       <Menu className = 'navBar' inverted>

@@ -6,50 +6,32 @@ function Header({setCurrentUser}) {
 
   function logOut() {
     window.location.href = '/';
-    fetch('/logout', {method:"DELETE",}).then("successfully logged out")
+    fetch('/logout', {method:"DELETE",}).then(console.log("successfully logged out"))
     setCurrentUser(null)
+  }
+
+  const createMenuOption = (to,children, onClick, position, style) => {
+    return(
+      <Menu.Item
+        as = {NavLink}
+        to = {to}
+        onClick = {onClick}
+        position= {position}
+        style = {style}
+        exact
+      >
+        {children}
+      </Menu.Item>
+    )
   }
 
     return (
       <Menu className = 'navBar' inverted>
-        <Menu.Item 
-          as={NavLink} 
-          to="/" 
-          exact
-        >
-          <div>Home</div>
-        </Menu.Item>
-        <Menu.Item 
-          as={NavLink} 
-          to="/dogparks" 
-          exact
-        >
-          <div>Dog Parks</div>
-        </Menu.Item>
-        <Menu.Item 
-          as={NavLink} 
-          to="/aboutus" 
-          exact
-        >
-          About Us
-        </Menu.Item>
-        <Menu.Item 
-          as={NavLink} 
-          to="/myaccount" 
-          exact
-        >
-          <Icon name = 'user circle' size = 'large'/>
-        </Menu.Item>
-        <Menu.Item 
-          as={NavLink} 
-          to="/login" 
-          exact 
-          onClick={logOut}
-          position='right'
-          style={{ marginLeft: '5em'}}
-          >
-            Logout
-        </Menu.Item>
+        {createMenuOption("/",<div>Home</div>)}
+        {createMenuOption("/dogparks",<div>Dog Parks</div>)}
+        {createMenuOption("/aboutus", "About Us")}
+        {createMenuOption("/myaccount",<Icon name = 'user circle' size = 'large'/>)}
+        {createMenuOption("/login", "Logout", logOut, 'right', {marginLeft: '5em'})}
       </Menu>
     );
   }

@@ -9,9 +9,7 @@ function App() {
 
     <AuthProvider>
       <DogProvider>
-        <div>
-          <Logging />
-        </div>
+        <Logging />
       </DogProvider>
     </AuthProvider>
   )}

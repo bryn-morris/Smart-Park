@@ -94,7 +94,7 @@ function Logging() {
                     />
                   </div>
                 {logIn ?
-                  null :
+                  <div></div> :
                   <div className='field'>
                     <Input
                       label = {{icon: 'image'}}

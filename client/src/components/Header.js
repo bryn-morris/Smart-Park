@@ -6,6 +6,7 @@ function Header({setCurrentUser}) {
 
   function refreshPage() {
     window.location.href = '/';
+    fetch('/logout', {method:"DELETE",})
     setCurrentUser(null)
   }
 

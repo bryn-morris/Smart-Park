@@ -19,6 +19,7 @@ function Logging() {
       { username:"", password:"", image:""}
   
   const [userFormObject, setUserFormObject] = useState(emptyFormObject)
+  const [isPasswordVisible, setIsPasswordVisible] =useState(false)
 
   ///////////////////////////////////////////
   /////////        Context
@@ -95,8 +96,17 @@ function Logging() {
           </div>
             <Form className="ui form" onSubmit={handleSubmit}>
               {createLoggingInput({ icon: 'users' }, "username","text", userFormObject.username)}
-              {createLoggingInput({ icon: 'asterisk' }, "password", "password", 
-                userFormObject.password, <Icon name = 'eye'/>)}
+              {createLoggingInput(
+                { icon: 'asterisk' },
+                "password",
+                isPasswordVisible ? "text" : "password", 
+                userFormObject.password,
+                <Icon 
+                  name = 'eye' 
+                  size='large' 
+                  onClick = {()=>setIsPasswordVisible(!isPasswordVisible)}
+                />
+              )}
             {logIn ? <div></div> : createLoggingInput({icon: 'image'}, "profile photo URL",
                 "text", userFormObject.image)
             } 

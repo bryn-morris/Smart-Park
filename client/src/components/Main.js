@@ -4,7 +4,6 @@ import Home from "./Home/Home";
 import Header from "./Header";
 import DogPark from "./DogPark/DogPark";
 import MyAccount from "./MyAccount/MyAccount";
-import { AuthContext } from "../context/AuthContext";
 import { DogContext } from '../context/DogContext';
 import AboutUs from "./AboutUs";
 
@@ -14,7 +13,7 @@ function Main() {
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
 
   const { dogs, setDogs } = useContext(DogContext)
-  const { setCurrentUser } = useContext(AuthContext)
+
 
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogparks')
@@ -156,7 +155,7 @@ function Main() {
 
   return (
     <div className='pageContainer'>
-      <Header setCurrentUser= {setCurrentUser}/>
+      <Header/>
       <main className = 'pageContent'>
         <Switch>
           <Route exact path="/">

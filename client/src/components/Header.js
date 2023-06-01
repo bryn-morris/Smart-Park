@@ -1,11 +1,14 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, {useContext} from 'react'
+import { Route, NavLink } from 'react-router-dom'
 import { Menu, Icon } from 'semantic-ui-react';
+import { AuthContext } from '../context/AuthContext';
 
-function Header({setCurrentUser}) {
+function Header() {
+
+  const { setCurrentUser } = useContext(AuthContext)
 
   function logOut() {
-    window.location.href = '/';
+    // window.location.href = '/';
     fetch('/logout', {method:"DELETE",}).then(console.log("successfully logged out"))
     setCurrentUser(null)
   }
@@ -31,7 +34,7 @@ function Header({setCurrentUser}) {
         {createMenuOption("/dogparks",<div>Dog Parks</div>)}
         {createMenuOption("/aboutus", "About Us")}
         {createMenuOption("/myaccount",<Icon name = 'user circle' size = 'large'/>)}
-        {createMenuOption("/login", "Logout", logOut, 'right', {marginLeft: '5em'})}
+        {createMenuOption("/logging", "Logout", logOut, 'right', {marginLeft: '5em'})}
       </Menu>
     );
   }

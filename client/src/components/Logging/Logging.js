@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 // import {useHistory} from 'react-router-dom'
-import { Route } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import {Form, Input, Icon} from 'semantic-ui-react'
 import { AuthContext } from '../../context/AuthContext';
 import { DogContext } from '../../context/DogContext';
@@ -27,9 +27,7 @@ function Logging() {
   const {  setDogs } = useContext(DogContext)
   const { currentUser, setCurrentUser } = useContext(AuthContext)
 
-  const isLoginState=() => {
-    setLogIn(() => !logIn)
-  }
+  const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -41,14 +39,15 @@ function Logging() {
       .then(r => {
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
-          setDogs(user.dogs)
+          setDogs(user.dogs);
+          history.push("/");
         })}
         else {return r.json().then(msg => alert(msg))};
       })
       setUserFormObject(emptyFormObject)
+
   }
  
-
   const handleFormInputChange = (e) => {
     setUserFormObject(
         ()=>{return{...userFormObject, [e.target.name]: e.target.value}}
@@ -125,7 +124,7 @@ function Logging() {
             </Form>
             <div className='ui basic buttons'>
                 <button 
-                  onClick={isLoginState} 
+                  onClick={()=>{setLogIn(!logIn)}} 
                   className='ui button'
                 >
                   {logIn ? "Don't have an account? Create one!" : "Return to Login"}

@@ -2,15 +2,15 @@
 function SearchDogPark ({specificPark}) {
     
     return(
-        <div class="ui large search" style={{float:'right', margin:20}}>
-            <div class="ui icon input">
+        <div className="ui large search" style={{float:'right', margin:20}}>
+            <div className="ui icon input">
                     <input
-                    class="prompt"
+                    className="prompt"
                     type="text"
                     placeholder="Search dog park name..."
                     onChange={(e) => specificPark(e.target.value)}
                     />
-                    <i class="search icon"></i>
+                    <i className="search icon"></i>
             </div>
         </div>
     )

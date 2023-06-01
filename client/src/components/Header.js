@@ -2,10 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, Icon } from 'semantic-ui-react';
 
-function Header() {
+function Header({setCurrentUser}) {
 
   function refreshPage() {
     window.location.href = '/';
+    setCurrentUser(null)
   }
 
   // function refreshPage () {

@@ -6,27 +6,10 @@ import DogPark from "./DogPark/DogPark";
 import MyAccount from "./MyAccount/MyAccount";
 import AboutUs from "./AboutUs";
 
-function Main() {
+function Main({currentUser, setCurrentUser, dogs, setDogs}) {
  
   const [dogParks, setDogParks] = useState([])
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
-  const [dogs, setDogs] = useState([])
-  const [currentUser, setCurrentUser] =useState(null)
-
-  useEffect(()=>{
-    fetch('http://127.0.0.1:5555/current-session')
-      .then(r => {
-        if (r.status === 200){
-          r.json()
-          .then(obj => {
-            setDogs(obj.dogs)
-            setCurrentUser(obj)
-          })
-        } else {
-          console.log('hello')
-        }
-      })
-  },[] )
 
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogparks')
@@ -176,7 +159,7 @@ function Main() {
 
   return (
     <div className='pageContainer'>
-      <Header/>
+      <Header setCurrentUser= {setCurrentUser}/>
       <main className = 'pageContent'>
         <Switch>
           <Route exact path="/">

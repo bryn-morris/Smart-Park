@@ -12,7 +12,6 @@ from config import app, db, api
 from models import User, Dog, Visit, Dog_Park, Review
 
 # Views go here!
-session_user = []
 
 class Users(Resource):
     def get(self):
@@ -77,9 +76,8 @@ class Login(Resource):
 
         elif user.authenticate(password):
             session['user_id'] = user.id
-            session_user.append(user.to_dict(rules=('dogs',)))
             return make_response(
-                user.to_dict(),
+                user.to_dict(rules=('dogs','-_password',)),
                 200
             )
         return {'error': 'Must enter a valid username and password'}, 404
@@ -91,22 +89,6 @@ class Logout(Resource):
         return session.get('user_id')
         
 api.add_resource(Logout, '/logout')
-
-class CurrentSession(Resource):
-    def get(self):
-
-        user = session_user[0]
-        if not user:
-            return make_response(
-                {'error': 'User not found'},
-                404
-            )
-    
-        return make_response(
-            user,
-            200
-        )
-api.add_resource(CurrentSession, '/current-session')
 
 class Dog_Parks(Resource):
     def get(self):
@@ -174,7 +156,6 @@ class Dogs(Resource):
             201
         )
 
-
 api.add_resource(Dogs, '/dogs')
 
 class DogById(Resource):
@@ -219,7 +200,6 @@ class DogById(Resource):
         )
 
 api.add_resource(DogById, '/dogs/<int:id>')
-
 
 class Check_In_To_Park(Resource):
 

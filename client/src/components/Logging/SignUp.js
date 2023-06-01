@@ -43,25 +43,25 @@ function SignUp({handleSignupClick}) {
   
     return (
       <div>
-      <div class="ui center aligned huge header" style={{margin:40}}>Welcome to SmartPark!</div>
+      <div className="ui center aligned huge header" style={{margin:40}}>Welcome to SmartPark!</div>
       <div className="new-user-form">
-        <div class="ui sizer vertical segment">
-          <h2 class="ui center aligned large header" >Create a New Account</h2>
+        <div className="ui sizer vertical segment">
+          <h2 className="ui center aligned large header" >Create a New Account</h2>
         </div>
-        <form class='ui form' onSubmit={handleSubmit}>
-          <div class='field'>
+        <form className='ui form' onSubmit={handleSubmit}>
+          <div className='field'>
             <input onChange={(e) => setUsername(e.target.value)} type="text" name="username" placeholder="username" />
           </div>
-          <div class='field'>
+          <div className='field'>
             <input onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="password" />
           </div>
-          <div class='field'>
+          <div className='field'>
             <input onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="profile photo URL" />
           </div>
-            <button class='fluid ui button' type="submit">Submit</button>
+            <button className='fluid ui button' type="submit">Submit</button>
         </form>
-        <div class='ui basic buttons'>
-            <button class="ui button" onClick={setSignupState}>Return to Login</button>
+        <div className='ui basic buttons'>
+            <button className="ui button" onClick={setSignupState}>Return to Login</button>
         </div>
       </div>
       </div>

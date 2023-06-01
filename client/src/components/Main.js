@@ -14,7 +14,7 @@ function Main() {
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
 
   const { dogs, setDogs } = useContext(DogContext)
-  const { currentUser, setCurrentUser } = useContext(AuthContext)
+  const { setCurrentUser } = useContext(AuthContext)
 
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogparks')
@@ -55,12 +55,6 @@ function Main() {
       sessionStorage.clear()
     })
   }
-
-  // useEffect(()=>{
-  //   fetch(`http://127.0.0.1:5555/dogs`)
-  //     .then(r=> r.json())
-  //     .then(setDogs)
-  // }, [])
 
   const createDog = (newDog) => {
     setDogs([...dogs, newDog])
@@ -123,7 +117,8 @@ function Main() {
       }
     }
 
-    )}
+    )
+  }
 
   //search for dog park
   const [searchedPark, setSearchedPark] = useState('')
@@ -144,15 +139,12 @@ function Main() {
     checkOut: checkOut,
     endTimer: endTimer,
     startTimer: startTimer,
-    dogs: dogs
   }
 
   const propsObjectToMyAccount = {
-    dogs : dogs,
     showRemainingDogs: showRemainingDogs,
     updatedDogs: updatedDogs,
     createDog: createDog,
-    currentUser: currentUser,
   }
 
   const propsObjectToDogPark = {

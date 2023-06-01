@@ -68,6 +68,8 @@ function Logging() {
                 {logIn ? "Login Here" : "Create A New Account"}
               </h2>
           </div>
+
+        
                 <Form className="ui form" onSubmit={handleSubmit}>
                   <div className='field'>
                     <Input 

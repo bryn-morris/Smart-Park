@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Form, Button, Modal} from 'semantic-ui-react'
+import { AuthContext } from '../../context/AuthContext'
 
-function NewDogForm({createDog, dogs, currentUser}) {
+function NewDogForm({createDog}) {
+
+  const {currentUser} = useContext(AuthContext)
     
     const [name, setName] = useState("")
     const [breed, setBreed] = useState("")

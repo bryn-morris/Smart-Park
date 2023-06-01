@@ -3,7 +3,7 @@ import {Form, Button, Modal} from 'semantic-ui-react'
 import DogCard from './DogCard'
 
 
-function MyDogCards({dog_parks, id, name, breed, weight, age, image, showRemainingDogs, updatedDogs}) {
+function MyDogCards({dog_parks, dog, showRemainingDogs, updatedDogs}) {
     const [dogAttribute, setDogAttribute]= useState('')
     const [newInfo, setNewInfo] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(null)
@@ -15,15 +15,15 @@ function MyDogCards({dog_parks, id, name, breed, weight, age, image, showRemaini
 
         setIsModalOpen(false)
 
-        fetch (`/dogs/${id}`, {method:"DELETE"})
-            .then(showRemainingDogs(id))
+        fetch (`/dogs/${dog.id}`, {method:"DELETE"})
+            .then(showRemainingDogs(dog.id))
         }
 
     const handleDogEdit = (e) => {
         e.preventDefault()
         setIsModalOpen(false)
     
-        fetch (`/dogs/${id}`, {
+        fetch (`/dogs/${dog.id}`, {
                 method:"PATCH", 
                 headers:{"Content-type":"application/json"}, 
                 body: JSON.stringify({
@@ -38,10 +38,16 @@ function MyDogCards({dog_parks, id, name, breed, weight, age, image, showRemaini
         }
 
   return (
-    <div style={{margin:"auto", alignSelf:"center", width:"20%", padding:"30px"}}>
-        <DogCard dog_parks = {dog_parks} name = {name} breed = {breed} weight = {weight} age = {age} image = {image}/>
-        
-        
+    <div style={{
+        margin:"auto", 
+        alignSelf:"center", 
+        width:"20%", 
+        padding:"30px"}}
+    >
+        <DogCard 
+            dog_parks = {dog_parks} 
+            {...dog}
+        />
         <Modal
             onClose={() =>setIsModalOpen(false)}
             onOpen={() => setIsModalOpen(true)}
@@ -49,34 +55,40 @@ function MyDogCards({dog_parks, id, name, breed, weight, age, image, showRemaini
             trigger={<Button className = "big ui button black modalbutton">Edit Dog</Button>}
             size= 'small'
         >
-        <Modal.Header>Edit Doggo!</Modal.Header>
-              <Modal.Content>
-                <Form id = "editDog" onSubmit={handleDogEdit}>
-                    <label>What is it you want to edit?</label>
-                    <select onChange={handleAttributeChange} value={dogAttribute}>
-                        <option defaultValue = 'What To Edit' hidden>What to edit</option>
-                        <option>name</option>
-                        <option>weight</option>
-                        <option>age</option>
-                        <option>image</option>
-                        <option>breed</option>
-                    </select>
-                    <br />
-                    <input type="text" placeholder="New info..." onChange={handleNewInfo} value={newInfo} />
-                </Form>
-              </Modal.Content>
-
-              <Modal.Actions>
-                  <Button
+            <Modal.Header>Edit Doggo!</Modal.Header>
+            <Modal.Content>
+            <Form id = "editDog" onSubmit={handleDogEdit}>
+                <label>What is it you want to edit?</label>
+                <select onChange={handleAttributeChange} value={dogAttribute}>
+                    <option defaultValue = 'What To Edit' hidden>What to edit</option>
+                    <option>name</option>
+                    <option>weight</option>
+                    <option>age</option>
+                    <option>image</option>
+                    <option>breed</option>
+                </select>
+                <br />
+                <input 
+                    type="text" 
+                    placeholder="New info..." 
+                    onChange={handleNewInfo} 
+                    value={newInfo} 
+                />
+            </Form>
+            </Modal.Content>
+            <Modal.Actions>
+                <Button
                     form = "editDog"
                     type = "submit"
-                  >Submit
-                  </Button>
-                  <Button
+                >
+                    Submit
+                </Button>
+                <Button
                     onClick={deleteDog}
-                  >Delete
-                  </Button>
-              </Modal.Actions>
+                >
+                    Delete
+                </Button>
+            </Modal.Actions>
         </Modal>
     </div>
   )

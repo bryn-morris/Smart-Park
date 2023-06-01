@@ -3,7 +3,8 @@ import { Button, Modal, Icon} from 'semantic-ui-react'
 import CheckOutForm from './CheckOutForm'
 import PawPrintIcons from './PawPrintIcons'
 
-function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID, setAccidentalCheckin, accidentalCheckin, dogs}) {
+
+function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID, setAccidentalCheckin, accidentalCheckin}) {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedIcon, setSelectedIcon] =useState(1)
@@ -81,7 +82,6 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
                           {accidentalCheckin ? 
                           accidentalCheckInMessage:
                           <CheckOutForm
-                            dogs={dogs}
                             handleFormSubmission = {handleFormSubmission}
                             dogParks = {dogParks}
                           />

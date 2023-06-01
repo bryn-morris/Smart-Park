@@ -4,7 +4,7 @@ import { Menu, Icon } from 'semantic-ui-react';
 
 function Header({setCurrentUser}) {
 
-  function refreshPage() {
+  function logOut() {
     window.location.href = '/';
     fetch('/logout', {method:"DELETE",}).then("successfully logged out")
     setCurrentUser(null)
@@ -12,23 +12,39 @@ function Header({setCurrentUser}) {
 
     return (
       <Menu className = 'navBar' inverted>
-        <Menu.Item as={NavLink} to="/" exact>
+        <Menu.Item 
+          as={NavLink} 
+          to="/" 
+          exact
+        >
           <div>Home</div>
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/dogparks" exact>
+        <Menu.Item 
+          as={NavLink} 
+          to="/dogparks" 
+          exact
+        >
           <div>Dog Parks</div>
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/aboutus" exact>
+        <Menu.Item 
+          as={NavLink} 
+          to="/aboutus" 
+          exact
+        >
           About Us
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/myaccount" exact>
+        <Menu.Item 
+          as={NavLink} 
+          to="/myaccount" 
+          exact
+        >
           <Icon name = 'user circle' size = 'large'/>
         </Menu.Item>
         <Menu.Item 
           as={NavLink} 
           to="/login" 
           exact 
-          onClick={refreshPage}
+          onClick={logOut}
           position='right'
           style={{ marginLeft: '5em'}}
           >

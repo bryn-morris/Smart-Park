@@ -1,7 +1,10 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
 import {Form} from 'semantic-ui-react'
+import { DogContext } from "../../context/DogContext";
 
-function CheckOutForm({handleFormSubmission, dogParks, dogs}){
+function CheckOutForm({handleFormSubmission, dogParks}){
+
+    const {dogs} = useContext(DogContext)
 
     const emptyFormObject = {
         dogParkName: '',

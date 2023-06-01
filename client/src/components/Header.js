@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 
 function Header() {
 
-  const { setCurrentUser } = useContext(AuthContext)
+  const { currentUser, setCurrentUser } = useContext(AuthContext)
 
   function logOut() {
     // window.location.href = '/';
@@ -33,7 +33,13 @@ function Header() {
         {createMenuOption("/",<div>Home</div>)}
         {createMenuOption("/dogparks",<div>Dog Parks</div>)}
         {createMenuOption("/aboutus", "About Us")}
-        {createMenuOption("/myaccount",<Icon name = 'user circle' size = 'large'/>)}
+        {createMenuOption("/myaccount",
+          <img 
+            src = {currentUser.image} 
+            alt= "User Profile"
+            className = "profileButtonImage"
+            />
+          )}
         {createMenuOption("/logging", "Logout", logOut, 'right', {marginLeft: '5em'})}
       </Menu>
     );

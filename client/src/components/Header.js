@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import {NavLink } from 'react-router-dom'
-import { Menu, Icon } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { AuthContext } from '../context/AuthContext';
 
 function Header() {

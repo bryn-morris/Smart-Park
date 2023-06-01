@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { DogContext } from '../../context/DogContext';
 import Main from "../Main"
 
-function LogIn() {
+function Logging() {
 
   ///////////////////////////////////////////
   /////////        State
@@ -134,4 +134,4 @@ function LogIn() {
   )
 }
 
-export default LogIn;
+export default Logging;

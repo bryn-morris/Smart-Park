@@ -1,5 +1,5 @@
 import React from 'react'
-import LogIn from './Logging/LogIn'
+import Logging from './Logging/Logging'
 import { AuthProvider } from '../context/AuthContext'
 import { DogProvider } from '../context/DogContext'
 
@@ -10,7 +10,7 @@ function App() {
     <AuthProvider>
       <DogProvider>
         <div>
-          <LogIn />
+          <Logging />
         </div>
       </DogProvider>
     </AuthProvider>

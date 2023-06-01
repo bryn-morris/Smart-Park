@@ -72,7 +72,6 @@ class Login(Resource):
         ).first()
 
         password = data['password']
-        import ipdb; ipdb.set_trace()
         if not user:
             return {'error': 'Must enter a valid username and password'}, 404
 

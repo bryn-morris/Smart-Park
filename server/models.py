@@ -24,7 +24,7 @@ class User(db.Model, SerializerMixin):
     # hybrid allows the password_hash to be accessed 
     # by sqlalchemy queries as well as python
 
-    @property
+    @hybrid_property
     def password(self):
         return self._password
 
@@ -36,12 +36,6 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(
             self._password, password.encode('utf-8'))
-    
-    # @validates('_password')
-    # def pass_hashing(self, key, attr):
-
-    #     password_hash = bcrypt.generate_password_hash(attr.encode('utf-8'))
-    #     return password_hash.decode('utf-8')
 
 class Dog(db.Model, SerializerMixin):
 

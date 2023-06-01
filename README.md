@@ -30,7 +30,7 @@ React
 
 ## Installation
 
-This application was built using Node Package Manager and pipenv. As such, in order to install and run the necessary dependencies, use the following commands:
+This application was built using Node Package Manager and pipenv. As such, in order to install and run the necessary dependencies, use the following commands from the client directory:
 
         npm install && npm start
 

@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 // import {useHistory} from 'react-router-dom'
 import { Route } from "react-router-dom";
-import {Form, Input} from 'semantic-ui-react'
+import {Form, Input, Icon} from 'semantic-ui-react'
 import { AuthContext } from '../../context/AuthContext';
 import { DogContext } from '../../context/DogContext';
 import Main from "../Main"
@@ -18,7 +18,6 @@ function Logging() {
       { username:"", password:""}:
       { username:"", password:"", image:""}
   
-  const [session, setSession] = useState(false)
   const [userFormObject, setUserFormObject] = useState(emptyFormObject)
 
   ///////////////////////////////////////////
@@ -26,7 +25,7 @@ function Logging() {
   ///////////////////////////////////////////
 
   const {  setDogs } = useContext(DogContext)
-  const { setCurrentUser } = useContext(AuthContext)
+  const { currentUser, setCurrentUser } = useContext(AuthContext)
 
   const isLoginState=() => {
     setLogIn(() => !logIn)
@@ -43,7 +42,6 @@ function Logging() {
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs)
-          setSession(!session)
         })}
         else {return r.json().then(msg => alert(msg))};
       })
@@ -58,7 +56,13 @@ function Logging() {
   }
 
   return (
-    session ? 
+    currentUser ?
+      <main>
+        <Route path="/">
+            <Main />
+        </Route>
+      </main>
+      : 
       <div>
         <div 
           className="ui center aligned huge header" 
@@ -71,69 +75,64 @@ function Logging() {
             <h2 className="ui center aligned large header" >
               {logIn ? "Login Here" : "Create A New Account"}
             </h2>
-        </div>
-
-      
-              <Form className="ui form" onSubmit={handleSubmit}>
-                <div className='field'>
-                  <Input 
-                    label={{ icon: 'users' }}
-                    labelPosition='left corner'
-                    placeholder="username"                    
-                    onChange={handleFormInputChange} 
-                    type="text" 
-                    name="username" 
-                    value = {userFormObject.username} 
-                  />
-                </div>
-                <div className='field'>
-                  <Input
-                    label={{ icon: 'asterisk' }}
-                    labelPosition='left corner'
-                    placeholder="password"  
-                    onChange={handleFormInputChange}
-                    type="password" 
-                    name="password"
-                    value = {userFormObject.password} 
-                  />
-                </div>
-              {logIn ?
-                <div></div> :
-                <div className='field'>
-                  <Input
-                    label = {{icon: 'image'}}
-                    labelPosition='left corner'
-                    placeholder="profile photo URL" 
-                    onChange={handleFormInputChange} 
-                    type="text" 
-                    name="image"
-                    value = {userFormObject.image} 
-                  />
-                </div>
-              } 
+          </div>
+            <Form className="ui form" onSubmit={handleSubmit}>
+              <div className='field'>
+                <Input 
+                  label={{ icon: 'users' }}
+                  labelPosition='left corner'
+                  placeholder="username"                    
+                  onChange={handleFormInputChange} 
+                  type="text" 
+                  name="username" 
+                  value = {userFormObject.username} 
+                />
+              </div>
+              <div className='field'>
+                <Input
+                  label={{ icon: 'asterisk' }}
+                  labelPosition='left corner'
+                  placeholder="password"  
+                  onChange={handleFormInputChange}
+                  type="password" 
+                  name="password"
+                  value = {userFormObject.password} 
+                />
+                <Icon
+                  name = 'eye'
+                />
+              </div>
+            {logIn ?
+              <div></div> :
+              <div className='field'>
+                <Input
+                  label = {{icon: 'image'}}
+                  labelPosition='left corner'
+                  placeholder="profile photo URL" 
+                  onChange={handleFormInputChange} 
+                  type="text" 
+                  name="image"
+                  value = {userFormObject.image} 
+                />
+              </div>
+            } 
               <button 
                 className='fluid ui button' 
                 type="submit"
               >
                 Submit
               </button>
-              </Form>
-              <div className='ui basic buttons'>
-                  <button 
-                    onClick={isLoginState} 
-                    className='ui button'
-                  >
-                    {logIn ? "Don't have an account? Create one!" : "Return to Login"}
-                  </button>
-              </div>
-          </div>
-    </div>
-    :
-    <main>
-      <Route path="/">
-          <Main />
-      </Route>
-    </main>
+            </Form>
+            <div className='ui basic buttons'>
+                <button 
+                  onClick={isLoginState} 
+                  className='ui button'
+                >
+                  {logIn ? "Don't have an account? Create one!" : "Return to Login"}
+                </button>
+            </div>
+        </div>
+      </div>
   );
 }
 

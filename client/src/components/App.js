@@ -1,26 +1,19 @@
-import React, {useState} from 'react'
-import SignUp from './Logging/SignUp'
+import React from 'react'
 import LogIn from './Logging/LogIn'
+import { AuthProvider } from '../context/AuthContext'
+import { DogProvider } from '../context/DogContext'
 
 function App() {
-    const [signUp, setSignUp] = useState(false)
-    const handleSignupClick=() =>{
-        setSignUp(!signUp)
-    }
-    
+  
   return (
 
-    <div >
-      {signUp ? (
-              <div>
-                <SignUp handleSignupClick = {handleSignupClick}/>
-              </div>
-            ):(
-              <div>
-                <LogIn handleSignupClick = {handleSignupClick}/>
-              </div>
-            )} 
-    </div>
+    <AuthProvider>
+      <DogProvider>
+        <div>
+          <LogIn />
+        </div>
+      </DogProvider>
+    </AuthProvider>
   )}
 
 export default App

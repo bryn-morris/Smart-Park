@@ -39,25 +39,27 @@ api.add_resource(UserById, '/users/<int:id>')
 
 class Signup(Resource):
     def post(self):
-        data = request.get_json()
-        temp_user = User(
-            username = data['username'],
-            image = data['image'],
-            _password = data['password']
-        )
-        temp_user.password_hash = temp_user._password
-        new_password = temp_user._password
-
-        new_user = User(
-            username = data['username'],
-            image = data['image'],
-            _password = new_password
-        )
-        db.session.add(new_user)
-        db.session.commit()
-
+        try:
+            data = request.get_json()
+            temp_user = User(
+                username = data['username'],
+                image = data['image'],
+                _password = data['password']
+            )
+            temp_user.password_hash = temp_user._password
+            new_password = temp_user._password
+         
+            new_user = User(
+                username = data['username'],
+                image = data['image'],
+                _password = new_password
+            )
+            db.session.add(new_user)
+            db.session.commit()
+        except:
+            return {'error': 'Must enter a valid username, password, and url'}, 404
         return make_response(
-            {},
+            new_user.to_dict(rules=('dogs','-_password',)),
             200
         )
 api.add_resource(Signup, '/signup')
@@ -65,22 +67,22 @@ api.add_resource(Signup, '/signup')
 
 class Login(Resource):
     def post(self):
-        data = request.get_json()
-        user = User.query.filter(
-            User.username == data['username']
-        ).first()
+        try:
+            data = request.get_json()
 
-        password = data['password']
-        if not user:
-            return {'error': 'Must enter a valid username and password'}, 404
+            user = User.query.filter(
+                User.username == data['username']
+            ).first()
 
-        elif user.authenticate(password):
+            user.authenticate(data['password'])
             session['user_id'] = user.id
             return make_response(
                 user.to_dict(rules=('dogs','-_password',)),
                 200
             )
-        return {'error': 'Must enter a valid username and password'}, 404
+        except:
+            return {'error': 'Must enter a valid username and password'}, 404
+
 api.add_resource(Login, '/login')
 
 class Logout(Resource):

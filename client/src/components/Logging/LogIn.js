@@ -1,30 +1,40 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 // import {useHistory} from 'react-router-dom'
 import { Route } from "react-router-dom";
+import {Form, Input} from 'semantic-ui-react'
+import { AuthContext } from '../../context/AuthContext';
+import { DogContext } from '../../context/DogContext';
 import Main from "../Main"
 
-function LogIn({handleSignupClick}) {
+function LogIn() {
 
-  const emptyFormObject = {
-    username:"",
-    password:""
-  }
+  ///////////////////////////////////////////
+  /////////        State
+  ///////////////////////////////////////////
+  const [logIn, setLogIn] = useState(true)
 
+  const emptyFormObject = 
+    logIn ? 
+      { username:"", password:""}:
+      { username:"", password:"", image:""}
+  
   const [session, setSession] = useState(false)
   const [userFormObject, setUserFormObject] = useState(emptyFormObject)
-  const [currentUser, setCurrentUser] = useState(null)
-  const [dogs, setDogs] = useState(null)
 
-  const mainPropsObj = {
-    dogs: dogs,
-    setDogs: setDogs,
-    currentUser : currentUser,
-    setCurrentUser: setCurrentUser,
+  ///////////////////////////////////////////
+  /////////        Context
+  ///////////////////////////////////////////
+
+  const {  setDogs } = useContext(DogContext)
+  const { setCurrentUser } = useContext(AuthContext)
+
+  const isLoginState=() => {
+    setLogIn(() => !logIn)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch("http://127.0.0.1:5555/login", {
+    fetch(`http://127.0.0.1:5555/${logIn ? 'login' : 'signup' }`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(userFormObject)
@@ -42,14 +52,9 @@ function LogIn({handleSignupClick}) {
  
 
   const handleFormInputChange = (e) => {
-      
     setUserFormObject(
         ()=>{return{...userFormObject, [e.target.name]: e.target.value}}
     )
-}
-
-  const setSignupState = (e) => {
-    handleSignupClick(e)
   }
 
   if (session === false){
@@ -59,35 +64,60 @@ function LogIn({handleSignupClick}) {
           <div className="ui center aligned huge header" style={{margin:40}}>Welcome to SmartPark!</div>
           <div className="new-user-form">
             <div className="ui sizer vertical segment">
-              <h2 className="ui center aligned large header" >Login Here</h2>
+              <h2 className="ui center aligned large header" >
+                {logIn ? "Login Here" : "Create A New Account"}
+              </h2>
           </div>
-                <form className="ui form" onSubmit={handleSubmit}>
+                <Form className="ui form" onSubmit={handleSubmit}>
                   <div className='field'>
-                    <input 
+                    <Input 
+                      label={{ icon: 'users' }}
+                      labelPosition='left corner'
+                      placeholder="username"                    
                       onChange={handleFormInputChange} 
                       type="text" 
                       name="username" 
-                      placeholder="username"
                       value = {userFormObject.username} 
                     />
                   </div>
                   <div className='field'>
-                    <input 
-                      onChange={handleFormInputChange} 
+                    <Input
+                      label={{ icon: 'asterisk' }}
+                      labelPosition='left corner'
+                      placeholder="password"  
+                      onChange={handleFormInputChange}
                       type="password" 
-                      name="password" 
-                      placeholder="password"
+                      name="password"
                       value = {userFormObject.password} 
                     />
                   </div>
-                <button className='fluid ui button' type="submit">Submit</button>
-                </form>
+                {logIn ?
+                  null :
+                  <div className='field'>
+                    <Input
+                      label = {{icon: 'image'}}
+                      labelPosition='left corner'
+                      placeholder="profile photo URL" 
+                      onChange={handleFormInputChange} 
+                      type="text" 
+                      name="image"
+                      value = {userFormObject.image} 
+                    />
+                  </div>
+                } 
+                <button 
+                  className='fluid ui button' 
+                  type="submit"
+                >
+                  Submit
+                </button>
+                </Form>
                 <div className='ui basic buttons'>
                     <button 
-                      onClick={setSignupState} 
+                      onClick={isLoginState} 
                       className='ui button'
                     >
-                      Don't have an account? Create one!
+                      {logIn ? "Don't have an account? Create one!" : "Return to Login"}
                     </button>
                 </div>
             </div>
@@ -95,13 +125,13 @@ function LogIn({handleSignupClick}) {
     );
   }
 
-    return (
-      <main>
-          <Route path="/">
-              <Main {...mainPropsObj} />
-          </Route>
-      </main>
-    )
+  return (
+    <main>
+        <Route path="/">
+            <Main />
+        </Route>
+    </main>
+  )
 }
 
 export default LogIn;

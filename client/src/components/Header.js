@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { Route, NavLink } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import { Menu, Icon } from 'semantic-ui-react';
 import { AuthContext } from '../context/AuthContext';
 

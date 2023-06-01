@@ -54,6 +54,24 @@ function Logging() {
     )
   }
 
+  const createLoggingInput = (label, placeholder, type, value, children) => {
+
+    return(
+      <div className='field'>
+        <Input
+          label = {label}
+          labelPosition='left corner'
+          placeholder = {placeholder}
+          onChange = {handleFormInputChange}
+          type = {type}
+          name = {placeholder}
+          value = {value}
+        />
+        {children}
+      </div>
+    )
+  }
+
   return (
     currentUser ?
       <main>
@@ -76,44 +94,11 @@ function Logging() {
             </h2>
           </div>
             <Form className="ui form" onSubmit={handleSubmit}>
-              <div className='field'>
-                <Input 
-                  label={{ icon: 'users' }}
-                  labelPosition='left corner'
-                  placeholder="username"                    
-                  onChange={handleFormInputChange} 
-                  type="text" 
-                  name="username" 
-                  value = {userFormObject.username} 
-                />
-              </div>
-              <div className='field'>
-                <Input
-                  label={{ icon: 'asterisk' }}
-                  labelPosition='left corner'
-                  placeholder="password"  
-                  onChange={handleFormInputChange}
-                  type="password" 
-                  name="password"
-                  value = {userFormObject.password} 
-                />
-                <Icon
-                  name = 'eye'
-                />
-              </div>
-            {logIn ?
-              <div></div> :
-              <div className='field'>
-                <Input
-                  label = {{icon: 'image'}}
-                  labelPosition='left corner'
-                  placeholder="profile photo URL" 
-                  onChange={handleFormInputChange} 
-                  type="text" 
-                  name="image"
-                  value = {userFormObject.image} 
-                />
-              </div>
+              {createLoggingInput({ icon: 'users' }, "username","text", userFormObject.username)}
+              {createLoggingInput({ icon: 'asterisk' }, "password", "password", 
+                userFormObject.password, <Icon name = 'eye'/>)}
+            {logIn ? <div></div> : createLoggingInput({icon: 'image'}, "profile photo URL",
+                "text", userFormObject.image)
             } 
               <button 
                 className='fluid ui button' 

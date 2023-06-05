@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import ReviewsModal from './ReviewsModal'
 
-function DogParkCard({id, name, address, amenities, rating, image, reviews, finddpbi}){
+function DogParkCard({eachDogPark, finddpbi}){
   const [showFront, setShowFront] = useState(true);
 
   //flip cards
@@ -13,25 +13,28 @@ function DogParkCard({id, name, address, amenities, rating, image, reviews, find
   return (
   <div className="dpcontainer">
       <div onClick={handleFlip}>
-        <h1 className="dpcName">{name}</h1>
+        <h1 className="dpcName">{eachDogPark.name}</h1>
         {showFront ? (
           <div>
-            <img className="dpcImg" src={image} alt={name} />
+            <img className="dpcImg" src={eachDogPark.image} alt={eachDogPark.name} />
             <div className="dpcName" >
-              {`⭐${rating} Stars⭐`}
+              {`⭐${eachDogPark.rating} Stars⭐`}
             </div>
           </div>
         ) : (
           <div className="dpcName">
-            <p>{`Amenities: ${amenities}`}</p>
-            <p>{`Address: ${address}`}</p>
+            <p>{`Amenities: ${eachDogPark.amenities}`}</p>
+            <p>{`Address: ${eachDogPark.address}`}</p>
           </div>
         )}
       </div>
       <div>
-        <ReviewsModal id={id} finddpbi={finddpbi} reviews={reviews} />
+        <ReviewsModal 
+          key={eachDogPark.id} 
+          finddpbi={finddpbi} 
+          reviews={eachDogPark.reviews} 
+        />
       </div>
-
     </div>
   );
 }

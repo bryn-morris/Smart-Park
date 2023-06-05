@@ -43,6 +43,7 @@ function Logging() {
           setDogs(user.dogs);
           history.push("/");
         })}
+        // Replace/refactor this validation with FORMIK and YUP down the line. 
         else {return r.json().then(msg => alert(msg))};
       })
       setUserFormObject(emptyFormObject)

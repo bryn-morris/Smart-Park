@@ -13,7 +13,7 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
       return (
       <DogParkCard
         key = {eachDogPark.id}
-        {...eachDogPark}
+        eachDogPark = {eachDogPark}
         finddpbi = {finddpbi}
       />)
    })

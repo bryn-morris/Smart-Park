@@ -9,7 +9,7 @@ class User(db.Model, SerializerMixin):
 
     __tablename__ = 'users'
 
-    serialize_rules = ('-dogs', '-created_at','-updated_at')
+    serialize_rules = ('-dogs', '-created_at','-updated_at', '-reviews',)
 
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String)
@@ -20,9 +20,7 @@ class User(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
     dogs = db.relationship('Dog', back_populates = 'user', cascade="all, delete-orphan")
-
-    # hybrid allows the password_hash to be accessed 
-    # by sqlalchemy queries as well as python
+    reviews = db.relationship('Review', back_populates = 'user', cascade = "all, delete-orphan")
 
     @hybrid_property
     def password(self):
@@ -41,7 +39,7 @@ class Dog(db.Model, SerializerMixin):
 
     __tablename__ = 'dogs'
 
-    serialize_rules = ('-visits','-created_at','-updated_at', '-user')
+    serialize_rules = ('-visits','-created_at','-updated_at', '-user',)
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -114,7 +112,7 @@ class Review(db.Model, SerializerMixin):
 
     __tablename__ = 'reviews'
 
-    serialize_rules = ('-dog_park','-created_at','-updated_at')
+    serialize_rules = ('-dog_park','-created_at','-updated_at', '-user',)
 
     id = db.Column(db.Integer, primary_key = True)
     comment = db.Column(db.String)

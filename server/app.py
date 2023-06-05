@@ -36,6 +36,9 @@ class UserById(Resource):
         )
 api.add_resource(UserById, '/users/<int:id>')
 
+############################################################
+#########               Authentication
+############################################################
 
 class Signup(Resource):
     def post(self):
@@ -57,7 +60,6 @@ class Signup(Resource):
         )
 api.add_resource(Signup, '/signup')
         
-
 class Login(Resource):
     def post(self):
         try:
@@ -66,11 +68,10 @@ class Login(Resource):
             user = User.query.filter(
                 User.username == data['username']
             ).first()
-
             user.authenticate(data['password'])
             session['user_id'] = user.id
             return make_response(
-                user.to_dict(rules=('dogs','-_password',)),
+                user.to_dict(rules=('dogs','-_password','reviews')),
                 200
             )
         except:
@@ -85,6 +86,10 @@ class Logout(Resource):
         
 api.add_resource(Logout, '/logout')
 
+############################################################
+#########
+############################################################
+
 class Dog_Parks(Resource):
     def get(self):
 
@@ -96,7 +101,9 @@ class Dog_Parks(Resource):
                 'address',
                 'rating',
                 'image',
-                'reviews'
+                'reviews.comment',
+                'reviews.rating',
+                'reviews.user.username',
             )
 
         ) for dp in Dog_Park.query.all()
@@ -242,10 +249,10 @@ class Reviews(Resource):
         try:
             data = request.get_json()
             new_review = Review(
-                name = data['name'],
                 comment = data['comment'],
                 rating = data['rating'],
                 dog_park_id = data['dog_park_id'],
+                user_id = data['user_id']
             )
         except:
             

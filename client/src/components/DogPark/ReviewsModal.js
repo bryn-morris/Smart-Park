@@ -1,7 +1,8 @@
 import { Button, Modal} from 'semantic-ui-react'
 import ReviewForm from './ReviewForm';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import Reviews from './Reviews'
+import {AuthContext} from '../../context/AuthContext'
 
 function ReviewModal ({id, finddpbi, reviews}) {
 
@@ -10,9 +11,12 @@ function ReviewModal ({id, finddpbi, reviews}) {
     const [modalContent, setModalContent] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const {currentUser} = useContext(AuthContext)
+
     function handleAddReview (formObject) {
 
       formObject.dog_park_id = id;
+      formObject.user_id = currentUser.id
 
       fetch("/reviews", {
         method: 'POST',
@@ -42,7 +46,7 @@ function ReviewModal ({id, finddpbi, reviews}) {
         return null
       } else {
         return (
-          reviews.map(review => <Reviews key={review.id} {...review}/>)
+          reviews.map(review => <Reviews key={review.id} review = {review}/>)
           )}
       }
 

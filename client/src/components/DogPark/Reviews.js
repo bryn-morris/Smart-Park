@@ -1,12 +1,12 @@
-function Reviews({name, comment, rating}) {
+function Reviews({review}) {
 
     return (
     <div>
         <h1>------------------------------------------------------------------</h1>
-        <br></br>
-        <h2>{name}</h2>
-        <h3>{comment}</h3>
-        <h1>⭐ {rating} Stars ⭐</h1>
+        <br/>
+        <h2>{review.user.username}</h2>
+        <h3>{review.comment}</h3>
+        <h1>⭐ {review.rating} Stars ⭐</h1>
         <h1>------------------------------------------------------------------</h1>
     </div>
     )

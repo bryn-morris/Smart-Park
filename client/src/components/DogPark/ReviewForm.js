@@ -5,9 +5,8 @@ import {Form} from 'semantic-ui-react'
 function ReviewForm ({handleAddReview}) {
 
     const emptyFormObj = {
-        name: '',
         comment: '',
-        rating : ''
+        rating : '',
     }
 
     const [formObject, setFormObject] = useState(emptyFormObj)
@@ -27,9 +26,6 @@ function ReviewForm ({handleAddReview}) {
     return (
     <div>
         <Form id = "reviewForm" onSubmit={handleFormSubmit}>
-            <br/>
-            <label>UserName:</label>
-            <input type="text" name = "name" value={formObject.name} onChange={handleFormInputChange} placeholder='username'/>
             <br/>
             <label>Comment:</label>
             <input type="text" name = "comment" value={formObject.comment} onChange={handleFormInputChange} placeholder = 'comment'/>

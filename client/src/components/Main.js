@@ -9,6 +9,10 @@ import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
 
 function Main() {
+
+  ///////////////////////////////////////
+  /////////     Check-in & Out
+  ///////////////////////////////////////
  
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
 
@@ -27,49 +31,6 @@ function Main() {
       setCurrentCheckInID(sessionCheckInID)
     }
   }, [setDogParks])
-
-  const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
-
-  function handleFormSubmission(formObj){
-    // Update Backend with post to a route that creates a Visit Instance
-    fetch('/visits', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(formObj)
-    })
-    .then(r=>r.json())
-    .then(newVisit => {
-      setCurrentCheckInID(newVisit.id)
-      setAccidentalCheckin(true)
-      sessionStorage.setItem('currentCheckInID', newVisit.id)
-    })
-  }
-
-  function deleteCheckIn(){
-    fetch(`/visits/${parseInt(currentCheckInID)}`, {
-      method: 'DELETE',
-      })
-    .then(()=>{
-      setCurrentCheckInID(null)
-      sessionStorage.clear()
-    })
-  }
-
-  const createDog = (newDog) => {
-    setDogs([...dogs, newDog])
-  }
-
-  const showRemainingDogs = (id) => {
-    const newDogArray = dogs.filter(dogObj => dogObj.id !== id)
-    setDogs(newDogArray)
-  }
-
-  const updatedDogs = (editedDog) => {
-    const changedDogArr = dogs.map(dog => {
-      return (dog.id !== editedDog.id ? dog : editedDog)
-    })
-    setDogs(changedDogArr)
-  }
 
   const [seconds, setSeconds] = useState(0)
   const [intervalID, setIntervalID] = useState(null)
@@ -98,6 +59,52 @@ function Main() {
       })
   }
 
+  const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
+
+  function handleFormSubmission(formObj){
+    // Update Backend with post to a route that creates a Visit Instance
+    fetch('/visits', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(formObj)
+    })
+    .then(r=>r.json())
+    .then(newVisit => {
+      setCurrentCheckInID(newVisit.id)
+      setAccidentalCheckin(true)
+      sessionStorage.setItem('currentCheckInID', newVisit.id)
+    })
+  }
+
+  function deleteCheckIn(){
+    fetch(`/visits/${parseInt(currentCheckInID)}`, {
+      method: 'DELETE',
+      })
+    .then(()=>{
+      setCurrentCheckInID(null)
+      sessionStorage.clear()
+    })
+  }
+
+  ///////////////////////////////////////
+  /////////     Dogs
+  ///////////////////////////////////////
+
+  const createDog = (newDog) => {
+    setDogs([...dogs, newDog])
+  }
+
+  const showRemainingDogs = (id) => {
+    const newDogArray = dogs.filter(dogObj => dogObj.id !== id)
+    setDogs(newDogArray)
+  }
+
+  const updatedDogs = (editedDog) => {
+    const changedDogArr = dogs.map(dog => {
+      return (dog.id !== editedDog.id ? dog : editedDog)
+    })
+    setDogs(changedDogArr)
+  }
 
   ///////////////////////////////////////
   /////////     Props Objects

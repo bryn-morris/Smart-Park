@@ -41,9 +41,25 @@ function ReviewModal ({eachDogPark}) {
       )
     }
 
-    const handleClick = () => {
+    function handleDeleteReview (review_id) {
 
-      setModalContent(!modalContent)
+      fetch(`/reviews/${review_id}`, {
+        method : 'DELETE',
+      })
+        .then(r=>{
+          if (r.ok){
+            setReviews(reviews => {
+              return reviews.filter(eachReview => eachReview.id !== review_id)
+            })
+          } else {
+            r.json().then(resp => alert(resp.message))
+          }
+        }
+        )
+    }
+
+    function handleEditReview () {
+
     }
 
     const handleModalClose = () => {
@@ -56,7 +72,12 @@ function ReviewModal ({eachDogPark}) {
         return null
       } else {
         return (
-          reviews.map(review => <Reviews key={review.id} review = {review}/>)
+          reviews.map(review => <Reviews 
+            key={review.id} 
+            review = {review}
+            handleDeleteReview = {handleDeleteReview}
+            handleEditReview = {handleEditReview}
+          />)
           )}
       }
 
@@ -80,7 +101,7 @@ function ReviewModal ({eachDogPark}) {
   
               <Modal.Actions>
                   <Button
-                    onClick={handleClick}
+                    onClick={()=>{setModalContent(!modalContent)}}
                   >
                     {modalContent ? 'Read Reviews' : 'Add Review' }
                   </Button>

@@ -101,6 +101,7 @@ class Dog_Parks(Resource):
                 'address',
                 'rating',
                 'image',
+                'reviews.id',
                 'reviews.comment',
                 'reviews.rating',
                 'reviews.user.username',
@@ -252,12 +253,30 @@ def visit_by_id(id):
 
         return make_response(selVisit.to_dict(), 200)
 
+###############################################
+###########        Review Views
+###############################################
+
 class Reviews(Resource):
     def get(self):
         reviews = [r.to_dict() for r in Review.query.all()]
         return make_response(reviews, 201)
 
-api.add_resource(Reviews, '/reviews')
+class Reviews_by_id(Resource):
+    def patch(self, id):
+        ##If updating rating logic will need to update dog parks on frontend
+        ## and backend as well
+        pass
+    def delete(self, id):
+        try:
+            sel_review = Review.query.filter(Review.id == id).one()
+        except:
+            return make_response({'message': 'Review not found in database!'}, 404)
+
+        db.session.delete(sel_review)
+        db.session.commit()
+
+        return make_response({}, 204)
 
 @app.route('/review_dog_park/<int:id>', methods = ['POST'])
 def add_review_and_patch_dog_park_rating(id):
@@ -304,6 +323,7 @@ def add_review_and_patch_dog_park_rating(id):
                 'address',
                 'rating',
                 'image',
+                'reviews.id',
                 'reviews.comment',
                 'reviews.rating',
                 'reviews.user.username',
@@ -314,6 +334,9 @@ def add_review_and_patch_dog_park_rating(id):
     }
 
     return make_response(response_body, 201)
+
+api.add_resource(Reviews, '/reviews')
+api.add_resource(Reviews_by_id, '/reviews/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

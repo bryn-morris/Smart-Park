@@ -3,6 +3,7 @@ import ReviewForm from './ReviewForm';
 import {useState, useContext} from 'react';
 import Reviews from './Reviews'
 import {AuthContext} from '../../context/AuthContext'
+import { DogParkContext } from '../../context/DogParkContext';
 
 function ReviewModal ({eachDogPark}) {
 
@@ -13,6 +14,7 @@ function ReviewModal ({eachDogPark}) {
     const [reviews, setReviews] = useState(eachDogPark.reviews)
 
     const {currentUser} = useContext(AuthContext)
+    const {setDogParks, dogParks} = useContext(DogParkContext)
   
     function handleAddReview (formObject) {
 
@@ -24,7 +26,17 @@ function ReviewModal ({eachDogPark}) {
         body: JSON.stringify(formObject)
       })
       .then(r=> r.ok? 
-        r.json().then(resp_obj => setReviews([...reviews, resp_obj.new_review])):
+        r.json().then(resp_obj => {
+          setReviews([...reviews, resp_obj.new_review])
+          setDogParks(
+            dogParks.map((eachDP)=>{
+              if (eachDP.id === resp_obj.updated_dog_park.id){
+                return resp_obj.updated_dog_park
+              } 
+              return eachDP
+            })
+          )
+        }):
         r.json().then(r => alert(r.message))
       )
     }

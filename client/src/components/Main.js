@@ -98,14 +98,6 @@ function Main() {
       })
   }
 
-  //search for dog park
-  // const [searchedPark, setSearchedPark] = useState('')
-  
-  // const specificPark = (park) => {
-  //   setSearchedPark(park.toLowerCase())
-  // }
-  
-  // const filteredParks = dogParks.filter(park => park.name.toLowerCase().includes(searchedPark))
 
   ///////////////////////////////////////
   /////////     Props Objects

@@ -86,7 +86,7 @@ class Dog_Park(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     address = db.Column(db.String)
-    rating = db.Column(db.Integer)
+    rating = db.Column(db.Float)
     amenities = db.Column(db.String)
     image = db.Column(db.String)
 

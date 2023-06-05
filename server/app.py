@@ -118,7 +118,7 @@ class Dog_Parks(Resource):
             name = request.get_json()['name'],
             amenities = request.get_json()['amenities'],
             address = request.get_json()['address'],
-            rating = int(request.get_json()['rating']),
+            rating = float(request.get_json()['rating']),
             image = request.get_json()['image']
             )
         except ValueError:
@@ -264,7 +264,7 @@ def add_review_and_patch_dog_park_rating(id):
 
     data = request.get_json()
     
-    new_rating = int(data['rating'])
+    new_rating = float(data['rating'])
     specific_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
 
     try:

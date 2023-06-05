@@ -1,21 +1,30 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import DogParkCard from './DogParkCard'
 import DogParkForm from './DogParkForm'
 import SearchDogPark from './SearchDogPark'
 import {Button, Modal} from 'semantic-ui-react'
+import { DogParkContext } from '../../context/DogParkContext'
 
 
-function DogPark({dogParks, addDogParkToState, specificPark}) {
+function DogPark() {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   
-  const dogParkComponents = dogParks.map((eachDogPark)=>{
+  const {
+    dogParks,
+    setDogParks, 
+    specificPark, 
+    filteredParks
+  } = useContext(DogParkContext) 
+
+  const dogParkComponents = filteredParks.map((eachDogPark)=>{
       return (
       <DogParkCard
         key = {eachDogPark.id}
         eachDogPark = {eachDogPark}
       />)
    })
+
 
    function handleAddDogPark (newDogPark) {
 
@@ -25,7 +34,7 @@ function DogPark({dogParks, addDogParkToState, specificPark}) {
         body: JSON.stringify(newDogPark)
       })
       .then(r=>r.ok ?
-        r.json().then(data => addDogParkToState(data)) :
+        r.json().then(data => setDogParks([...dogParks, data])):
         r.json().then(response => alert(response))
       )
    }
@@ -50,7 +59,6 @@ function DogPark({dogParks, addDogParkToState, specificPark}) {
       <Modal.Header>Let's add a Dog Park</Modal.Header>
             <Modal.Content>
                 <DogParkForm 
-                  dogParks = {dogParks}
                   handleAddDogPark = {handleAddDogPark}
                 />
             </Modal.Content>

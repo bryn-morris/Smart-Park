@@ -11,6 +11,7 @@ function DogProvider({children}) {
             value ={{
                         dogs,
                         setDogs,
+
                     }}
         >
             {children}

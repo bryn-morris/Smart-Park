@@ -2,6 +2,7 @@ import React from 'react'
 import Logging from './Logging/Logging'
 import { AuthProvider } from '../context/AuthContext'
 import { DogProvider } from '../context/DogContext'
+import { DogParkProvider } from '../context/DogParkContext'
 
 function App() {
   
@@ -9,7 +10,9 @@ function App() {
 
     <AuthProvider>
       <DogProvider>
-        <Logging />
+        <DogParkProvider>
+          <Logging />
+        </DogParkProvider>
       </DogProvider>
     </AuthProvider>
   )}

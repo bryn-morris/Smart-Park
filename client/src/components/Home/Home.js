@@ -4,7 +4,7 @@ import CheckOutForm from './CheckOutForm'
 import PawPrintIcons from './PawPrintIcons'
 
 
-function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, deleteCheckIn, currentCheckInID, setAccidentalCheckin, accidentalCheckin}) {
+function Home({checkOut, startTimer,endTimer, handleFormSubmission, deleteCheckIn, currentCheckInID, setAccidentalCheckin, accidentalCheckin}) {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedIcon, setSelectedIcon] =useState(1)
@@ -83,7 +83,6 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, dogParks, de
                           accidentalCheckInMessage:
                           <CheckOutForm
                             handleFormSubmission = {handleFormSubmission}
-                            dogParks = {dogParks}
                           />
                           }
                       </Modal.Content>

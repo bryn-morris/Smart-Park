@@ -114,7 +114,6 @@ class Dog_Parks(Resource):
     def post(self):
 
         try:
-            import ipdb; ipdb.set_trace()
             dogpark = Dog_Park(
             name = request.get_json()['name'],
             amenities = request.get_json()['amenities'],
@@ -131,7 +130,20 @@ class Dog_Parks(Resource):
             return make_response(dogpark.to_dict(), 201)
     
 api.add_resource(Dog_Parks, '/dogparks')
+
+######## USE THIS WHEN CREATING DELETION & PATCH FOR DOG PARK
+@app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'])
+def dog_park_by_id(id):
+
+    sel_dog_park = Dog_Park.query.filter(Dog_Park,id == id).one()
+
+    if request.method == 'DELETE':
         
+        db.session.delete(sel_dog_park)
+        db.session.commit()
+
+        return make_response({}, 204)
+            
 class Dogs(Resource):
     def get(self):
         dogs = Dog.query.all()
@@ -244,33 +256,64 @@ class Reviews(Resource):
     def get(self):
         reviews = [r.to_dict() for r in Review.query.all()]
         return make_response(reviews, 201)
-    
-    def post(self):
-
-        try:
-            data = request.get_json()
-            new_review = Review(
-                comment = data['comment'],
-                rating = int(data['rating']),
-                dog_park_id = data['dog_park_id'],
-                user_id = data['user_id']
-            )
-        except:
-            
-            response_body = {'message': 'Hey you goober, enter between 1-5'}
-            return make_response(response_body, 409)
-
-        else:
-            db.session.add(new_review)
-            db.session.commit()
-            return make_response(
-            new_review.to_dict(
-                only = ('id', 'comment', 'rating', 'user.username')
-            ),
-            201 
-        )
 
 api.add_resource(Reviews, '/reviews')
+
+@app.route('/review_dog_park/<int:id>', methods = ['POST'])
+def add_review_and_patch_dog_park_rating(id):
+
+    data = request.get_json()
+    
+    new_rating = int(data['rating'])
+    specific_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
+
+    try:
+
+        ## Make a new review in DB
+    
+        new_review = Review(
+            comment = data['comment'],
+            rating = new_rating,
+            dog_park_id = id,
+            user_id = data['user_id']
+        )
+        
+        ## Patch the DogPark Rating in the DB
+
+        rating_list = [rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]
+        specific_dog_park.rating = sum(rating_list, new_rating)/(len(rating_list)+1)
+
+    except:
+        
+        response_body = {'message': 'Hey you goober, enter between 1-5'}
+        return make_response(response_body, 409)
+
+    db.session.add(new_review)
+    db.session.add(specific_dog_park)
+
+    db.session.commit()
+
+    response_body = {
+        'new_review': new_review.to_dict(
+            only = ('id', 'comment', 'rating', 'user.username')
+        ),
+        'updated_dog_park': specific_dog_park.to_dict(only = (
+                'id',
+                'name',
+                'amenities',
+                'address',
+                'rating',
+                'image',
+                'reviews.comment',
+                'reviews.rating',
+                'reviews.user.username',
+            ))
+
+        ## Need to pull dog park state out into context, and then update that state
+        ## with the updated_dog_park
+    }
+
+    return make_response(response_body, 201)
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

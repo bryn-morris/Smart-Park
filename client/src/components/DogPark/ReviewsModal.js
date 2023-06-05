@@ -16,18 +16,15 @@ function ReviewModal ({eachDogPark}) {
   
     function handleAddReview (formObject) {
 
-      formObject.dog_park_id = parseInt(eachDogPark.id);
       formObject.user_id = parseInt(currentUser.id);
 
-      fetch("/reviews", {
+      fetch(`/review_dog_park/${eachDogPark.id}`, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(formObject)
       })
       .then(r=> r.ok? 
-        // Is this the data i am thinking it is? does review look different than expected
-        // REVIEWS IS AN ARRAY OF ALL OF THE REVIEWS???
-        r.json().then(review => setReviews([...reviews, review])):
+        r.json().then(resp_obj => setReviews([...reviews, resp_obj.new_review])):
         r.json().then(r => alert(r.message))
       )
     }

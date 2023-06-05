@@ -6,14 +6,14 @@ import DogPark from "./DogPark/DogPark";
 import MyAccount from "./MyAccount/MyAccount";
 import { DogContext } from '../context/DogContext';
 import AboutUs from "./AboutUs";
+import { DogParkContext } from "../context/DogParkContext";
 
 function Main() {
  
-  const [dogParks, setDogParks] = useState([])
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
 
   const { dogs, setDogs } = useContext(DogContext)
-
+  const { setDogParks } = useContext(DogParkContext) 
 
   useEffect(()=>{
     fetch('http://127.0.0.1:5555/dogparks')
@@ -26,7 +26,7 @@ function Main() {
     if (sessionCheckInID){
       setCurrentCheckInID(sessionCheckInID)
     }
-  }, [])
+  }, [setDogParks])
 
   const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
 
@@ -71,10 +71,6 @@ function Main() {
     setDogs(changedDogArr)
   }
 
-  const addDogParkToState = (newDogParkObj) => {
-    setDogParks([newDogParkObj, ...dogParks]) 
-  }
-
   const [seconds, setSeconds] = useState(0)
   const [intervalID, setIntervalID] = useState(null)
 
@@ -103,17 +99,20 @@ function Main() {
   }
 
   //search for dog park
-  const [searchedPark, setSearchedPark] = useState('')
+  // const [searchedPark, setSearchedPark] = useState('')
   
-  const specificPark = (park) => {
-    setSearchedPark(park.toLowerCase())
-  }
+  // const specificPark = (park) => {
+  //   setSearchedPark(park.toLowerCase())
+  // }
   
-  const filteredParks = dogParks.filter(park => park.name.toLowerCase().includes(searchedPark))
+  // const filteredParks = dogParks.filter(park => park.name.toLowerCase().includes(searchedPark))
+
+  ///////////////////////////////////////
+  /////////     Props Objects
+  ///////////////////////////////////////
 
   const propsObjectToHome = {
     handleFormSubmission: handleFormSubmission,
-    dogParks: dogParks,
     deleteCheckIn: deleteCheckIn,
     currentCheckInID: currentCheckInID,
     setAccidentalCheckin: setAccidentalCheckin,
@@ -129,11 +128,6 @@ function Main() {
     createDog: createDog,
   }
 
-  const propsObjectToDogPark = {
-    specificPark: specificPark,
-    dogParks: filteredParks,
-    addDogParkToState: addDogParkToState,
-  }
 
   return (
     <div className='pageContainer'>
@@ -146,7 +140,7 @@ function Main() {
             />
           </Route>
           <Route exact path="/dogparks">
-            <DogPark {...propsObjectToDogPark} />
+            <DogPark />
           </Route>
           <Route exact path="/myaccount">
             <MyAccount {...propsObjectToMyAccount}/>

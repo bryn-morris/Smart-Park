@@ -102,23 +102,6 @@ function Main() {
       })
   }
 
-  const find_dog_park_by_id = (createdReview) => {
-      
-    // filter through dog parks to get the dog park associatd with the dog 
-    // park id inside of created review
-
-    dogParks.map( (eachDP) => {
-      if (eachDP.id === createdReview.dog_park_id){
-        eachDP.reviews.push(createdReview)
-        return eachDP
-      } else{
-        return eachDP
-      }
-    }
-
-    )
-  }
-
   //search for dog park
   const [searchedPark, setSearchedPark] = useState('')
   
@@ -148,7 +131,6 @@ function Main() {
 
   const propsObjectToDogPark = {
     specificPark: specificPark,
-    finddpbi: find_dog_park_by_id,
     dogParks: filteredParks,
     addDogParkToState: addDogParkToState,
   }

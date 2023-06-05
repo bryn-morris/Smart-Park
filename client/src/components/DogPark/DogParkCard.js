@@ -2,8 +2,9 @@ import React, {useState} from "react";
 
 import ReviewsModal from './ReviewsModal'
 
-function DogParkCard({eachDogPark, finddpbi}){
+function DogParkCard({eachDogPark }){
   const [showFront, setShowFront] = useState(true);
+
 
   //flip cards
   const handleFlip = () => {
@@ -30,9 +31,8 @@ function DogParkCard({eachDogPark, finddpbi}){
       </div>
       <div>
         <ReviewsModal 
-          key={eachDogPark.id} 
-          finddpbi={finddpbi} 
-          reviews={eachDogPark.reviews} 
+          key={eachDogPark.id}
+          eachDogPark = {eachDogPark}
         />
       </div>
     </div>

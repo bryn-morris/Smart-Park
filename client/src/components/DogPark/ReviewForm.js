@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Form} from 'semantic-ui-react'
+import {Form, Input} from 'semantic-ui-react'
 
 
 function ReviewForm ({handleAddReview}) {
@@ -28,10 +28,10 @@ function ReviewForm ({handleAddReview}) {
         <Form id = "reviewForm" onSubmit={handleFormSubmit}>
             <br/>
             <label>Comment:</label>
-            <input type="text" name = "comment" value={formObject.comment} onChange={handleFormInputChange} placeholder = 'comment'/>
+            <Input type="text" name = "comment" value={formObject.comment} onChange={handleFormInputChange} placeholder = 'comment'/>
             <br/>
             <label>Rating:</label>
-            <input type="text" name = "rating" value={formObject.rating} onChange={handleFormInputChange} placeholder = "rating 1-5"/>
+            <Input type="text" name = "rating" value={formObject.rating} onChange={handleFormInputChange} placeholder = "rating 1-5"/>
             <br/>
         </Form>
     </div>

@@ -251,7 +251,7 @@ class Reviews(Resource):
             data = request.get_json()
             new_review = Review(
                 comment = data['comment'],
-                rating = data['rating'],
+                rating = int(data['rating']),
                 dog_park_id = data['dog_park_id'],
                 user_id = data['user_id']
             )
@@ -264,7 +264,9 @@ class Reviews(Resource):
             db.session.add(new_review)
             db.session.commit()
             return make_response(
-            new_review.to_dict(),
+            new_review.to_dict(
+                only = ('id', 'comment', 'rating', 'user.username')
+            ),
             201 
         )
 

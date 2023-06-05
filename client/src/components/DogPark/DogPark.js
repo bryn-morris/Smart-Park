@@ -5,7 +5,7 @@ import SearchDogPark from './SearchDogPark'
 import {Button, Modal} from 'semantic-ui-react'
 
 
-function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
+function DogPark({dogParks, addDogParkToState, specificPark}) {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   
@@ -14,7 +14,6 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
       <DogParkCard
         key = {eachDogPark.id}
         eachDogPark = {eachDogPark}
-        finddpbi = {finddpbi}
       />)
    })
 
@@ -29,7 +28,6 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
         r.json().then(data => addDogParkToState(data)) :
         r.json().then(response => alert(response))
       )
-
    }
 
   return (

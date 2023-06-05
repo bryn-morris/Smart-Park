@@ -22,11 +22,12 @@ function DogPark({dogParks, addDogParkToState, finddpbi, specificPark}) {
 
       fetch('/dogparks', {
         method: 'POST',
-        body: newDogPark
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(newDogPark)
       })
       .then(r=>r.ok ?
         r.json().then(data => addDogParkToState(data)) :
-        alert('Please enter a valid url!')
+        r.json().then(response => alert(response))
       )
 
    }

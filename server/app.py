@@ -114,12 +114,13 @@ class Dog_Parks(Resource):
     def post(self):
 
         try:
+            import ipdb; ipdb.set_trace()
             dogpark = Dog_Park(
-            name = request.form['name'],
-            amenities = request.form['amenities'],
-            address = request.form['address'],
-            rating = request.form['rating'],
-            image = request.form['image']
+            name = request.get_json()['name'],
+            amenities = request.get_json()['amenities'],
+            address = request.get_json()['address'],
+            rating = int(request.get_json()['rating']),
+            image = request.get_json()['image']
             )
         except ValueError:
             response_body = {'message':'hey u goofed put in a valid url pls'}

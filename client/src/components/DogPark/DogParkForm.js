@@ -1,54 +1,55 @@
 import React, {useState} from 'react'
-import {Form} from 'semantic-ui-react'
+import {Form, Input} from 'semantic-ui-react'
 
 function DogParkForm({handleAddDogPark}) {
-    const [name, setName] = useState('');
-    const [amenities, setAmenities] = useState('');
-    const [address, setAddress] = useState('');
-    const [rating, setRating] = useState('');
-    const [image, setImage] = useState('');
-  
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('amenities', amenities);
-        formData.append('address', address);
-        formData.append('rating', rating);
-        formData.append('image', image);
-        
-        handleAddDogPark(formData) 
 
-        setName('')
-        setAmenities('')
-        setAddress('')
-        setRating('')
-        setImage('')
-      }
-  
-    return (
-      <Form id  = "dogParkForm" onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
-        <label>
-          Amenities:
-          <input type="text" value={amenities} onChange={(e) => setAmenities(e.target.value)} />
-        </label>
-        <label>
-          Address:
-          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
-        </label>
-        <label>
-          Rating:
-          <input type="text" value={rating} onChange={(e) => setRating(e.target.value)} />
-        </label>
-        <label>
-          Image:
-          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
-        </label>
-      </Form>
-    );
+  const emptyDogParkFormObj = {
+    name : "",
+    amenities: "",
+    address: "",
+    rating: "",
+    image: "",
   }
+
+  const [dogParkFormObject, setDogParkFormObject] = useState(emptyDogParkFormObj)
+    
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    handleAddDogPark(dogParkFormObject)
+    setDogParkFormObject(emptyDogParkFormObj)
+  }
+
+  const handleFormInputChange = (e) => {
+    setDogParkFormObject(
+        ()=>{return{...dogParkFormObject, [e.target.name]: e.target.value}}
+    )
+  }
+
+  function generateInputField(labelName, type, value, placeholder, min = null, max = null){
+   
+    return(
+      <div>
+        <label>{labelName}</label>
+        <Input
+          type = {type}
+          value = {value}
+          placeholder = {placeholder}
+          onChange = {handleFormInputChange}
+          name = {placeholder}
+          min = {min}
+          max = {max}
+        />
+      </div>)   
+  }
+  
+  return (
+    <Form id  = "dogParkForm" onSubmit={handleSubmit}>
+      {generateInputField("Dog Park Name: ", "text", dogParkFormObject.name, "name")}
+      {generateInputField("Amenities: ", "text", dogParkFormObject.amenities, "amenities")}
+      {generateInputField("Address: ", "text", dogParkFormObject.address, "address")}
+      {generateInputField("Rating: ", "number", dogParkFormObject.rating, "rating", 1, 5)}
+      {generateInputField("Image URL: ", "text", dogParkFormObject.image, "image")}
+    </Form>
+  );
+}
 export default DogParkForm

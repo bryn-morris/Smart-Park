@@ -6,20 +6,16 @@ function Reviews({review, handleDeleteReview, handleEditReview}) {
 
   const { currentUser } = useContext(AuthContext)
 
-  const handleLowerDeleteReview = (e) => {
-    handleDeleteReview(review.id)
-  }
-
     return (
     <div>
         <h1>------------------------------------------------------------------</h1>
         <div>
           {review.user.username === currentUser.username ?
             <div>
-              <Button onClick = {handleLowerDeleteReview}>
+              <Button onClick = {() => {handleDeleteReview(review.id)}}>
                 Delete(AddIconLater)
               </Button>
-              <Button onClick = {handleEditReview}>
+              <Button onClick = {() => {handleEditReview(review.id)}}>
                 Edit(AddIconLater)
               </Button>
             </div>

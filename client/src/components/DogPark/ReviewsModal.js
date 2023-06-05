@@ -58,7 +58,9 @@ function ReviewModal ({eachDogPark}) {
         )
     }
 
-    function handleEditReview () {
+    function handleEditReview (review_id) {
+
+      
 
     }
 

@@ -27,10 +27,24 @@ function ReviewForm ({handleAddReview}) {
         <Form id = "reviewForm" onSubmit={handleFormSubmit}>
             <br/>
             <label>Comment:</label>
-            <Input type="text" name = "comment" value={formObject.comment} onChange={handleFormInputChange} placeholder = 'comment'/>
+            <Input 
+                type="text" 
+                name = "comment" 
+                value={formObject.comment} 
+                onChange={handleFormInputChange} 
+                placeholder = 'comment'
+            />
             <br/>
             <label>Rating:</label>
-            <Input type="text" name = "rating" value={formObject.rating} onChange={handleFormInputChange} placeholder = "rating 1-5"/>
+            <Input 
+                type="number" 
+                name = "rating" 
+                value={formObject.rating} 
+                onChange={handleFormInputChange} 
+                placeholder = "rating"
+                min = '1'
+                max = '5'
+            />
             <br/>
         </Form>
     )

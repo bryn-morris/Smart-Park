@@ -73,29 +73,6 @@ function ReviewModal ({eachDogPark}) {
             :
               r.json().then(resp => alert(resp.message))
           )
-
-          // if (r.ok){
-          //   return r.json().then(delete_obj => {
-          //       setReviews(reviews => {
-          //         return reviews.filter(eachReview => eachReview.id !== review_id)
-          //       })
-          //       setDogParks(()=>{
-          //         return dogParks.map((eDP)=>{
-          //           if (eDP.id === eachDogPark.id){
-          //             if (delete_obj.new_dp_rating){
-          //               eDP.rating = delete_obj.new_dp_rating
-          //             } else {
-          //               eDP.rating = null
-          //             }                      
-          //           } 
-          //           return eDP
-          //         })
-          //       })
-          //   })
-          // } else {
-          //   return r.json().then(resp => alert(resp.message))
-          // }
-        // })
     }
 
     function handleSubmitEdit () {

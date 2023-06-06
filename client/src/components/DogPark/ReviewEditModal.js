@@ -38,11 +38,13 @@ function ReviewEditModal ({
                         <br/>
                         <label>Rating:</label>
                         <Input 
-                            type="text" 
+                            type="number" 
                             name = "rating" 
                             value={editModalFormObject.rating} 
                             onChange={handleEditFormInputChange} 
                             placeholder = "rating 1-5"
+                            min = '1'
+                            max = '5'
                         />
                         <br/>
                     </Form>

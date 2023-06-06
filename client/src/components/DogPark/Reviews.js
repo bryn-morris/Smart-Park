@@ -2,9 +2,26 @@ import { Button } from 'semantic-ui-react'
 import { AuthContext } from '../../context/AuthContext'
 import { useContext } from 'react'
 
-function Reviews({review, handleDeleteReview, handleEditReview}) {
+function Reviews({
+  review, 
+  handleDeleteReview, 
+  handleEditReview, 
+  setIsEditModalOpen,
+  setEditModalFormObject,
+}) {
 
   const { currentUser } = useContext(AuthContext)
+
+  function passUpEditData () {
+
+    setEditModalFormObject({
+      comment: review.comment,
+      rating: review.rating,
+      id: review.id,
+    })
+
+    setIsEditModalOpen(true)
+  }
 
     return (
     <div>
@@ -15,7 +32,7 @@ function Reviews({review, handleDeleteReview, handleEditReview}) {
               <Button onClick = {() => {handleDeleteReview(review.id)}}>
                 Delete(AddIconLater)
               </Button>
-              <Button onClick = {() => {handleEditReview(review.id)}}>
+              <Button onClick = {passUpEditData}>
                 Edit(AddIconLater)
               </Button>
             </div>

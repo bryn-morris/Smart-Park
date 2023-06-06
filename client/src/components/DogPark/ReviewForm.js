@@ -24,7 +24,6 @@ function ReviewForm ({handleAddReview}) {
     }
 
     return (
-    <div>
         <Form id = "reviewForm" onSubmit={handleFormSubmit}>
             <br/>
             <label>Comment:</label>
@@ -34,7 +33,6 @@ function ReviewForm ({handleAddReview}) {
             <Input type="text" name = "rating" value={formObject.rating} onChange={handleFormInputChange} placeholder = "rating 1-5"/>
             <br/>
         </Form>
-    </div>
     )
 }
 

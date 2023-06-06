@@ -19,7 +19,7 @@ function DogParkCard({eachDogPark }){
           <div>
             <img className="dpcImg" src={eachDogPark.image} alt={eachDogPark.name} />
             <div className="dpcName" >
-              {`⭐${eachDogPark.rating} Stars⭐`}
+              {eachDogPark.rating ? `⭐${eachDogPark.rating} Stars⭐` : 'No Rating!'}
             </div>
           </div>
         ) : (

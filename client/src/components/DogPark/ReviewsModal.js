@@ -1,17 +1,21 @@
-import { Button, Modal} from 'semantic-ui-react'
+import { Button, Modal } from 'semantic-ui-react'
 import ReviewForm from './ReviewForm';
 import {useState, useContext} from 'react';
 import Reviews from './Reviews'
+import ReviewEditModal from './ReviewEditModal'
 import {AuthContext} from '../../context/AuthContext'
 import { DogParkContext } from '../../context/DogParkContext';
 
 function ReviewModal ({eachDogPark}) {
 
-    // buttons are addreview, show review, modal 
-
     const [modalContent, setModalContent] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
+
     const [reviews, setReviews] = useState(eachDogPark.reviews)
+
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [editModalFormObject, setEditModalFormObject] = useState({}) 
+
 
     const {currentUser} = useContext(AuthContext)
     const {setDogParks, dogParks} = useContext(DogParkContext)
@@ -58,13 +62,46 @@ function ReviewModal ({eachDogPark}) {
         )
     }
 
-    function handleEditReview (review_id) {
+    function handleSubmitEdit () {
+        setIsEditModalOpen(false)
 
-      
-
+        editModalFormObject.user_id = parseInt(currentUser.id);
+        
+        fetch(`/review_dog_park/${eachDogPark.id}`, {
+          method: 'PATCH',
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(editModalFormObject)
+        })
+          .then( r=>{
+            if (r.ok){
+              r.json().then(resp_obj => {
+                if (resp_obj.updated_dog_park){
+                  setDogParks(
+                    dogParks.map(eachDP=>{
+                      if (eachDP.id === resp_obj.updated_dog_park.id){
+                        return resp_obj.updated_dog_park
+                      } 
+                      return eachDP
+                    })
+                  )
+                }
+                setReviews(
+                  reviews.map(eachRev => {
+                    if (eachRev.id === resp_obj.updated_review.id){
+                      return resp_obj.updated_review
+                    }
+                    return eachRev
+                  })
+                )
+              })
+            } else {
+              r.json().then(resp => alert(resp.message))
+            }
+          } 
+          )
     }
 
-    const handleModalClose = () => {
+    const handleModalClose = (e) => {
       setModalContent(false)
       setIsModalOpen(false)
     }
@@ -78,10 +115,19 @@ function ReviewModal ({eachDogPark}) {
             key={review.id} 
             review = {review}
             handleDeleteReview = {handleDeleteReview}
-            handleEditReview = {handleEditReview}
+            setIsEditModalOpen = {setIsEditModalOpen}
+            setEditModalFormObject= {setEditModalFormObject}
           />)
           )}
-      }
+    }
+
+    const EditModalPropsObject = {
+      isEditModalOpen: isEditModalOpen,
+      setIsEditModalOpen: setIsEditModalOpen,
+      editModalFormObject: editModalFormObject,
+      handleSubmitEdit: handleSubmitEdit,
+      setEditModalFormObject: setEditModalFormObject,
+    }
 
     return (
         <div>
@@ -90,7 +136,7 @@ function ReviewModal ({eachDogPark}) {
                 onOpen={() => setIsModalOpen(true)}
                 open={isModalOpen}
                 trigger={<Button className = "big ui black button modalbutton">Reviews</Button>}
-                size= 'small'
+                size= 'large'
             >
             <Modal.Header>{modalContent ? 'Review Form' : 'Reviews' }</Modal.Header>
 
@@ -115,6 +161,10 @@ function ReviewModal ({eachDogPark}) {
                   </Button> :
                   null }
               </Modal.Actions>
+
+              <ReviewEditModal
+                {...EditModalPropsObject}
+              />
                   
             </Modal>
         </div>

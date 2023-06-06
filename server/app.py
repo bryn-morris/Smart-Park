@@ -5,6 +5,7 @@
 # Remote library imports
 from flask import make_response, request, session, jsonify
 from flask_restful import Resource
+import json
 
 
 # Local imports
@@ -368,23 +369,32 @@ def add_review_and_patch_dog_park_rating(id):
 
     if request.method == 'DELETE':
 
-        # Delete the relevant entry
-
         db.session.delete(sel_review)
         db.session.commit()
 
-        # After deletion, grab the reviews from the db and calculate a new average
-        updated_review_list = [[rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]]
+        response_body = {}
 
-        #CALCULATE NEW RATING
+        updated_rating_list = [rev.rating for rev in Review.query.filter_by(dog_park_id = id)]
 
-        # return the updated dog park and put it into state on frontend to
+        # need to update dog park rating in db
+        if updated_rating_list == []:
+            specific_dog_park.rating = None
+            db.session.add(specific_dog_park)
+            db.session.commit()
+        if updated_rating_list != []:
 
-        # update rating
-                    
-        
+            new_dp_avg_rating = sum(updated_rating_list)/len(updated_rating_list) if updated_rating_list else 0
 
-        return make_response({}, 204)
+            specific_dog_park.rating = new_dp_avg_rating
+            
+            db.session.add(specific_dog_park)
+            db.session.commit()
+
+            response_body = {'new_dp_avg_rating': new_dp_avg_rating}
+            
+            return make_response(json.dumps(response_body), 200)
+
+        return make_response(response_body, 200)
 
 api.add_resource(Reviews, '/reviews')
 

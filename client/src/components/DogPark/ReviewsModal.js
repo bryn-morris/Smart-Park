@@ -50,18 +50,52 @@ function ReviewModal ({eachDogPark}) {
       fetch(`/review_dog_park/${eachDogPark.id}`, {
         method : 'DELETE',
         headers : {"Content-Type": "application/json"},
-        body: JSON.stringify({id: review_id})
+        body: JSON.stringify({id: review_id}) 
       })
-        .then(r=>{
-          if (r.ok){
-            setReviews(reviews => {
-              return reviews.filter(eachReview => eachReview.id !== review_id)
-            })
-          } else {
-            r.json().then(resp => alert(resp.message))
-          }
-        }
-        )
+        .then(r=> r.ok?
+              r.json().then(delete_obj => {
+                setReviews(reviews => {
+                  return reviews.filter(eachReview => eachReview.id !== review_id)
+                })
+                setDogParks(()=>{
+                  return dogParks.map((eDP)=>{
+                    if (eDP.id === eachDogPark.id){
+                      if (delete_obj.new_dp_avg_rating){
+                        eDP.rating = delete_obj.new_dp_avg_rating
+                      } else {
+                        eDP.rating = null
+                      }                      
+                    } 
+                    return eDP
+                  })
+                })
+              })
+            :
+              r.json().then(resp => alert(resp.message))
+          )
+
+          // if (r.ok){
+          //   return r.json().then(delete_obj => {
+          //       setReviews(reviews => {
+          //         return reviews.filter(eachReview => eachReview.id !== review_id)
+          //       })
+          //       setDogParks(()=>{
+          //         return dogParks.map((eDP)=>{
+          //           if (eDP.id === eachDogPark.id){
+          //             if (delete_obj.new_dp_rating){
+          //               eDP.rating = delete_obj.new_dp_rating
+          //             } else {
+          //               eDP.rating = null
+          //             }                      
+          //           } 
+          //           return eDP
+          //         })
+          //       })
+          //   })
+          // } else {
+          //   return r.json().then(resp => alert(resp.message))
+          // }
+        // })
     }
 
     function handleSubmitEdit () {

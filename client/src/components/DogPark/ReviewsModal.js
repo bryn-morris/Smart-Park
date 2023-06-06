@@ -47,8 +47,10 @@ function ReviewModal ({eachDogPark}) {
 
     function handleDeleteReview (review_id) {
 
-      fetch(`/reviews/${review_id}`, {
+      fetch(`/review_dog_park/${eachDogPark.id}`, {
         method : 'DELETE',
+        headers : {"Content-Type": "application/json"},
+        body: JSON.stringify({id: review_id})
       })
         .then(r=>{
           if (r.ok){

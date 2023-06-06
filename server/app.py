@@ -262,41 +262,35 @@ class Reviews(Resource):
         reviews = [r.to_dict() for r in Review.query.all()]
         return make_response(reviews, 201)
 
-@app.route('/reviews/<int:id>', methods = [ 'DELETE'])
-def reviews_by_id(id):
-    try:
-        sel_review = Review.query.filter(Review.id == id).one()
-    except:
-        return make_response({'message': 'Review not found in database!'}, 404)
-
-    if request.method == 'DELETE':
-            
-        db.session.delete(sel_review)
-        db.session.commit()
-
-        return make_response({}, 204)
-
-@app.route('/review_dog_park/<int:id>', methods = ['POST', 'PATCH'])
+@app.route('/review_dog_park/<int:id>', methods = ['POST', 'PATCH', 'DELETE',])
 def add_review_and_patch_dog_park_rating(id):
 
     data = request.get_json()
     specific_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
-    new_rating = float(data['rating'])
-    rating_list = [rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]
+    
+    if request.method in ['POST', 'PATCH']:
+        new_rating = float(data['rating'])
+        
+    if request.method in ['PATCH', 'DELETE']:
+        try:
+            sel_review = Review.query.filter(Review.id == data['id']).one()   
+        except:
+            return make_response({'message': 'Review not found in database!'}, 404)
 
     if request.method == 'POST':
        
-        try:
+        rating_list = [rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]
 
+        try:
             ## Make a new review in DB
-        
+
             new_review = Review(
                 comment = data['comment'],
                 rating = new_rating,
                 dog_park_id = id,
                 user_id = data['user_id']
             )
-            
+
             ## Patch the DogPark Rating in the DB
 
             specific_dog_park.rating = sum(rating_list, new_rating)/(len(rating_list)+1)
@@ -336,30 +330,26 @@ def add_review_and_patch_dog_park_rating(id):
 
     if request.method == 'PATCH':
 
-        try:
-            sel_review = Review.query.filter(Review.id == data['id']).one()
-            database_rating = sel_review.rating
-        except:
-            return make_response({'message': 'Review not found in database!'}, 404)
-
+        old_database_rating = sel_review.rating
         for attr in data:
                 setattr(sel_review, attr, request.get_json()[attr])
 
         db.session.add(sel_review)
-
+        db.session.commit()
+    
         response_body = {
             'updated_review': sel_review.to_dict(
                 only = ('id', 'comment', 'rating', 'user.username')
             ),
         }
-        # import ipdb;ipdb.set_trace()
-        if request.get_json()['rating'] != database_rating:
-            
-            ## Patch the DogPark Rating in the DB
 
-            specific_dog_park.rating = sum(rating_list, new_rating)/(len(rating_list)+1)
+        if request.get_json()['rating'] != old_database_rating:
+            
+            rating_list = [rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]
+            specific_dog_park.rating = sum(rating_list)/(len(rating_list))
 
             db.session.add (specific_dog_park)
+            db.session.commit()
 
             response_body['updated_dog_park'] = specific_dog_park.to_dict(only = (
                     'id',
@@ -374,11 +364,27 @@ def add_review_and_patch_dog_park_rating(id):
                     'reviews.user.username',
                 ))
 
-        db.session.commit()
-
         return make_response(response_body, 200)
 
+    if request.method == 'DELETE':
 
+        # Delete the relevant entry
+
+        db.session.delete(sel_review)
+        db.session.commit()
+
+        # After deletion, grab the reviews from the db and calculate a new average
+        updated_review_list = [[rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]]
+
+        #CALCULATE NEW RATING
+
+        # return the updated dog park and put it into state on frontend to
+
+        # update rating
+                    
+        
+
+        return make_response({}, 204)
 
 api.add_resource(Reviews, '/reviews')
 

@@ -4,8 +4,7 @@ import { useContext } from 'react'
 
 function Reviews({
   review, 
-  handleDeleteReview, 
-  handleEditReview, 
+  handleDeleteReview,
   setIsEditModalOpen,
   setEditModalFormObject,
 }) {

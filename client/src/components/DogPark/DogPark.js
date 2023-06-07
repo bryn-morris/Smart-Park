@@ -17,15 +17,6 @@ function DogPark() {
     filteredParks
   } = useContext(DogParkContext) 
 
-  const dogParkComponents = filteredParks.map((eachDogPark)=>{
-      return (
-      <DogParkCard
-        key = {eachDogPark.id}
-        eachDogPark = {eachDogPark}
-      />)
-   })
-
-
    function handleAddDogPark (newDogPark) {
 
       fetch('/dogparks', {
@@ -71,7 +62,9 @@ function DogPark() {
             </Modal.Actions>
         </Modal>
     <div className="dog-parks-container">
-      {dogParkComponents}
+      {filteredParks.map((eachDogPark)=>{
+        return (<DogParkCard key = {eachDogPark.id} eachDogPark = {eachDogPark}/>)
+      })}
     </div>
   </div>
   )

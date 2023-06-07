@@ -1,5 +1,5 @@
 import { Button } from 'semantic-ui-react'
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../../../context/AuthContext'
 import { useContext } from 'react'
 
 function Reviews({

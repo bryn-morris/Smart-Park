@@ -3,7 +3,8 @@ import Logging from './Logging/Logging'
 import { AuthProvider } from '../context/AuthContext'
 import { DogProvider } from '../context/DogContext'
 import { DogParkProvider } from '../context/DogParkContext'
-
+import { ReviewProvider
+ } from '../context/ReviewContext'
 function App() {
   
   return (
@@ -11,7 +12,9 @@ function App() {
     <AuthProvider>
       <DogProvider>
         <DogParkProvider>
-          <Logging />
+          <ReviewProvider>
+            <Logging />
+          </ReviewProvider>
         </DogParkProvider>
       </DogProvider>
     </AuthProvider>

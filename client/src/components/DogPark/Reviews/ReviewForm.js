@@ -1,8 +1,8 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Form, Input} from 'semantic-ui-react'
+import { ReviewContext } from "../../../context/ReviewContext";
 
-
-function ReviewForm ({handleAddReview}) {
+function ReviewForm ({ dogParkID}) {
 
     const emptyFormObj = {
         comment: '',
@@ -11,12 +11,14 @@ function ReviewForm ({handleAddReview}) {
 
     const [formObject, setFormObject] = useState(emptyFormObj)
 
+    const {handleAddReview} = useContext(ReviewContext)
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        handleAddReview(formObject)
+        handleAddReview(formObject, dogParkID)
         setFormObject(emptyFormObj)
     }
-
+    
     const handleFormInputChange = (e) => {
         setFormObject(
             ()=>{return{...formObject, [e.target.name]: e.target.value}}

@@ -6,6 +6,7 @@ function DogParkProvider({children}) {
 
     const [dogParks, setDogParks] = useState([])
     const [searchedPark, setSearchedPark] = useState('')
+    
 
     const specificPark = (park) => {
         setSearchedPark(park.toLowerCase())

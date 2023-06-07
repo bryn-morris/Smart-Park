@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 
-import ReviewsModal from './ReviewsModal'
+import ReviewsModal from './Reviews/ReviewsModal'
 
-function DogParkCard({eachDogPark }){
+function DogParkCard({eachDogPark}){
   const [showFront, setShowFront] = useState(true);
 
 

@@ -3,47 +3,19 @@ import ReviewForm from './ReviewForm';
 import {useState, useContext} from 'react';
 import Reviews from './Reviews'
 import ReviewEditModal from './ReviewEditModal'
-import {AuthContext} from '../../context/AuthContext'
-import { DogParkContext } from '../../context/DogParkContext';
+import {AuthContext} from '../../../context/AuthContext'
+import { DogParkContext } from '../../../context/DogParkContext';
 
 function ReviewModal ({eachDogPark}) {
 
     const [modalContent, setModalContent] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const [reviews, setReviews] = useState(eachDogPark.reviews)
-
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [editModalFormObject, setEditModalFormObject] = useState({}) 
 
-
     const {currentUser} = useContext(AuthContext)
     const {setDogParks, dogParks} = useContext(DogParkContext)
-  
-    function handleAddReview (formObject) {
-
-      formObject.user_id = parseInt(currentUser.id);
-
-      fetch(`/review_dog_park/${eachDogPark.id}`, {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(formObject)
-      })
-      .then(r=> r.ok? 
-        r.json().then(resp_obj => {
-          setReviews([...reviews, resp_obj.new_review])
-          setDogParks(
-            dogParks.map((eachDP)=>{
-              if (eachDP.id === resp_obj.updated_dog_park.id){
-                return resp_obj.updated_dog_park
-              } 
-              return eachDP
-            })
-          )
-        }):
-        r.json().then(r => alert(r.message))
-      )
-    }
 
     function handleDeleteReview (review_id) {
 
@@ -54,12 +26,14 @@ function ReviewModal ({eachDogPark}) {
       })
         .then(r=> r.ok?
               r.json().then(delete_obj => {
-                setReviews(reviews => {
-                  return reviews.filter(eachReview => eachReview.id !== review_id)
-                })
                 setDogParks(()=>{
                   return dogParks.map((eDP)=>{
                     if (eDP.id === eachDogPark.id){
+                      // remove review from selected dog park
+                        eDP.reviews = eachDogPark.reviews.filter((eachReview)=>{
+                          return eachReview.id !== review_id
+                        })
+                      // update rating of dog park
                       if (delete_obj.new_dp_avg_rating){
                         eDP.rating = delete_obj.new_dp_avg_rating
                       } else {
@@ -76,42 +50,32 @@ function ReviewModal ({eachDogPark}) {
     }
 
     function handleSubmitEdit () {
-        setIsEditModalOpen(false)
+      setIsEditModalOpen(false)
 
-        editModalFormObject.user_id = parseInt(currentUser.id);
-        
-        fetch(`/review_dog_park/${eachDogPark.id}`, {
-          method: 'PATCH',
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(editModalFormObject)
-        })
-          .then( r=>{
-            if (r.ok){
-              r.json().then(resp_obj => {
-                if (resp_obj.updated_dog_park){
-                  setDogParks(
-                    dogParks.map(eachDP=>{
-                      if (eachDP.id === resp_obj.updated_dog_park.id){
-                        return resp_obj.updated_dog_park
-                      } 
-                      return eachDP
-                    })
-                  )
-                }
-                setReviews(
-                  reviews.map(eachRev => {
-                    if (eachRev.id === resp_obj.updated_review.id){
-                      return resp_obj.updated_review
-                    }
-                    return eachRev
+      editModalFormObject.user_id = parseInt(currentUser.id);
+      
+      fetch(`/review_dog_park/${eachDogPark.id}`, {
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(editModalFormObject)
+      })
+        .then( r=>{
+          if (r.ok){
+            r.json().then(resp_obj => {
+                setDogParks(
+                  dogParks.map(eachDP=>{
+                    if (eachDP.id === resp_obj.updated_dog_park.id){
+                      return resp_obj.updated_dog_park
+                    } 
+                    return eachDP
                   })
                 )
               })
-            } else {
-              r.json().then(resp => alert(resp.message))
             }
-          } 
-          )
+          else {
+            r.json().then(resp => alert(resp.message))
+          }
+        })
     }
 
     const handleModalClose = (e) => {
@@ -120,11 +84,11 @@ function ReviewModal ({eachDogPark}) {
     }
 
     const reviewComponents = () => {
-      if (reviews.length === 0) {
+      if (eachDogPark.reviews.length === 0) {
         return null
       } else {
         return (
-          reviews.map(review => <Reviews 
+          eachDogPark.reviews.map(review => <Reviews 
             key={review.id} 
             review = {review}
             handleDeleteReview = {handleDeleteReview}
@@ -155,7 +119,10 @@ function ReviewModal ({eachDogPark}) {
 
               <Modal.Content>
                   {modalContent ?
-                    <ReviewForm handleAddReview = {handleAddReview} setIsModalOpen={setIsModalOpen}/> :
+                    <ReviewForm
+                      dogParkID = {eachDogPark.id}
+                    /> 
+                    :
                     reviewComponents()
                   }
               </Modal.Content>

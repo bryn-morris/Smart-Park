@@ -114,7 +114,9 @@ class Dog_Park(db.Model, SerializerMixin):
     
     @validates('rating')
     def float_precision_rounding(self, key, attr):
-        return round(attr,2)
+        if attr:
+            return round(attr,2)
+        return attr
             
 
 class Review(db.Model, SerializerMixin):

@@ -3,6 +3,7 @@ from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 
+
 from config import db, bcrypt
 
 class User(db.Model, SerializerMixin):
@@ -86,6 +87,9 @@ class Dog_Park(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     address = db.Column(db.String)
+    # rating = db.Column(db.Numeric(precision = 3, scale = 2),
+    #                    db.CheckConstraint('rating = round(rating, 2)',
+    #                                       name = 'rating_precision_check'))
     rating = db.Column(db.Float)
     amenities = db.Column(db.String)
     image = db.Column(db.String)
@@ -106,6 +110,11 @@ class Dog_Park(db.Model, SerializerMixin):
             return attr
         else:
             raise ValueError
+        
+    
+    @validates('rating')
+    def float_precision_rounding(self, key, attr):
+        return round(attr,2)
             
 
 class Review(db.Model, SerializerMixin):

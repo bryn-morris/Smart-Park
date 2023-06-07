@@ -5,7 +5,6 @@
 # Remote library imports
 from flask import make_response, request, session, jsonify
 from flask_restful import Resource
-import json
 
 
 # Local imports
@@ -267,12 +266,10 @@ class Reviews(Resource):
 def add_review_and_patch_dog_park_rating(id):
 
     data = request.get_json()
-    specific_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
     
     if request.method in ['POST', 'PATCH']:
         new_rating = float(data['rating'])
-        
-        
+           
     if request.method in ['PATCH', 'DELETE']:
         try:
             sel_review = Review.query.filter(Review.id == data['id']).one()   
@@ -293,8 +290,10 @@ def add_review_and_patch_dog_park_rating(id):
                 user_id = data['user_id']
             )
 
+            db.session.add(new_review)
+            db.session.commit()
             ## Patch the DogPark Rating in the DB
-
+            specific_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
             specific_dog_park.rating = sum(rating_list, new_rating)/(len(rating_list)+1)
 
         except:
@@ -308,9 +307,6 @@ def add_review_and_patch_dog_park_rating(id):
         db.session.commit()
 
         response_body = {
-            'new_review': new_review.to_dict(
-                only = ('id', 'comment', 'rating', 'user.username')
-            ),
             'updated_dog_park': specific_dog_park.to_dict(only = (
                     'id',
                     'name',
@@ -322,7 +318,7 @@ def add_review_and_patch_dog_park_rating(id):
                     'reviews.comment',
                     'reviews.rating',
                     'reviews.user.username',
-                ))
+            ))
 
             ## Need to pull dog park state out into context, and then update that state
             ## with the updated_dog_park
@@ -333,19 +329,20 @@ def add_review_and_patch_dog_park_rating(id):
     if request.method == 'PATCH':
 
         old_database_rating = sel_review.rating
+
         for attr in data:
                 setattr(sel_review, attr, request.get_json()[attr])
 
         db.session.add(sel_review)
         db.session.commit()
     
-        response_body = {
-            'updated_review': sel_review.to_dict(
-                only = ('id', 'comment', 'rating', 'user.username')
-            ),
-        }
+        specific_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
 
         if request.get_json()['rating'] != old_database_rating:
+
+            ## if rating has changed, update rating of dog park,
+            ## otherwise just return the dog park and we will see the changed
+            ## comment through eachDogPark.reviews.map
             
             rating_list = [rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]
             specific_dog_park.rating = sum(rating_list)/(len(rating_list))
@@ -353,19 +350,19 @@ def add_review_and_patch_dog_park_rating(id):
             db.session.add (specific_dog_park)
             db.session.commit()
 
-            response_body['updated_dog_park'] = specific_dog_park.to_dict(only = (
-                    'id',
-                    'name',
-                    'amenities',
-                    'address',
-                    'rating',
-                    'image',
-                    'reviews.id',
-                    'reviews.comment',
-                    'reviews.rating',
-                    'reviews.user.username',
-                ))
-
+        response_body = {'updated_dog_park' : specific_dog_park.to_dict(only = (
+                'id',
+                'name',
+                'amenities',
+                'address',
+                'rating',
+                'image',
+                'reviews.id',
+                'reviews.comment',
+                'reviews.rating',
+                'reviews.user.username',
+            ))}
+        
         return make_response(response_body, 200)
 
     if request.method == 'DELETE':
@@ -373,15 +370,20 @@ def add_review_and_patch_dog_park_rating(id):
         db.session.delete(sel_review)
         db.session.commit()
 
-        response_body = {}
+        specific_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
 
         updated_rating_list = [rev.rating for rev in Review.query.filter_by(dog_park_id = id)]
 
         # need to update dog park rating in db
         if updated_rating_list == []:
             specific_dog_park.rating = None
+            ## may be an issue with line above with validation
+            ## if so add line to validation to return none if value == None
             db.session.add(specific_dog_park)
             db.session.commit()
+
+        response_body = {}
+
         if updated_rating_list != []:
 
             new_dp_avg_rating = sum(updated_rating_list)/len(updated_rating_list) if updated_rating_list else 0
@@ -392,8 +394,6 @@ def add_review_and_patch_dog_park_rating(id):
             db.session.commit()
 
             response_body = {'new_dp_avg_rating': new_dp_avg_rating}
-            
-            return make_response(json.dumps(response_body), 200)
 
         return make_response(response_body, 200)
 

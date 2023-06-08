@@ -7,7 +7,6 @@ function DogParkForm({handleAddDogPark}) {
     name : "",
     amenities: "",
     address: "",
-    rating: "",
     image: "",
   }
 
@@ -25,7 +24,7 @@ function DogParkForm({handleAddDogPark}) {
     )
   }
 
-  function generateInputField(labelName, type, value, placeholder, min = null, max = null){
+  function generateInputField(labelName, type, value, placeholder){
    
     return(
       <div>
@@ -36,8 +35,6 @@ function DogParkForm({handleAddDogPark}) {
           placeholder = {placeholder}
           onChange = {handleFormInputChange}
           name = {placeholder}
-          min = {min}
-          max = {max}
         />
       </div>)   
   }
@@ -47,7 +44,6 @@ function DogParkForm({handleAddDogPark}) {
       {generateInputField("Dog Park Name: ", "text", dogParkFormObject.name, "name")}
       {generateInputField("Amenities: ", "text", dogParkFormObject.amenities, "amenities")}
       {generateInputField("Address: ", "text", dogParkFormObject.address, "address")}
-      {generateInputField("Rating: ", "number", dogParkFormObject.rating, "rating", 1, 5)}
       {generateInputField("Image URL: ", "text", dogParkFormObject.image, "image")}
     </Form>
   );

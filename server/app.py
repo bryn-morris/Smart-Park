@@ -119,7 +119,6 @@ class Dog_Parks(Resource):
             name = request.get_json()['name'],
             amenities = request.get_json()['amenities'],
             address = request.get_json()['address'],
-            rating = float(request.get_json()['rating']),
             image = request.get_json()['image']
             )
         except ValueError:

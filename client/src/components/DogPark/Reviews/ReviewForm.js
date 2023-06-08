@@ -1,5 +1,5 @@
 import {useContext, useState} from "react";
-import {Form, Input} from 'semantic-ui-react'
+import {Form, Input, TextArea} from 'semantic-ui-react'
 import { ReviewContext } from "../../../context/ReviewContext";
 
 function ReviewForm ({ dogParkID}) {
@@ -40,7 +40,7 @@ function ReviewForm ({ dogParkID}) {
         <Form id = "reviewForm" onSubmit={handleFormSubmit}>
             <br/>
             <label>Comment:</label>
-            <Input 
+            <TextArea 
                 type="text" 
                 name = "comment" 
                 value={formObject.comment} 

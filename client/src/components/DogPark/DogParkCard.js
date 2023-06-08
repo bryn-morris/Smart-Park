@@ -5,7 +5,6 @@ import ReviewsModal from './Reviews/ReviewsModal'
 function DogParkCard({eachDogPark}){
   const [showFront, setShowFront] = useState(true);
 
-
   //flip cards
   const handleFlip = () => {
       setShowFront(!showFront);

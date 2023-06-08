@@ -10,6 +10,7 @@ function ReviewProvider({children}) {
     const {dogParks, setDogParks} = useContext(DogParkContext)
 
     const [isReviewFormRendered, setIsReviewFormRendered] = useState(false)
+    const [isDPModalOpen, setIsDPModalOpen] = useState(false)
 
     function handleAddReview (formObject, dogParkID) {
 
@@ -40,7 +41,9 @@ function ReviewProvider({children}) {
             value ={{
                         handleAddReview,
                         isReviewFormRendered,
-                        setIsReviewFormRendered
+                        setIsReviewFormRendered,
+                        isDPModalOpen,
+                        setIsDPModalOpen
                     }}
         >
             {children}

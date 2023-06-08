@@ -11,12 +11,23 @@ function ReviewForm ({ dogParkID}) {
 
     const [formObject, setFormObject] = useState(emptyFormObj)
 
-    const {handleAddReview} = useContext(ReviewContext)
+    const {
+        handleAddReview,
+        isReviewFormRendered,
+        setIsReviewFormRendered,
+        setIsDPModalOpen,
+    } = useContext(ReviewContext)
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
         handleAddReview(formObject, dogParkID)
         setFormObject(emptyFormObj)
+        if(isReviewFormRendered) {
+            setIsReviewFormRendered(false)
+            setIsDPModalOpen(false)
+        }
+        
+
     }
     
     const handleFormInputChange = (e) => {

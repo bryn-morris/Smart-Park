@@ -40,6 +40,7 @@ function Header() {
             className = "profileButtonImage"
             />
           )}
+        <Menu.Item>Hi There {currentUser.username}</Menu.Item>
         {createMenuOption("/logging", "Logout", logOut, 'right', {marginLeft: '5em'})}
       </Menu>
     );

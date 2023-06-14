@@ -1,21 +1,65 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import ReviewsModal from './Reviews/ReviewsModal'
+import { Icon } from "semantic-ui-react";
+import { DogParkContext } from "../../context/DogParkContext";
 
 function DogParkCard({eachDogPark}){
+
   const [showFront, setShowFront] = useState(true);
+  const [isFavorited, setIsFavorited] = useState(false)
+
+  const { dogParks, setDogParks } = useContext(DogParkContext)
 
   //flip cards
   const handleFlip = () => {
       setShowFront(!showFront);
     };
   
+  const handleFavorite = (e) => {
+
+    // fetch patch using eachdogPark.id to update backend
+      // will need to be a list 
+    // once server has reflected change, update frontend setIsFavorited(!isFavorited);
+    // in the meantime change color of heart to grey
+    console.log("Is this favoriting working?")
+  }
+
+  const handleDelete = (e) => {
+    // console.log("Is this deletion working?")
+    fetch(`/dogparks/${eachDogPark.id}`,{
+      method : "DELETE"
+    })
+      .then(r=>r.json())
+      .then(setDogParks(
+        dogParks.filter((eachDP)=>{return eachDP.id !== eachDogPark.id})
+      ))
+  }
+
+  const handleEdit = (e) => {
+    console.log("Is this edit working?")
+  }
+
   return (
   <div className="dpcontainer">
+      <Icon 
+        name={isFavorited ? 'heart' : "heart outline"} 
+        onClick = {handleFavorite}
+      />
+      <Icon
+        name = 'delete'
+        onClick = {handleDelete}
+      />
+      <Icon
+        name = 'edit'
+        onClick = {handleEdit}
+      />
       <div onClick={handleFlip}>
         <h1 className="dpcName">{eachDogPark.name}</h1>
+        
         {showFront ? (
           <div>
+            
             <img className="dpcImg" src={eachDogPark.image} alt={eachDogPark.name} />
             <div className="dpcName" >
               {eachDogPark.rating ? `⭐${eachDogPark.rating} Stars⭐` : 'No Rating!'}

@@ -22,6 +22,7 @@ class User(db.Model, SerializerMixin):
 
     dogs = db.relationship('Dog', back_populates = 'user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates = 'user', cascade = "all, delete-orphan")
+    
 
     @hybrid_property
     def password(self):
@@ -143,3 +144,4 @@ class Review(db.Model, SerializerMixin):
             return attr
         else:
             raise AttributeError
+

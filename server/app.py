@@ -135,14 +135,41 @@ api.add_resource(Dog_Parks, '/dogparks')
 @app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'])
 def dog_park_by_id(id):
 
-    sel_dog_park = Dog_Park.query.filter(Dog_Park,id == id).one()
+    try:
+        sel_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
 
-    if request.method == 'DELETE':
+        if request.method == 'DELETE':
+            
+            db.session.delete(sel_dog_park)
+            db.session.commit()
+
+            return make_response({}, 200)
         
-        db.session.delete(sel_dog_park)
-        db.session.commit()
+        if request.method == 'PATCH':
 
-        return make_response({}, 204)
+            for attr in request.get_data():
+                setattr(sel_dog_park, attr, request.get_data()[attr])
+            
+            db.session.add(sel_dog_park)
+            db.session.commit()
+
+            return make_response(
+                sel_dog_park.to_dict(only = (
+                'id',
+                'name',
+                'amenities',
+                'address',
+                'rating',
+                'image',
+                'reviews.id',
+                'reviews.comment',
+                'reviews.rating',
+                'reviews.user.username',
+            )), 200
+            )
+    except:
+        return make_response({"error":"404 Dog Park Not Found"}, 404)
+
             
 class Dogs(Resource):
     def get(self):

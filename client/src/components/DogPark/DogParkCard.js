@@ -19,7 +19,8 @@ function DogParkCard({eachDogPark}){
   const handleFavorite = (e) => {
 
     // fetch patch using eachdogPark.id to update backend
-      // will need to be a list 
+      // will need to be a list - sqlite3 can't support lists
+      // may need to store as a string and use regex to pull id's of dog parks out of string
     // once server has reflected change, update frontend setIsFavorited(!isFavorited);
     // in the meantime change color of heart to grey
     console.log("Is this favoriting working?")
@@ -38,6 +39,9 @@ function DogParkCard({eachDogPark}){
 
   const handleEdit = (e) => {
     console.log("Is this edit working?")
+    // Create a Dog Park Edit Modal and edit the fields from there
+    // send the patch request to the backend, process
+    // and update dog park state on the frontend
   }
 
   return (

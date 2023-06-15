@@ -167,7 +167,7 @@ class Favorited(db.Model, SerializerMixin):
 
     __tablename__ = 'favorited'
 
-    # serialize_rules = ('',)
+    serialize_rules = ('-user','-dog_park',)
 
     id = db.Column(db.Integer, primary_key = True)
     dog_park_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))

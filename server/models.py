@@ -23,7 +23,23 @@ class User(db.Model, SerializerMixin):
     dogs = db.relationship('Dog', back_populates = 'user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates = 'user', cascade = "all, delete-orphan")
     
+    favorited = db.relationship('Favorited', back_populates = 'user', cascade = "all, delete-orphan")
+    favorited_parks = association_proxy('favorited', 'dog_park')
 
+    ## Instance Methods
+
+    def add_favorite_park(self, user):
+        ## check to see if this entry already exists in db
+        if len(self.favorited.filter(Favorited.dog_park_id == user.id)) == 0:
+            self.favorited.append(user)
+
+
+    def remove_favorite_park(self, user):
+        if len(self.favorited.filter(Favorited.dog_park_id == user.id)) > 0:
+            self.favorited.remove(user)
+    ##Password Validations
+
+    
     @hybrid_property
     def password(self):
         return self._password
@@ -104,6 +120,9 @@ class Dog_Park(db.Model, SerializerMixin):
     dogs = association_proxy('visits', 'dog')
 
     reviews = db.relationship('Review', back_populates='dog_park', cascade="all, delete-orphan")
+    
+    favorited = db.relationship('Favorited', back_populates = 'dog_park', cascade="all, delete-orphan")
+    favorited_users = association_proxy('favorited', 'user')
 
     @validates('image')
     def image_url_validation(self, key, attr):
@@ -117,8 +136,7 @@ class Dog_Park(db.Model, SerializerMixin):
     def float_precision_rounding(self, key, attr):
         if attr:
             return round(attr,2)
-        return attr
-            
+        return attr         
 
 class Review(db.Model, SerializerMixin):
 
@@ -145,3 +163,15 @@ class Review(db.Model, SerializerMixin):
         else:
             raise AttributeError
 
+class Favorited(db.Model, SerializerMixin):
+
+    __tablename__ = 'favorited'
+
+    # serialize_rules = ('',)
+
+    id = db.Column(db.Integer, primary_key = True)
+    dog_park_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    user = db.relationship('User', back_populates = 'favorited')
+    dog_park = db.relationship('Dog_Park', back_populates = 'favorited')

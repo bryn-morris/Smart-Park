@@ -10,18 +10,20 @@ from faker import Faker
 from app import app
 from models import db
 
-from models import db, User, Dog, Visit, Dog_Park, Review
+from models import db, User, Dog, Visit, Dog_Park, Review, Favorited
 
 with app.app_context():
 
     faker = Faker()
 
     print("Deleting data...")
+    
     User.query.delete()
     Dog.query.delete()
     Visit.query.delete()
     Dog_Park.query.delete()
     Review.query.delete()
+    Favorited.query.delete()
 
     print("Creating Users...")
 
@@ -72,6 +74,17 @@ with app.app_context():
     r5 = Review(comment='What da hecko.. I luv dirt and could dig dig dig here! Doggos go here now!', rating=5, dog_park=dp3, user = u4)
 
     # reviews_list = [Review(name= faker.user_name(),  comment= faker.sentence(), rating = randint(1,5), dog_park_id=randint(1,5)) for _ in range(1,10)]
+
+    print("Creating Favorites...")
+
+    f1 = Favorited(dog_park=dp4, user = u4)
+    f2 = Favorited(dog_park=dp2, user = u1)
+    f3 = Favorited(dog_park=dp5, user = u3)
+    f4 = Favorited(dog_park=dp2, user = u2)
+    f5 = Favorited(dog_park=dp3, user = u4)
+    f6 = Favorited(dog_park=dp1, user = u2)
+    f7 = Favorited(dog_park=dp4, user = u2)
+    
 
     db.session.add_all([d1, d2, d3, d4, d5])
     db.session.add_all([u1, u2, u3, u4])

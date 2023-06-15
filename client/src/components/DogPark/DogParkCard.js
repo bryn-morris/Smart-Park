@@ -18,12 +18,16 @@ function DogParkCard({eachDogPark}){
   
   const handleFavorite = (e) => {
 
-    // fetch patch using eachdogPark.id to update backend
-      // will need to be a list - sqlite3 can't support lists
-      // may need to store as a string and use regex to pull id's of dog parks out of string
-      // Would be a great opportunity to learn how to setup follower tables
-    // once server has reflected change, update frontend setIsFavorited(!isFavorited);
-    // in the meantime change color of heart to grey
+    // request from backend will need to be attached to dog parks
+    // if user.id is in eachDogPark.favorited.id, then set isFavorited to True
+    // else set it to false - this will establish persistent favoriting across
+    // screen refreshes,
+    // hitting the heart will send a fetch request to the backend.
+    // if isFavorited is true, it will send a delete request, 
+    // if isFavorited is false, it will send a post request,
+    // once backend sends back a response, change setIsFavorited, and also
+    // update dog park state, as we are accessing favorited data through that state
+
     console.log("Is this favoriting working?")
   }
 

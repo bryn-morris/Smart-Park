@@ -105,6 +105,7 @@ class Dog_Parks(Resource):
                 'reviews.comment',
                 'reviews.rating',
                 'reviews.user.username',
+                'favorited',
             )
 
         ) for dp in Dog_Park.query.all()
@@ -165,6 +166,7 @@ def dog_park_by_id(id):
                 'reviews.comment',
                 'reviews.rating',
                 'reviews.user.username',
+                'favorited',
             )), 200
             )
     except:
@@ -344,6 +346,7 @@ def add_review_and_patch_dog_park_rating(id):
                     'reviews.comment',
                     'reviews.rating',
                     'reviews.user.username',
+                    'favorited',
             ))
 
             ## Need to pull dog park state out into context, and then update that state
@@ -387,6 +390,7 @@ def add_review_and_patch_dog_park_rating(id):
                 'reviews.comment',
                 'reviews.rating',
                 'reviews.user.username',
+                'favorited',
             ))}
         
         return make_response(response_body, 200)

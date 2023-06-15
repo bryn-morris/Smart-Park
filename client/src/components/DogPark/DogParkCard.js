@@ -3,12 +3,14 @@ import React, {useContext, useState} from "react";
 import ReviewsModal from './Reviews/ReviewsModal'
 import { Icon } from "semantic-ui-react";
 import { DogParkContext } from "../../context/DogParkContext";
+import { AuthContext } from "../../context/AuthContext";
 
 function DogParkCard({eachDogPark}){
 
   const [showFront, setShowFront] = useState(true);
   const [isFavorited, setIsFavorited] = useState(false)
 
+  const { currentUser } = useContext(AuthContext)
   const { dogParks, setDogParks } = useContext(DogParkContext)
 
   //flip cards
@@ -27,8 +29,9 @@ function DogParkCard({eachDogPark}){
     // if isFavorited is false, it will send a post request,
     // once backend sends back a response, change setIsFavorited, and also
     // update dog park state, as we are accessing favorited data through that state
-
-    console.log("Is this favoriting working?")
+    // probably don't even need the isFavorited state honestly, if page is going to
+    // re render anyways due to dogPark state re-rendering just skip that part a
+    console.log(eachDogPark.favorited.filter((each)=>each.user_id === currentUser.id))
   }
 
   const handleDelete = (e) => {
@@ -51,7 +54,9 @@ function DogParkCard({eachDogPark}){
   return (
   <div className="dpcontainer">
       <Icon 
-        name={isFavorited ? 'heart' : "heart outline"} 
+        name={(eachDogPark.favorited.filter(
+          (each)=>each.user_id === currentUser.id).length > 0
+          ) ? 'heart' : "heart outline"} 
         onClick = {handleFavorite}
       />
       <Icon

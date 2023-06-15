@@ -21,13 +21,13 @@ function DogParkCard({eachDogPark}){
     // fetch patch using eachdogPark.id to update backend
       // will need to be a list - sqlite3 can't support lists
       // may need to store as a string and use regex to pull id's of dog parks out of string
+      // Would be a great opportunity to learn how to setup follower tables
     // once server has reflected change, update frontend setIsFavorited(!isFavorited);
     // in the meantime change color of heart to grey
     console.log("Is this favoriting working?")
   }
 
   const handleDelete = (e) => {
-    // console.log("Is this deletion working?")
     fetch(`/dogparks/${eachDogPark.id}`,{
       method : "DELETE"
     })

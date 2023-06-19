@@ -4,13 +4,16 @@ import ReviewsModal from './Reviews/ReviewsModal'
 import { Icon } from "semantic-ui-react";
 import { DogParkContext } from "../../context/DogParkContext";
 import { AuthContext } from "../../context/AuthContext";
+import EditDogParkModal from "./EditDogParkModal";
 
 function DogParkCard({eachDogPark}){
 
   const [showFront, setShowFront] = useState(true);
+  const [isEditModalOpen, setIsEditModalOpen ] = useState(false);
 
   const { currentUser } = useContext(AuthContext)
   const { dogParks, setDogParks } = useContext(DogParkContext)
+  
 
   const favoritedDogParks = eachDogPark.favorited.filter((each)=>each.user_id === currentUser.id)
 
@@ -100,6 +103,7 @@ function DogParkCard({eachDogPark}){
 
   const handleEdit = (e) => {
     console.log("Is this edit working?")
+    setIsEditModalOpen(true)
     // Create a Dog Park Edit Modal and edit the fields from there
     // send the patch request to the backend, process
     // and update dog park state on the frontend
@@ -141,6 +145,14 @@ function DogParkCard({eachDogPark}){
         <ReviewsModal 
           key={eachDogPark.id}
           eachDogPark = {eachDogPark}
+        />
+      </div>
+      <div>
+        <EditDogParkModal
+          key = {eachDogPark.id}
+          eachDogPark = {eachDogPark}
+          isEditModalOpen = {isEditModalOpen}
+          setIsEditModalOpen = {setIsEditModalOpen}
         />
       </div>
     </div>

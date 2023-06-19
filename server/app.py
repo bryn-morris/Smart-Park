@@ -117,10 +117,10 @@ class Dog_Parks(Resource):
 
         try:
             dogpark = Dog_Park(
-            name = request.get_json()['name'],
-            amenities = request.get_json()['amenities'],
-            address = request.get_json()['address'],
-            image = request.get_json()['image']
+                name = request.get_json()['name'],
+                amenities = request.get_json()['amenities'],
+                address = request.get_json()['address'],
+                image = request.get_json()['image']
             )
         except ValueError:
             response_body = {'message':'hey u goofed put in a valid url pls'}
@@ -132,13 +132,12 @@ class Dog_Parks(Resource):
     
 api.add_resource(Dog_Parks, '/dogparks')
 
-######## USE THIS WHEN CREATING DELETION & PATCH FOR DOG PARK
 @app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'])
 def dog_park_by_id(id):
 
     try:
         sel_dog_park = Dog_Park.query.filter(Dog_Park.id == id).one()
-
+        
         if request.method == 'DELETE':
             
             db.session.delete(sel_dog_park)
@@ -147,9 +146,8 @@ def dog_park_by_id(id):
             return make_response({}, 200)
         
         if request.method == 'PATCH':
-
-            for attr in request.get_data():
-                setattr(sel_dog_park, attr, request.get_data()[attr])
+            for attr in request.get_json():
+                setattr(sel_dog_park, attr, request.get_json()[attr])
             
             db.session.add(sel_dog_park)
             db.session.commit()

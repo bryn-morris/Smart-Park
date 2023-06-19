@@ -429,12 +429,36 @@ def add_review_and_patch_dog_park_rating(id):
 
 api.add_resource(Reviews, '/reviews')
 
-class Favorite(Resource):
+@app.route('/favorite', methods = ['POST'])
+def favorite():
 
-    def post(self):
-        pass
+    dog_park_id = request.get_json()['dog_park_id']
+    user_id = request.get_json()['user_id']
 
-api.add_resource(Favorite, '/favorite')
+    newFavoriteJoin = Favorited(
+        dog_park_id = dog_park_id,
+        user_id = user_id,
+    )
+    selected_dog_park = Dog_Park.query.filter(Dog_Park.id == dog_park_id).one()
+
+    db.session.add(newFavoriteJoin)
+    db.session.commit()
+
+    return make_response(selected_dog_park.to_dict(
+        only = (
+            'id',
+            'name',
+            'amenities',
+            'address',
+            'rating',
+            'image',
+            'reviews.id',
+            'reviews.comment',
+            'reviews.rating',
+            'reviews.user.username',
+            'favorited',
+        )
+    ), 201)
 
 @app.route('/favorite/<int:id>', methods = ['DELETE'])
 def favorite_by_id(id):

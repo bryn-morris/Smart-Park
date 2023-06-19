@@ -27,21 +27,14 @@ function DogParkCard({eachDogPark}){
       })
         .then(r=> {
           if(r.ok){
-            r.json().then(deletedDogPark => {
+            r.json().then(selectedDogPark => {
               return setDogParks(dogParks.map((eachDogP) => {
-                 if (eachDogP.id === deletedDogPark.id) {
-                  return deletedDogPark
-                 }
-                 return eachDogP
-                }))
-              // console.log(dogParks.length)
-              // console.log(dogParks.filter((eachDogP)=>eachDogP.id !== deletedDogPark.id).length)
-            }
-              // need to return the dog park in question from the backend,
-              // non-restful routing
-              // hten set state
-              
-            )
+                if (eachDogP.id === selectedDogPark.id) {
+                  return selectedDogPark
+                }
+                return eachDogP
+              }))
+              })
           } else {
             console.log('error!')
           }
@@ -56,7 +49,20 @@ function DogParkCard({eachDogPark}){
           dog_park_id : eachDogPark.id,
         })
       })
-        .then()
+        .then(r=> {
+          if (r.ok){
+            r.json().then(selectedDogPark => {
+              return setDogParks(dogParks.map((eachDogP) => {
+                if (eachDogP.id === selectedDogPark.id) {
+                  return selectedDogPark
+                }
+                return eachDogP
+              }))
+            })
+          } else {
+            console.log('error!')
+          }
+        })
         .then()
     }
       // .then(r=>{

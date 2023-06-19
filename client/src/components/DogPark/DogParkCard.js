@@ -8,10 +8,11 @@ import { AuthContext } from "../../context/AuthContext";
 function DogParkCard({eachDogPark}){
 
   const [showFront, setShowFront] = useState(true);
-  const [isFavorited, setIsFavorited] = useState(false)
 
   const { currentUser } = useContext(AuthContext)
   const { dogParks, setDogParks } = useContext(DogParkContext)
+
+  const favoritedDogParks = eachDogPark.favorited.filter((each)=>each.user_id === currentUser.id)
 
   //flip cards
   const handleFlip = () => {
@@ -20,10 +21,57 @@ function DogParkCard({eachDogPark}){
   
   const handleFavorite = (e) => {
 
-    // request from backend will need to be attached to dog parks
-    // if user.id is in eachDogPark.favorited.id, then set isFavorited to True
-    // else set it to false - this will establish persistent favoriting across
-    // screen refreshes,
+    if (favoritedDogParks.length > 0) {
+      fetch(`/favorite/${favoritedDogParks[0].id}`, {
+        method: 'DELETE'
+      })
+        .then(r=> {
+          if(r.ok){
+            r.json().then(deletedDogPark => {
+              return setDogParks(dogParks.map((eachDogP) => {
+                 if (eachDogP.id === deletedDogPark.id) {
+                  return deletedDogPark
+                 }
+                 return eachDogP
+                }))
+              // console.log(dogParks.length)
+              // console.log(dogParks.filter((eachDogP)=>eachDogP.id !== deletedDogPark.id).length)
+            }
+              // need to return the dog park in question from the backend,
+              // non-restful routing
+              // hten set state
+              
+            )
+          } else {
+            console.log('error!')
+          }
+        })
+
+    } else {
+      fetch('/favorite', {
+        method: 'POST',
+        headers : {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          user_id : currentUser.id,
+          dog_park_id : eachDogPark.id,
+        })
+      })
+        .then()
+        .then()
+    }
+      // .then(r=>{
+
+      //   if (r.ok) {
+      //     r.json().then(
+      //       favoritedDogParks.length > 0 ?
+      //       resp => setDogParks(dogParks.filter((eachPark)=> eachPark.id !== eachDogPark.id))
+      //       :
+      //       resp => setDogParks([...dogParks, resp])
+      //     )
+      //   } else {
+      //     r.json().then(console.log('error!'))
+      //   }
+
     // hitting the heart will send a fetch request to the backend.
     // if isFavorited is true, it will send a delete request, 
     // if isFavorited is false, it will send a post request,
@@ -31,7 +79,7 @@ function DogParkCard({eachDogPark}){
     // update dog park state, as we are accessing favorited data through that state
     // probably don't even need the isFavorited state honestly, if page is going to
     // re render anyways due to dogPark state re-rendering just skip that part a
-    console.log(eachDogPark.favorited.filter((each)=>each.user_id === currentUser.id))
+    // console.log(favoritedDogParks[0].id)
   }
 
   const handleDelete = (e) => {
@@ -54,9 +102,7 @@ function DogParkCard({eachDogPark}){
   return (
   <div className="dpcontainer">
       <Icon 
-        name={(eachDogPark.favorited.filter(
-          (each)=>each.user_id === currentUser.id).length > 0
-          ) ? 'heart' : "heart outline"} 
+        name={favoritedDogParks.length > 0 ? 'heart' : "heart outline"} 
         onClick = {handleFavorite}
       />
       <Icon

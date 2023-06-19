@@ -9,7 +9,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import User, Dog, Visit, Dog_Park, Review
+from models import User, Dog, Visit, Dog_Park, Review, Favorited
 
 # Views go here!
 
@@ -428,6 +428,41 @@ def add_review_and_patch_dog_park_rating(id):
         return make_response(response_body, 200)
 
 api.add_resource(Reviews, '/reviews')
+
+class Favorite(Resource):
+
+    def post(self):
+        pass
+
+api.add_resource(Favorite, '/favorite')
+
+@app.route('/favorite/<int:id>', methods = ['DELETE'])
+def favorite_by_id(id):
+
+    try:
+        selected_entry = Favorited.query.filter(Favorited.id == id).one()
+        selected_dog_park = selected_entry.dog_park
+    except:
+        return make_response({"message":"404 Entry not found!"}, 404)
+    
+    db.session.delete(selected_entry)
+    db.session.commit()
+
+    return make_response(selected_dog_park.to_dict(
+        only = (
+                'id',
+                'name',
+                'amenities',
+                'address',
+                'rating',
+                'image',
+                'reviews.id',
+                'reviews.comment',
+                'reviews.rating',
+                'reviews.user.username',
+                'favorited',
+    ))
+    , 200)
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

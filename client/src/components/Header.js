@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import {NavLink } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 import { AuthContext } from '../context/AuthContext';
 
 function Header() {
@@ -34,7 +34,9 @@ function Header() {
         {createMenuOption("/dogparks",<div>Dog Parks</div>)}
         {createMenuOption("/aboutus", "About Us")}
         {createMenuOption("/myaccount",
-          <img 
+          <Image
+            avatar
+            bordered
             src = {currentUser.image} 
             alt= "User Profile"
             className = "profileButtonImage"

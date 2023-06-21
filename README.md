@@ -6,7 +6,7 @@ This is a full-stack program designed to allow users to electronically check the
 
 ### Project Design
 
-The program allows a user to "log in" to SmartPark and manage their dogs and dog park visits. Basic user solutions include:
+The program allows a user to log in to SmartPark and manage their dogs and dog park visits. Basic user solutions include:
 1. Browse available dog parks
 2. Check into and out of a dog park
 3. Write and view reviews for a dog park

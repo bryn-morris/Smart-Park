@@ -2,7 +2,7 @@
 # SmartPark
 
 ## Description
-This is a full-stack program created during Phase IIII of Flatiron School's Full Stack Software Engineering Program.
+This is a full-stack program designed to allow users to electronically check their dogs into local dog parks.
 
 ### Project Design
 
@@ -10,7 +10,7 @@ The program allows a user to "log in" to SmartPark and manage their dogs and dog
 1. Browse available dog parks
 2. Check into and out of a dog park
 3. Write and view reviews for a dog park
-4. Add and edit dogs in my account
+4. Add and edit dogs in their account
 4. Learn more about SmartPark
 
 ### Languages

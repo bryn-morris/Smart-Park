@@ -62,11 +62,7 @@ function DogParkCard({eachDogPark}){
   }
 
   const handleEdit = (e) => {
-    console.log("Is this edit working?")
     setIsEditModalOpen(true)
-    // Create a Dog Park Edit Modal and edit the fields from there
-    // send the patch request to the backend, process
-    // and update dog park state on the frontend
   }
 
   return (

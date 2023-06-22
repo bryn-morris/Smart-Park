@@ -66,7 +66,7 @@ function DogParkCard({eachDogPark}){
   }
 
   return (
-  <div className="dpcontainer">
+  <div className="dpc Container">
       <Icon 
         name={favoritedEntryArray.length > 0 ? 'heart' : "heart outline"} 
         onClick = {handleFavorite}
@@ -80,18 +80,18 @@ function DogParkCard({eachDogPark}){
         onClick = {handleEdit}
       />
       <div onClick={handleFlip}>
-        <h1 className="dpcName">{eachDogPark.name}</h1>
+        <h1 className="dpc Name">{eachDogPark.name}</h1>
         
         {showFront ? (
           <div>
             
-            <img className="dpcImg" src={eachDogPark.image} alt={eachDogPark.name} />
-            <div className="dpcName" >
+            <img className="dpc Img" src={eachDogPark.image} alt={eachDogPark.name} />
+            <div className="dpc Name" >
               {eachDogPark.rating ? `⭐${eachDogPark.rating} Stars⭐` : 'No Rating!'}
             </div>
           </div>
         ) : (
-          <div className="dpcName">
+          <div className="dpc Name">
             <p>{`Amenities: ${eachDogPark.amenities}`}</p>
             <p>{`Address: ${eachDogPark.address}`}</p>
           </div>

@@ -2,15 +2,18 @@ import React, {useContext} from 'react'
 import {NavLink } from 'react-router-dom'
 import { Menu, Image } from 'semantic-ui-react';
 import { AuthContext } from '../context/AuthContext';
+import { DogParkContext } from '../context/DogParkContext';
 
 function Header() {
 
   const { currentUser, setCurrentUser } = useContext(AuthContext)
+  const { setDogParks } = useContext(DogParkContext)
 
   function logOut() {
     // window.location.href = '/';
     fetch('/logout', {method:"DELETE",}).then(console.log("successfully logged out"))
     setCurrentUser(null)
+    setDogParks([])
   }
 
   const createMenuOption = (to,children, onClick, position, style) => {
@@ -43,7 +46,7 @@ function Header() {
             />
           )}
         <Menu.Item>Hi There {currentUser.username}</Menu.Item>
-        {createMenuOption("/logging", "Logout", logOut, 'right', {marginLeft: '5em'})}
+        {createMenuOption("/logging", "Logging", logOut, 'right', {marginLeft: '5em'})}
       </Menu>
     );
   }

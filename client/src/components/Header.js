@@ -46,7 +46,7 @@ function Header() {
             />
           )}
         <Menu.Item>Hi There {currentUser.username}</Menu.Item>
-        {createMenuOption("/logging", "Logging", logOut, 'right', {marginLeft: '5em'})}
+        {createMenuOption("/logging", "Log Out", logOut, 'right', {marginLeft: '5em'})}
       </Menu>
     );
   }

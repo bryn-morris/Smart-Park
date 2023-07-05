@@ -44,44 +44,41 @@ function EditDogParkForm({eachDogPark, setIsEditModalOpen}){
         )
     }
 
+    const createInputOption = (label,type, name, value) => {
+        return(
+            <div>
+                <br/>
+                <label>{label}</label>
+                {label === "Amenities" 
+                    ?
+                    <TextArea
+                        type = {type}
+                        name = {name}
+                        value = {value}
+                        onChange = {handleFormInputChange}
+                        placeholder = {name}
+                    >
+                    </TextArea> 
+                    : 
+                    <Input
+                        type = {type}
+                        name = {name}
+                        value = {value}
+                        onChange = {handleFormInputChange}
+                        placeholder = {name}
+                    >
+                    </Input>
+                }   
+            </div>
+        );
+    }
+
     return(
         <Form id = 'editDogParkForm' onSubmit = {handleSubmitDPEdit}>
-            <br/>
-            <label>Name</label>
-            <Input
-                type = 'text'
-                name = 'name'
-                value = {dpFormObject.name}
-                onChange={handleFormInputChange} 
-                placeholder = 'name'
-            />
-            <br/>
-            <label>Address</label>
-            <Input
-                type = 'text'
-                name = 'address'
-                value = {dpFormObject.address}
-                onChange={handleFormInputChange} 
-                placeholder = 'address'
-            />
-            <br/>
-            <label>Amenities</label>
-            <TextArea
-                type = 'text'
-                name = 'amenities'
-                value = {dpFormObject.amenities}
-                onChange={handleFormInputChange} 
-                placeholder = 'amenities'            
-            />
-            <br/>
-            <label>Image</label>
-            <Input
-                type = 'text'
-                name = 'image'
-                value = {dpFormObject.image}
-                onChange={handleFormInputChange} 
-                placeholder = 'image'            
-            />
+            {createInputOption("Name","text","name",dpFormObject.name)}
+            {createInputOption("Address","text","address",dpFormObject.address)}
+            {createInputOption("Amenities","text","amenities",dpFormObject.amenities)}
+            {createInputOption("Image", "text", "image", dpFormObject.image)}
         </Form>
     )
 }

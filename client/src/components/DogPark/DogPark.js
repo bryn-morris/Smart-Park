@@ -26,27 +26,27 @@ function DogPark() {
     filteredParks
   } = useContext(DogParkContext) 
 
-   function handleAddDogPark (newDogPark) {
+  function handleAddDogPark (newDogPark) {
 
-      fetch('/dogparks', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(newDogPark)
-      })
-      .then(r=>r.ok ?
-        r.json().then(data => {
-          setDogParks([...dogParks, data])
-          setCreatedDogPark(data)
-          setIsReviewFormRendered(true)
-        }):
-        r.json().then(response => alert(response))
-      )
-   }
+    fetch('/dogparks', {
+      method: 'POST',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(newDogPark)
+    })
+    .then(r=>r.ok ?
+      r.json().then(data => {
+        setDogParks([...dogParks, data])
+        setCreatedDogPark(data)
+        setIsReviewFormRendered(true)
+      }):
+      r.json().then(response => alert(response))
+    )
+  }
 
-   function handleModalClose () {
-    setIsReviewFormRendered(false)
-    setIsDPModalOpen(false)
-   }
+  function handleModalClose () {
+  setIsReviewFormRendered(false)
+  setIsDPModalOpen(false)
+  }
 
   return (
   <div>

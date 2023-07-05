@@ -4,6 +4,7 @@ import DogCard from './DogCard'
 
 
 function MyDogCards({dog_parks, dog, showRemainingDogs, updatedDogs}) {
+    
     const [dogAttribute, setDogAttribute]= useState('')
     const [newInfo, setNewInfo] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(null)
@@ -12,9 +13,7 @@ function MyDogCards({dog_parks, dog, showRemainingDogs, updatedDogs}) {
     
 
     const deleteDog = () => {
-
         setIsModalOpen(false)
-
         fetch (`/dogs/${dog.id}`, {method:"DELETE"})
             .then(showRemainingDogs(dog.id))
         }
@@ -23,19 +22,19 @@ function MyDogCards({dog_parks, dog, showRemainingDogs, updatedDogs}) {
         e.preventDefault()
         setIsModalOpen(false)
     
-        fetch (`/dogs/${dog.id}`, {
-                method:"PATCH", 
-                headers:{"Content-type":"application/json"}, 
-                body: JSON.stringify({
-                    [dogAttribute]: newInfo,
-                })
-                })
-            .then (r => r.json())
-            .then(editedDog => updatedDogs(editedDog))
+    fetch (`/dogs/${dog.id}`, {
+            method:"PATCH", 
+            headers:{"Content-type":"application/json"}, 
+            body: JSON.stringify({
+                [dogAttribute]: newInfo,
+            })
+            })
+        .then (r => r.json())
+        .then(editedDog => updatedDogs(editedDog))
 
-            setNewInfo('')
-            setDogAttribute('')
-        }
+        setNewInfo('')
+        setDogAttribute('')
+    }
 
   return (
     <div style={{

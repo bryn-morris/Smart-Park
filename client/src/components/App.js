@@ -18,6 +18,7 @@ function App() {
         </DogParkProvider>
       </DogProvider>
     </AuthProvider>
-  )}
+  );
+}
 
 export default App

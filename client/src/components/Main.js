@@ -62,7 +62,6 @@ function Main() {
   const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
 
   function handleFormSubmission(formObj){
-    // Update Backend with post to a route that creates a Visit Instance
     fetch('/visits', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},

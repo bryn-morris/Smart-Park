@@ -48,9 +48,8 @@ function AboutUs() {
                             </footer>
                         </div>
                     </div>
-                </div></>
+                </div>
+      </>
    )}
-      
-
 
 export default AboutUs

@@ -38,14 +38,6 @@
 
 //////////////////// Check In ////////////////////
 
-
-
-// .checkedIn{
-//   font-size: 20px;
-//   text-align: center;
-//   margin-top: 200px;
-// }
-
 .checkInModalContainer {
     position: fixed ;
     height: 20%;
@@ -63,6 +55,8 @@
   font-size: 30px;
   font-family: Tahoma;
   font-weight: 700;
+  text-align: center;
+  margin-top: 200px;
 }
 
 @mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {
@@ -87,80 +81,18 @@
         @if $i == 1 {
             @include checkInIconStyle(100%, 100%, 0%, 15%, rotate(10deg))
         } @else if $i == 2 {
-
+            @include checkInIconStyle(100%, 100%, 10%, 25%, rotate(20deg))
         } @else if $i == 3 {
-
+            @include checkInIconStyle(40%, 25%, 24%, 4%, rotate(-20deg))
         } @else if $i == 4 {
+            @include checkInIconStyle(50%, 25%, 5%, 30%, rotate(-37deg), table-cell, bottom)
+        }
 
+        &:hover {
+            opacity: 1;
         }
     }
 }
-
-// div#checkInFeature2{
-//   position: absolute;
-//   height:100%;
-//   width: 100%;
-//   text-align: center;
-//   left: 10%;
-//   top: 25%;
-//   font-size: 30px;
-//   font-family: Tahoma;
-//   font-weight: 700;
-//   color: red;
-//   transform: scale(2);
-//   transform: rotate(20deg);
-//   opacity: 0;
-// }
-
-// div#checkInFeature2:hover {
-//   opacity: 1;
-// }
-
-// div#checkInFeature1:hover {
-//   opacity: 1;
-// }
-
-// div#checkInFeature3{
-//   position: absolute;
-//   height:40%;
-//   width: 25%;
-//   text-align: center;
-//   left: 24%;
-//   top: 4%;
-//   font-size: 30px;
-//   font-family: Tahoma;
-//   font-weight: 700;
-//   color: red;
-//   transform: scale(2);
-//   transform: rotate(-20deg);
-//   opacity: 0;
-// }
-
-// div#checkInFeature3:hover {
-//   opacity: 1;
-// }
-
-// div#checkInFeature4{
-//   position: absolute;
-//   height:50%;
-//   width: 25%;
-//   text-align: center;
-//   vertical-align: bottom;
-//   display: table-cell;
-//   left: 5%;
-//   top: 30%;
-//   font-size: 30px;
-//   font-family: Tahoma;
-//   font-weight: 700;
-//   color: red;
-//   transform: scale(2);
-//   transform: rotate(-37deg);
-//   opacity: 0;
-// }
-
-// div#checkInFeature4:hover {
-//   opacity: 1;
-// }
 
 //////////////////// Dog Paw ////////////////////
 

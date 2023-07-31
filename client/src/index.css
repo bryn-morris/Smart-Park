@@ -15,6 +15,8 @@
   font-size: 30px;
   font-family: Tahoma;
   font-weight: 700;
+  text-align: center;
+  margin-top: 200px;
 }
 
 #checkInFeature1 {
@@ -32,6 +34,69 @@
   opacity: 0;
   display: table-cell;
   vertical-align: bottom;
+}
+#checkInFeature1:hover {
+  opacity: 1;
+}
+
+#checkInFeature2 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  left: 10%;
+  top: 25%;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) rotate(20deg);
+  opacity: 0;
+  display: table-cell;
+  vertical-align: bottom;
+}
+#checkInFeature2:hover {
+  opacity: 1;
+}
+
+#checkInFeature3 {
+  position: absolute;
+  height: 40%;
+  width: 25%;
+  text-align: center;
+  left: 24%;
+  top: 4%;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) rotate(-20deg);
+  opacity: 0;
+  display: table-cell;
+  vertical-align: bottom;
+}
+#checkInFeature3:hover {
+  opacity: 1;
+}
+
+#checkInFeature4 {
+  position: absolute;
+  height: 50%;
+  width: 25%;
+  text-align: center;
+  left: 5%;
+  top: 30%;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) rotate(-37deg);
+  opacity: 0;
+  display: table-cell;
+  vertical-align: bottom;
+}
+#checkInFeature4:hover {
+  opacity: 1;
 }
 
 .dogPawIcon1 {

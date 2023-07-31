@@ -36,25 +36,27 @@
 
 //////////////////// Check In ////////////////////
 
-.checkInModalContainer {
-    position: fixed ;
-    height: 20%;
-    width: 20%;
-    border: 2px;
-    border-color: blue;
-    top: 25%;
-    left: 45%;
-}
+.checkIn {
 
-.checkedInText{
-  position:fixed;
-  top:50%;
-  right:15%;
-  font-size: 30px;
-  font-family: Tahoma;
-  font-weight: 700;
-  text-align: center;
-  margin-top: 200px;
+    position: fixed;
+
+    .modalContainer{
+        height: 20%;
+        width: 20%;
+        border: 2px;
+        border-color: blue;
+        top: 25%;
+        left: 45%;
+    }
+    .Text {
+        top:50%;
+        right:15%;
+        font-size: 30px;
+        font-family: Tahoma;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 200px;
+    }
 }
 
 @mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {

@@ -49,7 +49,7 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, deleteCheckI
         src = 'https://images.unsplash.com/photo-1514373941175-0a141072bbc8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80' 
         alt = 'Dog Playing with Ball'/> */}
       
-      <div className="modalContainer">    
+      <div className="checkInModalContainer">    
       {/* <div id = 'checkInFeature'>{currentCheckInID ? 'Check Out!' : 'Check In!'}</div>            */}
                 
                 <Modal
@@ -57,7 +57,7 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, deleteCheckI
                     onOpen={() => setIsModalOpen(true)}
                     open={isModalOpen}
                     trigger={
-                              <Icon className = 'massive ui green dogPawIcon' name = 'paw'>
+                              <Icon className = 'massive ui green dogPawIcon1' name = 'paw'>
                                 <div id = 'checkInFeature'>?</div>
                                 <div id = 'checkInFeature2'>?</div> 
                                 <div id = 'checkInFeature3'>!</div>

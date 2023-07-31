@@ -58,7 +58,7 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, deleteCheckI
                     open={isModalOpen}
                     trigger={
                               <Icon className = 'massive ui green dogPawIcon1' name = 'paw'>
-                                <div id = 'checkInFeature'>?</div>
+                                <div id = 'checkInFeature1'>?</div>
                                 <div id = 'checkInFeature2'>?</div> 
                                 <div id = 'checkInFeature3'>!</div>
                                 <div id = 'checkInFeature4'>?</div> 

@@ -1,3 +1,13 @@
+.site {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+    .Content {
+        top: 4%;
+    }
+}
+
 /////////////////////////////////////////////////
 ///                LogIn Screen
 /////////////////////////////////////////////////
@@ -6,35 +16,23 @@
 ///                 Home Screen
 /////////////////////////////////////////////////
 
-/// .homeHeader{
-//   position: absolute;
-//   font-size: 300px;
-//   text-align: center;
-//   margin-top: 100px;
-//   font-family: Tahoma;
-//   font-weight: 700;
-//   width: 100%;
-//   top: 40%;
-// }
+.home {
+    width: 100%;
 
-// .pageContainer {
-//   position: absolute ;
-//   height: 100%;
-//   width: 100%;
-// }
-
-// .pageContent {
-//   position: absolute;
-//   top: 4%;
-//   height: 100%;
-//   width: 100%;
-// }
-
-// .homePage {
-//   position: relative;
-//   height: 100%;
-//   width: 100%;
-// }
+    .Page {
+        position: relative;
+        height: 100%;
+    }
+    .Header {
+        position: absolute;
+        font-size: 300px;
+        text-align: center;
+        margin-top: 100px;
+        font-family: Tahoma;
+        font-weight: 700;
+        top: 40%;
+    }
+}
 
 //////////////////// Check In ////////////////////
 
@@ -48,7 +46,7 @@
     left: 45%;
 }
 
-.checkedIn{
+.checkedInText{
   position:fixed;
   top:50%;
   right:15%;

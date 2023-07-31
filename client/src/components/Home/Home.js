@@ -41,10 +41,10 @@ function Home({checkOut, startTimer,endTimer, handleFormSubmission, deleteCheckI
   const accidentalCheckInMessage = 'Thanks for checking in :D ! If that checkin was a mistake you can delete below!'
 
   return (
-    <div className='homePage'>
-      <div className='homeHeader'>SmartPark</div>
+    <div className='home Page'>
+      <div className='home Header'>SmartPark</div>
       <PawPrintIcons selectedIcon={selectedIcon}/>
-      {currentCheckInID ? <div className='checkedIn'>You're all checked in!</div> : null}
+      {currentCheckInID ? <div className='checkedInText'>You're all checked in!</div> : null}
       {/* <img 
         src = 'https://images.unsplash.com/photo-1514373941175-0a141072bbc8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80' 
         alt = 'Dog Playing with Ball'/> */}

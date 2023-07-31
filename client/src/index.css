@@ -17,6 +17,23 @@
   font-weight: 700;
 }
 
+#checkInFeature1 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  left: 0%;
+  top: 15%;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) rotate(10deg);
+  opacity: 0;
+  display: table-cell;
+  vertical-align: bottom;
+}
+
 .dogPawIcon1 {
   position: absolute;
   transform: scale(3);

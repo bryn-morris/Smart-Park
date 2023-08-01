@@ -128,9 +128,9 @@ function Main() {
 
 
   return (
-    <div className='siteContainer'>
+    <div className='site'>
       <Header/>
-      <main className = 'siteContent'>
+      <main className = 'site Content'>
         <Switch>
           <Route exact path="/">
             <Home 

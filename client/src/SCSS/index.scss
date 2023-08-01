@@ -23,36 +23,15 @@
     }
 }
 
-// .homeHeader{
-//   position: absolute;
-//   font-size: 300px;
-//   text-align: center;
-//   margin-top: 100px;
-//   font-family: Tahoma;
-//   font-weight: 700;
-//   width: 100%;
-//   top: 40%;
-// }
+.site {
+    position: absolute;
+    height: 100%;
+    width: 100%;
 
-// .homeContainer {
-//     position: relative;
-//     height: 100%;
-//     width: 100%;
-// }
-
-.siteContainer {
-  position: absolute ;
-  height: 100%;
-  width: 100%;
+    .Content {
+        top: 4%;
+    }
 }
-
-.siteContent {
-  position: absolute;
-  top: 4%;
-  height: 100%;
-  width: 100%;
-}
-
 
 
 //////////////////// Check In ////////////////////

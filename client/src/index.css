@@ -14,17 +14,13 @@
   height: auto;
 }
 
-.siteContainer {
+.site {
   position: absolute;
   height: 100%;
   width: 100%;
 }
-
-.siteContent {
-  position: absolute;
+.site .Content {
   top: 4%;
-  height: 100%;
-  width: 100%;
 }
 
 .checkInmodalContainer {

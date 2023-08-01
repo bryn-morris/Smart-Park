@@ -1,3 +1,12 @@
+.site {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.site .Content {
+  top: 4%;
+}
+
 .home {
   width: 100%;
   position: relative;
@@ -12,15 +21,6 @@
   font-weight: 700;
   top: 40%;
   height: auto;
-}
-
-.site {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-.site .Content {
-  top: 4%;
 }
 
 .checkInmodalContainer {

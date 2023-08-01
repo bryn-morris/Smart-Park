@@ -1,3 +1,13 @@
+.site {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    .Content {
+        top: 4%;
+    }
+}
+
 /////////////////////////////////////////////////
 ///                LogIn Screen
 /////////////////////////////////////////////////
@@ -22,17 +32,6 @@
         height: auto;
     }
 }
-
-.site {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-
-    .Content {
-        top: 4%;
-    }
-}
-
 
 //////////////////// Check In ////////////////////
 

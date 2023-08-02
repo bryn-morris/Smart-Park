@@ -70,6 +70,7 @@ class Login(Resource):
             ).first()
             user.authenticate(data['password'])
             session['user_id'] = user.id
+            import ipdb;ipdb.set_trace()
             return make_response(
                 user.to_dict(rules=('dogs','-_password','reviews')),
                 200
@@ -81,6 +82,7 @@ api.add_resource(Login, '/login')
 
 class Logout(Resource):
     def delete(self):
+        import ipdb; ipdb.set_trace()
         session.pop('user_id', None)
         return session.get('user_id')
         
@@ -309,6 +311,9 @@ def add_review_and_patch_dog_park_rating(id):
         ### Should have userID stored in session['user_id']
         ### Looks like there is a key error when pulling
         ## the user id key from the session
+        ## possible CORS error?-> between different ports leading
+        ## to flask generating a new session each time a 
+        ## request is made?
         import ipdb;ipdb.set_trace()
         if Review.query.filter(session['user_id'] == Review.user_id).first():
             return make_response({'error':'duplicate record'}, 409)

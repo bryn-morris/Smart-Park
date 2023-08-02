@@ -61,6 +61,12 @@ class Signup(Resource):
 api.add_resource(Signup, '/signup')
         
 class Login(Resource):
+    # Test code to assess extent of CORS issue with session
+    # import with flask
+    # def get(self):
+    #     session['test'] = 'test'
+    #     return make_response({'test':'test message'})
+
     def post(self):
         try:
             data = request.get_json()
@@ -309,11 +315,10 @@ def add_review_and_patch_dog_park_rating(id):
         ## check to see if user has already submitted a review
         ### Check user ID against user ID column in db
         ### Should have userID stored in session['user_id']
-        ### Looks like there is a key error when pulling
-        ## the user id key from the session
-        ## possible CORS error?-> between different ports leading
-        ## to flask generating a new session each time a 
-        ## request is made?
+        ## when accessing the backend port directly, was able to 
+        ## access the appropriate session variable, but am not
+        ## able to do so from frontend requests. Likely CORS issue
+        ## will need to update cors permissions in config.py acccordingly 
         import ipdb;ipdb.set_trace()
         if Review.query.filter(session['user_id'] == Review.user_id).first():
             return make_response({'error':'duplicate record'}, 409)

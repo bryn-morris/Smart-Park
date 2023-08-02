@@ -75,12 +75,21 @@ class Login(Resource):
                 User.username == data['username']
             ).first()
             user.authenticate(data['password'])
-            session['user_id'] = user.id
-            import ipdb;ipdb.set_trace()
-            return make_response(
+            # this particular session instance is not attaching
+            # to the response for some reason...
+            ## CORS issue is still a problem > = [
+                ## verified it is a cors issue, sitll can't
+                ## access from frontend, but can access directly
+                ## though backend uri access
+            # session['user_id'] = user.id
+            session['test'] = 'test'
+            resp = make_response(
                 user.to_dict(rules=('dogs','-_password','reviews')),
                 200
             )
+            resp.set_cookie('test', 'test')
+            import ipdb;ipdb.set_trace()
+            return resp
         except:
             return {'error': 'Must enter a valid username and password'}, 404
 

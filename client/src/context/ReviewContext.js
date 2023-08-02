@@ -21,7 +21,12 @@ function ReviewProvider({children}) {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formObject)
         })
-        .then(r=> r.ok? 
+        .then(r=> r.ok?
+            // if response is okay, check to see if 
+            // response from backend shows that user has
+            // already submitted a review
+            // if so, provide some manner of alert, 
+            // otherwise, proceed as normal
             r.json().then(resp_obj => {
             setDogParks(
                 dogParks.map((eachDP)=>{

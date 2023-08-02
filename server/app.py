@@ -304,10 +304,22 @@ def add_review_and_patch_dog_park_rating(id):
 
     if request.method == 'POST':
        
+        ## check to see if user has already submitted a review
+        ### Check user ID against user ID column in db
+        ### Should have userID stored in session['user_id']
+        ### Looks like there is a key error when pulling
+        ## the user id key from the session
+        import ipdb;ipdb.set_trace()
+        if Review.query.filter(session['user_id'] == Review.user_id).first():
+            return make_response({'error':'duplicate record'}, 409)
+
+        ## if so, need to respond with some manner of 
+        ## error code that the frontend can interpret
+
         rating_list = [rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]
+        
 
         try:
-            ## Make a new review in DB
 
             new_review = Review(
                 comment = data['comment'],
@@ -325,7 +337,7 @@ def add_review_and_patch_dog_park_rating(id):
         except:
             
             response_body = {'message': 'Hey you goober, enter between 1-5'}
-            return make_response(response_body, 409)
+            return make_response(response_body, 403)
 
         db.session.add(new_review)
         db.session.add(specific_dog_park)

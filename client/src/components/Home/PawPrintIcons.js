@@ -11,7 +11,7 @@ function PawPrintIcons ({selectedIcon}) {
             {icons.map((eachIcon, eachIndex) => (
                 <Icon
                     key={`dog-paw-${eachIndex}`}
-                    className={`massive ui dogPawIcon${eachIndex + 2}`}
+                    className={`massive ui ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;${eachIndex + 2}`}
                     name={eachIcon}
                 />
                 ))    

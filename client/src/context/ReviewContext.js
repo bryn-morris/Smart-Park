@@ -14,26 +14,26 @@ function ReviewProvider({children}) {
 
     function handleAddReview (formObject, dogParkID) {
 
-    formObject.user_id = parseInt(currentUser.id);
+        formObject.user_id = parseInt(currentUser.id);
 
-    fetch(`/review_dog_park/${dogParkID}`, {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(formObject)
-    })
-    .then(r=> r.ok? 
-        r.json().then(resp_obj => {
-        setDogParks(
-            dogParks.map((eachDP)=>{
-            if (eachDP.id === resp_obj.updated_dog_park.id){
-                return resp_obj.updated_dog_park
-            } 
-            return eachDP
-            })
+        fetch(`/review_dog_park/${dogParkID}`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(formObject)
+        })
+        .then(r=> r.ok? 
+            r.json().then(resp_obj => {
+            setDogParks(
+                dogParks.map((eachDP)=>{
+                if (eachDP.id === resp_obj.updated_dog_park.id){
+                    return resp_obj.updated_dog_park
+                } 
+                return eachDP
+                })
+            )
+            }):
+            r.json().then(r => alert(r.message))
         )
-        }):
-        r.json().then(r => alert(r.message))
-    )
     }
 
     return (

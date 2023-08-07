@@ -2,7 +2,7 @@ import {useContext, useState} from "react";
 import {Form, Input, TextArea} from 'semantic-ui-react'
 import { ReviewContext } from "../../../context/ReviewContext";
 
-function ReviewForm ({ dogParkID}) {
+function ReviewForm ({ dogParkID, setAddReviewDisabled}) {
 
     const emptyFormObj = {
         comment: '',

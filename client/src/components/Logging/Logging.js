@@ -39,7 +39,6 @@ function Logging() {
       body: JSON.stringify(userFormObject)
     })
       .then(r => {
-        console.log(r)
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs);

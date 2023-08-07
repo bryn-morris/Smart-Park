@@ -22,24 +22,32 @@ function ReviewProvider({children}) {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formObject)
         })
-        .then(r=> r.ok?
+        .then(r => {
+            if (r.status === 409) {
+                alert('You can only submit one review per park!')
+            } else if (!r.ok) {
+                return r.json().then(r => alert(r.message))
+            } else {
+                r.json().then(resp_obj => {
+                    setDogParks(
+                        dogParks.map((eachDP)=>{
+                        if (eachDP.id === resp_obj.updated_dog_park.id){
+                            return resp_obj.updated_dog_park
+                        } 
+                        return eachDP
+                        })
+                    )
+                })
+            }  
             // if response is okay, check to see if 
             // response from backend shows that user has
             // already submitted a review
             // if so, provide some manner of alert, 
             // otherwise, proceed as normal
-            r.json().then(resp_obj => {
-            setDogParks(
-                dogParks.map((eachDP)=>{
-                if (eachDP.id === resp_obj.updated_dog_park.id){
-                    return resp_obj.updated_dog_park
-                } 
-                return eachDP
-                })
-            )
-            }):
-            r.json().then(r => alert(r.message))
-        )
+        })
+        .catch(error => {
+            console.error('Fetch error :', error)
+        })
     }
 
     return (

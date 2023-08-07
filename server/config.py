@@ -31,5 +31,9 @@ bcrypt = Bcrypt(app)
 # Instantiate REST API
 api = Api(app)
 
+# Need to serve backend over https for this to work
+# # Allow for cross-site session cookie
+# app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+
 # Instantiate CORS
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, origins="http://localhost:4000", methods=['POST', 'GET', 'OPTIONS'])

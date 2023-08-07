@@ -32,12 +32,14 @@ function Logging() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch(`http://127.0.0.1:5555/${logIn ? 'login' : 'signup' }`, {
+    fetch(`/${logIn ? 'login' : 'signup' }`, {
       method: "POST",
+      credentials: 'include',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(userFormObject)
     })
       .then(r => {
+        console.log(r)
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs);

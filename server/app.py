@@ -81,13 +81,13 @@ class Login(Resource):
                 ## verified it is a cors issue, sitll can't
                 ## access from frontend, but can access directly
                 ## though backend uri access
-            # session['user_id'] = user.id
-            session['test'] = 'test'
+            session['user_id'] = user.id
+            # session['test'] = 'test'
             resp = make_response(
                 user.to_dict(rules=('dogs','-_password','reviews')),
                 200
             )
-            resp.set_cookie('test', 'test')
+            # resp.set_cookie('test', 'test')
             import ipdb;ipdb.set_trace()
             return resp
         except:

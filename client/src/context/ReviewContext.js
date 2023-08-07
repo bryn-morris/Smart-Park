@@ -18,6 +18,7 @@ function ReviewProvider({children}) {
 
         fetch(`/review_dog_park/${dogParkID}`, {
             method: 'POST',
+            credentials: 'include',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formObject)
         })

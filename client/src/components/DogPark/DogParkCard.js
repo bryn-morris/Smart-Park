@@ -16,6 +16,8 @@ function DogParkCard({eachDogPark}){
   
   const favoritedEntryArray = eachDogPark.favorited.filter((each)=>each.user_id === currentUser.id)
 
+  
+
   //flip cards
   const handleFlip = () => {
       setShowFront(!showFront);

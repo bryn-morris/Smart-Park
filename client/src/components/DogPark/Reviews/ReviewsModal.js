@@ -5,7 +5,7 @@ import Reviews from './Reviews'
 import ReviewEditModal from './ReviewEditModal'
 import {AuthContext} from '../../../context/AuthContext'
 import { DogParkContext } from '../../../context/DogParkContext';
-import { ReviewContext } from '../../../context/ReviewContext';
+
 
 function ReviewModal ({eachDogPark}) {
 
@@ -13,11 +13,30 @@ function ReviewModal ({eachDogPark}) {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-    const [editModalFormObject, setEditModalFormObject] = useState({}) 
+    const [editModalFormObject, setEditModalFormObject] = useState({})
+    const [addReviewDisabled, setAddReviewDisabled] = useState(false) 
 
     const {currentUser} = useContext(AuthContext)
     const {setDogParks, dogParks} = useContext(DogParkContext)
-    const {addReviewDisabled, setAddReviewDisabled} = useContext(ReviewContext)
+
+    // need to tie reviewed parks id to user attribute, and then when
+    // dog parks loads, grey out the add review button based on whether
+    // or not that dog park cards id is in that attribute list
+    
+    // useEffect(()=>{
+    //   fetch(`/review_dog_park/${eachDogPark.id}`)
+    //     .then(r => {
+    //       if (r.status === 409) {
+    //         setAddReviewDisabled(true)
+    //       }
+    //     })
+    // },[eachDogPark, setAddReviewDisabled])
+
+  // if (eachDogPark.reviews.filter(each=>each.user.username === currentUser.username).length === 0) {
+  //   console.log('testing')
+  //   setAddReviewDisabled(true)
+  // }
+
 
     function handleDeleteReview (review_id) {
 
@@ -124,6 +143,7 @@ function ReviewModal ({eachDogPark}) {
                   {modalContent ?
                     <ReviewForm
                       dogParkID = {eachDogPark.id}
+                      setAddReviewDisabled = {setAddReviewDisabled}
                     /> 
                     :
                     reviewComponents()
@@ -131,6 +151,7 @@ function ReviewModal ({eachDogPark}) {
               </Modal.Content>
   
               <Modal.Actions>
+                {/* add tooltip to button showing user can only have one review, and need to edit or delete */}
                   <Button
                     onClick={()=>{setModalContent(!modalContent)}}
                     disabled = {addReviewDisabled && modalContent === false}

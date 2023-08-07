@@ -44,8 +44,8 @@ function DogPark() {
   }
 
   function handleModalClose () {
-  setIsReviewFormRendered(false)
-  setIsDPModalOpen(false)
+    setIsReviewFormRendered(false)
+    setIsDPModalOpen(false)
   }
 
   return (

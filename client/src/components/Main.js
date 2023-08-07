@@ -126,7 +126,6 @@ function Main() {
     createDog: createDog,
   }
 
-
   return (
     <div className='site'>
       <Header/>

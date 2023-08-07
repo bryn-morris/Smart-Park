@@ -20,6 +20,7 @@ function ReviewForm ({ dogParkID}) {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        setAddReviewDisabled(true)
         handleAddReview(formObject, dogParkID)
         setFormObject(emptyFormObj)
         if(isReviewFormRendered) {

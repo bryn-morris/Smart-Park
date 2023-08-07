@@ -61,11 +61,6 @@ class Signup(Resource):
 api.add_resource(Signup, '/signup')
         
 class Login(Resource):
-    # Test code to assess extent of CORS issue with session
-    # import with flask
-    # def get(self):
-    #     session['test'] = 'test'
-    #     return make_response({'test':'test message'})
 
     def post(self):
         try:
@@ -75,20 +70,11 @@ class Login(Resource):
                 User.username == data['username']
             ).first()
             user.authenticate(data['password'])
-            # this particular session instance is not attaching
-            # to the response for some reason...
-            ## CORS issue is still a problem > = [
-                ## verified it is a cors issue, sitll can't
-                ## access from frontend, but can access directly
-                ## though backend uri access
             session['user_id'] = user.id
-            # session['test'] = 'test'
             resp = make_response(
                 user.to_dict(rules=('dogs','-_password','reviews')),
                 200
             )
-            # resp.set_cookie('test', 'test')
-            import ipdb;ipdb.set_trace()
             return resp
         except:
             return {'error': 'Must enter a valid username and password'}, 404
@@ -97,7 +83,6 @@ api.add_resource(Login, '/login')
 
 class Logout(Resource):
     def delete(self):
-        import ipdb; ipdb.set_trace()
         session.pop('user_id', None)
         return session.get('user_id')
         
@@ -328,7 +313,6 @@ def add_review_and_patch_dog_park_rating(id):
         ## access the appropriate session variable, but am not
         ## able to do so from frontend requests. Likely CORS issue
         ## will need to update cors permissions in config.py acccordingly 
-        import ipdb;ipdb.set_trace()
         if Review.query.filter(session['user_id'] == Review.user_id).first():
             return make_response({'error':'duplicate record'}, 409)
 

@@ -23,8 +23,8 @@ function ReviewProvider({children}) {
             body: JSON.stringify(formObject)
         })
         .then(r => {
+            // Shouldn't ever be tripped, but leaving in for functional redundancy
             if (r.status === 409) {
-                alert('You can only submit one review per park!')
                 disableButtonFunc(true)
             } else if (!r.ok) {
                 return r.json().then(r => alert(r.message))

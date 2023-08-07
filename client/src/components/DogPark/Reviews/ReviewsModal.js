@@ -1,6 +1,6 @@
 import { Button, Modal } from 'semantic-ui-react'
 import ReviewForm from './ReviewForm';
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import Reviews from './Reviews'
 import ReviewEditModal from './ReviewEditModal'
 import {AuthContext} from '../../../context/AuthContext'
@@ -23,19 +23,13 @@ function ReviewModal ({eachDogPark}) {
     // dog parks loads, grey out the add review button based on whether
     // or not that dog park cards id is in that attribute list
     
-    // useEffect(()=>{
-    //   fetch(`/review_dog_park/${eachDogPark.id}`)
-    //     .then(r => {
-    //       if (r.status === 409) {
-    //         setAddReviewDisabled(true)
-    //       }
-    //     })
-    // },[eachDogPark, setAddReviewDisabled])
+    useEffect(()=>{
+      if (eachDogPark.reviews.filter(each=>each.user.username === currentUser.username).length !== 0) {
+        setAddReviewDisabled(true)
+      }
+    },[currentUser.username, eachDogPark.reviews])
 
-  // if (eachDogPark.reviews.filter(each=>each.user.username === currentUser.username).length === 0) {
-  //   console.log('testing')
-  //   setAddReviewDisabled(true)
-  // }
+  
 
 
     function handleDeleteReview (review_id) {

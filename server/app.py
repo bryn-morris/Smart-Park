@@ -305,22 +305,11 @@ def add_review_and_patch_dog_park_rating(id):
         try:
             sel_review = Review.query.filter(Review.id == data['id']).one()   
         except:
-            return make_response({'message': 'Review not found in database!'}, 404)
-        
-    # if request.method == 'GET':
-
-    #     sel_user = User.query.filter(session['user_id'] == User.id).one()
-
-    #     if Review.query.filter(db.and_(session['user_id'] == Review.user_id, id == Review.dog_park_id)).first():
-    #         return make_response({'error':'duplicate record'}, 409)
-        
-    #     list_of_rev_dp = [rev.dog_park_id for rev in sel_user.reviews]
-    #     import ipdb;ipdb.set_trace()
-
-    #     return make_response({'message' :'message'}, 200)    
+            return make_response({'message': 'Review not found in database!'}, 404)    
 
     if request.method == 'POST':
        
+        ## Shouldn't ever be tripped, but leaving in for redundancy
         if Review.query.filter(db.and_(session['user_id'] == Review.user_id, id == Review.dog_park_id)).first():
             return make_response({'error':'duplicate record'}, 409)
 

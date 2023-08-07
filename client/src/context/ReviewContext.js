@@ -11,10 +11,12 @@ function ReviewProvider({children}) {
 
     const [isReviewFormRendered, setIsReviewFormRendered] = useState(false)
     const [isDPModalOpen, setIsDPModalOpen] = useState(false)
+    const [addReviewDisabled, setAddReviewDisabled] = useState(false)
 
     function handleAddReview (formObject, dogParkID) {
 
         formObject.user_id = parseInt(currentUser.id);
+        setAddReviewDisabled(true)
 
         fetch(`/review_dog_park/${dogParkID}`, {
             method: 'POST',
@@ -25,6 +27,7 @@ function ReviewProvider({children}) {
         .then(r => {
             if (r.status === 409) {
                 alert('You can only submit one review per park!')
+                setAddReviewDisabled(true)
             } else if (!r.ok) {
                 return r.json().then(r => alert(r.message))
             } else {
@@ -39,11 +42,6 @@ function ReviewProvider({children}) {
                     )
                 })
             }  
-            // if response is okay, check to see if 
-            // response from backend shows that user has
-            // already submitted a review
-            // if so, provide some manner of alert, 
-            // otherwise, proceed as normal
         })
         .catch(error => {
             console.error('Fetch error :', error)
@@ -57,7 +55,9 @@ function ReviewProvider({children}) {
                         isReviewFormRendered,
                         setIsReviewFormRendered,
                         isDPModalOpen,
-                        setIsDPModalOpen
+                        setIsDPModalOpen,
+                        addReviewDisabled,
+                        setAddReviewDisabled
                     }}
         >
             {children}

@@ -5,6 +5,7 @@ import Reviews from './Reviews'
 import ReviewEditModal from './ReviewEditModal'
 import {AuthContext} from '../../../context/AuthContext'
 import { DogParkContext } from '../../../context/DogParkContext';
+import { ReviewContext } from '../../../context/ReviewContext';
 
 function ReviewModal ({eachDogPark}) {
 
@@ -16,6 +17,7 @@ function ReviewModal ({eachDogPark}) {
 
     const {currentUser} = useContext(AuthContext)
     const {setDogParks, dogParks} = useContext(DogParkContext)
+    const {addReviewDisabled, setAddReviewDisabled} = useContext(ReviewContext)
 
     function handleDeleteReview (review_id) {
 
@@ -26,6 +28,7 @@ function ReviewModal ({eachDogPark}) {
       })
         .then(r=> r.ok?
               r.json().then(delete_obj => {
+                setAddReviewDisabled(false)
                 setDogParks(()=>{
                   return dogParks.map((eDP)=>{
                     if (eDP.id === eachDogPark.id){
@@ -130,6 +133,7 @@ function ReviewModal ({eachDogPark}) {
               <Modal.Actions>
                   <Button
                     onClick={()=>{setModalContent(!modalContent)}}
+                    disabled = {addReviewDisabled && modalContent === false}
                   >
                     {modalContent ? 'Read Reviews' : 'Add Review' }
                   </Button>

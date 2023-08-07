@@ -306,18 +306,8 @@ def add_review_and_patch_dog_park_rating(id):
 
     if request.method == 'POST':
        
-        ## check to see if user has already submitted a review
-        ### Check user ID against user ID column in db
-        ### Should have userID stored in session['user_id']
-        ## when accessing the backend port directly, was able to 
-        ## access the appropriate session variable, but am not
-        ## able to do so from frontend requests. Likely CORS issue
-        ## will need to update cors permissions in config.py acccordingly 
-        if Review.query.filter(session['user_id'] == Review.user_id).first():
+        if Review.query.filter(db.and_(session['user_id'] == Review.user_id, id == Review.dog_park_id)).first():
             return make_response({'error':'duplicate record'}, 409)
-
-        ## if so, need to respond with some manner of 
-        ## error code that the frontend can interpret
 
         rating_list = [rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]
         

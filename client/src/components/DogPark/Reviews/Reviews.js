@@ -1,12 +1,14 @@
 import { Button } from 'semantic-ui-react'
 import { AuthContext } from '../../../context/AuthContext'
 import { useContext } from 'react'
+import ReviewDeleteButton from './ReviewDeleteButton.js'
 
 function Reviews({
-  review, 
-  handleDeleteReview,
+  review,
   setIsEditModalOpen,
   setEditModalFormObject,
+  eachDogPark,
+  setAddReviewDisabled,
 }) {
 
   const { currentUser } = useContext(AuthContext)
@@ -28,9 +30,11 @@ function Reviews({
         <div>
           {review.user.username === currentUser.username ?
             <div>
-              <Button onClick = {() => {handleDeleteReview(review.id)}}>
-                Delete(AddIconLater)
-              </Button>
+              <ReviewDeleteButton 
+                eachDogPark = {eachDogPark}
+                review = {review}
+                setAddReviewDisabled = {setAddReviewDisabled}
+              />
               <Button onClick = {passUpEditData}>
                 Edit(AddIconLater)
               </Button>

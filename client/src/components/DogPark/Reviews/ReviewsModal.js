@@ -25,41 +25,6 @@ function ReviewModal ({eachDogPark}) {
       }
     },[currentUser.username, eachDogPark.reviews])
 
-  
-
-
-    function handleDeleteReview (review_id) {
-
-      fetch(`/review_dog_park/${eachDogPark.id}`, {
-        method : 'DELETE',
-        headers : {"Content-Type": "application/json"},
-        body: JSON.stringify({id: review_id}) 
-      })
-        .then(r=> r.ok?
-              r.json().then(delete_obj => {
-                setAddReviewDisabled(false)
-                setDogParks(()=>{
-                  return dogParks.map((eDP)=>{
-                    if (eDP.id === eachDogPark.id){
-                      // remove review from selected dog park
-                        eDP.reviews = eachDogPark.reviews.filter((eachReview)=>{
-                          return eachReview.id !== review_id
-                        })
-                      // update rating of dog park
-                      if (delete_obj.new_dp_avg_rating){
-                        eDP.rating = delete_obj.new_dp_avg_rating
-                      } else {
-                        eDP.rating = null
-                      }                      
-                    } 
-                    return eDP
-                  })
-                })
-              })
-            :
-              r.json().then(resp => alert(resp.message))
-          )
-    }
 
     function handleSubmitEdit () {
       setIsEditModalOpen(false)
@@ -101,11 +66,12 @@ function ReviewModal ({eachDogPark}) {
       } else {
         return (
           eachDogPark.reviews.map(review => <Reviews 
-            key={review.id} 
+            key={review.id}
+            eachDogPark = {eachDogPark} 
             review = {review}
-            handleDeleteReview = {handleDeleteReview}
             setIsEditModalOpen = {setIsEditModalOpen}
             setEditModalFormObject= {setEditModalFormObject}
+            setAddReviewDisabled = {setAddReviewDisabled}
           />)
           )}
     }
@@ -117,6 +83,8 @@ function ReviewModal ({eachDogPark}) {
       handleSubmitEdit: handleSubmitEdit,
       setEditModalFormObject: setEditModalFormObject,
     }
+
+    const tooltipText = 'Only one review per park! Please either edit or delete your current'
 
     return (
         <div>
@@ -144,8 +112,9 @@ function ReviewModal ({eachDogPark}) {
               <Modal.Actions>
                 {/* add tooltip to button showing user can only have one review, and need to edit or delete */}
                   <Popup
-                    content = 'testing'
+                    content = {tooltipText}
                     trigger = {
+                      // fix blinking behavior when cursor is between text and edge of button
                       <span>
                         <Button
                           onClick={()=>{setModalContent(!modalContent)}}
@@ -155,8 +124,7 @@ function ReviewModal ({eachDogPark}) {
                         </Button>
                       </span>  
                     }
-                    // fix behavior
-                    disabled = {!addReviewDisabled && modalContent === true}
+                    disabled = {!addReviewDisabled}
                     position='top center'
                   />
                   

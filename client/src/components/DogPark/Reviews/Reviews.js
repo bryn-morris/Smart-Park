@@ -1,7 +1,7 @@
-import { Button } from 'semantic-ui-react'
 import { AuthContext } from '../../../context/AuthContext'
 import { useContext } from 'react'
 import ReviewDeleteButton from './ReviewDeleteButton.js'
+import ReviewEditButton from './ReviewEditButton'
 
 function Reviews({
   review,
@@ -13,15 +13,10 @@ function Reviews({
 
   const { currentUser } = useContext(AuthContext)
 
-  function passUpEditData () {
-
-    setEditModalFormObject({
-      comment: review.comment,
-      rating: review.rating,
-      id: review.id,
-    })
-
-    setIsEditModalOpen(true)
+  const editButtonPropsObj = {
+    setEditModalFormObject: setEditModalFormObject,
+    review: review,
+    setIsEditModalOpen: setIsEditModalOpen,
   }
 
     return (
@@ -35,9 +30,9 @@ function Reviews({
                 review = {review}
                 setAddReviewDisabled = {setAddReviewDisabled}
               />
-              <Button onClick = {passUpEditData}>
-                Edit(AddIconLater)
-              </Button>
+              <ReviewEditButton 
+                {...editButtonPropsObj}
+              />
             </div>
             :
             null

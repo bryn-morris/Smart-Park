@@ -3,8 +3,7 @@ import ReviewForm from './ReviewForm';
 import {useState, useContext, useEffect} from 'react';
 import Reviews from './Reviews'
 import ReviewEditModal from './ReviewEditModal'
-import {AuthContext} from '../../../context/AuthContext'
-import { DogParkContext } from '../../../context/DogParkContext';
+import {AuthContext} from '../../../context/AuthContext';
 
 
 function ReviewModal ({eachDogPark}) {
@@ -17,43 +16,12 @@ function ReviewModal ({eachDogPark}) {
     const [addReviewDisabled, setAddReviewDisabled] = useState(false) 
 
     const {currentUser} = useContext(AuthContext)
-    const {setDogParks, dogParks} = useContext(DogParkContext)
     
     useEffect(()=>{
       if (eachDogPark.reviews.filter(each=>each.user.username === currentUser.username).length !== 0) {
         setAddReviewDisabled(true)
       }
     },[currentUser.username, eachDogPark.reviews])
-
-
-    function handleSubmitEdit () {
-      setIsEditModalOpen(false)
-
-      editModalFormObject.user_id = parseInt(currentUser.id);
-      
-      fetch(`/review_dog_park/${eachDogPark.id}`, {
-        method: 'PATCH',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(editModalFormObject)
-      })
-        .then( r=>{
-          if (r.ok){
-            r.json().then(resp_obj => {
-                setDogParks(
-                  dogParks.map(eachDP=>{
-                    if (eachDP.id === resp_obj.updated_dog_park.id){
-                      return resp_obj.updated_dog_park
-                    } 
-                    return eachDP
-                  })
-                )
-              })
-            }
-          else {
-            r.json().then(resp => alert(resp.message))
-          }
-        })
-    }
 
     const handleModalClose = (e) => {
       setModalContent(false)
@@ -80,8 +48,8 @@ function ReviewModal ({eachDogPark}) {
       isEditModalOpen: isEditModalOpen,
       setIsEditModalOpen: setIsEditModalOpen,
       editModalFormObject: editModalFormObject,
-      handleSubmitEdit: handleSubmitEdit,
       setEditModalFormObject: setEditModalFormObject,
+      eachDogPark: eachDogPark
     }
 
     const tooltipText = 'Only one review per park! Please either edit or delete your current'

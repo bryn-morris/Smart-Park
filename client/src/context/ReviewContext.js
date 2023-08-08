@@ -12,7 +12,7 @@ function ReviewProvider({children}) {
     const [isReviewFormRendered, setIsReviewFormRendered] = useState(false)
     const [isDPModalOpen, setIsDPModalOpen] = useState(false)
 
-    function handleAddReview (formObject, dogParkID, disableButtonFunc) {
+    function handleAddReview (formObject, dogParkID, disableButtonFunc, modalContextFunc) {
         
         formObject.user_id = parseInt(currentUser.id);
 
@@ -26,10 +26,12 @@ function ReviewProvider({children}) {
             // Shouldn't ever be tripped, but leaving in for functional redundancy
             if (r.status === 409) {
                 disableButtonFunc(true)
+                modalContextFunc(false)
             } else if (!r.ok) {
                 return r.json().then(r => alert(r.message))
             } else {
                 r.json().then(resp_obj => {
+                    modalContextFunc(false)
                     setDogParks(
                         dogParks.map((eachDP)=>{
                         if (eachDP.id === resp_obj.updated_dog_park.id){

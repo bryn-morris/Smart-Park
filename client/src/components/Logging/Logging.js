@@ -40,7 +40,6 @@ function Logging() {
     })
       .then(r => {
         if (r.ok) {return r.json().then(user=>{
-          console.log(user)
           setCurrentUser(user);
           setDogs(user.dogs);
           history.push("/");

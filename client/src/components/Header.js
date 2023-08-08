@@ -10,7 +10,7 @@ function Header() {
   const { setDogParks } = useContext(DogParkContext)
 
   function logOut() {
-    fetch('/logout', {method:"DELETE",}).then(console.log("successfully logged out"))
+    fetch('/logout', {method:"DELETE",})
     setCurrentUser(null)
     setDogParks([])
   }

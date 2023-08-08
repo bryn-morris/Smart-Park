@@ -2,7 +2,7 @@ import {useContext, useState} from "react";
 import {Form, Input, TextArea} from 'semantic-ui-react'
 import { ReviewContext } from "../../../context/ReviewContext";
 
-function ReviewForm ({ dogParkID, setAddReviewDisabled}) {
+function ReviewForm ({ dogParkID, setAddReviewDisabled, setModalContent}) {
 
     const emptyFormObj = {
         comment: '',
@@ -20,7 +20,7 @@ function ReviewForm ({ dogParkID, setAddReviewDisabled}) {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        handleAddReview(formObject, dogParkID, setAddReviewDisabled)
+        handleAddReview(formObject, dogParkID, setAddReviewDisabled, setModalContent)
         setFormObject(emptyFormObj)
         if(isReviewFormRendered) {
             setIsReviewFormRendered(false)

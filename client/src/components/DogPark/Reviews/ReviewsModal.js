@@ -1,4 +1,4 @@
-import { Button, Modal } from 'semantic-ui-react'
+import { Button, Modal, Popup } from 'semantic-ui-react'
 import ReviewForm from './ReviewForm';
 import {useState, useContext, useEffect} from 'react';
 import Reviews from './Reviews'
@@ -18,10 +18,6 @@ function ReviewModal ({eachDogPark}) {
 
     const {currentUser} = useContext(AuthContext)
     const {setDogParks, dogParks} = useContext(DogParkContext)
-
-    // need to tie reviewed parks id to user attribute, and then when
-    // dog parks loads, grey out the add review button based on whether
-    // or not that dog park cards id is in that attribute list
     
     useEffect(()=>{
       if (eachDogPark.reviews.filter(each=>each.user.username === currentUser.username).length !== 0) {
@@ -137,6 +133,7 @@ function ReviewModal ({eachDogPark}) {
                   {modalContent ?
                     <ReviewForm
                       dogParkID = {eachDogPark.id}
+                      setModalContent = {setModalContent}
                       setAddReviewDisabled = {setAddReviewDisabled}
                     /> 
                     :
@@ -146,16 +143,29 @@ function ReviewModal ({eachDogPark}) {
   
               <Modal.Actions>
                 {/* add tooltip to button showing user can only have one review, and need to edit or delete */}
-                  <Button
-                    onClick={()=>{setModalContent(!modalContent)}}
-                    disabled = {addReviewDisabled && modalContent === false}
-                  >
-                    {modalContent ? 'Read Reviews' : 'Add Review' }
-                  </Button>
+                  <Popup
+                    content = 'testing'
+                    trigger = {
+                      <span>
+                        <Button
+                          onClick={()=>{setModalContent(!modalContent)}}
+                          disabled = {addReviewDisabled && modalContent === false}
+                        >
+                          {modalContent ? 'Read Reviews' : 'Add Review' }
+                        </Button>
+                      </span>  
+                    }
+                    // fix behavior
+                    disabled = {!addReviewDisabled && modalContent === true}
+                    position='top center'
+                  />
+                  
+                  
                   {modalContent ?
                   <Button
                     form = "reviewForm"
                     type = "submit"
+                    disabled = {addReviewDisabled}
                   >Submit
                   </Button> :
                   null }

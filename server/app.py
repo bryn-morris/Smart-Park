@@ -53,8 +53,18 @@ class Signup(Resource):
             )
             db.session.add(new_user)
             db.session.commit()
+
+            user = User.query.filter(
+                User.username == data['username']
+            ).first()
+
+            session['user_id'] = user.id
+            session['admin'] = user.admin
+
+            import ipdb;ipdb.set_trace()
+            
         except:
-            return {'error': 'Must enter a valid username, password, and url'}, 404
+            return {'error': 'Must enter a valid username, password, and url'}, 401
         return make_response(
             new_user.to_dict(rules=('dogs','-_password',)),
             200
@@ -71,7 +81,11 @@ class Login(Resource):
                 User.username == data['username']
             ).first()
             user.authenticate(data['password'])
+
+
             session['user_id'] = user.id
+            session['admin'] = user.admin
+
             resp = make_response(
                 user.to_dict(rules=('dogs','-_password','reviews','-favorited')),
                 200

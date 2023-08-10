@@ -44,11 +44,12 @@ class Signup(Resource):
     def post(self):
         try:
             data = request.get_json()
-         
+      
             new_user = User(
                 username = data['username'],
                 image = data['image'],
-                password = data['password']
+                password = data['password'],
+                admin = 0
             )
             db.session.add(new_user)
             db.session.commit()

@@ -80,6 +80,7 @@ function ReviewModal ({eachDogPark}) {
               <Modal.Actions>
                 {/* add tooltip to button showing user can only have one review, and need to edit or delete */}
                   <Popup
+                  // nest editreviewbutton and deletereviewbutton in popup
                     content = {tooltipText}
                     trigger = {
                       // fix blinking behavior when cursor is between text and edge of button

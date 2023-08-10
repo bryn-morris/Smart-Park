@@ -27,10 +27,10 @@ with app.app_context():
 
     print("Creating Users...")
 
-    u1 = User( username= 'beau_the_wizrd',  password= 'password', image = 'https://t3.ftcdn.net/jpg/02/47/26/12/360_F_247261221_eGirP3pgZpNU8RY3yRG1qEslnRkNGKCk.jpg')
-    u2 = User( username= 'bryn_the_wizrd',  password= 'password', image = 'https://i.pinimg.com/originals/92/a2/27/92a2274106026911bfb86ba6763fd921.jpg')
-    u3 = User( username= 'damon_the_wizrd',  password= 'password', image = 'https://static.vecteezy.com/system/resources/previews/002/007/779/original/cool-cartoon-wizard-vector.jpg')
-    u4 = User( username= 'mads_the_wizrd',  password= 'password', image = 'https://www.kindpng.com/picc/m/732-7323240_how-to-wizard-robes-cartoon-hd-png-download.png')
+    u1 = User( username= 'beau_the_wizrd',  password= 'password', admin = False, image = 'https://t3.ftcdn.net/jpg/02/47/26/12/360_F_247261221_eGirP3pgZpNU8RY3yRG1qEslnRkNGKCk.jpg')
+    u2 = User( username= 'bryn_the_wizrd',  password= 'password', admin = True, image = 'https://i.pinimg.com/originals/92/a2/27/92a2274106026911bfb86ba6763fd921.jpg')
+    u3 = User( username= 'damon_the_wizrd',  password= 'password', admin = False, image = 'https://static.vecteezy.com/system/resources/previews/002/007/779/original/cool-cartoon-wizard-vector.jpg')
+    u4 = User( username= 'mads_the_wizrd',  password= 'password', admin = False, image = 'https://www.kindpng.com/picc/m/732-7323240_how-to-wizard-robes-cartoon-hd-png-download.png')
 
 
     # users_list = [User( username= faker.user_name(),  _password= faker.word(), image = faker.image_url()) for _ in range(1,5)]

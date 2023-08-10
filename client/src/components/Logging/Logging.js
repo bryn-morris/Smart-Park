@@ -16,7 +16,7 @@ function Logging() {
   const emptyFormObject = 
     logIn ? 
       { username:"", password:""}:
-      { username:"", password:"", image:""}
+      { username:"", password:"", image:"", admin:""}
   
   const [userFormObject, setUserFormObject] = useState(emptyFormObject)
   const [isPasswordVisible, setIsPasswordVisible] =useState(false)
@@ -32,6 +32,7 @@ function Logging() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     fetch(`/${logIn ? 'login' : 'signup' }`, {
       method: "POST",
       credentials: 'include',
@@ -74,6 +75,8 @@ function Logging() {
       </div>
     )
   }
+
+  console.log(currentUser)
 
   return (
     currentUser ?

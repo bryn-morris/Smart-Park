@@ -76,8 +76,6 @@ function Logging() {
     )
   }
 
-  console.log(currentUser)
-
   return (
     currentUser ?
       <main>

@@ -73,14 +73,18 @@ function DogParkCard({eachDogPark}){
         name={favoritedEntryArray.length > 0 ? 'heart' : "heart outline"} 
         onClick = {handleFavorite}
       />
-      <Icon
-        name = 'delete'
-        onClick = {handleDelete}
-      />
-      <Icon
-        name = 'edit'
-        onClick = {handleEdit}
-      />
+      {currentUser.admin ?
+        <Icon
+          name = 'delete'
+          onClick = {handleDelete}
+        />: 
+        null}
+      {currentUser.admin ?
+        <Icon
+          name = 'edit'
+          onClick = {handleEdit}
+        /> :
+        null}
       <div onClick={handleFlip}>
         <h1 className="dpc Name">{eachDogPark.name}</h1>
         

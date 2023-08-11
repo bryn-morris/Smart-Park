@@ -44,7 +44,6 @@ def Admin_Authentication_Decorator(func):
 
     def wrapper_func(*args, **kwargs):
         sel_user = User.query.filter(session['user_id']==User.id).one()
-        import ipdb;ipdb.set_trace()
 
         if sel_user.admin==False:
             return make_response({"error": "Authentication failed - User is not admin"},401)

@@ -16,7 +16,7 @@ function Logging() {
   const emptyFormObject = 
     logIn ? 
       { username:"", password:""}:
-      { username:"", password:"", image:"", admin:""}
+      { username:"", password:"", image:"",}
   
   const [userFormObject, setUserFormObject] = useState(emptyFormObject)
   const [isPasswordVisible, setIsPasswordVisible] =useState(false)

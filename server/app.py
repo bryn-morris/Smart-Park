@@ -36,6 +36,23 @@ from models import User, Dog, Visit, Dog_Park, Review, Favorited
 #         )
 # api.add_resource(UserById, '/users/<int:id>')
 
+#######################################################
+###########        Authentication Wrapper
+#######################################################
+
+def Admin_Authentication_Decorator(func):
+
+    def wrapper_func(*args, **kwargs):
+        sel_user = User.query.filter(session['user_id']==User.id).one()
+        import ipdb;ipdb.set_trace()
+
+        if sel_user.admin==False:
+            return make_response({"error": "Authentication failed - User is not admin"},401)
+
+        return func(*args, **kwargs)
+
+    return wrapper_func
+
 ############################################################
 #########               Authentication
 ############################################################
@@ -48,8 +65,7 @@ class Signup(Resource):
             new_user = User(
                 username = data['username'],
                 image = data['image'],
-                password = data['password'],
-                admin = 0
+                password = data['password']
             )
             db.session.add(new_user)
             db.session.commit()
@@ -59,7 +75,6 @@ class Signup(Resource):
             ).first()
 
             session['user_id'] = user.id
-            session['admin'] = user.admin
 
             import ipdb;ipdb.set_trace()
             
@@ -82,9 +97,7 @@ class Login(Resource):
             ).first()
             user.authenticate(data['password'])
 
-
             session['user_id'] = user.id
-            session['admin'] = user.admin
 
             resp = make_response(
                 user.to_dict(rules=('dogs','-_password','reviews','-favorited')),
@@ -102,6 +115,8 @@ class Logout(Resource):
         return session.get('user_id')
         
 api.add_resource(Logout, '/logout')
+
+
 
 ############################################################
 #########
@@ -130,6 +145,7 @@ class Dog_Parks(Resource):
 
         return make_response(dog_parks, 200)
     
+    @Admin_Authentication_Decorator
     def post(self):
 
         try:
@@ -149,7 +165,9 @@ class Dog_Parks(Resource):
     
 api.add_resource(Dog_Parks, '/dogparks')
 
+
 @app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'])
+@Admin_Authentication_Decorator
 def dog_park_by_id(id):
 
     try:

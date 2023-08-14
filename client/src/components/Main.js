@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home/Home";
-import Header from "./Header";
+import Header from "./Header/Header";
 import DogPark from "./DogPark/DogPark";
 import MyAccount from "./MyAccount/MyAccount";
 import { DogContext } from '../context/DogContext';

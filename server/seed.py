@@ -10,7 +10,7 @@ from faker import Faker
 from app import app
 from models import db
 
-from models import db, User, Dog, Visit, Dog_Park, Review, Favorited
+from models import db, User, Dog, Visit, Dog_Park, Review, Favorited, Friends
 
 with app.app_context():
 
@@ -84,6 +84,13 @@ with app.app_context():
     f5 = Favorited(dog_park=dp3, user = u4)
     f6 = Favorited(dog_park=dp1, user = u2)
     f7 = Favorited(dog_park=dp4, user = u2)
+
+    print("Creating Friendships...")
+
+    fr1 = Friends(user1=u2, user2 = u3)
+    fr2 = Friends(user1=u2, user2 = u1)
+    fr3 = Friends(user1=u3, user2 = u4)
+    fr4 = Friends(user1=u4, user2 = u1)
     
 
     db.session.add_all([d1, d2, d3, d4, d5])
@@ -91,6 +98,8 @@ with app.app_context():
     db.session.add_all([v1, v2, v3, v4])
     db.session.add_all([dp1, dp2, dp3, dp4, dp5])
     db.session.add_all([r1,r2,r3,r4,r5])
+    db.session.add_all([f1,f2,f3,f4,f5,f6,f7])
+    db.session.add_all([fr1,fr2,fr3,fr4])
     
     db.session.commit()
 

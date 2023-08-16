@@ -21,14 +21,21 @@ class User(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
-
     dogs = db.relationship('Dog', back_populates = 'user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates = 'user', cascade = "all, delete-orphan")
     
     favorited = db.relationship('Favorited', back_populates = 'user', cascade = "all, delete-orphan")
     favorited_parks = association_proxy('favorited', 'dog_park')
 
+    # Test this with seed file
 
+    # friends = db.relationship("User",
+    #                           secondary = 'friends',
+    #                           primaryjoin = "Friends.friend_1_id",
+    #                           secondaryjoin = "Friends.friend_2_id ")
+
+    friend_users_1 = db.relationship("Friends", back_populates = "user1", foreign_keys = "[Friends.friend_1_id]")
+    friend_users_2 = db.relationship("Friends", back_populates = "user2", foreign_keys = "[Friends.friend_1_id]")
     ## Instance Methods
 
     def add_favorite_park(self, user):
@@ -40,8 +47,8 @@ class User(db.Model, SerializerMixin):
     def remove_favorite_park(self, user):
         if len(self.favorited.filter(Favorited.dog_park_id == user.id)) > 0:
             self.favorited.remove(user)
+            
     ##Password Validations
-
     
     @hybrid_property
     def password(self):
@@ -178,3 +185,16 @@ class Favorited(db.Model, SerializerMixin):
 
     user = db.relationship('User', back_populates = 'favorited')
     dog_park = db.relationship('Dog_Park', back_populates = 'favorited')
+
+class Friends(db.Model, SerializerMixin):
+
+    __tablename__ = 'friends'
+
+    serialize_rules = ('',)
+
+    id = db.Column(db.Integer, primary_key = True)
+    friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    friend_2_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    user1 = db.relationship('User', foreign_keys=[friend_1_id], back_populates='friend_users_1')
+    user2 = db.relationship('User', foreign_keys=[friend_2_id], back_populates='friend_users_2')

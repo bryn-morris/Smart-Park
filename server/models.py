@@ -29,14 +29,20 @@ class User(db.Model, SerializerMixin):
 
     # Test this with seed file
 
-    # friends = db.relationship("User",
-    #                           secondary = 'friends',
-    #                           primaryjoin = "Friends.friend_1_id",
-    #                           secondaryjoin = "Friends.friend_2_id ")
-
     friend_users_1 = db.relationship("Friends", back_populates = "user1", foreign_keys = "[Friends.friend_1_id]")
     friend_users_2 = db.relationship("Friends", back_populates = "user2", foreign_keys = "[Friends.friend_1_id]")
     ## Instance Methods
+
+    ## This doesn't work yet, remap to use the friend_users_1 and 2 attributes
+    def all_friends(self):
+
+        friends_list = []
+
+        for friend in self.friend_users_1:
+            if friend.user1 != self:
+                friends_list.append(friend.user1)
+            elif friend.user2 != self and friend.user2 not in friends_list:
+                friends_list.append(friend.user2)
 
     def add_favorite_park(self, user):
         ## check to see if this entry already exists in db

@@ -6,11 +6,24 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from config import db, bcrypt
 
+class Friends(db.Model, SerializerMixin):
+
+    __tablename__ = 'friends'
+
+    serialize_rules = ('',)
+
+    id = db.Column(db.Integer, primary_key = True)
+    friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    friend_2_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    # user1 = db.relationship('User', foreign_keys=[friend_1_id], back_populates='friend_users_1')
+    # user2 = db.relationship('User', foreign_keys=[friend_2_id], back_populates='friend_users_2')
+
 class User(db.Model, SerializerMixin):
 
     __tablename__ = 'users'
 
-    serialize_rules = ('-dogs', '-created_at','-updated_at', '-reviews',)
+    serialize_rules = ('-dogs', '-created_at','-updated_at', '-reviews','-friends',)
 
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String)
@@ -27,22 +40,11 @@ class User(db.Model, SerializerMixin):
     favorited = db.relationship('Favorited', back_populates = 'user', cascade = "all, delete-orphan")
     favorited_parks = association_proxy('favorited', 'dog_park')
 
-    # Test this with seed file
-
-    friend_users_1 = db.relationship("Friends", back_populates = "user1", foreign_keys = "[Friends.friend_1_id]")
-    friend_users_2 = db.relationship("Friends", back_populates = "user2", foreign_keys = "[Friends.friend_1_id]")
-    ## Instance Methods
-
-    ## This doesn't work yet, remap to use the friend_users_1 and 2 attributes
-    def all_friends(self):
-
-        friends_list = []
-
-        for friend in self.friend_users_1:
-            if friend.user1 != self:
-                friends_list.append(friend.user1)
-            elif friend.user2 != self and friend.user2 not in friends_list:
-                friends_list.append(friend.user2)
+    friends = db.relationship('User',
+                              secondary = 'friends',
+                              primaryjoin = 'Friends.friend_1_id == User.id',
+                              secondaryjoin = 'Friends.friend_2_id == User.id',
+                              )
 
     def add_favorite_park(self, user):
         ## check to see if this entry already exists in db
@@ -191,16 +193,3 @@ class Favorited(db.Model, SerializerMixin):
 
     user = db.relationship('User', back_populates = 'favorited')
     dog_park = db.relationship('Dog_Park', back_populates = 'favorited')
-
-class Friends(db.Model, SerializerMixin):
-
-    __tablename__ = 'friends'
-
-    serialize_rules = ('',)
-
-    id = db.Column(db.Integer, primary_key = True)
-    friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    friend_2_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-    user1 = db.relationship('User', foreign_keys=[friend_1_id], back_populates='friend_users_1')
-    user2 = db.relationship('User', foreign_keys=[friend_2_id], back_populates='friend_users_2')

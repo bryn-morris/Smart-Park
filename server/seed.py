@@ -87,10 +87,10 @@ with app.app_context():
 
     print("Creating Friendships...")
 
-    fr1 = Friends(user1=u2, user2 = u3)
-    fr2 = Friends(user1=u2, user2 = u1)
-    fr3 = Friends(user1=u3, user2 = u4)
-    fr4 = Friends(user1=u4, user2 = u1)
+    fr1 = Friends(friend_1_id=2, friend_2_id = 3)
+    fr2 = Friends(friend_1_id=1, friend_2_id = 2)
+    fr3 = Friends(friend_1_id=3, friend_2_id = 4)
+    fr4 = Friends(friend_1_id=4, friend_2_id = 1)
     
 
     db.session.add_all([d1, d2, d3, d4, d5])

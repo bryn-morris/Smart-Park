@@ -103,9 +103,9 @@ class Login(Resource):
             user.authenticate(data['password'])
 
             session['user_id'] = user.id
-
+            import ipdb;ipdb.set_trace()
             resp = make_response(
-                user.to_dict(rules=('dogs','-_password','reviews','-favorited')),
+                user.to_dict(rules=('dogs','-_password','reviews','-favorited', 'friends')),
                 200
             )
             return resp

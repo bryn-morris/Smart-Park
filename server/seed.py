@@ -24,6 +24,7 @@ with app.app_context():
     Dog_Park.query.delete()
     Review.query.delete()
     Favorited.query.delete()
+    Friends.query.delete()
 
     print("Creating Users...")
 

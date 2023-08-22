@@ -23,7 +23,7 @@ class User(db.Model, SerializerMixin):
 
     __tablename__ = 'users'
 
-    serialize_rules = ('-dogs', '-created_at','-updated_at', '-reviews','-friends',)
+    serialize_rules = ('-dogs', '-created_at','-updated_at', '-reviews',)
 
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String)
@@ -40,11 +40,25 @@ class User(db.Model, SerializerMixin):
     favorited = db.relationship('Favorited', back_populates = 'user', cascade = "all, delete-orphan")
     favorited_parks = association_proxy('favorited', 'dog_park')
 
-    friends = db.relationship('User',
+    # establishing bi-directionality, will call all friends with instance method
+    friends_1 = db.relationship('User',
                               secondary = 'friends',
                               primaryjoin = 'Friends.friend_1_id == User.id',
                               secondaryjoin = 'Friends.friend_2_id == User.id',
-                              )
+                              back_populates = 'friends_2',
+                              lazy = 'dynamic'
+                            )
+    friends_2 = db.relationship('User',
+                              secondary = 'friends',
+                              primaryjoin = 'Friends.friend_2_id == User.id',
+                              secondaryjoin = 'Friends.friend_1_id == User.id',
+                              back_populates = 'friends_1',
+                              lazy = 'dynamic'
+                            )
+    
+    def all_friends(self):
+        return self.friends_1.all() + self.friends_2.all()
+
 
     def add_favorite_park(self, user):
         ## check to see if this entry already exists in db

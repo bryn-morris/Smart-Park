@@ -1,252 +1,252 @@
-// .site {
-//     position: absolute;
-//     height: 100%;
-//     width: 100%;
+.site {
+    position: absolute;
+    height: 100%;
+    width: 100%;
 
-//     .Content {
-//         top: 4%;
-//     }
-// }
+    .Content {
+        top: 4%;
+    }
+}
 
-// /////////////////////////////////////////////////
-// ///                LogIn Screen
-// /////////////////////////////////////////////////
+/////////////////////////////////////////////////
+///                LogIn Screen
+/////////////////////////////////////////////////
 
-// /////////////////////////////////////////////////
-// ///                 Home Screen
-// /////////////////////////////////////////////////
+/////////////////////////////////////////////////
+///                 Home Screen
+/////////////////////////////////////////////////
 
-// .home {
-//     width: 100%;
-//     position: relative;
-//     height: 100%;
+.home {
+    width: 100%;
+    position: relative;
+    height: 100%;
 
-//     .Header {
-//         position: absolute;
-//         font-size: 300px;
-//         text-align: center;
-//         margin-top: 100px;
-//         font-family: Tahoma;
-//         font-weight: 700;
-//         top: 40%;
-//         height: auto;
-//     }
-// }
+    .Header {
+        position: absolute;
+        font-size: 300px;
+        text-align: center;
+        margin-top: 100px;
+        font-family: Tahoma;
+        font-weight: 700;
+        top: 40%;
+        height: auto;
+    }
+}
 
-// //////////////////// Check In ////////////////////
+//////////////////// Check In ////////////////////
 
-// .checkInmodalContainer {
-//     position: fixed ;
-//     height: 20%;
-//     width: 20%;
-//     border: 2px;
-//     border-color: blue;
-//     top: 25%;
-//     left: 45%;
-// }
+.checkInmodalContainer {
+    position: fixed ;
+    height: 20%;
+    width: 20%;
+    border: 2px;
+    border-color: blue;
+    top: 25%;
+    left: 45%;
+}
 
-// .checkInText{
-//   position:fixed;
-//   top:50%;
-//   right:15%;
+.checkInText{
+  position:fixed;
+  top:50%;
+  right:15%;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 200px;
+}
+
+@mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {
+  position: absolute;
+  height: $height;
+  width: $width;
+  text-align: center;
+  left: $left;
+  top: $top;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) #{$transform};
+  opacity: 0;
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+@for $i from 1 to 5 {
+    #checkInFeature#{$i} {
+        @if $i == 1 {
+            @include checkInIconStyle(100%, 100%, 0%, 15%, rotate(10deg))
+        } @else if $i == 2 {
+            @include checkInIconStyle(100%, 100%, 10%, 25%, rotate(20deg))
+        } @else if $i == 3 {
+            @include checkInIconStyle(40%, 25%, 24%, 4%, rotate(-20deg))
+        } @else if $i == 4 {
+            @include checkInIconStyle(50%, 25%, 5%, 30%, rotate(-37deg), table-cell, bottom)
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+//////////////////// Dog Paw ////////////////////
+
+@mixin pawIconStyle($transform, $left, $bottom: null, $color: null, $z-index: null ) {
+    position: absolute;
+    transform: $transform;
+    left : $left;
+    bottom: $bottom;
+    color: $color;
+    z-index: $z-index;
+}
+
+@for $i from 1 to 14 {
+    .dogPawIcon#{$i} {
+        @if $i == 1 {
+            @include pawIconStyle(scale(3),40%)
+        } @else if $i == 2 {
+            @include pawIconStyle(rotate(55deg),0%,15%)
+        } @else if $i == 3 {
+            @include pawIconStyle(rotate(50deg),10%,16%)
+        } @else if $i == 4 {
+            @include pawIconStyle(rotate(40deg),14%,29%)
+        } @else if $i == 5 {
+            @include pawIconStyle(rotate(30deg),25%,32%)
+        } @else if $i == 6 {
+            @include pawIconStyle(rotate(28deg),22%,48%, green)
+        } @else if $i == 7 {
+            @include pawIconStyle(rotate(20deg),34%,50%, green)
+        } @else if $i == 8 {
+            @include pawIconStyle(rotate(25deg),30%,62%)
+        } @else if $i == 9 {
+            @include pawIconStyle(rotate(30deg),40%,68%, $z-index: 3)
+        } @else if $i == 10 {
+            @include pawIconStyle(rotate(30deg),38%,83%, $z-index: 3)
+        } @else if $i == 11 {
+            @include pawIconStyle(rotate(20deg),48%,84%, $z-index: 3)
+        } @else if $i == 12 {
+            @include pawIconStyle(rotate(15deg),46%,97%, green, 3)
+        } @else if $i == 13 {
+            @include pawIconStyle(rotate(40deg),95%,40%, green, 3)
+        }
+    }
+}
+
+/////////////////////////////////////////////////
+///               Dog Parks Screen
+/////////////////////////////////////////////////
+
+.dpc {
+    margin-bottom: 10px;
+
+    .Name {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .Img {
+        max-width: 100%;
+        height: 500px;
+        display: block;
+        margin: 0 auto;
+    }
+    .Container {
+        height: 650px;
+        border: 3px solid black;
+        padding: 20px;
+    }
+}
+
+.dog-parks-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+
+// .dptitle{
 //   font-size: 30px;
+//   text-align: center
+// }
+
+// .dpHeader{
+//     font-size: 50px;
+//     margin: 25px;
+//     text-align: center;
+//     margin-top: 100px;
+//     font-family: Tahoma;
+//     font-weight: 700;
+// }
+
+/////////////////////////////////////////////////
+///               About Us Screen
+/////////////////////////////////////////////////
+
+.about {
+    .Text {
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+        padding: 50px;
+    }
+    .Img {
+        max-width: 100%;
+        height: 550px;
+        margin-bottom: 10px;
+        display: block;
+        margin: 0 auto;
+    }
+    .footer{
+        text-align: center;
+        padding:10px;
+    }
+    .dog-bone-button {
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4spXO4VkbttJgT75qnhruHkdPudkAti-aAXpZholErhvZme8t0QGxzPXSrj--HRkZ1NE&usqp=CAU');
+        background-size: 150px;
+        background-repeat: no-repeat;
+        border: none;
+        width: 150px;
+        height: 70px;
+        cursor: pointer;
+    }
+}
+
+/////////////////////////////////////////////////
+///                Account Screen
+/////////////////////////////////////////////////
+
+/// .accountHeader{
+//   font-size: 50px;
+//   margin: 25px;
+//   text-align: left;
+//   margin-top: 100px;
 //   font-family: Tahoma;
 //   font-weight: 700;
-//   text-align: center;
-//   margin-top: 200px;
 // }
 
-// @mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {
+// .myAcctBack{
 //   position: absolute;
-//   height: $height;
-//   width: $width;
-//   text-align: center;
-//   left: $left;
-//   top: $top;
-//   font-size: 30px;
-//   font-family: Tahoma;
-//   font-weight: 700;
-//   color: red;
-//   transform: scale(2) #{$transform};
-//   opacity: 0;
-//   display: table-cell;
-//   vertical-align: bottom;
+//   height:100%;
+//   width: 100%;
 // }
 
-// @for $i from 1 to 5 {
-//     #checkInFeature#{$i} {
-//         @if $i == 1 {
-//             @include checkInIconStyle(100%, 100%, 0%, 15%, rotate(10deg))
-//         } @else if $i == 2 {
-//             @include checkInIconStyle(100%, 100%, 10%, 25%, rotate(20deg))
-//         } @else if $i == 3 {
-//             @include checkInIconStyle(40%, 25%, 24%, 4%, rotate(-20deg))
-//         } @else if $i == 4 {
-//             @include checkInIconStyle(50%, 25%, 5%, 30%, rotate(-37deg), table-cell, bottom)
-//         }
+/////////////////////////////////////////////////
+///                Navigation Bar
+/////////////////////////////////////////////////
 
-//         &:hover {
-//             opacity: 1;
-//         }
-//     }
+// .navBar {
+//   height: 80%;
 // }
 
-// //////////////////// Dog Paw ////////////////////
-
-// @mixin pawIconStyle($transform, $left, $bottom: null, $color: null, $z-index: null ) {
-//     position: absolute;
-//     transform: $transform;
-//     left : $left;
-//     bottom: $bottom;
-//     color: $color;
-//     z-index: $z-index;
+// div.navBar {
+//   position: absolute;
+//   width: 100%;
+//   height: 4%;
 // }
 
-// @for $i from 1 to 14 {
-//     .dogPawIcon#{$i} {
-//         @if $i == 1 {
-//             @include pawIconStyle(scale(3),40%)
-//         } @else if $i == 2 {
-//             @include pawIconStyle(rotate(55deg),0%,15%)
-//         } @else if $i == 3 {
-//             @include pawIconStyle(rotate(50deg),10%,16%)
-//         } @else if $i == 4 {
-//             @include pawIconStyle(rotate(40deg),14%,29%)
-//         } @else if $i == 5 {
-//             @include pawIconStyle(rotate(30deg),25%,32%)
-//         } @else if $i == 6 {
-//             @include pawIconStyle(rotate(28deg),22%,48%, green)
-//         } @else if $i == 7 {
-//             @include pawIconStyle(rotate(20deg),34%,50%, green)
-//         } @else if $i == 8 {
-//             @include pawIconStyle(rotate(25deg),30%,62%)
-//         } @else if $i == 9 {
-//             @include pawIconStyle(rotate(30deg),40%,68%, $z-index: 3)
-//         } @else if $i == 10 {
-//             @include pawIconStyle(rotate(30deg),38%,83%, $z-index: 3)
-//         } @else if $i == 11 {
-//             @include pawIconStyle(rotate(20deg),48%,84%, $z-index: 3)
-//         } @else if $i == 12 {
-//             @include pawIconStyle(rotate(15deg),46%,97%, green, 3)
-//         } @else if $i == 13 {
-//             @include pawIconStyle(rotate(40deg),95%,40%, green, 3)
-//         }
-//     }
+// .profileButtonImage{
+//   height: 70%;
+//   width: 70%;
+//   border-radius: 35%;
 // }
-
-// /////////////////////////////////////////////////
-// ///               Dog Parks Screen
-// /////////////////////////////////////////////////
-
-// .dpc {
-//     margin-bottom: 10px;
-
-//     .Name {
-//         font-size: 24px;
-//         font-weight: bold;
-//         text-align: center;
-//     }
-//     .Img {
-//         max-width: 100%;
-//         height: 500px;
-//         display: block;
-//         margin: 0 auto;
-//     }
-//     .Container {
-//         height: 650px;
-//         border: 3px solid black;
-//         padding: 20px;
-//     }
-// }
-
-// .dog-parks-container {
-//     display: grid;
-//     grid-template-columns: repeat(2, 1fr);
-//     grid-gap: 20px;
-//   }
-
-// // .dptitle{
-// //   font-size: 30px;
-// //   text-align: center
-// // }
-
-// // .dpHeader{
-// //     font-size: 50px;
-// //     margin: 25px;
-// //     text-align: center;
-// //     margin-top: 100px;
-// //     font-family: Tahoma;
-// //     font-weight: 700;
-// // }
-
-// /////////////////////////////////////////////////
-// ///               About Us Screen
-// /////////////////////////////////////////////////
-
-// .about {
-//     .Text {
-//         font-size: 20px;
-//         margin-bottom: 10px;
-//         text-align: center;
-//         padding: 50px;
-//     }
-//     .Img {
-//         max-width: 100%;
-//         height: 550px;
-//         margin-bottom: 10px;
-//         display: block;
-//         margin: 0 auto;
-//     }
-//     .footer{
-//         text-align: center;
-//         padding:10px;
-//     }
-//     .dog-bone-button {
-//         background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4spXO4VkbttJgT75qnhruHkdPudkAti-aAXpZholErhvZme8t0QGxzPXSrj--HRkZ1NE&usqp=CAU');
-//         background-size: 150px;
-//         background-repeat: no-repeat;
-//         border: none;
-//         width: 150px;
-//         height: 70px;
-//         cursor: pointer;
-//     }
-// }
-
-// /////////////////////////////////////////////////
-// ///                Account Screen
-// /////////////////////////////////////////////////
-
-// /// .accountHeader{
-// //   font-size: 50px;
-// //   margin: 25px;
-// //   text-align: left;
-// //   margin-top: 100px;
-// //   font-family: Tahoma;
-// //   font-weight: 700;
-// // }
-
-// // .myAcctBack{
-// //   position: absolute;
-// //   height:100%;
-// //   width: 100%;
-// // }
-
-// /////////////////////////////////////////////////
-// ///                Navigation Bar
-// /////////////////////////////////////////////////
-
-// // .navBar {
-// //   height: 80%;
-// // }
-
-// // div.navBar {
-// //   position: absolute;
-// //   width: 100%;
-// //   height: 4%;
-// // }
-
-// // .profileButtonImage{
-// //   height: 70%;
-// //   width: 70%;
-// //   border-radius: 35%;
-// // }

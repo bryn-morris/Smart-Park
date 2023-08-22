@@ -103,25 +103,21 @@ class Login(Resource):
             user.authenticate(data['password'])
 
             session['user_id'] = user.id
-            import ipdb;ipdb.set_trace()
+
             resp = make_response(
-                user.to_dict(rules=('dogs','-_password','reviews','-favorited', 'friends')),
+                user.to_dict(rules=('dogs','-_password','reviews','-favorited',)),
                 200
             )
             return resp
         except:
             return {'error': 'Must enter a valid username and password'}, 404
-
 api.add_resource(Login, '/login')
 
 class Logout(Resource):
     def delete(self):
         session.pop('user_id', None)
         return session.get('user_id')
-        
 api.add_resource(Logout, '/logout')
-
-
 
 ############################################################
 #########

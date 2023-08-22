@@ -23,7 +23,7 @@ class User(db.Model, SerializerMixin):
 
     __tablename__ = 'users'
 
-    serialize_rules = ('-dogs', '-created_at','-updated_at', '-reviews',)
+    serialize_rules = ('-dogs', '-created_at','-updated_at', '-reviews','-friends_1', '-friends_2')
 
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String)

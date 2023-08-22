@@ -20,6 +20,7 @@ function Logging() {
   
   const [userFormObject, setUserFormObject] = useState(emptyFormObject)
   const [isPasswordVisible, setIsPasswordVisible] =useState(false)
+  const [friendsList, setFriendsList] = useState([])
 
   ///////////////////////////////////////////
   /////////        Context
@@ -43,6 +44,7 @@ function Logging() {
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs);
+          setFriendsList(user.all_friends())
           history.push("/");
         })}
         // Replace/refactor this validation with FORMIK and YUP down the line. 
@@ -75,6 +77,8 @@ function Logging() {
       </div>
     )
   }
+
+  console.log(friendsList)
 
   return (
     currentUser ?

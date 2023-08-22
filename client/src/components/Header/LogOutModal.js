@@ -3,17 +3,20 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { DogParkContext } from "../../context/DogParkContext"
 import { useHistory } from "react-router-dom"
+import { FriendsContext } from "../../context/FriendsContext"
 
 function LogOutModal ({isLogOutModalRendered, setIsLogOutModalRendered}) {
 
     const {setCurrentUser} = useContext(AuthContext)
     const {setDogParks} = useContext(DogParkContext)
+    const {setFriendsList} = useContext(FriendsContext)
     const history = useHistory()
 
     function logOut() {
         fetch('/logout', {method:"DELETE",})
         setCurrentUser(null)
         setDogParks([])
+        setFriendsList([])
         history.push("/")
     }
 

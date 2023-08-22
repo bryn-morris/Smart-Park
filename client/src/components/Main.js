@@ -7,6 +7,7 @@ import MyAccount from "./MyAccount/MyAccount";
 import { DogContext } from '../context/DogContext';
 import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
+import { FriendsContext } from "../context/FriendsContext";
 
 function Main() {
 
@@ -17,20 +18,30 @@ function Main() {
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
 
   const { dogs, setDogs } = useContext(DogContext)
-  const { setDogParks } = useContext(DogParkContext) 
+  const { setDogParks } = useContext(DogParkContext)
+  const { friendsList, setFriendsList } = useContext(FriendsContext)
 
   useEffect(()=>{
+    // DogParkFetch
     fetch('http://127.0.0.1:5555/dogparks')
       .then(r=> r.json())
       .then(data => setDogParks(data))
       
+    // Friends List Fetch
+    fetch('/friends')
+      .then(r=>r.json())
+      .then(friendsData => {
+            setFriendsList(friendsData)
+          })
 
     //use sessionStorage to check if currently checked in 
     const sessionCheckInID = sessionStorage.getItem('currentCheckInID')
     if (sessionCheckInID){
       setCurrentCheckInID(sessionCheckInID)
     }
-  }, [setDogParks])
+  }, [setDogParks, setFriendsList])
+
+  console.log(friendsList)
 
   const [seconds, setSeconds] = useState(0)
   const [intervalID, setIntervalID] = useState(null)

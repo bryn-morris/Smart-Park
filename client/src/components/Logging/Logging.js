@@ -20,7 +20,7 @@ function Logging() {
   
   const [userFormObject, setUserFormObject] = useState(emptyFormObject)
   const [isPasswordVisible, setIsPasswordVisible] =useState(false)
-  const [friendsList, setFriendsList] = useState([])
+  
 
   ///////////////////////////////////////////
   /////////        Context
@@ -29,11 +29,13 @@ function Logging() {
   const {  setDogs } = useContext(DogContext)
   const { currentUser, setCurrentUser } = useContext(AuthContext)
 
+
   const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    // Authentication Fetch
     fetch(`/${logIn ? 'login' : 'signup' }`, {
       method: "POST",
       credentials: 'include',
@@ -44,14 +46,12 @@ function Logging() {
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs);
-          setFriendsList(user.all_friends())
           history.push("/");
         })}
         // Replace/refactor this validation with FORMIK and YUP down the line. 
         else {return r.json().then(msg => alert(msg.error))};
       })
       setUserFormObject(emptyFormObject)
-
   }
  
   const handleFormInputChange = (e) => {
@@ -77,8 +77,6 @@ function Logging() {
       </div>
     )
   }
-
-  console.log(friendsList)
 
   return (
     currentUser ?

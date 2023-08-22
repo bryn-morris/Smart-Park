@@ -57,7 +57,6 @@ def Admin_Authentication_Decorator(func):
 #######################################################
 
 
-
 ############################################################
 #########               Authentication
 ############################################################
@@ -120,7 +119,7 @@ class Logout(Resource):
 api.add_resource(Logout, '/logout')
 
 ############################################################
-#########
+#########               
 ############################################################
 
 class Dog_Parks(Resource):
@@ -323,6 +322,8 @@ class Reviews(Resource):
     def get(self):
         reviews = [r.to_dict() for r in Review.query.all()]
         return make_response(reviews, 201)
+    
+api.add_resource(Reviews, '/reviews')
 
 @app.route('/review_dog_park/<int:id>', methods = ['POST', 'PATCH', 'DELETE', 'GET'])
 def add_review_and_patch_dog_park_rating(id):
@@ -467,8 +468,6 @@ def add_review_and_patch_dog_park_rating(id):
 
         return make_response(response_body, 200)
 
-api.add_resource(Reviews, '/reviews')
-
 @app.route('/favorite', methods = ['POST'])
 def favorite():
 
@@ -527,6 +526,23 @@ def favorite_by_id(id):
                 'favorited',
     ))
     , 200)
+
+############################################################
+#########              Friendship Views
+############################################################
+
+
+class Friends(Resource):
+
+    def get(self):
+        currentUser = User.query.filter(User.id == session['user_id']).one()
+        serialized_friends = [ef.to_dict(
+            only = ('image', 'username')
+        ) for ef in currentUser.all_friends()]
+        return make_response(serialized_friends,200)
+
+api.add_resource(Friends, '/friends')
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

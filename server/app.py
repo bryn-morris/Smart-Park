@@ -540,9 +540,14 @@ class Friends(Resource):
             only = ('image', 'username')
         ) for ef in currentUser.all_friends()]
         return make_response(serialized_friends,200)
+    
+    def post(self):
+        pass
+
+    def delete(self):
+        pass
 
 api.add_resource(Friends, '/friends')
-
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

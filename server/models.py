@@ -58,6 +58,12 @@ class User(db.Model, SerializerMixin):
     
     def all_friends(self):
         return self.friends_1.all() + self.friends_2.all()
+    
+    def add_friend(self, target_friend):
+        pass
+
+    def delete_friend(self, target_friend):
+        pass
 
 
     def add_favorite_park(self, user):

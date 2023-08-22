@@ -41,8 +41,6 @@ function Main() {
     }
   }, [setDogParks, setFriendsList])
 
-  console.log(friendsList)
-
   const [seconds, setSeconds] = useState(0)
   const [intervalID, setIntervalID] = useState(null)
 
@@ -140,6 +138,14 @@ function Main() {
   return (
     <div className='site'>
       <Header/>
+      {/*
+      Turn this into a fancy modal with custom styling so that when user clicks
+      Information renders. I am currently thinking a round dog par button
+      and when the user clicks the friends show up in a radial pattern and
+      can be scrolled through, when you hover over a friend their dogs show
+      up further outside the friends radial section. When you scroll, searchbar
+      'stays' at the top of the radial circle, and individual friend elements dissappear
+      <div>TEST</div> */}
       <main className = 'site Content'>
         <Switch>
           <Route exact path="/">

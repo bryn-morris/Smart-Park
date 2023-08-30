@@ -10,7 +10,7 @@ class Friends(db.Model, SerializerMixin):
 
     __tablename__ = 'friends'
 
-    serialize_rules = ('',)
+    # serialize_rules = (,)
 
     id = db.Column(db.Integer, primary_key = True)
     friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -59,12 +59,11 @@ class User(db.Model, SerializerMixin):
     def all_friends(self):
         return self.friends_1.all() + self.friends_2.all()
     
-    def add_friend(self, target_friend):
-        pass
+    # def add_friend(self, target_friend):
+    #     pass
 
-    def delete_friend(self, target_friend):
-        pass
-
+    # def delete_friend(self, target_friend):
+    #     pass
 
     def add_favorite_park(self, user):
         ## check to see if this entry already exists in db

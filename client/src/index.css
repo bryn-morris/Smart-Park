@@ -7,6 +7,10 @@
   top: 4%;
 }
 
+.FriendModal {
+  z-index: 10;
+}
+
 .home {
   width: 100%;
   position: relative;

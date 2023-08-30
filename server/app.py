@@ -9,7 +9,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import User, Dog, Visit, Dog_Park, Review, Favorited
+from models import User, Dog, Visit, Dog_Park, Review, Favorited, Friends
 
 # Views go here!
 
@@ -37,17 +37,16 @@ from models import User, Dog, Visit, Dog_Park, Review, Favorited
 # api.add_resource(UserById, '/users/<int:id>')
 
 #######################################################
-###########        Authentication Wrapper
+###########        Admin Authentication Wrapper
 #######################################################
 
 def Admin_Authentication_Decorator(func):
 
     def wrapper_func(*args, **kwargs):
+        
         sel_user = User.query.filter(session['user_id']==User.id).one()
-
         if sel_user.admin==False:
             return make_response({"error": "Authentication failed - User is not admin"},401)
-
         return func(*args, **kwargs)
 
     return wrapper_func
@@ -56,6 +55,18 @@ def Admin_Authentication_Decorator(func):
 ###########        Check-Session 
 #######################################################
 
+def Authentication_Decorator(func):
+
+    def wrapper_func(*args, **kwargs):
+
+        try:
+            sel_user = User.query.filter(session['user_id']==User.id).one()
+        except:
+            return make_response({"error":"User is not logged in!"}, 401)
+
+        return func(*args, **kwargs)
+
+    return wrapper_func
 
 ############################################################
 #########               Authentication
@@ -531,23 +542,30 @@ def favorite_by_id(id):
 #########              Friendship Views
 ############################################################
 
-
-class Friends(Resource):
+class Friendship(Resource):
 
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
         serialized_friends = [ef.to_dict(
-            only = ('image', 'username')
+            only = ('image', 'username', 'id')
         ) for ef in currentUser.all_friends()]
         return make_response(serialized_friends,200)
     
+    @Authentication_Decorator
     def post(self):
-        pass
+        data = request.get_json()
+        current_user_id = session['user_id']
+        newFriendship = Friends(
+            friend_1_id = current_user_id,
+            friend_2_id = data['friend_id']
+        )
 
-    def delete(self):
-        pass
+        db.session.add(newFriendship)
+        db.session.commit()
 
-api.add_resource(Friends, '/friends')
+        return make_response(newFriendship.to_dict(),201)
+
+api.add_resource(Friendship, '/friends')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

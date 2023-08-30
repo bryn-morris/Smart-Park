@@ -8,6 +8,7 @@ import { DogContext } from '../context/DogContext';
 import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
 import { FriendsContext } from "../context/FriendsContext";
+import FriendElement from "./FriendElement";
 
 function Main() {
 
@@ -19,7 +20,7 @@ function Main() {
 
   const { dogs, setDogs } = useContext(DogContext)
   const { setDogParks } = useContext(DogParkContext)
-  const { friendsList, setFriendsList } = useContext(FriendsContext)
+  const { setFriendsList } = useContext(FriendsContext)
 
   useEffect(()=>{
     // DogParkFetch
@@ -147,6 +148,7 @@ function Main() {
       'stays' at the top of the radial circle, and individual friend elements dissappear
       <div>TEST</div> */}
       <main className = 'site Content'>
+      <FriendElement/>
         <Switch>
           <Route exact path="/">
             <Home 

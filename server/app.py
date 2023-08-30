@@ -552,6 +552,12 @@ class Friendship(Resource):
     
     @Authentication_Decorator
     def post(self):
+        ## check to see if user that sent request is already friends with user, if so,
+        ## send back error message, if not, send some manner of notification to other 
+        ## user that needs to be accepted. When friends request is accepted THEN the post
+        ## to teh backend goes through, this likely should take place within some sort of 
+        ## friendship decorator
+        
         data = request.get_json()
         current_user_id = session['user_id']
         newFriendship = Friends(

@@ -215,7 +215,6 @@ def dog_park_by_id(id):
             )
     except:
         return make_response({"error":"404 Dog Park Not Found"}, 404)
-
             
 class Dogs(Resource):
     def get(self):
@@ -566,6 +565,22 @@ class Friendship(Resource):
         return make_response(newFriendship.to_dict(),201)
 
 api.add_resource(Friendship, '/friends')
+
+class Friendship_by_Id(Resource):
+
+    def delete(self, id):
+        import ipdb;ipdb.set_trace()
+        try:
+            sel_friendship = Friends.query.filter(Friends.id == id).one()
+        except:
+            return make_response({"error": "Friendship Not Found"},404)
+
+        db.session.delete(sel_friendship)
+        db.session.commit()
+
+        return make_response({}, 204)
+    
+api.add_resource(Friendship_by_Id, '/friends/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

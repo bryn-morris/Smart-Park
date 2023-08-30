@@ -10,11 +10,11 @@ function FriendElement() {
             body: JSON.stringify({"friend_id" : friend_id}),
         })
             .then(r=>r.json())
-            .then(console.log("response sent!"))
+            .then(console.log)
     }
 
-    function deleteFriend(friend_id) {
-        fetch(`/friends/${friend_id}`, {
+    function deleteFriend(friendship_id) {
+        fetch(`/friends/${friendship_id}`, {
             method: "DELETE",
         })
     }
@@ -27,7 +27,7 @@ function FriendElement() {
                 Add Friend
             </Button>
             <Button
-                onClick={()=>{deleteFriend(4)}}
+                onClick={()=>{deleteFriend(5)}}
             >
                 Delete Friend
             </Button>

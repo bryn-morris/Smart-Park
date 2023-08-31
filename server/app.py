@@ -176,7 +176,6 @@ class Dog_Parks(Resource):
     
 api.add_resource(Dog_Parks, '/dogparks')
 
-
 @app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'])
 @Admin_Authentication_Decorator
 def dog_park_by_id(id):
@@ -538,6 +537,45 @@ def favorite_by_id(id):
     , 200)
 
 ############################################################
+#########              Friendship Decorator
+############################################################
+
+def Friendship_Decorator(func):
+
+    def wrapper_func(*args, **kwargs):
+
+        data = request.json()
+        current_user = User.query.filter(User.id == session['user_id']).one()
+        sel_friend = User.query.filter(User.id == data['friend_id']).one()
+
+        if sel_friend not in current_user.all_friends():
+            ## add each user (friend 1 and friend 2) to pending_friend_requests atrtibute of
+            ## the other user.
+            ## Then send a response to the current user stating request sent
+            ## and include the pending friend attribute
+            ## Then send a response to the other user that has had their
+            ## User Model Updated with an updated pending friend attribute
+            ## and then process some sort of notification from that
+            
+            ## Need to find a way to update each user in real time
+            ## as the other user accepts the friend request
+            pass
+
+        elif data['request_status'] == True:
+            ## grab friendship data from request
+            ## remove any mention of each of these users from each of their
+            ## pending friend request User Attributes
+            ## then return func so that they can be added to friendship
+            ## table below
+            return func(*args, **kwargs)
+        
+        else:
+            #This shouldn't ever trip but adding for redundancy
+            return make_response({"error" : "You are already friends with this User!"}, 400)
+    
+    return wrapper_func
+
+############################################################
 #########              Friendship Views
 ############################################################
 
@@ -547,17 +585,12 @@ class Friendship(Resource):
         currentUser = User.query.filter(User.id == session['user_id']).one()
         serialized_friends = [ef.to_dict(
             only = ('image', 'username', 'id')
-        ) for ef in currentUser.all_friends()]
+        ) for ef in currentUser.all_friends()]        
         return make_response(serialized_friends,200)
     
     @Authentication_Decorator
     def post(self):
-        ## check to see if user that sent request is already friends with user, if so,
-        ## send back error message, if not, send some manner of notification to other 
-        ## user that needs to be accepted. When friends request is accepted THEN the post
-        ## to teh backend goes through, this likely should take place within some sort of 
-        ## friendship decorator
-        
+
         data = request.get_json()
         current_user_id = session['user_id']
         newFriendship = Friends(

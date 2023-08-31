@@ -33,6 +33,7 @@ with app.app_context():
     Review.query.delete()
     Favorited.query.delete()
     Friends.query.delete()
+    Pending_Friendships.query.delete()
 
     print("Creating Users...")
 
@@ -101,7 +102,7 @@ with app.app_context():
     fr4 = Friends(friend_1_id=4, friend_2_id = 1)
     
     print("Creating Pending Frienships...")
-    pfr1 = Pending_Friendships(pend_friend_1_id = 4, pend_friend_2_id =2)
+    pfr1 = Pending_Friendships(pend_friend_1_id = 2, pend_friend_2_id = 4)
     pfr2 = Pending_Friendships(pend_friend_1_id = 3, pend_friend_2_id =1)
     
 

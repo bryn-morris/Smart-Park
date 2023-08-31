@@ -40,7 +40,16 @@ class User(db.Model, SerializerMixin):
 
     __tablename__ = 'users'
 
-    serialize_rules = ('-dogs', '-created_at','-updated_at', '-reviews','-friends_1', '-friends_2')
+    serialize_rules = (
+        '-dogs', 
+        '-created_at',
+        '-updated_at', 
+        '-reviews',
+        '-friends_1', 
+        '-friends_2',
+        '-pend_friends_1',
+        '-pend_friends_2', 
+    )
 
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String)
@@ -57,7 +66,6 @@ class User(db.Model, SerializerMixin):
     favorited = db.relationship('Favorited', back_populates = 'user', cascade = "all, delete-orphan")
     favorited_parks = association_proxy('favorited', 'dog_park')
 
-    # establishing bi-directionality, will call all friends with instance method
     friends_1 = db.relationship('User',
                               secondary = 'friends',
                               primaryjoin = 'Friends.friend_1_id == User.id',

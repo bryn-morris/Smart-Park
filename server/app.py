@@ -110,8 +110,9 @@ class Signup(Resource):
 api.add_resource(Signup, '/signup')
         
 class Login(Resource):
-
+    
     def post(self):
+        
         try:
             data = request.get_json()
 
@@ -594,6 +595,7 @@ class Friendship(Resource):
 
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
+        import ipdb;ipdb.set_trace()
         serialized_friends = [ef.to_dict(
             only = ('image', 'username', 'id')
         ) for ef in currentUser.all_friends()]        

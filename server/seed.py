@@ -8,9 +8,17 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db
+from config import db
 
-from models import db, User, Dog, Visit, Dog_Park, Review, Favorited, Friends
+from models import (
+    User, 
+    Dog, 
+    Visit,
+    Dog_Park,
+    Review, 
+    Favorited, 
+    Friends,
+    Pending_Friendships)
 
 with app.app_context():
 
@@ -32,7 +40,6 @@ with app.app_context():
     u2 = User( username= 'bryn_the_wizrd',  password= 'password', admin = True, image = 'https://i.pinimg.com/originals/92/a2/27/92a2274106026911bfb86ba6763fd921.jpg')
     u3 = User( username= 'damon_the_wizrd',  password= 'password', admin = False, image = 'https://static.vecteezy.com/system/resources/previews/002/007/779/original/cool-cartoon-wizard-vector.jpg')
     u4 = User( username= 'mads_the_wizrd',  password= 'password', admin = False, image = 'https://www.kindpng.com/picc/m/732-7323240_how-to-wizard-robes-cartoon-hd-png-download.png')
-
 
     # users_list = [User( username= faker.user_name(),  _password= faker.word(), image = faker.image_url()) for _ in range(1,5)]
 
@@ -93,6 +100,10 @@ with app.app_context():
     fr3 = Friends(friend_1_id=3, friend_2_id = 4)
     fr4 = Friends(friend_1_id=4, friend_2_id = 1)
     
+    print("Creating Pending Frienships...")
+    pfr1 = Pending_Friendships(pend_friend_1_id = 4, pend_friend_2_id =2)
+    pfr2 = Pending_Friendships(pend_friend_1_id = 3, pend_friend_2_id =1)
+    
 
     db.session.add_all([d1, d2, d3, d4, d5])
     db.session.add_all([u1, u2, u3, u4])
@@ -101,6 +112,7 @@ with app.app_context():
     db.session.add_all([r1,r2,r3,r4,r5])
     db.session.add_all([f1,f2,f3,f4,f5,f6,f7])
     db.session.add_all([fr1,fr2,fr3,fr4])
+    db.session.add_all([pfr1, pfr2])
     
     db.session.commit()
 

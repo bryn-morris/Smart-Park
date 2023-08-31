@@ -3,10 +3,13 @@ from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
 from config import db, bcrypt
 
 class Friends(db.Model, SerializerMixin):
+
+    ## If I want to be able to add elements to this table
+    ## By updating users I am going to need to have to create
+    ## Backrefs or backpopulates
 
     __tablename__ = 'friends'
 
@@ -18,6 +21,20 @@ class Friends(db.Model, SerializerMixin):
 
     # user1 = db.relationship('User', foreign_keys=[friend_1_id], back_populates='friend_users_1')
     # user2 = db.relationship('User', foreign_keys=[friend_2_id], back_populates='friend_users_2')
+
+class Pending_Friendships(db.Model, SerializerMixin):
+
+    ## If I want to be able to add elements to this table
+    ## By updating users I am going to need to have to create
+    ## Backrefs or backpopulates
+
+    __tablename__ = "pending_friendships"
+
+    # serialize_rules = (,)
+
+    id = db.Column(db.Integer, primary_key = True)
+    pend_friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    pend_friend_2_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 class User(db.Model, SerializerMixin):
 
@@ -56,8 +73,26 @@ class User(db.Model, SerializerMixin):
                               lazy = 'dynamic'
                             )
     
+    pend_friends_1 = db.relationship('User',
+                              secondary = 'pending_friendships',
+                              primaryjoin = 'Pending_Friendships.pend_friend_1_id == User.id',
+                              secondaryjoin = 'Pending_Friendships.pend_friend_2_id == User.id',
+                              back_populates = 'pend_friends_2',
+                              lazy = 'dynamic'
+                            )
+    pend_friends_2 = db.relationship('User',
+                              secondary = 'pending_friendships',
+                              primaryjoin = 'Pending_Friendships.pend_friend_2_id == User.id',
+                              secondaryjoin = 'Pending_Friendships.pend_friend_1_id == User.id',
+                              back_populates = 'pend_friends_1',
+                              lazy = 'dynamic'
+                            )
+    
     def all_friends(self):
         return self.friends_1.all() + self.friends_2.all()
+    
+    def pending_friends(self):
+        return self.pend_friends_1.all() + self.pend_friends_2.all()
     
     # def add_friend(self, target_friend):
     #     pass
@@ -69,7 +104,6 @@ class User(db.Model, SerializerMixin):
         ## check to see if this entry already exists in db
         if len(self.favorited.filter(Favorited.dog_park_id == user.id)) == 0:
             self.favorited.append(user)
-
 
     def remove_favorite_park(self, user):
         if len(self.favorited.filter(Favorited.dog_park_id == user.id)) > 0:
@@ -147,7 +181,6 @@ class Dog_Park(db.Model, SerializerMixin):
     rating = db.Column(db.Float)
     amenities = db.Column(db.String)
     image = db.Column(db.String)
-
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())

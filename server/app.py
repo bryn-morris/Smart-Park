@@ -6,10 +6,18 @@
 from flask import make_response, request, session, jsonify
 from flask_restful import Resource
 
-
 # Local imports
 from config import app, db, api
-from models import User, Dog, Visit, Dog_Park, Review, Favorited, Friends
+from models import (
+    User, 
+    Dog, 
+    Visit, 
+    Dog_Park, 
+    Review, 
+    Favorited, 
+    Friends,
+    Pending_Friendships,
+)
 
 # Views go here!
 

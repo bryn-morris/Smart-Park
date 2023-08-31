@@ -553,12 +553,15 @@ def Friendship_Decorator(func):
             ## the other user.
             ## Then send a response to the current user stating request sent
             ## and include the pending friend attribute
-            ## Then send a response to the other user that has had their
+            ## Then check if other friend user is logged into application, if so
+            ## send a response to the other user that has had their
             ## User Model Updated with an updated pending friend attribute
             ## and then process some sort of notification from that
-            
-            ## Need to find a way to update each user in real time
-            ## as the other user accepts the friend request
+
+            ## If Flask keeps track of all the possible app contexts on the backend somehwere
+            ## we could maybe sort through those to find one in which 
+            ## the session user id key matches the friend id
+            ## and then work from there?
             pass
 
         elif data['request_status'] == True:

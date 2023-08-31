@@ -13,12 +13,13 @@ function FriendElement() {
     // to true, otherwise default to false, maybe pass in as an argument
     // that is true and overwrite key value to argument
     // value but only provide this value if pending request is accepted?
-    // once user is added on the backend through a post, make sure to update friends list
+    // once user is added on the backend through a post, make sure to update friendslist state
 
     // Current User Sends Friend Request
     // create logic so that currentUser state is updated
     // with the pending friendship changes and a notification is given
     // to the current user that a request has been sent
+    // also update pending friend frequest state
 
     function addFriend(friend_id) {
 
@@ -42,6 +43,8 @@ function FriendElement() {
         })
     }
 
+    // Once the add friend buttons are rendered for each 
+    // element in friends list state
     // do not render addFriend button for targeted user 
     // if the targeted user is already friends with the current user
 

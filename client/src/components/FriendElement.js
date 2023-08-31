@@ -42,8 +42,8 @@ function FriendElement() {
         })
     }
 
-    // do not render addFriend button if the targeted user is
-    // already friends with the current user
+    // do not render addFriend button for targeted user 
+    // if the targeted user is already friends with the current user
 
     return (
         <div className="FriendModal">

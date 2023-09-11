@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react'
 import {NavLink, useHistory } from 'react-router-dom'
 import { Menu, Image, Dropdown } from 'semantic-ui-react';
 import { AuthContext } from '../../context/AuthContext';
-import LogOutModal from './LogOutModal';
+import LogOutModal from '../Logging/LogOutModal';
 
 function Header() {
 

@@ -13,6 +13,8 @@ class Friends(db.Model, SerializerMixin):
 
     __tablename__ = 'friends'
 
+    # No need yet, but once I add backref or backpopulates
+    # I will need to add serialization rules
     # serialize_rules = (,)
 
     id = db.Column(db.Integer, primary_key = True)

@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react'
+
 import DogParkCard from './DogParkCard'
 import DogParkForm from './DogParkForm'
 import SearchDogPark from './SearchDogPark'
@@ -6,7 +7,6 @@ import {Button, Modal} from 'semantic-ui-react'
 import { DogParkContext } from '../../context/DogParkContext'
 import ReviewForm from './Reviews/ReviewForm'
 import { ReviewContext } from '../../context/ReviewContext'
-
 
 function DogPark() {
 

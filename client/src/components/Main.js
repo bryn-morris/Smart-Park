@@ -23,12 +23,11 @@ function Main() {
   const { setFriendsList } = useContext(FriendsContext)
 
   useEffect(()=>{
-    // DogParkFetch
+    
     fetch('http://127.0.0.1:5555/dogparks')
       .then(r=> r.json())
       .then(data => setDogParks(data))
       
-    // Friends List Fetch
     fetch('/friends')
       .then(r=>r.json())
       .then(friendsData => {

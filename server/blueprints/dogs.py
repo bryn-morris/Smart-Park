@@ -4,7 +4,7 @@ from flask_restful import Resource
 from config import db, api
 from models import Dog
 
-dog_routes = Blueprint("dog_routes", __name__)
+dog_routes = Blueprint("dog_routes", __name__,)
 
 class Dogs(Resource):
     def get(self):

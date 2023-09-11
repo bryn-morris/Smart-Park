@@ -7,16 +7,14 @@ from flask import make_response, request, session, jsonify
 from flask_restful import Resource
 
 # Local imports
-from config import app, db, api, socketio
-from auth_dec import Authentication_Decorator
+from config import app, db, socketio
 from blueprints.review import review_routes
 from blueprints.auth import auth_views
 from blueprints.dog_parks import dog_park_routes
 from blueprints.dogs import dog_routes
+from blueprints.friendships import friendship_routes
 from models import (
     User, 
-    Dog, 
-    Friends,
     Pending_Friendships,
 )
 
@@ -28,6 +26,8 @@ app.register_blueprint(auth_views)
 app.register_blueprint(dog_park_routes)
 
 app.register_blueprint(dog_routes)
+
+app.register_blueprint(friendship_routes)
 
 # class Users(Resource):
 #     def get(self):
@@ -111,53 +111,6 @@ def Friendship_Decorator(func):
             return make_response({"error" : "You are already friends with this User!"}, 400)
     
     return wrapper_func
-
-############################################################
-#########              Friendship Views
-############################################################
-
-class Friendship(Resource):
-
-    def get(self):
-        currentUser = User.query.filter(User.id == session['user_id']).one()
-        # import ipdb;ipdb.set_trace()
-        serialized_friends = [ef.to_dict(
-            only = ('image', 'username', 'id')
-        ) for ef in currentUser.all_friends()]        
-        return make_response(serialized_friends,200)
-    
-    @Authentication_Decorator
-    def post(self):
-
-        data = request.get_json()
-        current_user_id = session['user_id']
-        newFriendship = Friends(
-            friend_1_id = current_user_id,
-            friend_2_id = data['friend_id']
-        )
-
-        db.session.add(newFriendship)
-        db.session.commit()
-
-        return make_response(newFriendship.to_dict(),201)
-
-api.add_resource(Friendship, '/friends')
-
-class Friendship_by_Id(Resource):
-
-    def delete(self, id):
-        import ipdb;ipdb.set_trace()
-        try:
-            sel_friendship = Friends.query.filter(Friends.id == id).one()
-        except:
-            return make_response({"error": "Friendship Not Found"},404)
-
-        db.session.delete(sel_friendship)
-        db.session.commit()
-
-        return make_response({}, 204)
-    
-api.add_resource(Friendship_by_Id, '/friends/<int:id>')
 
 if __name__ == '__main__':
     socketio.run(app, port=5555, debug=True)

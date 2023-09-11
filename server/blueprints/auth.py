@@ -6,7 +6,7 @@ from models import (
     User,
 )
 
-auth_views = Blueprint('auth_views', __name__)
+auth_views = Blueprint('auth_views', __name__, url_prefix="/auth")
 
 ############################################################
 #########            Authentication Views

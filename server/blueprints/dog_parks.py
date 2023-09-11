@@ -5,7 +5,7 @@ from auth_dec import Admin_Authentication_Decorator
 from config import db, api, app
 from models import Dog_Park, Visit, Dog
 
-dog_park_routes = Blueprint('dog_park_routes', __name__)
+dog_park_routes = Blueprint('dog_park_routes', __name__,)
 
 class Dog_Parks(Resource):
     def get(self):

@@ -7,7 +7,7 @@ from flask import make_response, request, session, jsonify
 from flask_restful import Resource
 
 # Local imports
-from config import app, db, api
+from config import app, db, api, socketio
 from models import (
     User, 
     Dog, 
@@ -653,4 +653,4 @@ class Friendship_by_Id(Resource):
 api.add_resource(Friendship_by_Id, '/friends/<int:id>')
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    socketio.run(app, port=5555, debug=True)

@@ -8,6 +8,7 @@ from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import MetaData
+from flask_socketio import SocketIO
 
 # Local imports
 
@@ -25,6 +26,7 @@ metadata = MetaData(naming_convention={
 db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 db.init_app(app)
+socketio = SocketIO(app)
 
 bcrypt = Bcrypt(app)
 

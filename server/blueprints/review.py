@@ -10,10 +10,6 @@ from models import (
 
 review_routes = Blueprint('review_routes', __name__)
 
-###############################################
-###########        Review Views
-###############################################
-
 class Reviews(Resource):
     def get(self):
         reviews = [r.to_dict() for r in Review.query.all()]

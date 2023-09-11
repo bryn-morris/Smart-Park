@@ -8,10 +8,6 @@ from models import (
 
 auth_views = Blueprint('auth_views', __name__, url_prefix="/auth")
 
-############################################################
-#########            Authentication Views
-############################################################
-
 class Signup(Resource):
     def post(self):
         try:

@@ -7,10 +7,6 @@ from auth_dec import Authentication_Decorator
 
 friendship_routes = Blueprint('friendship_routes', __name__)
 
-############################################################
-#########              Friendship Views
-############################################################
-
 class Friendship(Resource):
 
     def get(self):

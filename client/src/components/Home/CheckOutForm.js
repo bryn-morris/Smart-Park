@@ -1,7 +1,9 @@
 import {useState, useContext} from "react";
 import {Form} from 'semantic-ui-react'
+
 import { DogContext } from "../../context/DogContext";
 import { DogParkContext } from "../../context/DogParkContext";
+import { handleFormInputChange } from "../helpers/helperFunctions";
 
 function CheckOutForm({handleFormSubmission}){
 
@@ -37,12 +39,11 @@ function CheckOutForm({handleFormSubmission}){
 
     // }
 
-    const handleFormInputChange = (e) => {
-        
-        setFormObject(
-            ()=>{return{...formObject, [e.target.name]: e.target.value}}
-        )
-    }
+    // const handleFormInputChange = (e) => { 
+    //     setFormObject(
+    //         ()=>{return{...formObject, [e.target.name]: e.target.value}}
+    //     )
+    // }
 
     // const dogParkOptions = dogParks.map((eachDP)=>{
     //     return {
@@ -113,7 +114,7 @@ function CheckOutForm({handleFormSubmission}){
                     value = {selectedDogPark}
                     onChange = {handleDogParkChange}
                 /> */}
-                <select onChange={handleFormInputChange} name="dogParkName" value={formObject.dogParkName}>
+                <select onChange={handleFormInputChange(formObject, setFormObject)} name="dogParkName" value={formObject.dogParkName}>
                     <option defaultValue='Dog Park' hidden>Dog Park</option>
                     {dogParks.map((eachDP)=>{
                         return(<option key={eachDP.id} >{eachDP.name}</option>)
@@ -129,7 +130,7 @@ function CheckOutForm({handleFormSubmission}){
                     value = {selectedDogName}
                     onChange = {(e)=>setSelectedDogName(e.target.value)}
                 /> */}
-                <select onChange={handleFormInputChange} name="dogName" value={formObject.dogName}>
+                <select onChange={handleFormInputChange(formObject, setFormObject)} name="dogName" value={formObject.dogName}>
                     <option defaultValue = 'Dog' hidden>Dog</option>
                     {dogs.map((eachD)=>{
                         return(<option key={eachD.id} >{eachD.name}</option>)
@@ -145,7 +146,7 @@ function CheckOutForm({handleFormSubmission}){
                     value = {selectedDogName}
                     onChange = {(e)=>setSelectedLOS(e.target.value)}
                 /> */}
-                <select onChange={handleFormInputChange} name="lengthOfStay" value={formObject.lengthOfStay}>
+                <select onChange={handleFormInputChange(formObject, setFormObject)} name="lengthOfStay" value={formObject.lengthOfStay}>
                     <option defaultValue = 'Length of Stay in Minutes' hidden>Length of Stay</option>
                     <option>15 min</option>
                     <option>30 min</option>

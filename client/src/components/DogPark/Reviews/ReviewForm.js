@@ -1,6 +1,8 @@
 import {useContext, useState} from "react";
 import {Form, Input, TextArea} from 'semantic-ui-react'
+
 import { ReviewContext } from "../../../context/ReviewContext";
+import { handleFormInputChange } from "../../helpers/helperFunctions";
 
 function ReviewForm ({ dogParkID, setAddReviewDisabled, setModalContent}) {
 
@@ -26,14 +28,6 @@ function ReviewForm ({ dogParkID, setAddReviewDisabled, setModalContent}) {
             setIsReviewFormRendered(false)
             setIsDPModalOpen(false)
         }
-        
-
-    }
-    
-    const handleFormInputChange = (e) => {
-        setFormObject(
-            ()=>{return{...formObject, [e.target.name]: e.target.value}}
-        )
     }
 
     return (
@@ -44,7 +38,7 @@ function ReviewForm ({ dogParkID, setAddReviewDisabled, setModalContent}) {
                 type="text" 
                 name = "comment" 
                 value={formObject.comment} 
-                onChange={handleFormInputChange} 
+                onChange={handleFormInputChange(formObject, setFormObject)} 
                 placeholder = 'comment'
             />
             <br/>
@@ -53,7 +47,7 @@ function ReviewForm ({ dogParkID, setAddReviewDisabled, setModalContent}) {
                 type="number" 
                 name = "rating" 
                 value={formObject.rating} 
-                onChange={handleFormInputChange} 
+                onChange={handleFormInputChange(formObject, setFormObject)} 
                 placeholder = "rating"
                 min = '1'
                 max = '5'

@@ -2,15 +2,15 @@ import React, {useState, useContext} from 'react'
 // import {useHistory} from 'react-router-dom'
 import { Route, useHistory } from "react-router-dom";
 import {Form, Input, Icon} from 'semantic-ui-react'
+import io from 'socket.io-client'
+
 import { AuthContext } from '../../context/AuthContext';
 import { DogContext } from '../../context/DogContext';
 import Main from "../Main"
+import { handleFormInputChange } from '../helpers/helperFunctions';
 
 function Logging() {
 
-  ///////////////////////////////////////////
-  /////////        State
-  ///////////////////////////////////////////
   const [logIn, setLogIn] = useState(true)
 
   const emptyFormObject = 
@@ -20,15 +20,9 @@ function Logging() {
   
   const [userFormObject, setUserFormObject] = useState(emptyFormObject)
   const [isPasswordVisible, setIsPasswordVisible] =useState(false)
-  
-
-  ///////////////////////////////////////////
-  /////////        Context
-  ///////////////////////////////////////////
 
   const {  setDogs } = useContext(DogContext)
   const { currentUser, setCurrentUser } = useContext(AuthContext)
-
 
   const history = useHistory()
 
@@ -53,12 +47,6 @@ function Logging() {
       })
       setUserFormObject(emptyFormObject)
   }
- 
-  const handleFormInputChange = (e) => {
-    setUserFormObject(
-        ()=>{return{...userFormObject, [e.target.name]: e.target.value}}
-    )
-  }
 
   const createLoggingInput = (label, placeholder, type, value, children) => {
 
@@ -68,7 +56,7 @@ function Logging() {
           label = {label}
           labelPosition='left corner'
           placeholder = {placeholder}
-          onChange = {handleFormInputChange}
+          onChange = {handleFormInputChange(userFormObject,setUserFormObject)}
           type = {type}
           name = {placeholder}
           value = {value}

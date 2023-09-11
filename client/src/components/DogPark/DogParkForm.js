@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {Form, Input} from 'semantic-ui-react'
 
+import { handleFormInputChange } from '../helpers/helperFunctions'
+
 function DogParkForm({handleAddDogPark}) {
 
   const emptyDogParkFormObj = {
@@ -18,12 +20,6 @@ function DogParkForm({handleAddDogPark}) {
     setDogParkFormObject(emptyDogParkFormObj)
   }
 
-  const handleFormInputChange = (e) => {
-    setDogParkFormObject(
-        ()=>{return{...dogParkFormObject, [e.target.name]: e.target.value}}
-    )
-  }
-
   function generateInputField(labelName, type, value, placeholder){
    
     return(
@@ -33,7 +29,7 @@ function DogParkForm({handleAddDogPark}) {
           type = {type}
           value = {value}
           placeholder = {placeholder}
-          onChange = {handleFormInputChange}
+          onChange = {handleFormInputChange(dogParkFormObject, setDogParkFormObject)}
           name = {placeholder}
         />
       </div>)   

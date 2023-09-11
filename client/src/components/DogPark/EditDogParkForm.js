@@ -1,6 +1,8 @@
 import { useContext, useState } from 'react'
 import { Form, Input, TextArea } from 'semantic-ui-react'
+
 import { DogParkContext } from '../../context/DogParkContext'
+import { handleFormInputChange } from '../helpers/helperFunctions'
 
 function EditDogParkForm({eachDogPark, setIsEditModalOpen}){
 
@@ -38,12 +40,6 @@ function EditDogParkForm({eachDogPark, setIsEditModalOpen}){
         setIsEditModalOpen(false);
     }
 
-    const handleFormInputChange = (e) => {
-        setDPFormObject(
-            ()=>{return{...dpFormObject, [e.target.name]: e.target.value}}
-        )
-    }
-
     const createInputOption = (label,type, name, value) => {
         return(
             <div>
@@ -55,7 +51,7 @@ function EditDogParkForm({eachDogPark, setIsEditModalOpen}){
                         type = {type}
                         name = {name}
                         value = {value}
-                        onChange = {handleFormInputChange}
+                        onChange = {handleFormInputChange(dpFormObject, setDPFormObject)}
                         placeholder = {name}
                     >
                     </TextArea> 
@@ -64,7 +60,7 @@ function EditDogParkForm({eachDogPark, setIsEditModalOpen}){
                         type = {type}
                         name = {name}
                         value = {value}
-                        onChange = {handleFormInputChange}
+                        onChange = {handleFormInputChange(dpFormObject, setDPFormObject)}
                         placeholder = {name}
                     >
                     </Input>

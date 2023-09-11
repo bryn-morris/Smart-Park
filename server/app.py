@@ -8,6 +8,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api, socketio
+from auth_dec import Admin_Authentication_Decorator, Authentication_Decorator
 from models import (
     User, 
     Dog, 
@@ -43,38 +44,6 @@ from models import (
 #             200
 #         )
 # api.add_resource(UserById, '/users/<int:id>')
-
-#######################################################
-###########        Admin Authentication Wrapper
-#######################################################
-
-def Admin_Authentication_Decorator(func):
-
-    def wrapper_func(*args, **kwargs):
-        
-        sel_user = User.query.filter(session['user_id']==User.id).one()
-        if sel_user.admin==False:
-            return make_response({"error": "Authentication failed - User is not admin"},401)
-        return func(*args, **kwargs)
-
-    return wrapper_func
-
-#######################################################
-###########        Check-Session 
-#######################################################
-
-def Authentication_Decorator(func):
-
-    def wrapper_func(*args, **kwargs):
-
-        try:
-            sel_user = User.query.filter(session['user_id']==User.id).one()
-        except:
-            return make_response({"error":"User is not logged in!"}, 401)
-
-        return func(*args, **kwargs)
-
-    return wrapper_func
 
 ############################################################
 #########               Authentication
@@ -613,7 +582,7 @@ class Friendship(Resource):
 
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
-        import ipdb;ipdb.set_trace()
+        # import ipdb;ipdb.set_trace()
         serialized_friends = [ef.to_dict(
             only = ('image', 'username', 'id')
         ) for ef in currentUser.all_friends()]        

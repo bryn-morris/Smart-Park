@@ -2,7 +2,6 @@ import React, {useState, useContext} from 'react'
 // import {useHistory} from 'react-router-dom'
 import { Route, useHistory } from "react-router-dom";
 import {Form, Input, Icon} from 'semantic-ui-react'
-import io from 'socket.io-client'
 
 import { AuthContext } from '../../context/AuthContext';
 import { DogContext } from '../../context/DogContext';
@@ -40,9 +39,9 @@ function Logging() {
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs);
-          history.push("/");
+          history.push("/");      
         })}
-        // Replace/refactor this validation with FORMIK and YUP down the line. 
+        // Replace/refactor this validation with FORMIK and YUP down the line. include catch for error or if !r.ok
         else {return r.json().then(msg => alert(msg.error))};
       })
       setUserFormObject(emptyFormObject)

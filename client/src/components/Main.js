@@ -16,6 +16,8 @@ function Main() {
   /////////     Check-in & Out
   ///////////////////////////////////////
  
+  
+  const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
 
   const { dogs, setDogs } = useContext(DogContext)
@@ -68,7 +70,6 @@ function Main() {
       })
   }
 
-  const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
 
   function handleFormSubmission(formObj){
     fetch('/visits', {

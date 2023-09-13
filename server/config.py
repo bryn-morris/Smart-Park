@@ -26,7 +26,8 @@ metadata = MetaData(naming_convention={
 db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 db.init_app(app)
-socketio = SocketIO(app)
+# will need to change cors allowed origins for dvpmnt
+socketio = SocketIO(app, cors_allowed_origins = '*')
 
 bcrypt = Bcrypt(app)
 

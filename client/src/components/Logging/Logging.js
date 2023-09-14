@@ -2,9 +2,11 @@ import React, {useState, useContext} from 'react'
 // import {useHistory} from 'react-router-dom'
 import { Route, useHistory } from "react-router-dom";
 import {Form, Input, Icon} from 'semantic-ui-react'
+import io from 'socket.io-client'
 
 import { AuthContext } from '../../context/AuthContext';
 import { DogContext } from '../../context/DogContext';
+import { WebSocketContext } from '../../context/WebSocketContext';
 import Main from "../Main"
 import { handleFormInputChange } from '../helpers/helperFunctions';
 
@@ -22,6 +24,7 @@ function Logging() {
 
   const {  setDogs } = useContext(DogContext)
   const { currentUser, setCurrentUser } = useContext(AuthContext)
+  const { setUserSocket } = useContext(WebSocketContext)
 
   const history = useHistory()
 
@@ -39,7 +42,8 @@ function Logging() {
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs);
-          history.push("/");      
+          history.push("/");
+          setUserSocket(()=> io('http://localhost:5555'))
         })}
         // Replace/refactor this validation with FORMIK and YUP down the line. include catch for error or if !r.ok
         else {return r.json().then(msg => alert(msg.error))};

@@ -17,7 +17,9 @@ function LogOutModal ({isLogOutModalRendered, setIsLogOutModalRendered}) {
         setCurrentUser(null)
         setDogParks([])
         setFriendsList([])
+        // clear state and close websocket
         history.push("/")
+        
     }
 
     return(

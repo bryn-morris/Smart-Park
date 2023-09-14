@@ -1,21 +1,21 @@
-import { createContext} from "react";
-import io from 'socket.io-client'
+import { createContext, useState } from "react";
 
 const WebSocketContext = createContext()
 
 function WebSocketProvider({children}) {
 
-    // Need to solve websocket cors issue
-    const socket = io('http://localhost:5555')
+    const [userSocket, setUserSocket] = useState(null)
 
     return (
         <WebSocketContext.Provider 
             value ={{
-
+                        userSocket,
+                        setUserSocket,
                     }}
         >
             {children}
         </WebSocketContext.Provider>
     )
 }
+
 export {WebSocketContext, WebSocketProvider}

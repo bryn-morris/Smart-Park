@@ -2,8 +2,8 @@ from flask_socketio import Namespace
 
 class FriendNamespace(Namespace):
     def on_connect(self):
-        # websocket connection logic
-        pass
+        print('Client Connected to FriendNamespace')
+        self.emit('connection_confirm', {'message': 'Sucessfully Connected to Friend NameSpace Websocket'})
 
     def on_disconnect(self):
         #websocket disconnect logic

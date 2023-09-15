@@ -24,7 +24,7 @@ function Logging() {
 
   const {  setDogs } = useContext(DogContext)
   const { currentUser, setCurrentUser } = useContext(AuthContext)
-  const { setUserSocket } = useContext(WebSocketContext)
+  const { setFriendSocket } = useContext(WebSocketContext)
 
   const history = useHistory()
 
@@ -43,7 +43,7 @@ function Logging() {
           setCurrentUser(user);
           setDogs(user.dogs);
           history.push("/");
-          setUserSocket(()=> io('http://localhost:5555'))
+          setFriendSocket(()=> io('http://localhost:5555/friends-socket'))
         })}
         // Replace/refactor this validation with FORMIK and YUP down the line. include catch for error or if !r.ok
         else {return r.json().then(msg => alert(msg.error))};

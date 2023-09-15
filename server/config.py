@@ -12,7 +12,7 @@ from flask_socketio import SocketIO
 
 # Local imports
 
-from .websocket.friends_namespace import FriendNamespace
+from websocket.friends_namespace import FriendNamespace
 
 # Instantiate app, set attributes
 app = Flask(__name__)

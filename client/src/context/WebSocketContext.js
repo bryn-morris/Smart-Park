@@ -4,13 +4,19 @@ const WebSocketContext = createContext()
 
 function WebSocketProvider({children}) {
 
-    const [userSocket, setUserSocket] = useState(null)
+    const [friendSocket, setFriendSocket] = useState(null)
+
+    if (friendSocket){
+        friendSocket.on('connection_confirm', (data)=>{
+            console.log(data.message)
+        })
+    }
 
     return (
         <WebSocketContext.Provider 
             value ={{
-                        userSocket,
-                        setUserSocket,
+                        friendSocket,
+                        setFriendSocket,
                     }}
         >
             {children}

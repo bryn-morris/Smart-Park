@@ -9,17 +9,14 @@ function WebSocketProvider({children}) {
     useEffect(()=>{
         if (friendSocket) {
             friendSocket.connect()
+        
+            friendSocket.on('connection_confirm', (data)=>{
+                console.log(data.message)
+            })
+
         }
     }, [friendSocket])
 
-    if (friendSocket){
-
-        friendSocket.on('connection_confirm', (data)=>{
-            console.log(data.message)
-        })
-
-
-    }
 
     return (
         <WebSocketContext.Provider 

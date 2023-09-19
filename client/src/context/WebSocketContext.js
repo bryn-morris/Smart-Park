@@ -15,6 +15,7 @@ function WebSocketProvider({children}) {
                 console.log(data.message)
             })
 
+            
         }
     }, [friendSocket])
 

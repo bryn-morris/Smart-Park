@@ -10,6 +10,7 @@ class FriendNamespace(Namespace):
     def on_friend_request(self):
         # websocket friend request logic, will likely
         # need to add more arguments here
+        # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
         pass
 
 ############################################################

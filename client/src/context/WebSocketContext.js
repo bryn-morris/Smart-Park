@@ -10,6 +10,7 @@ function WebSocketProvider({children}) {
         if (friendSocket) {
             friendSocket.connect()
         
+            // Websocket Event Handlers below
             friendSocket.on('connection_confirm', (data)=>{
                 console.log(data.message)
             })
@@ -17,6 +18,8 @@ function WebSocketProvider({children}) {
         }
     }, [friendSocket])
 
+    // Will need to implement reconnection logic tied to a timer if connection is lost for whatever reason
+    // also will need add modularity to websocket url in config file with production and non-production variables
 
     return (
         <WebSocketContext.Provider 

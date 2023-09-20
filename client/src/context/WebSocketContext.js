@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect, } from "react";
+import { createContext, useState, useEffect} from "react";
+
 
 const WebSocketContext = createContext()
 
@@ -7,6 +8,7 @@ function WebSocketProvider({children}) {
     const [friendSocket, setFriendSocket] = useState(null)
 
     useEffect(()=>{
+
         if (friendSocket) {
             
             friendSocket.connect()

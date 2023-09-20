@@ -12,12 +12,16 @@ function FriendsListButton ({isFriendsModalShowing, setIsFriendsModalShowing}) {
     // 'stays' at the top of the radial circle, and individual friend elements dissappear
 
     return(
-        <Button
-            
-            onClick={()=>setIsFriendsModalShowing(!isFriendsModalShowing)}
+        <div 
+            className = "FriendsListButton"
         >
-            Sample Text
-        </Button>
+            <Button
+                onClick={()=>setIsFriendsModalShowing(!isFriendsModalShowing)}
+            >
+                Friends List
+            </Button>
+        </div>
+        
     )
 }
 

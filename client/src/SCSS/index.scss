@@ -17,7 +17,15 @@
 /////////////////////////////////////////////////
 
 .FriendListElement {
+    position: absolute;
     z-index: 10;
+}
+
+.FriendsListButton {
+    position: absolute;
+    z-index: 12;
+    bottom: 10%;
+    right: 5%;
 }
 
 /////////////////////////////////////////////////

@@ -11,7 +11,6 @@ function FriendCard ({eachFr}) {
     return(
         <div className="FriendCard">
             <p>{eachFr.username}</p>
-
             <Button
                 onClick={()=>{deleteFriend(5)}}
             >

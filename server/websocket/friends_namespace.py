@@ -1,4 +1,4 @@
-from flask_socketio import Namespace
+from flask_socketio import Namespace, join_room
 from flask import request
 
 ## Create a handler for unauthenticated connections
@@ -8,13 +8,17 @@ class FriendNamespace(Namespace):
         self.emit('connection_confirm', {'message': 'Sucessfully Connected to Friend NameSpace Websocket'})
 
     def on_connection_data(self, data):
-        self.emit('connection_confirm', {'message': f'{data}'})
+        
+        user_id = data.get('user_id')
+        join_room(f'user_{user_id}')
+        self.emit('server_response', {'message': f' user has joined room "user_{user_id}"'})
 
     def on_disconnect(self):
         ## emit will not fire due to useEffect closing listener on frontend when socket values change
-        self.emit('connection_confirm', {'message': 'Sucessfully Disconnected from Friend NameSpace Websocket'})
+        # self.emit('connection_confirm', {'message': 'Sucessfully Disconnected from Friend NameSpace Websocket'})
+        pass
 
-    def on_friend_request(self):
+    def on_friend_request(self, data):
         # websocket friend request logic, will likely
         # need to add more arguments here
         # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase

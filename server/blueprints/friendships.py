@@ -61,4 +61,4 @@ class Pending_Friends(Resource):
         return make_response(serialized_pending_friendships, 200)
 
 
-api.add_resource(Pending_Friends, 'pending_friends')
+api.add_resource(Pending_Friends, '/pending_friends')

@@ -5,7 +5,7 @@ const FriendsContext = createContext()
 function FriendsProvider({children}) {
 
     const [friendsList, setFriendsList] = useState([])
-    const [pendingFriendsList, setPendingFriendsList] = useState()
+    const [pendingFriendsList, setPendingFriendsList] = useState([])
 
     return (
         <FriendsContext.Provider 

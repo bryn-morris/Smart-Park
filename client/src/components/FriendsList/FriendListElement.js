@@ -1,24 +1,17 @@
-import { Button } from "semantic-ui-react"
 import { useContext } from "react"
-import { WebSocketContext } from "../../context/WebSocketContext"
+import { FriendsContext } from "../../context/FriendsContext"
+import FriendCard from "./FriendCard"
 
 
 function FriendListElement() {
 
-    const {sendFriendRequest, deleteFriend,} = useContext(WebSocketContext)
+    const { friendsList } = useContext(FriendsContext)
 
     return (
         <div className="FriendListElement">
-            <Button
-                onClick={()=>{sendFriendRequest(4)}}
-            >
-                Add Friend
-            </Button>
-            <Button
-                onClick={()=>{deleteFriend(5)}}
-            >
-                Delete Friend
-            </Button>
+            {friendsList.map((eachFr)=>{
+                return (<FriendCard key = {eachFr.id} eachFr = {eachFr}/>)
+            })}
         </div>
     )
 }

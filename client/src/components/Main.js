@@ -159,7 +159,7 @@ function Main() {
       <main className = 'site Content'>
       {/* <FriendElement/> */}
       <FriendsListButton {...propsObjectToFriendsListButton}/>
-      {isFriendsModalShowing ? <FriendListElement/> : null}
+      {isFriendsModalShowing ? <FriendListElement /> : null}
         <Switch>
           <Route exact path="/">
             <Home 

@@ -26,8 +26,6 @@ class Signup(Resource):
             ).first()
 
             session['user_id'] = user.id
-
-            import ipdb;ipdb.set_trace()
             
         except:
             return {'error': 'Must enter a valid username, password, and url'}, 401
@@ -55,6 +53,7 @@ class Login(Resource):
                 user.to_dict(rules=('dogs','-_password','reviews','-favorited',)),
                 200
             )
+
             return resp
         except:
             return {'error': 'Must enter a valid username and password'}, 404

@@ -1,5 +1,6 @@
-import { createContext, useState, useEffect} from "react";
+import { createContext, useState, useEffect, useContext} from "react";
 
+import { AuthContext } from "./AuthContext";
 
 const WebSocketContext = createContext()
 
@@ -7,12 +8,18 @@ function WebSocketProvider({children}) {
 
     const [friendSocket, setFriendSocket] = useState(null)
 
+    const {currentUser} = useContext(AuthContext)
+
     useEffect(()=>{
 
-        if (friendSocket) {
-            
-            friendSocket.connect()
+        if (friendSocket && currentUser) {
         
+            // Initial Data during connection
+
+            friendSocket.on('connect', ()=>{
+                friendSocket.emit('connection_data', {user_id: currentUser.id})
+            })
+
             // Websocket Event Handlers below
             friendSocket.on('connection_confirm', (data)=>{
                 console.log(data.message)
@@ -21,7 +28,7 @@ function WebSocketProvider({children}) {
             
         
         }
-    }, [friendSocket])
+    }, [friendSocket, currentUser])
 
     function closeFriendWebsocket(){
         friendSocket.disconnect()

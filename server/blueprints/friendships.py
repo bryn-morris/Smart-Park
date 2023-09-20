@@ -54,11 +54,9 @@ class Pending_Friends(Resource):
     
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
-        import ipdb;ipdb.set_trace()
         serialized_pending_friendships = [epf.to_dict(
             only = ('image', 'username', 'id')
             ) for epf in currentUser.pending_friends()]
         return make_response(serialized_pending_friendships, 200)
-
 
 api.add_resource(Pending_Friends, '/pending_friends')

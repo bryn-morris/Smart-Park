@@ -22,7 +22,7 @@ function Main() {
 
   const { dogs, setDogs } = useContext(DogContext)
   const { setDogParks } = useContext(DogParkContext)
-  const { setFriendsList, pendingFriendsList, setPendingFriendsList } = useContext(FriendsContext)
+  const { setFriendsList, setPendingFriendsList } = useContext(FriendsContext)
 
   useEffect(()=>{
     
@@ -36,11 +36,11 @@ function Main() {
             setFriendsList(friendsData)
           })
 
-      // fetch('/pending_friends')
-      // .then(r=>r.json())
-      // .then(pendingFriendshipsData => {
-      //       setPendingFriendsList(pendingFriendshipsData)
-      // })
+      fetch('/pending_friends')
+      .then(r=>r.json())
+      .then(pendingFriendshipsData => {
+            setPendingFriendsList(pendingFriendshipsData)
+      })
 
     //use sessionStorage to check if currently checked in 
     const sessionCheckInID = sessionStorage.getItem('currentCheckInID')
@@ -48,9 +48,6 @@ function Main() {
       setCurrentCheckInID(sessionCheckInID)
     }
   }, [setDogParks, setFriendsList, setPendingFriendsList])
-
-  console.log(pendingFriendsList)
-
 
   const [seconds, setSeconds] = useState(0)
   const [intervalID, setIntervalID] = useState(null)

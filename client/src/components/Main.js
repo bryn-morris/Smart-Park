@@ -157,7 +157,6 @@ function Main() {
     <div className='site'>
       <Header/>
       <main className = 'site Content'>
-      {/* <FriendElement/> */}
       <FriendsListButton {...propsObjectToFriendsListButton}/>
       {isFriendsModalShowing ? <FriendListElement /> : null}
         <Switch>

@@ -16,9 +16,12 @@
 ///                Friendship Element
 /////////////////////////////////////////////////
 
-.FriendListElement {
+.FriendsListElement {
     position: absolute;
     z-index: 10;
+    background-color: blue;
+    height: 100%;
+    right: 0%;
 }
 
 .FriendsListButton {

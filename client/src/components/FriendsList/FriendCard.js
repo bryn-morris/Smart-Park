@@ -4,15 +4,14 @@ import { Button } from "semantic-ui-react"
 
 function FriendCard ({eachFr}) {
 
-    const {sendFriendRequest, deleteFriend} = useContext(WebSocketContext)
+    const { deleteFriend} = useContext(WebSocketContext)
+
+    console.log(eachFr)
 
     return(
-        <div>
-            <Button
-                onClick={()=>{sendFriendRequest(4)}}
-            >
-                Add Friend
-            </Button>
+        <div className="FriendCard">
+            <p>{eachFr.username}</p>
+
             <Button
                 onClick={()=>{deleteFriend(5)}}
             >

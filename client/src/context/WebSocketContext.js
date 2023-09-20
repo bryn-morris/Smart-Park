@@ -70,9 +70,12 @@ function WebSocketProvider({children}) {
     }
 
     function deleteFriend(friendship_id) {
-        fetch(`/friends/${friendship_id}`, {
-            method: "DELETE",
-        })
+        // fetch(`/friends/${friendship_id}`, {
+        //     method: "DELETE",
+        // })
+
+        // search both pending friends and friends table and delete entries
+        console.log("delete friends action")
     }
 
     // Once the add friend buttons are rendered for each 

@@ -21,6 +21,12 @@ function WebSocketProvider({children}) {
         }
     }, [friendSocket])
 
+    function closeFriendWebsocket(){
+        friendSocket.disconnect()
+        console.log('Sucessfully Disconnected from Friend NameSpace Websocket')
+        setFriendSocket(null)
+    }
+
     // Will need to implement reconnection logic tied to a timer if connection is lost for whatever reason
     // also will need add modularity to websocket url in config file with production and non-production variables
 
@@ -29,6 +35,7 @@ function WebSocketProvider({children}) {
             value ={{
                         friendSocket,
                         setFriendSocket,
+                        closeFriendWebsocket,
                     }}
         >
             {children}

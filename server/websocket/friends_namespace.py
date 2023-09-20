@@ -1,16 +1,20 @@
 from flask_socketio import Namespace
+from flask import session
 
 class FriendNamespace(Namespace):
     def on_connect(self):
+        ## Make a room for each user that connections, likely to do with the userid key value pair stored in session
         self.emit('connection_confirm', {'message': 'Sucessfully Connected to Friend NameSpace Websocket'})
 
     def on_disconnect(self):
+        ## emit will not fire due to useEffect closing listener on frontend when socket values change
         self.emit('connection_confirm', {'message': 'Sucessfully Disconnected from Friend NameSpace Websocket'})
 
     def on_friend_request(self):
         # websocket friend request logic, will likely
         # need to add more arguments here
         # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
+
 
         ## First, User A will send Friend Request to User B
         ## This will to add both users to pending friendships table

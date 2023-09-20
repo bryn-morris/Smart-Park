@@ -23,18 +23,20 @@ function FriendElement() {
 
     function sendFriendRequest(friend_id) {
 
-        const requestBody = {
-            "friend_id" : friend_id,
-            "request_status" : false,
-        }
+        // Websocket
 
-        fetch("/friends", {
-            method: "POST",
-            headers: {"Content-type" : "application/json"},
-            body: JSON.stringify(requestBody),
-        })
-            .then(r=>r.json())
-            .then(console.log)
+        // const requestBody = {
+        //     "friend_id" : friend_id,
+        //     "request_status" : false,
+        // }
+
+    //     fetch("/friends", {
+    //         method: "POST",
+    //         headers: {"Content-type" : "application/json"},
+    //         body: JSON.stringify(requestBody),
+    //     })
+    //         .then(r=>r.json())
+    //         .then(console.log)
     }
 
     function deleteFriend(friendship_id) {

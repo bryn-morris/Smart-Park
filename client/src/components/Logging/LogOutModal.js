@@ -11,7 +11,7 @@ function LogOutModal ({isLogOutModalRendered, setIsLogOutModalRendered}) {
     const {setCurrentUser} = useContext(AuthContext)
     const {setDogParks} = useContext(DogParkContext)
     const {setFriendsList} = useContext(FriendsContext)
-    const { friendSocket, setFriendSocket} = useContext(WebSocketContext)
+    const { closeFriendWebsocket } = useContext(WebSocketContext)
     const history = useHistory()
 
     function logOut() {
@@ -19,9 +19,7 @@ function LogOutModal ({isLogOutModalRendered, setIsLogOutModalRendered}) {
         setCurrentUser(null)
         setDogParks([])
         setFriendsList([])
-        friendSocket.disconnect()
-        setFriendSocket(null)
-        // clear state and close websocket
+        closeFriendWebsocket()
         history.push("/")
         
     }

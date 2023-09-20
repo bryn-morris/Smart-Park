@@ -21,7 +21,7 @@ function FriendElement() {
     // to the current user that a request has been sent
     // also update pending friend frequest state
 
-    function addFriend(friend_id) {
+    function sendFriendRequest(friend_id) {
 
         const requestBody = {
             "friend_id" : friend_id,
@@ -51,7 +51,7 @@ function FriendElement() {
     return (
         <div className="FriendModal">
             <Button
-                onClick={()=>{addFriend(4)}}
+                onClick={()=>{sendFriendRequest(4)}}
             >
                 Add Friend
             </Button>

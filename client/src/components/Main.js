@@ -70,7 +70,6 @@ function Main() {
       })
   }
 
-
   function handleFormSubmission(formObj){
     fetch('/visits', {
       method: 'POST',

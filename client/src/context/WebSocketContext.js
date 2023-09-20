@@ -8,6 +8,7 @@ function WebSocketProvider({children}) {
 
     useEffect(()=>{
         if (friendSocket) {
+            
             friendSocket.connect()
         
             // Websocket Event Handlers below
@@ -16,6 +17,7 @@ function WebSocketProvider({children}) {
             })
 
             
+        
         }
     }, [friendSocket])
 

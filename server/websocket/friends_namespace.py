@@ -11,6 +11,15 @@ class FriendNamespace(Namespace):
         # websocket friend request logic, will likely
         # need to add more arguments here
         # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
+
+        ## First, User A will send Friend Request to User B
+        ## This will to add both users to pending friendships table
+        ## If a socketio room exists with User B (if User B is logged in) emit event will be sent to user B
+        ## User B can accept or decline
+        ### If User B declines, remove user from pending friendships table
+        ### If User A cancels, remove users from pending friendships table
+        ### If User B accepts, users will be removed from pending friendships table and be added to the friendships table
+        ### Once Friendship is established, either user can delete friendship to remove from friendship table
         pass
 
 ############################################################

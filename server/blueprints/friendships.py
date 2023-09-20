@@ -2,7 +2,7 @@ from flask import make_response, session, request, Blueprint
 from flask_restful import Resource
 
 from config import db, api
-from models import User, Friends
+from models import User, Friends, Pending_Friendships
 from auth_dec import Authentication_Decorator
 
 friendship_routes = Blueprint('friendship_routes', __name__)
@@ -47,5 +47,6 @@ class Friendship_by_Id(Resource):
         db.session.commit()
 
         return make_response({}, 204)
-    
+
+
 api.add_resource(Friendship_by_Id, '/friends/<int:id>')

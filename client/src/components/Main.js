@@ -8,7 +8,8 @@ import { DogContext } from '../context/DogContext';
 import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
 import { FriendsContext } from "../context/FriendsContext";
-import FriendElement from "./FriendElement";
+import FriendElement from "./FriendsList/FriendElement";
+import FriendsListButton from "./FriendsList/FriendsListButton";
 
 function Main() {
 
@@ -121,6 +122,12 @@ function Main() {
   }
 
   ///////////////////////////////////////
+  /////////     Friendship
+  ///////////////////////////////////////
+
+  const [isFriendsModalShowing, setIsFriendsModalShowing] = useState(false)
+
+  ///////////////////////////////////////
   /////////     Props Objects
   ///////////////////////////////////////
 
@@ -141,6 +148,11 @@ function Main() {
     createDog: createDog,
   }
 
+  const propsObjectToFriendsListButton = {
+    isFriendsModalShowing: isFriendsModalShowing,
+    setIsFriendsModalShowing: setIsFriendsModalShowing,
+  }
+
   return (
     <div className='site'>
       <Header/>
@@ -153,7 +165,8 @@ function Main() {
       'stays' at the top of the radial circle, and individual friend elements dissappear
       <div>TEST</div> */}
       <main className = 'site Content'>
-      <FriendElement/>
+      {/* <FriendElement/> */}
+      <FriendsListButton {...propsObjectToFriendsListButton}/>
         <Switch>
           <Route exact path="/">
             <Home 

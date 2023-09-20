@@ -21,7 +21,12 @@ function FriendListElement() {
         fetch('/users',{
             signal: signal,
         })
-            .then(r => r.json())
+            .then(r =>{
+                if (!r.ok) {
+                    console.error('Network Error')
+                }
+                return r.json()
+            })
             .then(users => setUserList(users))
             .catch((error)=>{
                 console.error('User Fetch Error:', error)

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, useMemo } from "react"
 import { FriendsContext } from "../../context/FriendsContext"
-import { AbortController } from 'abort-controller'
+import AbortController from "abort-controller"
 import FriendCard from "./FriendCard"
 import FriendsSearch from "./FriendsSearch"
 
@@ -20,8 +20,6 @@ function FriendListElement() {
     },[])
 
     useEffect(()=>{
-        // write fetch to query all users in the database, have this component mount and clean up after itself after
-        // component opens and closes, respectively
 
         fetch('/users',{
             signal: signal,

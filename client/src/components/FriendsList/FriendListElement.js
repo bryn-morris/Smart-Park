@@ -10,6 +10,8 @@ function FriendListElement() {
     const { friendsList } = useContext(FriendsContext);
 
     const [userList, setUserList] = useState([]);
+    const [searchedTerm, setSearchedTerm] = useState('')
+    const [searchedResultsList, setSearchedResultsList] = useState(userList)
 
     const {controller, signal} = useMemo(()=>{
 
@@ -43,10 +45,23 @@ function FriendListElement() {
     }
     ,[signal, controller])
 
+    const handleSeachUser = (e) => {
+        setSearchedTerm(e.target.value)
+
+        // This is looking for any b and any r instead of "br" when searching br
+        setSearchedResultsList(userList.filter(eachUser => { 
+            return eachUser.username.includes(searchedTerm.toLowerCase())
+        }))
+    }
+
     return (
         <div className="FriendsListElement">
             <div className="FriendsSeachContainer">
-                <FriendsSearch userList = {userList}/>
+                <FriendsSearch 
+                    searchedResultsList = {searchedResultsList}
+                    handleSeachUser = {handleSeachUser}
+                    searchedTerm = {searchedTerm}
+                />
             </div>
             <div className="FriendsCardsContainer">
                 {friendsList.map((eachFr)=>{

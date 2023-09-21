@@ -6,8 +6,6 @@ function FriendCard ({eachFr}) {
 
     const { deleteFriend} = useContext(WebSocketContext)
 
-    console.log(eachFr)
-
     return(
         <div className="FriendCard">
             <p>{eachFr.username}</p>

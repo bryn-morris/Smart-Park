@@ -52,6 +52,7 @@ function FriendListElement() {
         setSearchedResultsList(userList.filter(eachUser => { 
             return eachUser.username.includes(searchedTerm.toLowerCase())
         }))
+        
     }
 
     return (

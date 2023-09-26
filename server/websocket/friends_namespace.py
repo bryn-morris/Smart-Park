@@ -19,11 +19,13 @@ class FriendNamespace(Namespace):
         pass
 
     def on_friend_request(self, data):
+        
         # websocket friend request logic, will likely
         # need to add more arguments here
         # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
 
         ## First, User A will send Friend Request to User B
+            ### return error or bad request http status if user attempts to add themselves as a friend
 
 
 

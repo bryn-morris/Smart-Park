@@ -53,6 +53,11 @@
             margin: auto;
             padding-right: .3em !important;
             height: 100%;
+
+            &:hover{
+                transform: scale(0.85);
+                color: grey
+            }
         }
     }
     .userContainer{
@@ -65,7 +70,6 @@
             padding-left: .3em !important;
             padding-right: .3em !important;
             margin-left: .2em ! important;
-            // margin: auto !important;
             bottom: 10% !important;
         }
         .image{

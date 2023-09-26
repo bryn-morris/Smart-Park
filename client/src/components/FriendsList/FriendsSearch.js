@@ -19,6 +19,7 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
                             name = "user plus"
                             id = {id}
                             className="searchResult icon"
+                            title="Click to add Friend"
                         />
                     </div>
                     <div className="searchResult userContainer">
@@ -29,8 +30,9 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
                         />
                         <strong
                             className="searchResult title"
-                        >{title}</strong>
-                    
+                        >
+                            {title}
+                        </strong>
                     </div>
                 </div>
                 

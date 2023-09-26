@@ -39,6 +39,10 @@
   padding-right: 0.3em !important;
   height: 100%;
 }
+.searchResult .iconContainer .icon:hover {
+  transform: scale(0.85);
+  color: grey;
+}
 .searchResult .userContainer {
   margin: auto;
   padding-left: 0.3em;

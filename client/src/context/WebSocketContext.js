@@ -28,8 +28,9 @@ function WebSocketProvider({children}) {
                 console.log(data.message)
             })
 
-            
-        
+            friendSocket.on('friend_request', (data)=>{
+                console.log(data.message)
+            })
         }
     }, [friendSocket, currentUser])
 

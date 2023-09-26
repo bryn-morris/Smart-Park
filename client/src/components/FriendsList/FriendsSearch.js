@@ -12,6 +12,9 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
                 return {title: eachRes.username, image: eachRes.image, id: eachRes.id}
         })
 
+        // If user is already a friend, remove icon for add friend
+        // If user is a pending friend, change the icon and when user b clicks it will accept friend request
+
         const resultRendererFunc = ({title, image, id})=> {
             return(
                 <div className="searchResult">
@@ -40,7 +43,6 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
                         </strong>
                     </div>
                 </div>
-                
             )
         }
 

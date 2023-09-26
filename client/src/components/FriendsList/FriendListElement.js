@@ -13,6 +13,9 @@ function FriendListElement() {
     const [searchedTerm, setSearchedTerm] = useState('')
     const [searchedResultsList, setSearchedResultsList] = useState(userList)
 
+    // Add two tabs, one for current friends, and one for pending friendships
+    // there should be an accept button next to pending friendships
+
     const {controller, signal} = useMemo(()=>{
 
         const controller = new AbortController();

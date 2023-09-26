@@ -64,15 +64,6 @@ function Header() {
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
-        {/* {createMenuOption("/myaccount",
-          <Image
-            avatar
-            bordered
-            src = {currentUser.image} 
-            alt= "User Profile"
-            className = "profileButtonImage"
-          />
-          )} */}
       </Menu>
       <LogOutModal 
         isLogOutModalRendered = {isLogOutModalRendered}

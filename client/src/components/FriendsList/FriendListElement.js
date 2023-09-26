@@ -48,8 +48,8 @@ function FriendListElement() {
     const handleSeachUser = (e) => {
         setSearchedTerm(e.target.value)
 
-        // This is looking for any b and any r instead of "br" when searching br
-        setSearchedResultsList(userList.filter(eachUser => { 
+
+        setSearchedResultsList(userList.filter(eachUser => {
             return eachUser.username.includes(searchedTerm.toLowerCase())
         }))
     }

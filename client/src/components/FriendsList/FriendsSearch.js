@@ -1,15 +1,16 @@
 import { Search, Icon} from "semantic-ui-react"
-import { useState } from 'react'
+import { useContext } from "react"
+import { AuthContext } from "../../context/AuthContext"
 
 function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
 
         // Within dropdown, add a heart button that allows for sendFriendRequest function to be fired
         // will need to pull sendFriendRequest from WebSocketContext
 
-        // console.log(searchedResultsList)
+        const {currentUser} = useContext(AuthContext) 
 
-        const modifiedResultsList = searchedResultsList.map((eachRes)=>{
-            return {title: eachRes.username, image: eachRes.image, id: eachRes.id}
+        const modifiedResultsList = searchedResultsList.filter((eachEl)=>eachEl.username !== currentUser.username).map((eachRes)=>{
+                return {title: eachRes.username, image: eachRes.image, id: eachRes.id}
         })
 
         const resultRendererFunc = ({title, image, id})=> {

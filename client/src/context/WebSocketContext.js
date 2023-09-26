@@ -53,6 +53,8 @@ function WebSocketProvider({children}) {
 
     function sendFriendRequest(friend_id) {
 
+        console.log("is this hooked up?")
+
         // Websocket
 
         // const requestBody = {

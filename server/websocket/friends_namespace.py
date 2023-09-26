@@ -26,6 +26,7 @@ class FriendNamespace(Namespace):
 
         ## First, User A will send Friend Request to User B
             ### return error or bad request http status if user attempts to add themselves as a friend
+            ### return error or bad request http status if user attempts to add someone who is already a friend as a friend
 
 
 

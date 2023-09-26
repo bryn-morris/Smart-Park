@@ -24,7 +24,10 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
                             title="Click to add Friend"
                         />
                     </div>
-                    <div className="searchResult userContainer">
+                    <div 
+                        className="searchResult userContainer"
+                        title="Go to User Profile"
+                    >
                         <img
                             src = {image} 
                             alt = "User Profile"

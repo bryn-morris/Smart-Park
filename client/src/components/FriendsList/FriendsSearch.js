@@ -1,4 +1,4 @@
-import { Search, Icon, Image } from "semantic-ui-react"
+import { Search, Icon} from "semantic-ui-react"
 
 function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
 
@@ -14,26 +14,34 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
         const resultRendererFunc = ({title, image, id})=> {
             return(
                 <div className="searchResult">
-                    <Image
-                        avatar
-                        bordered
-                        src = {image} 
-                        alt= "User Profile"
-                        className = "profileButtonImage"
-                    />
-                    <strong>{title}</strong>
-                    <Icon
-                        name = "heart"
-                        id = {id}
-                    />
+                    <div className = "searchResult iconContainer">
+                        <Icon
+                            name = "user plus"
+                            id = {id}
+                            className="searchResult icon"
+                        />
+                    </div>
+                    <div className="searchResult userContainer">
+                        <img
+                            src = {image} 
+                            alt = "User Profile"
+                            className="searchResult image"
+                        />
+                        <strong
+                            className="searchResult title"
+                        >{title}</strong>
+                    
+                    </div>
                 </div>
+                
             )
         }
 
 
     return(
         <div>
-            <Search 
+            <Search
+                size="big" 
                 placeholder="Search Users..."
                 onSearchChange={(e) => handleSeachUser(e)}
                 value = {searchedTerm}

@@ -51,7 +51,7 @@ function Header() {
               bordered
               src = {currentUser.image} 
               alt= "User Profile"
-              className = "profileButtonImage"
+              // className = "profileButtonImage"
             />
             <Dropdown icon={null} open={isAvatarClicked}>
               <Dropdown.Menu>

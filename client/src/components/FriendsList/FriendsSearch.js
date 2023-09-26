@@ -8,8 +8,6 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
 
         // console.log(searchedResultsList)
 
-        const [isSearchOpen, setIsSearchOpen] = useState(false)
-
         const modifiedResultsList = searchedResultsList.map((eachRes)=>{
             return {title: eachRes.username, image: eachRes.image, id: eachRes.id}
         })
@@ -42,25 +40,12 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
             )
         }
 
-        const searchChangeFunc = (e) => {
-
-            handleSeachUser(e)
-            setIsSearchOpen(()=>{
-                if (e.target.value === '') {
-                    return false
-                } else {
-                    return true
-                }
-            })
-        }
-
     return(
         <div>
             <Search
-                open = {isSearchOpen}
                 size="big" 
                 placeholder="Search Users..."
-                onSearchChange={searchChangeFunc}
+                onSearchChange={(e)=>handleSeachUser(e)}
                 value = {searchedTerm}
                 results={modifiedResultsList}
                 resultRenderer={resultRendererFunc}

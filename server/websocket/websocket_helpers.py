@@ -22,3 +22,4 @@ def remove_user_from_room():
 def close_room():
     ## check to make sure room exists within active room database
     ## if so, close room
+    pass

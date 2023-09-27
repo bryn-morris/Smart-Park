@@ -9,22 +9,23 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
         const {sendFriendRequest} = useContext(WebSocketContext) 
 
         const modifiedResultsList = searchedResultsList.filter((eachEl)=>eachEl.username !== currentUser.username).map((eachRes)=>{
-                return {title: eachRes.username, image: eachRes.image, id: eachRes.id}
+                return {title: eachRes.username, image: eachRes.image, friend_id: eachRes.id}
         })
 
         // If user is already a friend, remove icon for add friend
         // If user is a pending friend, change the icon and when user b clicks it will accept friend request
+        // Once add friend request button is clicked, user should not be able to click it again
 
-        const resultRendererFunc = ({title, image, id})=> {
+
+        const resultRendererFunc = ({title, image, friend_id})=> {
             return(
                 <div className="searchResult">
                     <div className = "searchResult iconContainer">
                         <Icon
                             name = "user plus"
-                            id = {id}
                             className="searchResult icon"
                             title="Click to send friend request"
-                            onClick = {sendFriendRequest}
+                            onClick = {()=>sendFriendRequest(friend_id)}
                         />
                     </div>
                     <div 

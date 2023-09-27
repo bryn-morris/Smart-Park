@@ -1,10 +1,11 @@
 from flask_socketio import Namespace, join_room
-from flask import request
+
+from models import User
 
 ## Create a handler for unauthenticated connections
 class FriendNamespace(Namespace):
     def on_connect(self):
-        ## Make a room for each user that connections, likely to do with the userid key value pair stored in session
+        
         self.emit('connection_confirm', {'message': 'Sucessfully Connected to Friend NameSpace Websocket'})
 
     def on_connection_data(self, data):
@@ -21,14 +22,12 @@ class FriendNamespace(Namespace):
 
     def on_friend_request(self, data):
 
-        friend_id = data.get('friend_id')
-        user_id = data.get('user_id')
-
-        self.emit('friend_request_response', {'message' : f'the friend"s user id is {friend_id}'})
-        
-        # websocket friend request logic, will likely
-        # need to add more arguments here
         # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
+
+        # self.emit('friend_request_response', {'message' : f'the friend"s user id is {friend_id}'})
+
+        sel_friend = User.query.filter(User.id == data.get('friend_id')).one()
+        sel_user = User.query.filter(User.id == data.get('user_id')).one()
 
         ## First, User A will send Friend Request to User B
             ### return error or bad request http status if user attempts to add themselves as a friend

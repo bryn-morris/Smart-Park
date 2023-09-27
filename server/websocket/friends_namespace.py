@@ -28,19 +28,22 @@ class FriendNamespace(Namespace):
         # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
 
         ## First, User A will send Friend Request to User B
-            ### return error or bad request http status if user attempts to add themselves as a friend
-            ### return error or bad request http status if user attempts to add someone who is already a friend as a friend
-
+            
         try:
             sel_friend = User.query.filter(User.id == data.get('friend_id')).one()
             sel_user = User.query.filter(User.id == data.get('user_id')).one()
-
+            ### return error or bad request http status if user attempts to add someone who is already a friend as a friend
             if sel_friend in sel_user.all_friends():
-                raise ValueError
-        except ValueError:
-            self.emit('friend_request_response', {'message' : f'This user is already one of your friends!'})
-        except:
-            pass
+                raise ValueError('This user is already one of your friends!')
+            ### return error or bad request http status if user attempts to add themselves as a friend
+            if sel_friend == sel_user:
+                raise ValueError('You can\'t add yourself as a friend!')
+
+            
+
+        except ValueError as e:
+            self.emit('friend_request_response', {'message' : str(e)})
+
 
 
         ## This will to add both users to pending friendships table

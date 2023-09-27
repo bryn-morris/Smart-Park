@@ -24,9 +24,9 @@ function WebSocketProvider({children}) {
                 console.log(data.message)
             })
 
-            friendSocket.on('server_response', (data)=>{
-                console.log(data.message)
-            })
+            // friendSocket.on('server_response', (data)=>{
+            //     console.log(data.message)
+            // })
 
             friendSocket.on('friend_request_response', (data)=>{
                 console.log(data.message)
@@ -54,9 +54,7 @@ function WebSocketProvider({children}) {
 
     function sendFriendRequest(friend_id) {
 
-        console.log(friend_id)
-
-        // friendSocket.emit('friend_request', {currentUser_id:currentUser.id, friend_id: friend_id})
+        friendSocket.emit('friend_request', {currentUser_id:currentUser.id, friend_id: friend_id})
 
         // Websocket
 

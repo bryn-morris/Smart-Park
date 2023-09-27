@@ -11,7 +11,8 @@ class FriendNamespace(Namespace):
         
         user_id = data.get('user_id')
         join_room(f'user_{user_id}')
-        self.emit('server_response', {'message': f' user has joined room "user_{user_id}"'})
+        
+        # self.emit('server_response', {'message': f' user has joined room "user_{user_id}"'})
 
     def on_disconnect(self):
         ## emit will not fire due to useEffect closing listener on frontend when socket values change
@@ -19,6 +20,11 @@ class FriendNamespace(Namespace):
         pass
 
     def on_friend_request(self, data):
+
+        friend_id = data.get('friend_id')
+        user_id = data.get('user_id')
+
+        self.emit('friend_request_response', {'message' : f'the friend"s user id is {friend_id}'})
         
         # websocket friend request logic, will likely
         # need to add more arguments here

@@ -1,6 +1,6 @@
 from flask_socketio import Namespace, join_room
-
-from models import User
+from config import db
+from models import User, Pending_Friendships
 
 ## Create a handler for unauthenticated connections
 class FriendNamespace(Namespace):
@@ -26,27 +26,43 @@ class FriendNamespace(Namespace):
     def on_friend_request(self, data):
 
         # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
-
-        ## First, User A will send Friend Request to User B
-            
+        ### return error or bad request http status if user attempts to add someone who is already a friend as a friend  
+        ### return error or bad request http status if user attempts to add themselves as a friend
+        
         try:
-            sel_friend = User.query.filter(User.id == data.get('friend_id')).one()
-            sel_user = User.query.filter(User.id == data.get('user_id')).one()
-            ### return error or bad request http status if user attempts to add someone who is already a friend as a friend
+
+            user_id = data.get('user_id')
+            friend_id = data.get('friend_id')
+
+            sel_friend = User.query.filter(User.id == friend_id).one()
+            sel_user = User.query.filter(User.id == user_id).one()
+            
             if sel_friend in sel_user.all_friends():
                 raise ValueError('This user is already one of your friends!')
-            ### return error or bad request http status if user attempts to add themselves as a friend
+            
             if sel_friend == sel_user:
                 raise ValueError('You can\'t add yourself as a friend!')
-
-            
 
         except ValueError as e:
             self.emit('friend_request_response', {'message' : str(e)})
 
-
-
+        ## First, User A will send Friend Request to User B
         ## This will to add both users to pending friendships table
+
+        try:
+            new_pend_fr = Pending_Friendships(
+                    pend_friend_1_id = user_id,
+                    pend_friend_2_id = friend_id
+                )
+            
+            db.session.add(new_pend_fr)
+            db.session.commit()
+
+        except:
+            ## Add contraint to pending friendships table such that only one pairing can be present at a time, 
+            ## in either direction
+            pass
+
         ## If a socketio room exists with User B (if User B is logged in) emit event will be sent to user B
         ## User B can accept or decline
         ### If User B declines, remove user from pending friendships table

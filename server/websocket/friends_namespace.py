@@ -1,6 +1,7 @@
-from flask_socketio import Namespace, join_room
+from flask_socketio import Namespace
 from config import db
 from models import User, Pending_Friendships
+from .websocket_helpers import join_user_to_room
 
 ## Create a handler for unauthenticated connections
 class FriendNamespace(Namespace):
@@ -11,13 +12,18 @@ class FriendNamespace(Namespace):
     def on_connection_data(self, data):
         
         user_id = data.get('user_id')
-        join_room(f'user_{user_id}')
+
+        # if user does not exist, raise validation error
+        if not user_id:
+            raise ValueError('Please relog! Unable to find user ID')
+        
+        join_user_to_room(user_id)
         
         # self.emit('server_response', {'message': f' user has joined room "user_{user_id}"'})
 
     def on_disconnect(self):
-        ## emit will not fire due to useEffect closing listener on frontend when socket values change
-        # self.emit('connection_confirm', {'message': 'Sucessfully Disconnected from Friend NameSpace Websocket'})
+        ## remove user from room - helper function
+        ## remove room from db - helper function
         pass
 
     def on_error(self, e):
@@ -29,39 +35,35 @@ class FriendNamespace(Namespace):
         ### return error or bad request http status if user attempts to add someone who is already a friend as a friend  
         ### return error or bad request http status if user attempts to add themselves as a friend
         
-        try:
+        user_id = data.get('user_id')
+        friend_id = data.get('friend_id')
 
-            user_id = data.get('user_id')
-            friend_id = data.get('friend_id')
-
-            sel_friend = User.query.filter(User.id == friend_id).one()
-            sel_user = User.query.filter(User.id == user_id).one()
-            
-            if sel_friend in sel_user.all_friends():
-                raise ValueError('This user is already one of your friends!')
-            
-            if sel_friend == sel_user:
-                raise ValueError('You can\'t add yourself as a friend!')
-
-        except ValueError as e:
-            self.emit('friend_request_response', {'message' : str(e)})
+        sel_friend = User.query.filter(User.id == friend_id).one()
+        sel_user = User.query.filter(User.id == user_id).one()
+        
+        if sel_friend in sel_user.all_friends():
+            raise ValueError('This user is already one of your friends!')
+        
+        if sel_friend == sel_user:
+            raise ValueError('You can\'t add yourself as a friend!')
 
         ## First, User A will send Friend Request to User B
         ## This will to add both users to pending friendships table
 
-        try:
-            new_pend_fr = Pending_Friendships(
-                    pend_friend_1_id = user_id,
-                    pend_friend_2_id = friend_id
-                )
-            
-            db.session.add(new_pend_fr)
-            db.session.commit()
+        new_pend_fr = Pending_Friendships(
+                pend_friend_1_id = user_id,
+                pend_friend_2_id = friend_id
+            )
+        
+        db.session.add(new_pend_fr)
+        db.session.commit()
 
-        except:
-            ## Add contraint to pending friendships table such that only one pairing can be present at a time, 
-            ## in either direction
-            pass
+        ## use helper function to send message to frontend
+
+        ## Add contraint to pending friendships table such that only one pairing can be present at a time, 
+        ## in either direction, this will cause an error that will get picked up by the global on_error handler
+        
+        ## send a message to update state, 
 
         ## If a socketio room exists with User B (if User B is logged in) emit event will be sent to user B
         ## User B can accept or decline

@@ -25,10 +25,12 @@ function WebSocketProvider({children}) {
             })
 
             friendSocket.on('server_error_response', (data)=>{
-                console.log(data.message)
+                console.error(data.message)
             })
 
             friendSocket.on('friend_request_response', (data)=>{
+                // if we have a valid response, update the pending friend request state, which then determines
+                // if add friend button is rendered or if other info is rendered in search
                 console.log(data.message)
             })
         }

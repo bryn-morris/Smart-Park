@@ -20,19 +20,27 @@ class FriendNamespace(Namespace):
         # self.emit('connection_confirm', {'message': 'Sucessfully Disconnected from Friend NameSpace Websocket'})
         pass
 
+    def on_error(self, e):
+        self.emit('server_error_response', {'message':str(e)})
+
     def on_friend_request(self, data):
 
         # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
-
-        # self.emit('friend_request_response', {'message' : f'the friend"s user id is {friend_id}'})
-
-        sel_friend = User.query.filter(User.id == data.get('friend_id')).one()
-        sel_user = User.query.filter(User.id == data.get('user_id')).one()
 
         ## First, User A will send Friend Request to User B
             ### return error or bad request http status if user attempts to add themselves as a friend
             ### return error or bad request http status if user attempts to add someone who is already a friend as a friend
 
+        try:
+            sel_friend = User.query.filter(User.id == data.get('friend_id')).one()
+            sel_user = User.query.filter(User.id == data.get('user_id')).one()
+
+            if sel_friend in sel_user.all_friends():
+                raise ValueError
+        except ValueError:
+            self.emit('friend_request_response', {'message' : f'This user is already one of your friends!'})
+        except:
+            pass
 
 
         ## This will to add both users to pending friendships table
@@ -42,7 +50,6 @@ class FriendNamespace(Namespace):
         ### If User A cancels, remove users from pending friendships table
         ### If User B accepts, users will be removed from pending friendships table and be added to the friendships table
         ### Once Friendship is established, either user can delete friendship to remove from friendship table
-        pass
 
 ############################################################
 #########              Friendship Decorator

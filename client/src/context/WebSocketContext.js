@@ -24,9 +24,9 @@ function WebSocketProvider({children}) {
                 console.log(data.message)
             })
 
-            // friendSocket.on('server_response', (data)=>{
-            //     console.log(data.message)
-            // })
+            friendSocket.on('server_error_response', (data)=>{
+                console.log(data.message)
+            })
 
             friendSocket.on('friend_request_response', (data)=>{
                 console.log(data.message)

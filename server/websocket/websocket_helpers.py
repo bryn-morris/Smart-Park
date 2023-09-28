@@ -18,8 +18,7 @@ def emit_message_to_room_if_logged_in(self_instance, event_name, message, room_n
     if active_room:
          self_instance.emit(event_name, {'message': message}, room=active_room.room_name)
     else:
-        ## will need to send message to frontend to sign currentUser out and force re-log
-        raise ValueError('No websocket room exists for this user!')
+        raise AuthenticationError('No websocket room exists for this user!')
    
 
 def join_user_to_room(user_id):

@@ -35,6 +35,7 @@ with app.app_context():
     Favorited.query.delete()
     Friends.query.delete()
     Pending_Friendships.query.delete()
+    WebSocket_Rooms.query.delete()
 
     print("Creating Users...")
 

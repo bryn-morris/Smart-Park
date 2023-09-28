@@ -9,29 +9,24 @@ class WebSocketAuthenticationError(Exception):
 
 def check_rooms(room_name):
 
-    active_room = WebSocket_Rooms.query.filter_by(room_name=room_name).first()
-
-    if not active_room:
-        raise WebSocketAuthenticationError('No websocket room exists for this user!')
-        
-    return active_room
+    return WebSocket_Rooms.query.filter_by(room_name=room_name).first()
 
 def emit_message_to_room(self, event_name, data_dict, room_name):
    
-    self.emit(event_name, data_dict, room= check_rooms(room_name))
+    active_room = check_rooms(room_name)
+
+    if not active_room:
+        raise WebSocketAuthenticationError('No websocket room exists for this user!')
+
+    self.emit(event_name, data_dict, room = active_room)
 
 def join_user_to_room(user_id):
-    ## Query database to grab a list of all of the active rooms
-    
-    ## if room does not exist within that list of rooms
-    ## create a new room and add a user to it
-    # join_room(f'user_{user_id}')
-    ## if room does exist, add user to the room in question
-    pass
+
+    join_room(f'user_{user_id}')
 
 def remove_user_from_room():
     ## check to see if room exists within active room database
-    ## check to see if user exists
+    ## check to see if user is associated with that room
     ## if both are true, remove the user from the room 
     pass
 

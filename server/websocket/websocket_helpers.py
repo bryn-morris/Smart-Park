@@ -1,17 +1,18 @@
 from flask_socketio import join_room
 from models import WebSocket_Rooms
-from flask import session
+
+class AuthenticationError(Exception):
+    
+    def __init__(self, message, status_code=401):
+        super().__init__(message)
+        self.status_code = status_code
 
 def check_rooms(room_name):
     ## using.first() so that if no room is found, return value is none
-    room = WebSocket_Rooms.query.filter_by(room_name=room_name).first()
-    return room
+    return WebSocket_Rooms.query.filter_by(room_name=room_name).first()
 
 def emit_message_to_room_if_logged_in(self_instance, event_name, message, room_name):
-
-    # check to see if we can access session here, and if so, check to make sure session has
-    ## data before logging in
-    # import ipdb;ipdb.set_trace()
+    
     active_room = check_rooms(room_name)
 
     if active_room:

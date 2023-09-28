@@ -12,6 +12,7 @@ from blueprints.dogs import dog_routes
 from blueprints.friendships import friendship_routes
 from blueprints.users import user_routes
 
+
 # Registering Namespaces
 socketio.on_namespace(FriendNamespace('/friends-socket'))
 

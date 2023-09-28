@@ -27,6 +27,7 @@ class FriendNamespace(Namespace):
         pass
 
     def on_error(self, e):
+        ## May want to include what the error type is, so that action can be taken on the frontend
         self.emit('server_error_response', {'message':str(e)})
 
     def on_friend_request(self, data):

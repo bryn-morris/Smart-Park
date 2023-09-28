@@ -1,9 +1,23 @@
 from flask_socketio import join_room
+from models import WebSocket_Rooms
+from flask import session
+
+def check_rooms(room_name):
+    ## using.first() so that if no room is found, return value is none
+    room = WebSocket_Rooms.query.filter_by(room_name=room_name).first()
+    return room
 
 def emit_message_to_room_if_logged_in(self_instance, event_name, message, room_name):
-    ## If room exists within the active rooms database, send message to the relevant room
-    ## maybe check session to see if user exists instead of pulling from websocket message
-    self_instance.emit(event_name, {'message': message}, room=room_name)
+
+    # import ipdb;ipdb.set_trace()
+    active_room = check_rooms(room_name)
+
+    if active_room:
+         self_instance.emit(event_name, {'message': message}, room=active_room.room_name)
+    else:
+        ## will need to send message to frontend to sign currentUser out and force re-log
+        raise ValueError('No websocket room exists for this user!')
+   
 
 def join_user_to_room(user_id):
     ## Query database to grab a list of all of the active rooms

@@ -12,7 +12,7 @@ from flask_socketio import SocketIO
 
 # Local imports
 
-from websocket.friends_namespace import FriendNamespace
+
 
 # Instantiate app, set attributes
 app = Flask(__name__)
@@ -30,7 +30,6 @@ migrate = Migrate(app, db)
 db.init_app(app)
 # will need to change cors allowed origins for dvpmnt
 socketio = SocketIO(app, cors_allowed_origins = '*')
-socketio.on_namespace(FriendNamespace('/friends-socket'))
 
 bcrypt = Bcrypt(app)
 

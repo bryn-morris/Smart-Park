@@ -18,7 +18,8 @@ from models import (
     Review, 
     Favorited, 
     Friends,
-    Pending_Friendships)
+    Pending_Friendships,
+    WebSocket_Rooms,)
 
 with app.app_context():
 
@@ -103,7 +104,10 @@ with app.app_context():
     
     print("Creating Pending Frienships...")
     pfr1 = Pending_Friendships(pend_friend_1_id = 2, pend_friend_2_id = 4)
-    pfr2 = Pending_Friendships(pend_friend_1_id = 3, pend_friend_2_id =1)
+    pfr2 = Pending_Friendships(pend_friend_1_id = 3, pend_friend_2_id = 1)
+
+    print("Creating WebSocket rooms...")
+    ws1 = WebSocket_Rooms(room_name = 'test_room', user_id = None)
     
 
     db.session.add_all([d1, d2, d3, d4, d5])
@@ -114,6 +118,7 @@ with app.app_context():
     db.session.add_all([f1,f2,f3,f4,f5,f6,f7])
     db.session.add_all([fr1,fr2,fr3,fr4])
     db.session.add_all([pfr1, pfr2])
+    db.session.add(ws1)
     
     db.session.commit()
 

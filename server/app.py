@@ -2,12 +2,18 @@
 
 # Local imports
 from config import app, socketio
+
+from websocket.friends_namespace import FriendNamespace
+
 from blueprints.review import review_routes
 from blueprints.auth import auth_views
 from blueprints.dog_parks import dog_park_routes
 from blueprints.dogs import dog_routes
 from blueprints.friendships import friendship_routes
 from blueprints.users import user_routes
+
+# Registering Namespaces
+socketio.on_namespace(FriendNamespace('/friends-socket'))
 
 # Registering Routing for Blueprints
 app.register_blueprint(review_routes)

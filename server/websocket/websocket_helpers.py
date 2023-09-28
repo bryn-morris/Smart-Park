@@ -17,10 +17,8 @@ def check_rooms(room_name):
     return active_room
 
 def emit_message_to_room(self, event_name, data_dict, room_name):
-    
-    active_room = check_rooms(room_name)
    
-    self.emit(event_name, data_dict, room= active_room)
+    self.emit(event_name, data_dict, room= check_rooms(room_name))
 
 def join_user_to_room(user_id):
     ## Query database to grab a list of all of the active rooms

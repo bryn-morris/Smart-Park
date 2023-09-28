@@ -9,6 +9,8 @@ def check_rooms(room_name):
 
 def emit_message_to_room_if_logged_in(self_instance, event_name, message, room_name):
 
+    # check to see if we can access session here, and if so, check to make sure session has
+    ## data before logging in
     # import ipdb;ipdb.set_trace()
     active_room = check_rooms(room_name)
 

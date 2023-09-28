@@ -22,6 +22,7 @@ def emit_message_to_room(self, event_name, data_dict, room_name):
 
 def join_user_to_room(user_id):
     ## Query database to grab a list of all of the active rooms
+    
     ## if room does not exist within that list of rooms
     ## create a new room and add a user to it
     # join_room(f'user_{user_id}')

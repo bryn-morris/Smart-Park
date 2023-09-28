@@ -108,6 +108,7 @@ with app.app_context():
 
     print("Creating WebSocket rooms...")
     ws1 = WebSocket_Rooms(room_name = 'test_room', user_id = None)
+    ws2 = WebSocket_Rooms(room_name = 'test_room2', user_id = None)
     
 
     db.session.add_all([d1, d2, d3, d4, d5])
@@ -118,7 +119,7 @@ with app.app_context():
     db.session.add_all([f1,f2,f3,f4,f5,f6,f7])
     db.session.add_all([fr1,fr2,fr3,fr4])
     db.session.add_all([pfr1, pfr2])
-    db.session.add(ws1)
+    db.session.add_all([ws1, ws2])
     
     db.session.commit()
 

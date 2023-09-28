@@ -1,25 +1,26 @@
 from flask_socketio import join_room
 from models import WebSocket_Rooms
 
-class AuthenticationError(Exception):
+class WebSocketAuthenticationError(Exception):
     
-    def __init__(self, message, status_code=401):
+    def __init__(self, message, status_code=404):
         super().__init__(message)
         self.status_code = status_code
 
 def check_rooms(room_name):
-    ## using.first() so that if no room is found, return value is none
-    return WebSocket_Rooms.query.filter_by(room_name=room_name).first()
 
-def emit_message_to_room_if_logged_in(self_instance, event_name, message, room_name):
+    active_room = WebSocket_Rooms.query.filter_by(room_name=room_name).first()
+
+    if not active_room:
+        raise WebSocketAuthenticationError('No websocket room exists for this user!')
+        
+    return active_room
+
+def emit_message_to_room(self, event_name, data_dict, room_name):
     
     active_room = check_rooms(room_name)
-
-    if active_room:
-         self_instance.emit(event_name, {'message': message}, room=active_room.room_name)
-    else:
-        raise AuthenticationError('No websocket room exists for this user!')
    
+    self.emit(event_name, data_dict, room= active_room)
 
 def join_user_to_room(user_id):
     ## Query database to grab a list of all of the active rooms

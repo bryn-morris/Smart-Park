@@ -16,11 +16,9 @@ class FriendNamespace(Namespace):
         
         self.user_id = user_id
 
-        join_user_to_room(user_id)
-        
-        # self.emit('server_response', {'message': f' user has joined room "user_{user_id}"'})
+        join_user_to_room(self, user_id)
 
-        self.emit('connection_confirm', {'message': 'Sucessfully Connected to Friend NameSpace Websocket'})
+        self.emit('connection_confirm', {'message': f'Sucessfully Connected to room {self.room_name}'})
         
 
     def on_disconnect(self):

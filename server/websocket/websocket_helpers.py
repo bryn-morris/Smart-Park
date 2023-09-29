@@ -11,17 +11,23 @@ def check_rooms(room_name):
 
     return WebSocket_Rooms.query.filter_by(room_name=room_name).first()
 
+def join_user_to_room(self, user_id):
+    
+    room_name = f'user_{user_id}'
+
+    self.room_name = room_name
+
+    join_room(room_name)
+
 def emit_message_to_room(self, event_name, data_dict, room_name):
    
+    ## add room_name to self.room_name
     active_room = check_rooms(room_name)
 
     if not active_room:
         raise WebSocketAuthenticationError('No websocket room exists for this user!')
 
     self.emit(event_name, data_dict, room = active_room)
-
-def join_user_to_room(user_id):
-    join_room(f'user_{user_id}')
 
 def remove_user_from_room(room_name, user_id):
 
@@ -36,6 +42,8 @@ def close_room(room_name):
 
     if check_rooms(room_name):
         close_room(room_name)
+    
+    ## del self.room_id
     ## check to make sure room exists within active room database
     ## if so, close room and delete from database
     pass

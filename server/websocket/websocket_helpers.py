@@ -1,5 +1,6 @@
 from flask_socketio import join_room, leave_room, close_room
 from models import WebSocket_Rooms, User
+from config import db
 
 class WebSocketAuthenticationError(Exception):
     
@@ -18,6 +19,11 @@ def join_user_to_room(self, user_id):
     self.room_name = room_name
 
     join_room(room_name)
+
+    ## if room doesn't already exist in db, add to db
+    if not check_rooms(room_name):
+        db.session.add(WebSocket_Rooms(room_name = room_name, user_id = user_id))
+        db.session.commit()
 
 def emit_message_to_room(self, event_name, data_dict, room_name):
    

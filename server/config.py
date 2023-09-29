@@ -29,7 +29,12 @@ db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 db.init_app(app)
 # will need to change cors allowed origins for dvpmnt
-socketio = SocketIO(app, cors_allowed_origins = '*')
+socketio = SocketIO(
+    app, 
+    cors_allowed_origins = '*',
+    manage_session = True,
+    cors_credentials = True,
+)
 
 bcrypt = Bcrypt(app)
 

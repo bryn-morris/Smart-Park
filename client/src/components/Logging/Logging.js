@@ -42,7 +42,10 @@ function Logging() {
         if (r.ok) {return r.json().then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs);
-          setFriendSocket(()=> io('http://localhost:5555/friends-socket'))
+          setFriendSocket(()=> io.connect('http://localhost:5555/friends-socket',{
+            transport: ['websocket'],
+            withCredentials: true,
+          }))
           history.push("/");
         })}
         // Replace/refactor this validation with FORMIK and YUP down the line. include catch for error or if !r.ok

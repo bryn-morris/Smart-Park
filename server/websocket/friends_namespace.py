@@ -24,6 +24,7 @@ class FriendNamespace(Namespace):
     def on_disconnect(self):
         ## remove user from room - helper function
         ## remove room from db - helper function
+        ## disconnect user
         pass
 
     def on_error(self, e):

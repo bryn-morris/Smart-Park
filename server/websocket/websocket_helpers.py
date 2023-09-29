@@ -21,7 +21,6 @@ def emit_message_to_room(self, event_name, data_dict, room_name):
     self.emit(event_name, data_dict, room = active_room)
 
 def join_user_to_room(user_id):
-
     join_room(f'user_{user_id}')
 
 def remove_user_from_room(room_name, user_id):
@@ -31,9 +30,15 @@ def remove_user_from_room(room_name, user_id):
 
     if active_room and active_room.user == active_user:
         leave_room(room_name)
+        
 
-def close_room():
+def close_room(room_name):
 
+    if check_rooms(room_name):
+        close_room(room_name)
     ## check to make sure room exists within active room database
-    ## if so, close room
+    ## if so, close room and delete from database
+    pass
+
+def diconnect_user(user_id):
     pass

@@ -6,6 +6,8 @@ from .websocket_helpers import join_user_to_room
 ## Create a handler for unauthenticated connections
 class FriendNamespace(Namespace):
     def on_connect(self):
+
+        import ipdb;ipdb.set_trace()
         
         self.emit('connection_confirm', {'message': 'Sucessfully Connected to Friend NameSpace Websocket'})
 

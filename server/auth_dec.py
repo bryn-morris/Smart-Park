@@ -16,10 +16,8 @@ def Authentication_Decorator(func):
 
     def wrapper_func(*args, **kwargs):
 
-        try:
-            sel_user = User.query.filter(session['user_id']==User.id).one()
-        except:
-            return make_response({"error":"User is not logged in!"}, 401)
+        if not User.query.filter(session['user_id']==User.id).first():
+            return make_response({"error":"User is not logged in!"}, 401)            
 
         return func(*args, **kwargs)
 

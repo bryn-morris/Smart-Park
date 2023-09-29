@@ -2,11 +2,17 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy import UniqueConstraint
+# from sqlalchemy import UniqueConstraint
 
 from config import db, bcrypt
 
-class Friends(db.Model, SerializerMixin):
+class SmartParkBase(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
+
+class Friends(SmartParkBase, SerializerMixin):
 
     ## If I want to be able to add elements to this table
     ## By updating users I am going to need to have to create
@@ -18,14 +24,13 @@ class Friends(db.Model, SerializerMixin):
     # I will need to add serialization rules
     # serialize_rules = (,)
 
-    id = db.Column(db.Integer, primary_key = True)
     friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     friend_2_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     # user1 = db.relationship('User', foreign_keys=[friend_1_id], back_populates='friend_users_1')
     # user2 = db.relationship('User', foreign_keys=[friend_2_id], back_populates='friend_users_2')
 
-class Pending_Friendships(db.Model, SerializerMixin):
+class Pending_Friendships(SmartParkBase, SerializerMixin):
 
     ## If I want to be able to add elements to this table
     ## By updating users I am going to need to have to create
@@ -35,11 +40,10 @@ class Pending_Friendships(db.Model, SerializerMixin):
 
     # serialize_rules = (,)
 
-    id = db.Column(db.Integer, primary_key = True)
     pend_friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     pend_friend_2_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-class User(db.Model, SerializerMixin):
+class User(SmartParkBase, SerializerMixin):
 
     __tablename__ = 'users'
 
@@ -55,14 +59,10 @@ class User(db.Model, SerializerMixin):
         # '-wsroom', 
     )
 
-    id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String)
     _password = db.Column(db.String)
     image = db.Column(db.String)
     admin = db.Column(db.Boolean)
-
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
     dogs = db.relationship('Dog', back_populates = 'user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates = 'user', cascade = "all, delete-orphan")
@@ -138,21 +138,17 @@ class User(db.Model, SerializerMixin):
         return bcrypt.check_password_hash(
             self._password, password.encode('utf-8'))
 
-class Dog(db.Model, SerializerMixin):
+class Dog(SmartParkBase, SerializerMixin):
 
     __tablename__ = 'dogs'
 
     serialize_rules = ('-visits','-created_at','-updated_at', '-user',)
     
-    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     breed = db.Column(db.String)
     weight = db.Column(db.Integer)
     age = db.Column(db.Integer)
     image = db.Column(db.String)
-    
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User', back_populates = 'dogs')
@@ -161,32 +157,27 @@ class Dog(db.Model, SerializerMixin):
     visits = db.relationship('Visit', back_populates = 'dog', cascade="all, delete-orphan")
     dog_parks = association_proxy('visits', 'dog_park')
 
-class Visit(db.Model, SerializerMixin):
+class Visit(SmartParkBase, SerializerMixin):
 
     __tablename__ = 'visits'
 
     serialize_rules = ('-dog_park','dog', '-created_at','-updated_at')
     
-    id = db.Column(db.Integer, primary_key=True)
     length_of_stay = db.Column(db.Integer)
     actual_length_of_stay = db.Column(db.Integer)
 
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
-    
     dogs_id = db.Column(db.Integer, db.ForeignKey('dogs.id'))
     dog_parks_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))
     
     dog_park = db.relationship('Dog_Park', back_populates = 'visits')
     dog = db.relationship('Dog', back_populates = 'visits')
 
-class Dog_Park(db.Model, SerializerMixin):
+class Dog_Park(SmartParkBase, SerializerMixin):
 
     __tablename__ = 'dog_parks'
 
     serialize_rules = ('-visits','-created_at','-updated_at')
     
-    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     address = db.Column(db.String)
     # rating = db.Column(db.Numeric(precision = 3, scale = 2),
@@ -195,9 +186,6 @@ class Dog_Park(db.Model, SerializerMixin):
     rating = db.Column(db.Float)
     amenities = db.Column(db.String)
     image = db.Column(db.String)
-
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
     # using cascade to delete relationships
     visits = db.relationship('Visit', back_populates = 'dog_park', cascade="all, delete-orphan")
@@ -222,20 +210,16 @@ class Dog_Park(db.Model, SerializerMixin):
             return round(attr,2)
         return attr         
 
-class Review(db.Model, SerializerMixin):
+class Review(SmartParkBase, SerializerMixin):
 
     __tablename__ = 'reviews'
 
     serialize_rules = ('-dog_park','-created_at','-updated_at', '-user',)
 
-    id = db.Column(db.Integer, primary_key = True)
     comment = db.Column(db.String)
     rating = db.Column(db.Integer)
     dog_park_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
     user = db.relationship('User', back_populates = 'reviews')
     dog_park = db.relationship('Dog_Park', back_populates = 'reviews')
@@ -247,13 +231,12 @@ class Review(db.Model, SerializerMixin):
         else:
             raise AttributeError
 
-class Favorited(db.Model, SerializerMixin):
+class Favorited(SmartParkBase, SerializerMixin):
 
     __tablename__ = 'favorited'
 
     serialize_rules = ('-user','-dog_park',)
 
-    id = db.Column(db.Integer, primary_key = True)
     dog_park_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 

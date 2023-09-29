@@ -47,9 +47,8 @@ class Login(Resource):
             ).first()
             user.authenticate(data['password'])
 
-            
             session['user_id'] = user.id
-            import ipdb;ipdb.set_trace()
+
             resp = make_response(
                 user.to_dict(rules=('dogs','-_password','reviews','-favorited',)),
                 200
@@ -65,7 +64,7 @@ class Logout(Resource):
         session.clear()
 
         response = make_response({}, 200)
-        response.set_cookie('session', None, expires=0)
+        response.set_cookie('session', '', expires=0)
 
         return response
 api.add_resource(Logout, '/logout')

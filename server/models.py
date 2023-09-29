@@ -2,6 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy import UniqueConstraint
 
 from config import db, bcrypt
 
@@ -265,12 +266,17 @@ class WebSocket_Rooms(db.Model, SerializerMixin):
     serialize_rules = ('',)
 
     id = db.Column(db.Integer, primary_key = True)
-    room_name = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique = True)
+    room_name = db.Column(db.String, unique = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
-    user = db.relationship('User', back_populates = 'wsroom')
+    user = db.relationship('User', back_populates = 'wsroom') 
+
+    __table_args__ = (
+        UniqueConstraint('room_name', name='unique_room_name_constraint'),
+    )
+    
 
 

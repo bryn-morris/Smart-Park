@@ -2,7 +2,13 @@ from flask_socketio import Namespace
 from flask import session
 from config import db
 from models import User, Pending_Friendships
-from .websocket_helpers import join_user_to_room
+from .websocket_helpers import (
+    join_user_to_room,
+    emit_message_to_room,
+    remove_user_from_room,
+    close_room,
+    disconnect_user,
+)
 
 ## Create a handler for unauthenticated connections
 class FriendNamespace(Namespace):
@@ -21,10 +27,9 @@ class FriendNamespace(Namespace):
         self.emit('connection_confirm', {'message': f'Sucessfully Connected to room {self.room_name}'})
         
     def on_disconnect(self):
-        ## remove user from room - helper function
-        ## remove room from db - helper function
-        ## disconnect user
-        pass
+        remove_user_from_room(self)
+        close_room(self)
+        disconnect_user(self)
 
     def on_error(self, e):
         ## May want to include what the error type is, so that action can be taken on the frontend

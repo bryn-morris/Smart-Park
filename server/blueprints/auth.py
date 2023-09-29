@@ -1,7 +1,7 @@
 from flask import Blueprint, make_response, request, session
 from flask_restful import Resource
 
-from config import api, db
+from config import api, db, app
 from models import (
     User,
 )
@@ -47,8 +47,9 @@ class Login(Resource):
             ).first()
             user.authenticate(data['password'])
 
+            
             session['user_id'] = user.id
-
+            import ipdb;ipdb.set_trace()
             resp = make_response(
                 user.to_dict(rules=('dogs','-_password','reviews','-favorited',)),
                 200
@@ -61,6 +62,10 @@ api.add_resource(Login, '/login')
 
 class Logout(Resource):
     def delete(self):
-        session.pop('user_id', None)
-        return session.get('user_id')
+        session.clear()
+
+        response = make_response({}, 200)
+        response.set_cookie('session', None, expires=0)
+
+        return response
 api.add_resource(Logout, '/logout')

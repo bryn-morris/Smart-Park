@@ -51,7 +51,8 @@ class User(db.Model, SerializerMixin):
         '-friends_1', 
         '-friends_2',
         '-pend_friends_1',
-        '-pend_friends_2', 
+        '-pend_friends_2',
+        '-wsroom', 
     )
 
     id = db.Column(db.Integer, primary_key = True)

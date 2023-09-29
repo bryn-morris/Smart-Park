@@ -6,13 +6,13 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from config import db, bcrypt
 
-class SmartParkBase(db.Model):
+class SmartParkBase():
     id = db.Column(db.Integer, primary_key = True)
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
-class Friends(SmartParkBase, SerializerMixin):
+class Friends(db.Model, SmartParkBase, SerializerMixin):
 
     ## If I want to be able to add elements to this table
     ## By updating users I am going to need to have to create
@@ -30,7 +30,7 @@ class Friends(SmartParkBase, SerializerMixin):
     # user1 = db.relationship('User', foreign_keys=[friend_1_id], back_populates='friend_users_1')
     # user2 = db.relationship('User', foreign_keys=[friend_2_id], back_populates='friend_users_2')
 
-class Pending_Friendships(SmartParkBase, SerializerMixin):
+class Pending_Friendships(db.Model, SmartParkBase, SerializerMixin):
 
     ## If I want to be able to add elements to this table
     ## By updating users I am going to need to have to create
@@ -43,7 +43,7 @@ class Pending_Friendships(SmartParkBase, SerializerMixin):
     pend_friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     pend_friend_2_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-class User(SmartParkBase, SerializerMixin):
+class User(db.Model, SmartParkBase, SerializerMixin):
 
     __tablename__ = 'users'
 
@@ -138,7 +138,7 @@ class User(SmartParkBase, SerializerMixin):
         return bcrypt.check_password_hash(
             self._password, password.encode('utf-8'))
 
-class Dog(SmartParkBase, SerializerMixin):
+class Dog(db.Model, SmartParkBase, SerializerMixin):
 
     __tablename__ = 'dogs'
 
@@ -157,7 +157,7 @@ class Dog(SmartParkBase, SerializerMixin):
     visits = db.relationship('Visit', back_populates = 'dog', cascade="all, delete-orphan")
     dog_parks = association_proxy('visits', 'dog_park')
 
-class Visit(SmartParkBase, SerializerMixin):
+class Visit(db.Model, SmartParkBase, SerializerMixin):
 
     __tablename__ = 'visits'
 
@@ -172,7 +172,7 @@ class Visit(SmartParkBase, SerializerMixin):
     dog_park = db.relationship('Dog_Park', back_populates = 'visits')
     dog = db.relationship('Dog', back_populates = 'visits')
 
-class Dog_Park(SmartParkBase, SerializerMixin):
+class Dog_Park(db.Model, SmartParkBase, SerializerMixin):
 
     __tablename__ = 'dog_parks'
 
@@ -210,7 +210,7 @@ class Dog_Park(SmartParkBase, SerializerMixin):
             return round(attr,2)
         return attr         
 
-class Review(SmartParkBase, SerializerMixin):
+class Review(db.Model, SmartParkBase, SerializerMixin):
 
     __tablename__ = 'reviews'
 
@@ -231,7 +231,7 @@ class Review(SmartParkBase, SerializerMixin):
         else:
             raise AttributeError
 
-class Favorited(SmartParkBase, SerializerMixin):
+class Favorited(db.Model, SmartParkBase, SerializerMixin):
 
     __tablename__ = 'favorited'
 

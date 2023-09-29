@@ -16,7 +16,7 @@ class FriendNamespace(Namespace):
         
         self.user_id = user_id
 
-        join_user_to_room(self, user_id)
+        join_user_to_room(self)
 
         self.emit('connection_confirm', {'message': f'Sucessfully Connected to room {self.room_name}'})
         
@@ -59,10 +59,14 @@ class FriendNamespace(Namespace):
         db.session.add(new_pend_fr)
         db.session.commit()
 
-        ## use helper function to send message to frontend
-
         ## Add contraint to pending friendships table such that only one pairing can be present at a time, 
         ## in either direction, this will cause an error that will get picked up by the global on_error handler
+
+        ## use helper function to send message to frontend
+        ## check to see if room exists in my websocket room model (aka if user is currently logged)
+        ## if yes, use emit_message_to_room
+        ## otherwise just add it to the database and they will get the request after they log in and pending friend request
+        ## state gets updated on the frontend
         
         ## send a message to update state, 
 

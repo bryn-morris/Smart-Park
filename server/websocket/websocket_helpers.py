@@ -22,8 +22,12 @@ def join_user_to_room(self, user_id):
 
     ## if room doesn't already exist in db, add to db
     if not check_rooms(room_name):
-        db.session.add(WebSocket_Rooms(room_name = room_name, user_id = user_id))
-        db.session.commit()
+
+        try:
+            db.session.add(WebSocket_Rooms(room_name = room_name, user_id = user_id))
+            db.session.commit()
+        except:
+            WebSocketAuthenticationError('Room name is not unique!')
 
 def emit_message_to_room(self, event_name, data_dict, room_name):
    

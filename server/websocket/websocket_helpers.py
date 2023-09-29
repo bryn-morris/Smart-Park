@@ -1,5 +1,5 @@
-from flask_socketio import join_room
-from models import WebSocket_Rooms
+from flask_socketio import join_room, leave_room, close_room
+from models import WebSocket_Rooms, User
 
 class WebSocketAuthenticationError(Exception):
     
@@ -24,13 +24,16 @@ def join_user_to_room(user_id):
 
     join_room(f'user_{user_id}')
 
-def remove_user_from_room():
-    ## check to see if room exists within active room database
-    ## check to see if user is associated with that room
-    ## if both are true, remove the user from the room 
-    pass
+def remove_user_from_room(room_name, user_id):
+
+    active_room = check_rooms(room_name)
+    active_user = User.query.filter(User.id == user_id).first()
+
+    if active_room and active_room.user == active_user:
+        leave_room(room_name)
 
 def close_room():
+
     ## check to make sure room exists within active room database
     ## if so, close room
     pass

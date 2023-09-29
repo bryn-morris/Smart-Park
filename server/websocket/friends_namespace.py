@@ -1,27 +1,27 @@
 from flask_socketio import Namespace
+from flask import session
 from config import db
 from models import User, Pending_Friendships
 from .websocket_helpers import join_user_to_room
 
 ## Create a handler for unauthenticated connections
 class FriendNamespace(Namespace):
+
     def on_connect(self):
-
-        import ipdb;ipdb.set_trace()
         
-        self.emit('connection_confirm', {'message': 'Sucessfully Connected to Friend NameSpace Websocket'})
+        user_id = session.get('user_id')
 
-    def on_connection_data(self, data):
-        
-        user_id = data.get('user_id')
-
-        # if user does not exist, raise validation error
         if not user_id:
             raise ValueError('Please relog! Unable to find user ID')
         
+        self.user_id = user_id
+
         join_user_to_room(user_id)
         
         # self.emit('server_response', {'message': f' user has joined room "user_{user_id}"'})
+
+        self.emit('connection_confirm', {'message': 'Sucessfully Connected to Friend NameSpace Websocket'})
+        
 
     def on_disconnect(self):
         ## remove user from room - helper function

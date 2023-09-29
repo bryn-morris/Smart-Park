@@ -13,11 +13,6 @@ function WebSocketProvider({children}) {
     useEffect(()=>{
 
         if (friendSocket && currentUser) {
-        
-            // Initial Data during connection
-            friendSocket.on('connect', ()=>{
-                friendSocket.emit('connection_data', {user_id: currentUser.id})
-            })
 
             // Websocket Event Handlers below
             friendSocket.on('connection_confirm', (data)=>{

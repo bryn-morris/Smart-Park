@@ -41,4 +41,5 @@ def close_room(room_name):
     pass
 
 def diconnect_user(user_id):
+    ## del self.user_id
     pass

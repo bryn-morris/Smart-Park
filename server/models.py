@@ -52,7 +52,7 @@ class User(db.Model, SerializerMixin):
         '-friends_2',
         '-pend_friends_1',
         '-pend_friends_2',
-        '-wsroom', 
+        # '-wsroom', 
     )
 
     id = db.Column(db.Integer, primary_key = True)
@@ -67,7 +67,7 @@ class User(db.Model, SerializerMixin):
     dogs = db.relationship('Dog', back_populates = 'user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates = 'user', cascade = "all, delete-orphan")
     
-    wsroom = db.relationship('WebSocket_Rooms', back_populates = 'user')
+    # wsroom = db.relationship('WebSocket_Rooms', back_populates = 'user')
 
     favorited = db.relationship('Favorited', back_populates = 'user', cascade = "all, delete-orphan")
     favorited_parks = association_proxy('favorited', 'dog_park')
@@ -260,24 +260,24 @@ class Favorited(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates = 'favorited')
     dog_park = db.relationship('Dog_Park', back_populates = 'favorited')
 
-class WebSocket_Rooms(db.Model, SerializerMixin):
+# class WebSocket_Rooms(db.Model, SerializerMixin):
 
-    __tablename__ = 'websocketrooms'
+#     __tablename__ = 'websocketrooms'
 
-    serialize_rules = ('',)
+#     serialize_rules = ('',)
 
-    id = db.Column(db.Integer, primary_key = True)
-    room_name = db.Column(db.String, unique = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     id = db.Column(db.Integer, primary_key = True)
+#     room_name = db.Column(db.String, unique = True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
+#     created_at = db.Column(db.DateTime, server_default=db.func.now())
+#     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
-    user = db.relationship('User', back_populates = 'wsroom') 
+#     user = db.relationship('User', back_populates = 'wsroom') 
 
-    __table_args__ = (
-        UniqueConstraint('room_name', name='unique_room_name_constraint'),
-    )
+#     __table_args__ = (
+#         UniqueConstraint('room_name', name='unique_room_name_constraint'),
+#     )
     
 
 

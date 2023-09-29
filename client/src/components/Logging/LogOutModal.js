@@ -1,28 +1,11 @@
 import { Button, Modal } from "semantic-ui-react"
 import { useContext } from "react"
-import { AuthContext } from "../../context/AuthContext"
-import { DogParkContext } from "../../context/DogParkContext"
-import { useHistory } from "react-router-dom"
-import { FriendsContext } from "../../context/FriendsContext"
+
 import { WebSocketContext } from "../../context/WebSocketContext"
 
 function LogOutModal ({isLogOutModalRendered, setIsLogOutModalRendered}) {
 
-    const {setCurrentUser} = useContext(AuthContext)
-    const {setDogParks} = useContext(DogParkContext)
-    const {setFriendsList} = useContext(FriendsContext)
-    const { closeFriendWebsocket } = useContext(WebSocketContext)
-    const history = useHistory()
-
-    function logOut() {
-        fetch('/logout', {method:"DELETE",})
-        setCurrentUser(null)
-        setDogParks([])
-        setFriendsList([])
-        closeFriendWebsocket()
-        history.push("/")
-        
-    }
+    const { friendSocket } = useContext(WebSocketContext)
 
     return(
     <div>
@@ -39,8 +22,9 @@ function LogOutModal ({isLogOutModalRendered, setIsLogOutModalRendered}) {
                 <p>Are you sure you want to log out?</p>
             </Modal.Content>
             <Modal.Actions>
+                {/* change this from button when logout starts */}
                 <Button
-                    onClick={logOut}
+                    onClick={()=>friendSocket.emit('start_disconnect')}
                 >
                     Yes, Log Me Out
                 </Button>

@@ -1,7 +1,7 @@
 from flask import Blueprint, make_response, request, session
 from flask_restful import Resource
 
-from config import api, db, app
+from config import api, db
 from models import (
     User,
 )
@@ -61,6 +61,7 @@ api.add_resource(Login, '/login')
 
 class Logout(Resource):
     def delete(self):
+
         session.clear()
 
         response = make_response({}, 200)

@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect, useContext} from "react";
 
 import { AuthContext } from "./AuthContext";
+import { DogParkContext } from "./DogParkContext"
+import { FriendsContext } from "./FriendsContext"
+import { useHistory } from "react-router-dom"
 
 const WebSocketContext = createContext()
 
@@ -8,14 +11,17 @@ function WebSocketProvider({children}) {
 
     const [friendSocket, setFriendSocket] = useState(null)
 
-    const {currentUser} = useContext(AuthContext)
+    const {setCurrentUser} = useContext(AuthContext)
+    const {setDogParks} = useContext(DogParkContext)
+    const {setFriendsList} = useContext(FriendsContext)
+    const history = useHistory()
 
     useEffect(()=>{
 
-        if (friendSocket && currentUser) {
+        if (friendSocket) {
 
             // Websocket Event Handlers below
-            friendSocket.on('connection_confirm', (data)=>{
+            friendSocket.on('connection_status', (data)=>{
                 console.log(data.message)
             })
 
@@ -28,8 +34,18 @@ function WebSocketProvider({children}) {
                 // if add friend button is rendered or if other info is rendered in search
                 console.log(data.message)
             })
+
+            friendSocket.on('friend_socket_disconnect', ()=>{
+                fetch('/logout', {method:"DELETE",})
+                setCurrentUser(null)
+                setDogParks([])
+                setFriendsList([])
+                friendSocket.disconnect()
+                history.push("/")
+                setFriendSocket(null)
+            })
         }
-    }, [friendSocket, currentUser])
+    }, [friendSocket, history, setCurrentUser, setDogParks, setFriendsList])
 
     // Create a Catch to handle error responses!
     // also logic to handle different responses from
@@ -51,7 +67,7 @@ function WebSocketProvider({children}) {
 
     function sendFriendRequest(friend_id) {
 
-        friendSocket.emit('friend_request', {currentUser_id:currentUser.id, friend_id: friend_id})
+        // friendSocket.emit('friend_request', {currentUser_id:currentUser.id, friend_id: friend_id})
 
         // Websocket
 
@@ -83,12 +99,6 @@ function WebSocketProvider({children}) {
     // do not render addFriend button for targeted user 
     // if the targeted user is already friends with the current user
 
-    function closeFriendWebsocket(){
-        friendSocket.disconnect()
-        console.log('Sucessfully Disconnected from Friend NameSpace Websocket')
-        setFriendSocket(null)
-    }
-
     // Will need to implement reconnection logic tied to a timer if connection is lost for whatever reason
     // also will need add modularity to websocket url in config file with production and non-production variables
 
@@ -97,7 +107,6 @@ function WebSocketProvider({children}) {
             value ={{
                         friendSocket,
                         setFriendSocket,
-                        closeFriendWebsocket,
                         sendFriendRequest,
                         deleteFriend,
                     }}

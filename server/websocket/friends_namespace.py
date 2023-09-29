@@ -2,35 +2,39 @@ from flask_socketio import Namespace
 from flask import session
 from config import db
 from models import User, Pending_Friendships
-from .websocket_helpers import (
-    join_user_to_room,
-    emit_message_to_room,
-    remove_user_from_room,
+from flask_socketio import (
+    join_room, 
+    leave_room,
+    disconnect,
     close_room,
-    disconnect_user,
 )
 
 ## Create a handler for unauthenticated connections
 class FriendNamespace(Namespace):
 
-    def on_connect(self):
-        
-        user_id = session.get('user_id')
+    ## eventually will change user_id to uuid with postgres to make this 
+    ## more secure, leaving code as is for later implementation
 
-        if not user_id:
+    def on_connect(self):
+
+        self.room_name = f'{session.get("user_id")}'
+        self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'})
+
+        if not session.get('user_id'):
             raise ValueError('Please relog! Unable to find user ID')
         
-        self.user_id = user_id
+        join_room(self.room_name)
 
-        join_user_to_room(self)
+    def on_start_disconnect(self):
 
-        self.emit('connection_confirm', {'message': f'Sucessfully Connected to room {self.room_name}'})
+        leave_room(self.room_name)
+        close_room(self.room_name)
+        if self.room_name:
+            del self.room_name
+
+        disconnect(session.get("user_id"))
+        self.emit('friend_socket_disconnect')
         
-    def on_disconnect(self):
-        remove_user_from_room(self)
-        close_room(self)
-        disconnect_user(self)
-
     def on_error(self, e):
         ## May want to include what the error type is, so that action can be taken on the frontend
         self.emit('server_error_response', {'message':str(e)})

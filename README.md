@@ -1,15 +1,15 @@
 
 <img src = "./img/10-2_readme.png" alt="project banner"/>
 
-## Project Overview
-
-Smart Park is an exciting and actively developed full-stack application that aims to enhance the interactions between different dog owners. This project is designed with the goal of creating a seamless and enjoyable experience for both dogs and their owners when they visit the park. We're committed to creating a user-friendly and innovative platform that brings dog owners closer together and makes each visit to the park more enjoyable. Join us on this journey as we continue to develop and improve Smart Park!
-
 <div id="badges" align="center">
   <img src="https://shields.io/badge/python-v3.8-blue" alt="Python Version Badge"/>
   <img src="https://img.shields.io/badge/react-v18.2.0-orange" alt="React Version Badge"/>
   <img src="https://img.shields.io/badge/flask-v2.2.3-green" alt="Flask Version Badge"/>
 </div>
+
+## Project Overview
+
+Smart Park is an exciting and actively developed full-stack application that aims to enhance the interactions between different dog owners. This project is designed with the goal of creating a seamless and enjoyable experience for both dogs and their owners when they visit the park. We're committed to creating a user-friendly and innovative platform that brings dog owners closer together and makes each visit to the park more enjoyable. Join us on this journey as we continue to develop and improve Smart Park!
 
 ## Table of Contents
  - [Installation & Getting Started](#installation--getting-started)

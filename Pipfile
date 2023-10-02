@@ -12,7 +12,6 @@ flask-restful = "*"
 flask-cors = "*"
 ipdb = "*"
 flask-alembic = "*"
-faker = "*"
 flask-bcrypt = "*"
 flask-sqlalchemy-session = "*"
 

@@ -17,22 +17,35 @@ Smart Park is an exciting and actively developed full-stack application that aim
 
 ## Installation & Getting Started
 
-This application was built using Node Package Manager and pipenv. As such, in order to install and run the necessary dependencies, use the following commands from the client directory:
+This installation process assumes that you are not using a Windows Operating System. 
 
-        npm install && npm start
+To clone and run this application, you'll need Git, Node.js (which comes with npm), Python, and SQLITE3 installed on your computer. 
 
-This will start the frontend server.
+### To start the frontend from your command line:
 
-In order to have the necessary dependencies installed and to create an active environment within the new shell, you will need to use the following commands:
+        <!-- Clone this repository -->
+        $ git clone git@github.com:bryn-morris/Smart-Park.git
+
+        <!-- Go into the repository -->
+        $ cd Smart-Park
+
+        <!-- Install dependencies -->
+        $ npm install
+
+        <!-- Run the app -->
+        $ npm start
+
+### To start the backend from your command line
+
+        <!-- Install Dependencies and create virtual environment -->
 
         pipenv install && pipenv shell
 
-finally, run the following command to run the backend server:
+        <!-- Run the app -->
 
         python app.py
 
-The frontend was created with Create React App.
-To start the app in development mode, run npm start. Then open http://localhost:4000 in your browser.
+Then open http://localhost:4000 in your browser.
 After starting the app, you will be taken to the login page.
 
 ## Key Features 

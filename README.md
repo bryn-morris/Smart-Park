@@ -1,6 +1,4 @@
 
-# SmartPark
-
 <img src = "./img/10-2_readme.png" alt="project banner"/>
 
 ## Project Overview

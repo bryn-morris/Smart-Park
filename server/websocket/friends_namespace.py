@@ -10,6 +10,7 @@ from flask_socketio import (
 )
 
 ## Create a handler for unauthenticated connections
+
 class FriendNamespace(Namespace):
 
     ## eventually will change user_id to uuid with postgres to make this 

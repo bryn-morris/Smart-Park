@@ -18,11 +18,12 @@ class FriendNamespace(Namespace):
 
     def on_connect(self):
 
-        self.room_name = f'{session.get("user_id")}'
-        self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'})
-
         if not session.get('user_id'):
             raise ValueError('Please relog! Unable to find user ID')
+            disconnect()
+
+        self.room_name = f'{session.get("user_id")}'
+        self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'})
         
         join_room(self.room_name)
 

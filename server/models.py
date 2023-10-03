@@ -43,9 +43,10 @@ class Pending_Friendships(db.Model, SmartParkBase, SerializerMixin):
     pend_friend_1_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     pend_friend_2_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    __table_args__ = (
-        db.UniqueConstraint('pend_friend_1_id', 'pend_friend_2_id', name='unique_pending_friendship'),
-    )
+    # Code does not work as intended, may be a sqlite3 issue, test after swapping to postgres
+    # __table_args__ = (
+    #     db.UniqueConstraint('pend_friend_1_id', 'pend_friend_2_id', name='unique_pending_friendship'),
+    # )
 
 class User(db.Model, SmartParkBase, SerializerMixin):
 

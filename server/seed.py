@@ -107,12 +107,19 @@ with app.app_context():
     print("Creating Pending Frienships...")
     pfr1 = Pending_Friendships(pend_friend_1_id = 2, pend_friend_2_id = 4)
     pfr2 = Pending_Friendships(pend_friend_1_id = 3, pend_friend_2_id = 1)
+    pfr3 = Pending_Friendships(pend_friend_1_id = 1, pend_friend_2_id = 3)
+
+    db.session.add(pfr1)
+    db.session.commit()
+    db.session.add(pfr2)
+    db.session.commit()
+    db.session.add(pfr3)
+    db.session.commit()
 
     # print("Creating WebSocket rooms...")
     # ws1 = WebSocket_Rooms(room_name = 'test_room', user_id = None)
     # ws2 = WebSocket_Rooms(room_name = 'test_room2', user_id = None)
     
-
     db.session.add_all([d1, d2, d3, d4, d5])
     db.session.add_all([u1, u2, u3, u4])
     db.session.add_all([v1, v2, v3, v4])
@@ -120,7 +127,8 @@ with app.app_context():
     db.session.add_all([r1,r2,r3,r4,r5])
     db.session.add_all([f1,f2,f3,f4,f5,f6,f7])
     db.session.add_all([fr1,fr2,fr3,fr4])
-    db.session.add_all([pfr1, pfr2])
+    # db.session.add_all([pfr1, pfr2])
+
     # db.session.add_all([ws1, ws2])
     
     db.session.commit()

@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { WebSocketContext } from "../../context/WebSocketContext"
-import { Button } from "semantic-ui-react"
+import { Icon } from "semantic-ui-react"
 
 function FriendCard ({eachFr}) {
 
@@ -9,11 +9,13 @@ function FriendCard ({eachFr}) {
     return(
         <div className="FriendCard">
             <p>{eachFr.username}</p>
-            <Button
+            <Icon
+                name = "user cancel"
                 onClick={()=>{deleteFriend(5)}}
+                title = "Remove friend"
             >
                 Delete Friend
-            </Button>
+            </Icon>
         </div>
     )
 

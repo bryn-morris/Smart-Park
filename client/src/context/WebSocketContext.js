@@ -77,6 +77,10 @@ function WebSocketProvider({children}) {
         friendSocket.emit('friend_request', {friend_id: friend_id})
     }
 
+    function acceptFriendRequest(friend_id) {
+        
+    }
+
     function deleteFriend(friendship_id) {
         // fetch(`/friends/${friendship_id}`, {
         //     method: "DELETE",

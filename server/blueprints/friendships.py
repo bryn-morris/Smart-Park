@@ -2,7 +2,7 @@ from flask import make_response, session, request, Blueprint
 from flask_restful import Resource
 
 from config import db, api
-from models import User, Friends, Pending_Friendships
+from models import User, Friends
 from auth_dec import Authentication_Decorator
 
 friendship_routes = Blueprint('friendship_routes', __name__)
@@ -14,7 +14,7 @@ class Friendship(Resource):
         # import ipdb;ipdb.set_trace()
         serialized_friends = [ef.to_dict(
             only = ('image', 'username', 'id')
-        ) for ef in currentUser.all_friends()]        
+        ) for ef in currentUser.all_friends()]  
         return make_response(serialized_friends,200)
     
     @Authentication_Decorator

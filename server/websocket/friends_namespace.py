@@ -9,8 +9,6 @@ from flask_socketio import (
     close_room,
 )
 
-## Create a handler for unauthenticated connections
-
 class FriendNamespace(Namespace):
 
     ## eventually will change user_id to uuid with postgres to make this 
@@ -20,7 +18,7 @@ class FriendNamespace(Namespace):
 
         if not session.get('user_id'):
             raise ValueError('Please relog! Unable to find user ID')
-            disconnect()
+            # disconnect()
 
         self.room_name = f'{session.get("user_id")}'
         self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'})
@@ -41,21 +39,20 @@ class FriendNamespace(Namespace):
         ## May want to include what the error type is, so that action can be taken on the frontend
         self.emit('server_error_response', {'message':str(e)})
 
+    # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
     def on_friend_request(self, data):
 
-        # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
-        ### return error or bad request http status if user attempts to add someone who is already a friend as a friend  
-        ### return error or bad request http status if user attempts to add themselves as a friend
-        
         user_id = data.get('user_id')
         friend_id = data.get('friend_id')
 
         sel_friend = User.query.filter(User.id == friend_id).one()
         sel_user = User.query.filter(User.id == user_id).one()
         
+        ### return error if user attempts to add someone who is already a friend as a friend  
         if sel_friend in sel_user.all_friends():
             raise ValueError('This user is already one of your friends!')
         
+        ### return error if user attempts to add themselves as a friend
         if sel_friend == sel_user:
             raise ValueError('You can\'t add yourself as a friend!')
 
@@ -70,20 +67,15 @@ class FriendNamespace(Namespace):
         db.session.add(new_pend_fr)
         db.session.commit()
 
+        ## HANDLE THIS WITH POSTGRES
         ## Add contraint to pending friendships table such that only one pairing can be present at a time, 
         ## in either direction, this will cause an error that will get picked up by the global on_error handler
 
-        ## use helper function to send message to frontend
-        ## check to see if room exists in my websocket room model (aka if user is currently logged)
-        ## if yes, use emit_message_to_room
-        ## otherwise just add it to the database and they will get the request after they log in and pending friend request
-        ## state gets updated on the frontend
-        
-        ## send a message to update state, 
+        ## emit message to room of both users a and b that updates pending friend request state
 
         ## If a socketio room exists with User B (if User B is logged in) emit event will be sent to user B
         ## User B can accept or decline
-        ### If User B declines, remove user from pending friendships table
+        ### If User B declines, remove users from pending friendships table
         ### If User A cancels, remove users from pending friendships table
         ### If User B accepts, users will be removed from pending friendships table and be added to the friendships table
         ### Once Friendship is established, either user can delete friendship to remove from friendship table

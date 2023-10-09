@@ -42,7 +42,7 @@ class FriendNamespace(Namespace):
     # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
     def on_friend_request(self, data):
 
-        user_id = data.get('user_id')
+        user_id = session.get('user_id')
         friend_id = data.get('friend_id')
 
         sel_friend = User.query.filter(User.id == friend_id).one()
@@ -72,6 +72,17 @@ class FriendNamespace(Namespace):
         ## in either direction, this will cause an error that will get picked up by the global on_error handler
 
         ## emit message to room of both users a and b that updates pending friend request state
+        
+        user_serialized_pending_friendships = [epf.to_dict(
+            only = ('image', 'username', 'id')
+            ) for epf in sel_user.pending_friends()]
+        
+        friend_serialized_pending_friendships = [epf.to_dict(
+            only = ('image', 'username', 'id')
+            ) for epf in sel_friend.pending_friends()]
+
+        self.emit('friend_request_response',{"pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)
+        self.emit('friend_request_response',{"pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
 
         ## If a socketio room exists with User B (if User B is logged in) emit event will be sent to user B
         ## User B can accept or decline

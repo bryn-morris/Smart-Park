@@ -104,17 +104,21 @@ with app.app_context():
     fr3 = Friends(friend_1_id=3, friend_2_id = 4)
     fr4 = Friends(friend_1_id=4, friend_2_id = 1)
     
-    print("Creating Pending Frienships...")
-    pfr1 = Pending_Friendships(pend_friend_1_id = 2, pend_friend_2_id = 4)
-    pfr2 = Pending_Friendships(pend_friend_1_id = 3, pend_friend_2_id = 1)
-    pfr3 = Pending_Friendships(pend_friend_1_id = 1, pend_friend_2_id = 3)
+    # print("Creating Pending Frienships...")
+    # pfr1 = Pending_Friendships(pend_friend_1_id = 2, pend_friend_2_id = 4)
 
-    db.session.add(pfr1)
-    db.session.commit()
-    db.session.add(pfr2)
-    db.session.commit()
-    db.session.add(pfr3)
-    db.session.commit()
+    # Using for Testing Unique Constraints
+    # pfr2 = Pending_Friendships(pend_friend_1_id = 3, pend_friend_2_id = 1)
+    # pfr3 = Pending_Friendships(pend_friend_1_id = 1, pend_friend_2_id = 3)
+
+    # db.session.add(pfr1)
+    # db.session.commit()
+    
+    # Using for Testing Unique Constraints
+    # db.session.add(pfr2)
+    # db.session.commit()
+    # db.session.add(pfr3)
+    # db.session.commit()
 
     # print("Creating WebSocket rooms...")
     # ws1 = WebSocket_Rooms(room_name = 'test_room', user_id = None)

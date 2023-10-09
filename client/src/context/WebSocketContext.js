@@ -13,7 +13,7 @@ function WebSocketProvider({children}) {
 
     const {setCurrentUser} = useContext(AuthContext)
     const {setDogParks} = useContext(DogParkContext)
-    const {setFriendsList} = useContext(FriendsContext)
+    const {setFriendsList, setPendingFriendsList} = useContext(FriendsContext)
     const history = useHistory()
 
     useEffect(()=>{
@@ -33,6 +33,7 @@ function WebSocketProvider({children}) {
                 // if we have a valid response, update the pending friend request state, which then determines
                 // if add friend button is rendered or if other info is rendered in search
                 console.log(data.pend_friend_state)
+                setPendingFriendsList(()=>data.pend_friend_state)
             })
 
             friendSocket.on('friend_socket_disconnect', ()=>{
@@ -45,7 +46,14 @@ function WebSocketProvider({children}) {
                 setFriendSocket(null)
             })
         }
-    }, [friendSocket, history, setCurrentUser, setDogParks, setFriendsList])
+    }, [
+        friendSocket, 
+        history, 
+        setCurrentUser, 
+        setDogParks, 
+        setFriendsList, 
+        setPendingFriendsList
+    ])
 
     // Create a Catch to handle error responses!
     // also logic to handle different responses from
@@ -66,23 +74,7 @@ function WebSocketProvider({children}) {
     // also update pending friend frequest state
 
     function sendFriendRequest(friend_id) {
-
         friendSocket.emit('friend_request', {friend_id: friend_id})
-
-        // Websocket
-
-        // const requestBody = {
-        //     "friend_id" : friend_id,
-        //     "request_status" : false,
-        // }
-
-    //     fetch("/friends", {
-    //         method: "POST",
-    //         headers: {"Content-type" : "application/json"},
-    //         body: JSON.stringify(requestBody),
-    //     })
-    //         .then(r=>r.json())
-    //         .then(console.log)
     }
 
     function deleteFriend(friendship_id) {

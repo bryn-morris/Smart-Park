@@ -1,4 +1,4 @@
-from flask import make_response, session, request, Blueprint
+from flask import make_response, session, request, Blueprint, jsonify
 from flask_restful import Resource
 
 from config import db, api
@@ -59,11 +59,15 @@ class Pending_Friends(Resource):
     
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
-        
+        serialized_pending_friendships = [
+            {
+                'image': pfe['pfo'].image,
+                'username' : pfe['pfo'].username,
+                'id' : pfe['pfo'].id,
+                'sender' : pfe['sender'],
+            } for pfe in currentUser.pending_friends()
+        ]
         import ipdb;ipdb.set_trace()
-        serialized_pending_friendships = [epf.to_dict(
-            only = ('image', 'username', 'id')
-            ) for epf in currentUser.pending_friends()]
         return make_response(serialized_pending_friendships, 200)
 
 api.add_resource(Pending_Friends, '/pending_friends')

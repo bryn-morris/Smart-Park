@@ -115,8 +115,8 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         ## there is a sender key and the value is an 
         ## equivalency that checks to see if currentUser.id == object.pend_friend_1_id
     
-        return ([{'pfo':pf, 'sender': False} for pf in self.pend_friends_1.all()] + 
-                [{'pfo':pf, 'sender': True} for pf in self.pend_friends_2.all()])
+        return ([{'pfo':pf, 'sender': True} for pf in self.pend_friends_1.all()] + 
+                [{'pfo':pf, 'sender': False} for pf in self.pend_friends_2.all()])
     
     # def add_friend(self, target_friend):
     #     pass

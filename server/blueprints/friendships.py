@@ -12,10 +12,28 @@ class Friendship(Resource):
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
 
-        serialized_friends = [ef.to_dict(
-            only = ('image', 'username', 'id')
-        ) for ef in currentUser.all_friends()]
-        return make_response(serialized_friends,200)
+        # serialized_friends = [ef.to_dict(
+        #     only = ('image', 'username', 'id')
+        # ) for ef in currentUser.all_friends()]
+
+        serialized_friendships = [
+            {
+                'request_metadata': 
+                    {
+                     'friendship_id': pfe['friendship_id'], 
+                    }
+                ,
+                'friend_data':
+                    {
+                        'image': pfe['pfo'].image,
+                        'username' : pfe['pfo'].username,
+                        'id' : pfe['pfo'].id,
+                    }
+                ,    
+            } for pfe in currentUser.all_friends()
+        ]
+        
+        return make_response(serialized_friendships,200)
 
 api.add_resource(Friendship, '/friends')
 
@@ -55,7 +73,6 @@ class Pending_Friends(Resource):
                 ,    
             } for pfe in currentUser.pending_friends()
         ]
-        import ipdb;ipdb.set_trace()
         return make_response(serialized_pending_friendships, 200)
 
 api.add_resource(Pending_Friends, '/pending_friends')

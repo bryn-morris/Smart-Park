@@ -109,7 +109,19 @@ class User(db.Model, SmartParkBase, SerializerMixin):
                             )
     
     def all_friends(self):
-        return self.friends_1.all() + self.friends_2.all()
+
+        user_id = session.get('user_id')
+
+        def create_filter_terms (friend_object) : 
+            return(
+                (friend_object.id == Friends.friend_1_id and
+                user_id == Friends.friend_2_id) or 
+                (friend_object.id == Friends.friend_2_id and
+                user_id == Friends.friend_1_id)
+            )
+        
+        return ([{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_1.all()] + 
+                [{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_2.all()])
     
     def pending_friends(self):
 

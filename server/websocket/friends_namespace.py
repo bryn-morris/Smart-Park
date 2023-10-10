@@ -1,7 +1,7 @@
 from flask_socketio import Namespace
 from flask import session
 from config import db
-from models import User, Pending_Friendships
+from models import User, Pending_Friendships, Friends
 from flask_socketio import (
     join_room, 
     leave_room,
@@ -108,22 +108,67 @@ class FriendNamespace(Namespace):
         self.emit('friend_request_response',{"config_key": "request_response","pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
 
     def on_delete_request(self, data):
-        import ipdb;ipdb.set_trace()
-        pass
 
-        ## Write function to handle repeated logic
-        ## if user is pending_friends, pass in data to act on pending friends
-        ## if user is in friends list, pass in data to act on friends list
+        user_id = session.get('user_id')
+        friend_id = data.get('friend_id')
 
-        def handle_deletion(friend_status):
+        sel_friend = User.query.filter(User.id == friend_id).one()
+        sel_user = User.query.filter(User.id == user_id).one()
 
-            user_id = session.get('user_id')
-            friend_id = data.get('friend_id')
-
-            sel_friend = User.query.filter(User.id == friend_id).one()
-            sel_user = User.query.filter(User.id == user_id).one()
-        
+        if data['is_pending_boolean'] == True:
+            ## user was a pending friend
             pass
+        elif data['is_pending_boolean'] == False:
+            ## user was a friend
+            try:
+                import ipdb;ipdb.set_trace()
+                sel_friendship = Friends.query.filter(Friends.id == data['friendship_id']).first()
+            except:
+                raise ValueError('Unable to locate friendship!')
+
+            # db.session.delete(sel_friendship)
+            # db.session.commit()
+
+            # user_serialized_friendships = [
+            #     {
+            #         'request_metadata': 
+            #             {
+            #             'friendship_id': fe['friendship_id'], 
+            #             }
+            #         ,
+            #         'friend_data':
+            #             {
+            #                 'image': fe['pfo'].image,
+            #                 'username' : fe['pfo'].username,
+            #                 'id' : fe['pfo'].id,
+            #             }
+            #         ,    
+            #     } for fe in sel_user.all_friends()
+            # ]
+        
+            # friend_serialized_friendships = [
+            #     {
+            #         'request_metadata': 
+            #             {
+            #             'friendship_id': fe['friendship_id'], 
+            #             }
+            #         ,
+            #         'friend_data':
+            #             {
+            #                 'image': fe['pfo'].image,
+            #                 'username' : fe['pfo'].username,
+            #                 'id' : fe['pfo'].id,
+            #             }
+            #         ,    
+            #     } for fe in sel_friend.all_friends()
+            # ]
+
+            # self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
+            # self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')
+        else:
+            pass
+            ## key doesn't exist
+
 
         ## remove from either pending or friends list
         ## update both users with relevant data

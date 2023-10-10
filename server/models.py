@@ -2,6 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy import or_, and_
 from flask import session
 # from sqlalchemy import UniqueConstraint
 
@@ -112,13 +113,12 @@ class User(db.Model, SmartParkBase, SerializerMixin):
 
         user_id = session.get('user_id')
 
-        def create_filter_terms (friend_object) : 
-            return(
-                (friend_object.id == Friends.friend_1_id and
-                user_id == Friends.friend_2_id) or 
-                (friend_object.id == Friends.friend_2_id and
-                user_id == Friends.friend_1_id)
-            )
+        def create_filter_terms (friend_object):
+            
+            option1 = and_(friend_object.id == Friends.friend_1_id, user_id == Friends.friend_2_id)
+            option2 = and_(friend_object.id == Friends.friend_2_id, user_id == Friends.friend_1_id) 
+    
+            return or_(option1, option2)
         
         return ([{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_1.all()] + 
                 [{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_2.all()])
@@ -127,13 +127,12 @@ class User(db.Model, SmartParkBase, SerializerMixin):
 
         user_id = session.get('user_id')
 
-        def create_filter_terms (pending_friend_object) : 
-            return(
-                (pending_friend_object.id == Pending_Friendships.pend_friend_1_id and
-                user_id == Pending_Friendships.pend_friend_2_id) or 
-                (pending_friend_object.id == Pending_Friendships.pend_friend_2_id and
-                user_id == Pending_Friendships.pend_friend_1_id)
-            )
+        def create_filter_terms (pending_friend_object):
+
+            option1 = and_(pending_friend_object.id == Pending_Friendships.pend_friend_1_id, user_id == Pending_Friendships.pend_friend_2_id)
+            option2 = and_(pending_friend_object.id == Pending_Friendships.pend_friend_2_id, user_id == Pending_Friendships.pend_friend_1_id) 
+    
+            return or_(option1, option2)
         
         return ([{'pfo':pf, 'sender': True, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_1.all()] + 
                 [{'pfo':pf, 'sender': False, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_2.all()])

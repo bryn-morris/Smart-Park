@@ -19,7 +19,8 @@ function WebSocketProvider({children}) {
     const friend_request_response_map = {
         "request_response" : (data)=>setPendingFriendsList(()=>data.pend_friend_state),
         "accept_response" : ()=>{},
-        "delete_response" : ()=>{},
+        "friend_delete_response" : (data)=>{console.log(data)},
+        "pend_delete_response" : ()=>{}
     }
 
     useEffect(()=>{
@@ -81,19 +82,27 @@ function WebSocketProvider({children}) {
     // also update pending friend frequest state
 
     function sendFriendRequest(friend_id) {
-        friendSocket.emit('friend_request', {friend_id: friend_id})
+        friendSocket.emit('friend_request', {
+            friend_id: friend_id
+        })
         // This sender value then determines how the corresponding frontends can
         // Interact with the request. (If user A sends message -> sender = True, they cannot accept, 
         // but user B -> sender = False can accept)
     }
 
     function acceptFriendRequest(friend_id) {
-        console.log("is this hooked up?")
-        friendSocket.emit('accept_friend_request', {friend_id: friend_id})
+
+        friendSocket.emit('accept_friend_request', {
+            friend_id: friend_id
+        })
     }
 
-    function deleteFriend(friend_id) {
-        friendSocket.emit('delete_request', {friend_id: friend_id})
+    function deleteFriend(friend_id, friendship_id, isPendingBoolean) {
+        friendSocket.emit('delete_request', {
+            friend_id: friend_id, 
+            friendship_id: friendship_id, 
+            is_pending_boolean: isPendingBoolean
+        })
         // console.log(friend_id)
     }
 

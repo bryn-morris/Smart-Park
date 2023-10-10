@@ -68,7 +68,7 @@ function FriendListElement() {
             </div>
             <div className="FriendsCardsContainer">
                 {friendsList.map((eachFr)=>{
-                    return (<FriendCard key = {eachFr.id} eachFr = {eachFr}/>)
+                    return (<FriendCard key = {eachFr.friend_data.id} eachFr = {eachFr}/>)
                 })}
             </div>
 

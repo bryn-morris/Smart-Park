@@ -12,10 +12,6 @@ class Friendship(Resource):
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
 
-        # serialized_friends = [ef.to_dict(
-        #     only = ('image', 'username', 'id')
-        # ) for ef in currentUser.all_friends()]
-
         serialized_friendships = [
             {
                 'request_metadata': 

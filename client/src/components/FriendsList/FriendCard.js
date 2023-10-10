@@ -8,17 +8,16 @@ function FriendCard ({eachFr}) {
 
     return(
         <div className="FriendCard">
-            <p>{eachFr.username}</p>
+            <p>{eachFr.friend_data.username}</p>
             <Icon
                 name = "user cancel"
-                onClick={()=>{deleteFriend(eachFr.id)}}
+                onClick={()=>{deleteFriend(eachFr.friend_data.id)}}
                 title = "Remove friend"
             >
                 Delete Friend
             </Icon>
         </div>
     )
-
 }
 
 export default FriendCard

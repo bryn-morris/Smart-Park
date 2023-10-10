@@ -81,16 +81,20 @@ class FriendNamespace(Namespace):
             only = ('image', 'username', 'id')
             ) for epf in sel_friend.pending_friends()]
 
-        self.emit('friend_request_response',{"pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)
-        self.emit('friend_request_response',{"pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
-
+        ## This behaviour is only needed for pending friendships
+        ### 
         ## Isolate the target row in the db by searching for the
-        ## corresponding pending friendship. Then isolating which user is in
+        ## corresponding pending friendship id.
+            # Can use new_pend_fr.id to determine the row id
+        # Then isolating which user is in
         ## Which table column and assign them a role value in the pending friendship table
         ## This role value then determines how the corresponding frontends can
         ## Interact with the request. (If user A sends message, they cannot accept, but user B can)
         ## Will need to change how pending_friend_state is stored in the frontend, and will need to inject
         ## a key value pair with "request role" key and "sender" or "receiver" value.
+
+        self.emit('friend_request_response',{"pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)
+        self.emit('friend_request_response',{"pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
 
         ## User B can accept or decline
         ### If User B declines, remove users from pending friendships table

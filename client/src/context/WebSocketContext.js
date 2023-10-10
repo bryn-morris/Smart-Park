@@ -89,11 +89,12 @@ function WebSocketProvider({children}) {
 
     function acceptFriendRequest(friend_id) {
         console.log("is this hooked up?")
+        friendSocket.emit('accept_friend_request', {friend_id: friend_id})
     }
 
     function deleteFriend(friend_id) {
         friendSocket.emit('delete_request', {friend_id: friend_id})
-        // console.log("delete friends action")
+        // console.log(friend_id)
     }
 
     // Once the add friend buttons are rendered for each 

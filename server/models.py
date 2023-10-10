@@ -2,6 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
+from flask import session
 # from sqlalchemy import UniqueConstraint
 
 from config import db, bcrypt
@@ -111,8 +112,19 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         return self.friends_1.all() + self.friends_2.all()
     
     def pending_friends(self):
-        return ([{'pfo':pf, 'sender': True} for pf in self.pend_friends_1.all()] + 
-                [{'pfo':pf, 'sender': False} for pf in self.pend_friends_2.all()])
+
+        user_id = session.get('user_id')
+
+        def create_filter_terms (pending_friend_object) : 
+            return(
+                (pending_friend_object.id == Pending_Friendships.pend_friend_1_id and
+                user_id == Pending_Friendships.pend_friend_2_id) or 
+                (pending_friend_object.id == Pending_Friendships.pend_friend_2_id and
+                user_id == Pending_Friendships.pend_friend_1_id)
+            )
+        
+        return ([{'pfo':pf, 'sender': True, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_1.all()] + 
+                [{'pfo':pf, 'sender': False, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_2.all()])
     
     # def add_friend(self, target_friend):
     #     pass

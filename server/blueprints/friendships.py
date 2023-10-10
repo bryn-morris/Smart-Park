@@ -41,12 +41,21 @@ class Pending_Friends(Resource):
         currentUser = User.query.filter(User.id == session['user_id']).one()
         serialized_pending_friendships = [
             {
-                'image': pfe['pfo'].image,
-                'username' : pfe['pfo'].username,
-                'id' : pfe['pfo'].id,
-                'sender' : pfe['sender'],
+                'request_metadata': 
+                    {'sender' : pfe['sender'],
+                     'friendship_id': pfe['friendship_id'], 
+                    }
+                ,
+                'friend_data':
+                    {
+                        'image': pfe['pfo'].image,
+                        'username' : pfe['pfo'].username,
+                        'id' : pfe['pfo'].id,
+                    }
+                ,    
             } for pfe in currentUser.pending_friends()
         ]
+        import ipdb;ipdb.set_trace()
         return make_response(serialized_pending_friendships, 200)
 
 api.add_resource(Pending_Friends, '/pending_friends')

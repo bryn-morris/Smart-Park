@@ -11,7 +11,7 @@ function FriendCard ({eachFr}) {
             <p>{eachFr.username}</p>
             <Icon
                 name = "user cancel"
-                onClick={()=>{deleteFriend(5)}}
+                onClick={()=>{deleteFriend(eachFr.id)}}
                 title = "Remove friend"
             >
                 Delete Friend

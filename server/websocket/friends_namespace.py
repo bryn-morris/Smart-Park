@@ -72,19 +72,35 @@ class FriendNamespace(Namespace):
         
         user_serialized_pending_friendships = [
             {
-                'image': pfe['pfo'].image,
-                'username' : pfe['pfo'].username,
-                'id' : pfe['pfo'].id,
-                'sender' : pfe['sender'],
+                'request_metadata': 
+                    {'sender' : pfe['sender'],
+                     'friendship_id': pfe['friendship_id'], 
+                    }
+                ,
+                'friend_data':
+                    {
+                        'image': pfe['pfo'].image,
+                        'username' : pfe['pfo'].username,
+                        'id' : pfe['pfo'].id,
+                    }
+                ,    
             } for pfe in sel_user.pending_friends()
         ]
         
         friend_serialized_pending_friendships = [
             {
-                'image': pfe['pfo'].image,
-                'username' : pfe['pfo'].username,
-                'id' : pfe['pfo'].id,
-                'sender' : pfe['sender'],
+                'request_metadata': 
+                    {'sender' : pfe['sender'],
+                     'friendship_id': pfe['friendship_id'], 
+                    }
+                ,
+                'friend_data':
+                    {
+                        'image': pfe['pfo'].image,
+                        'username' : pfe['pfo'].username,
+                        'id' : pfe['pfo'].id,
+                    }
+                ,    
             } for pfe in sel_friend.pending_friends()
         ]
 
@@ -98,7 +114,18 @@ class FriendNamespace(Namespace):
         ## Write function to handle repeated logic
         ## if user is pending_friends, pass in data to act on pending friends
         ## if user is in friends list, pass in data to act on friends list
-        ## remove from either pending or friends lsit
+
+        def handle_deletion(friend_status):
+
+            user_id = session.get('user_id')
+            friend_id = data.get('friend_id')
+
+            sel_friend = User.query.filter(User.id == friend_id).one()
+            sel_user = User.query.filter(User.id == user_id).one()
+        
+            pass
+
+        ## remove from either pending or friends list
         ## update both users with relevant data
         ## exit function
 
@@ -108,6 +135,8 @@ class FriendNamespace(Namespace):
         ### User A removes from friends list
         ### User B removes from friends list
 
+    def on_accept_friend_request(self,data):
+        pass
     ## User B (sender -> False )can accept or decline
     ## send packet containing sender value so backend can check
     ### If User B accepts, users will be removed from pending friendships table and be added to the friendships table

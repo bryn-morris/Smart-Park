@@ -75,7 +75,7 @@ function WebSocketProvider({children}) {
     }
 
     function acceptFriendRequest(friend_id) {
-        
+        console.log("is this hooked up?")
     }
 
     function deleteFriend(friendship_id) {

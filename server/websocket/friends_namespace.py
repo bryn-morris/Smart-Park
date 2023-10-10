@@ -56,6 +56,11 @@ class FriendNamespace(Namespace):
         if sel_friend == sel_user:
             raise ValueError('You can\'t add yourself as a friend!')
 
+        ## return error if user is already in pending friends list
+        if sel_friend in (sel_user.pend_friends_1.all()+sel_user.pend_friends_2.all()):
+            raise ValueError('You have already sent a friend request to this user!')
+
+
         ## First, User A will send Friend Request to User B
         ## This will to add both users to pending friendships table
 
@@ -98,7 +103,8 @@ class FriendNamespace(Namespace):
         ## Interact with the request. (If user A sends message -> sender = True, they cannot accept, 
         # but user B -> sender = False can accept)
 
-        ## User B can accept or decline
+        ## User B (sender -> False )can accept or decline
+        ## send packet containing sender value so backend can check
         ### If User B declines, remove users from pending friendships table
         ### If User A cancels, remove users from pending friendships table
         ### If User B accepts, users will be removed from pending friendships table and be added to the friendships table
@@ -107,14 +113,6 @@ class FriendNamespace(Namespace):
 ############################################################
 #########              Friendship Decorator
 ############################################################
-
-# from flask import make_response, request, session, jsonify
-# from flask_restful import Resource
-
-# from models import (
-#     User, 
-#     Pending_Friendships,
-# )
 
 # def Friendship_Decorator(func):
 

@@ -73,12 +73,13 @@ class FriendNamespace(Namespace):
 
         ## emit message to room of both users a and b that updates pending friend request state
         
+        ## EDIT SYNTAX HERE
         user_serialized_pending_friendships = [epf.to_dict(
-            only = ('image', 'username', 'id')
+            only = ('pfo.image', 'pfo.username', 'pfo.id', 'sender')
             ) for epf in sel_user.pending_friends()]
         
         friend_serialized_pending_friendships = [epf.to_dict(
-            only = ('image', 'username', 'id')
+            only = ('pfo.image', 'pfo.username', 'pfo.id', 'sender')
             ) for epf in sel_friend.pending_friends()]
 
         ## This behaviour is only needed for pending friendships

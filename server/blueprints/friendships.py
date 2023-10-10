@@ -11,14 +11,15 @@ class Friendship(Resource):
 
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
-        # import ipdb;ipdb.set_trace()
+
         # create a sender key value pair where the value
         # is sender and the value is a boolean equivalency checking
         # to see if the currentUser.id == pendingFriend.pend_friend_1_id
         # Repeat across applictation
+
         serialized_friends = [ef.to_dict(
             only = ('image', 'username', 'id')
-        ) for ef in currentUser.all_friends()]  
+        ) for ef in currentUser.all_friends()]
         return make_response(serialized_friends,200)
     
     @Authentication_Decorator
@@ -58,6 +59,8 @@ class Pending_Friends(Resource):
     
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
+        
+        import ipdb;ipdb.set_trace()
         serialized_pending_friendships = [epf.to_dict(
             only = ('image', 'username', 'id')
             ) for epf in currentUser.pending_friends()]

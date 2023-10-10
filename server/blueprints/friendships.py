@@ -67,7 +67,6 @@ class Pending_Friends(Resource):
                 'sender' : pfe['sender'],
             } for pfe in currentUser.pending_friends()
         ]
-        import ipdb;ipdb.set_trace()
         return make_response(serialized_pending_friendships, 200)
 
 api.add_resource(Pending_Friends, '/pending_friends')

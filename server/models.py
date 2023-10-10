@@ -111,10 +111,6 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         return self.friends_1.all() + self.friends_2.all()
     
     def pending_friends(self):
-        ## return a list of dictionaries in which 
-        ## there is a sender key and the value is an 
-        ## equivalency that checks to see if currentUser.id == object.pend_friend_1_id
-    
         return ([{'pfo':pf, 'sender': True} for pf in self.pend_friends_1.all()] + 
                 [{'pfo':pf, 'sender': False} for pf in self.pend_friends_2.all()])
     

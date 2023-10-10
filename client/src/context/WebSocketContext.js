@@ -16,6 +16,12 @@ function WebSocketProvider({children}) {
     const {setFriendsList, setPendingFriendsList} = useContext(FriendsContext)
     const history = useHistory()
 
+    const friend_request_response_map = {
+        "request_response" : (data)=>setPendingFriendsList(()=>data.pend_friend_state),
+        "accept_response" : ()=>{},
+        "delete_response" : ()=>{},
+    }
+
     useEffect(()=>{
 
         if (friendSocket) {
@@ -30,7 +36,15 @@ function WebSocketProvider({children}) {
             })
 
             friendSocket.on('friend_request_response', (data)=>{
-                setPendingFriendsList(()=>data.pend_friend_state)
+                let handler_function = friend_request_response_map[data.config_key];
+                
+                if (handler_function) {
+                    handler_function(data)
+                }
+                else {
+                    console.log("Error! No handler found")
+                };
+
             })
 
             friendSocket.on('friend_socket_disconnect', ()=>{
@@ -49,12 +63,8 @@ function WebSocketProvider({children}) {
         setCurrentUser, 
         setDogParks, 
         setFriendsList, 
-        setPendingFriendsList
+        setPendingFriendsList,
     ])
-
-    // Create a Catch to handle error responses!
-    // also logic to handle different responses from
-    // The friendship decorator on the backend
     
     // Current User Accepts Friend Request
     // include some sort of logic so that if a user accepts
@@ -72,19 +82,18 @@ function WebSocketProvider({children}) {
 
     function sendFriendRequest(friend_id) {
         friendSocket.emit('friend_request', {friend_id: friend_id})
+        // This sender value then determines how the corresponding frontends can
+        // Interact with the request. (If user A sends message -> sender = True, they cannot accept, 
+        // but user B -> sender = False can accept)
     }
 
     function acceptFriendRequest(friend_id) {
         console.log("is this hooked up?")
     }
 
-    function deleteFriend(friendship_id) {
-        // fetch(`/friends/${friendship_id}`, {
-        //     method: "DELETE",
-        // })
-
-        // search both pending friends and friends table and delete entries
-        console.log("delete friends action")
+    function deleteFriend(friend_id) {
+        friendSocket.emit('delete_request', {friend_id: friend_id})
+        // console.log("delete friends action")
     }
 
     // Once the add friend buttons are rendered for each 
@@ -102,6 +111,7 @@ function WebSocketProvider({children}) {
                         setFriendSocket,
                         sendFriendRequest,
                         deleteFriend,
+                        acceptFriendRequest,
                     }}
         >
             {children}

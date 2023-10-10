@@ -88,16 +88,27 @@ class FriendNamespace(Namespace):
             } for pfe in sel_friend.pending_friends()
         ]
 
-        self.emit('friend_request_response',{"pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)
-        self.emit('friend_request_response',{"pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
+        self.emit('friend_request_response',{"config_key": "request_response","pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)
+        self.emit('friend_request_response',{"config_key": "request_response","pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
 
-        ## This sender value then determines how the corresponding frontends can
-        ## Interact with the request. (If user A sends message -> sender = True, they cannot accept, 
-        # but user B -> sender = False can accept)
+    def on_delete_request(self, data):
+        import ipdb;ipdb.set_trace()
+        pass
 
-        ## User B (sender -> False )can accept or decline
-        ## send packet containing sender value so backend can check
+        ## Write function to handle repeated logic
+        ## if user is pending_friends, pass in data to act on pending friends
+        ## if user is in friends list, pass in data to act on friends list
+        ## remove from either pending or friends lsit
+        ## update both users with relevant data
+        ## exit function
+
+        ## Conditions for execution:
         ### If User B declines, remove users from pending friendships table
         ### If User A cancels, remove users from pending friendships table
-        ### If User B accepts, users will be removed from pending friendships table and be added to the friendships table
-        ### Once Friendship is established, either user can delete friendship to remove from friendship table
+        ### User A removes from friends list
+        ### User B removes from friends list
+
+    ## User B (sender -> False )can accept or decline
+    ## send packet containing sender value so backend can check
+    ### If User B accepts, users will be removed from pending friendships table and be added to the friendships table
+    ### Once Friendship is established, either user can delete friendship to remove from friendship table

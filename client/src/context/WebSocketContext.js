@@ -30,10 +30,7 @@ function WebSocketProvider({children}) {
             })
 
             friendSocket.on('friend_request_response', (data)=>{
-                // if we have a valid response, update the pending friend request state, which then determines
-                // if add friend button is rendered or if other info is rendered in search
-                console.log(data.pend_friend_state)
-                // setPendingFriendsList(()=>data.pend_friend_state)
+                setPendingFriendsList(()=>data.pend_friend_state)
             })
 
             friendSocket.on('friend_socket_disconnect', ()=>{

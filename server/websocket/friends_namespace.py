@@ -73,29 +73,30 @@ class FriendNamespace(Namespace):
 
         ## emit message to room of both users a and b that updates pending friend request state
         
-        ## EDIT SYNTAX HERE
-        user_serialized_pending_friendships = [epf.to_dict(
-            only = ('pfo.image', 'pfo.username', 'pfo.id', 'sender')
-            ) for epf in sel_user.pending_friends()]
+        user_serialized_pending_friendships = [
+            {
+                'image': pfe['pfo'].image,
+                'username' : pfe['pfo'].username,
+                'id' : pfe['pfo'].id,
+                'sender' : pfe['sender'],
+            } for pfe in sel_user.pending_friends()
+        ]
         
-        friend_serialized_pending_friendships = [epf.to_dict(
-            only = ('pfo.image', 'pfo.username', 'pfo.id', 'sender')
-            ) for epf in sel_friend.pending_friends()]
-
-        ## This behaviour is only needed for pending friendships
-        ### 
-        ## Isolate the target row in the db by searching for the
-        ## corresponding pending friendship id.
-            # Can use new_pend_fr.id to determine the row id
-        # Then isolating which user is in
-        ## Which table column and assign them a role value in the pending friendship table
-        ## This role value then determines how the corresponding frontends can
-        ## Interact with the request. (If user A sends message, they cannot accept, but user B can)
-        ## Will need to change how pending_friend_state is stored in the frontend, and will need to inject
-        ## a key value pair with "request role" key and "sender" or "receiver" value.
+        friend_serialized_pending_friendships = [
+            {
+                'image': pfe['pfo'].image,
+                'username' : pfe['pfo'].username,
+                'id' : pfe['pfo'].id,
+                'sender' : pfe['sender'],
+            } for pfe in sel_friend.pending_friends()
+        ]
 
         self.emit('friend_request_response',{"pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)
         self.emit('friend_request_response',{"pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
+
+        ## This sender value then determines how the corresponding frontends can
+        ## Interact with the request. (If user A sends message -> sender = True, they cannot accept, 
+        # but user B -> sender = False can accept)
 
         ## User B can accept or decline
         ### If User B declines, remove users from pending friendships table

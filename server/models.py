@@ -114,7 +114,7 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         cached_col_1_friends = self.friends_2.all()
         cached_col_2_friends = self.friends_1.all()
 
-        def create_filter_terms (friend_object, user_id):
+        def create_filter_terms (friend_object, user_id, col_1_f, col_2_f):
             
             ## friend object is through friend_1 column
             option1 = and_(friend_object.id == Friends.friend_1_id, user_id == Friends.friend_2_id)      
@@ -129,14 +129,22 @@ class User(db.Model, SmartParkBase, SerializerMixin):
                 return option2
             else:
                 None
+        try:
+            if cached_col_2_friends:
+                for fo in cached_col_2_friends:
+                    friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(
+                        create_filter_terms(fo, user_id, cached_col_1_friends, cached_col_2_friends)
+                        ).first().id
+                    })
 
-        if cached_col_2_friends:
-            for fo in cached_col_2_friends:
-                friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id})
-
-        if cached_col_1_friends:
-            for fo in cached_col_1_friends:
-                friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id})
+            if cached_col_1_friends:
+                for fo in cached_col_1_friends:
+                    friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(
+                        create_filter_terms(fo, user_id, cached_col_1_friends, cached_col_2_friends)
+                        ).first().id
+                    })
+        except:
+            friend_list = None
         
         # return ([{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id} for fo in self.friends_1.all()] + 
         #         [{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id} for fo in self.friends_2.all()])

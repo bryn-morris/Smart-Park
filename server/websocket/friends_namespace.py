@@ -51,7 +51,7 @@ class FriendNamespace(Namespace):
         sel_user = User.query.filter(User.id == user_id).one()
         
         ### return error if user attempts to add someone who is already a friend as a friend  
-        if sel_friend in sel_user.all_friends():
+        if sel_friend in sel_user.all_friends(sel_user.id):
             raise ValueError('This user is already one of your friends!')
         
         ### return error if user attempts to add themselves as a friend

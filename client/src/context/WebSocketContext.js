@@ -19,7 +19,7 @@ function WebSocketProvider({children}) {
     const friend_request_response_map = {
         "request_response" : (data)=>setPendingFriendsList(()=>data.pend_friend_state),
         "accept_response" : ()=>{},
-        "friend_delete_response" : (data)=>{console.log(data)},
+        "friend_delete_response" : (data)=>{setFriendsList(()=>data.friend_state)},
         "pend_delete_response" : ()=>{}
     }
 
@@ -37,8 +37,7 @@ function WebSocketProvider({children}) {
             })
 
             friendSocket.on('friend_request_response', (data)=>{
-                console.log("is this firing?")
-                
+
                 let handler_function = friend_request_response_map[data.config_key];
                 
                 if (handler_function) {

@@ -118,17 +118,23 @@ class User(db.Model, SmartParkBase, SerializerMixin):
             
             ## friend object is through friend_1 column
             option1 = and_(friend_object.id == Friends.friend_1_id, user_id == Friends.friend_2_id)      
+            
             ## friend object is through friend_2 column
             option2 = and_(friend_object.id == Friends.friend_2_id, user_id == Friends.friend_1_id) 
 
-            if Friends.query.filter(option1).first() and Friends.query.filter(option2).first():
+            if col_1_f and col_2_f:
+                import ipdb;ipdb.set_trace()
                 return or_(option1, option2)
-            elif Friends.query.filter(option1).first() is not None and Friends.query.filter(option2).first() is None:
+            elif col_1_f and not col_2_f:
+                import ipdb;ipdb.set_trace()
                 return option1
-            elif Friends.query.filter(option1).first() is None and Friends.query.filter(option2).first() is not None:
+            elif not col_1_f and col_2_f:
+                import ipdb;ipdb.set_trace()
                 return option2
             else:
-                None
+                import ipdb;ipdb.set_trace()
+                return None
+            
         try:
             if cached_col_2_friends:
                 for fo in cached_col_2_friends:

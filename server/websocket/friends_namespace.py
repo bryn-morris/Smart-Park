@@ -21,9 +21,11 @@ class FriendNamespace(Namespace):
             # disconnect()
 
         self.room_name = f'{session.get("user_id")}'
-        self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'})
-        
         join_room(self.room_name)
+        
+        self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'}, room = self.room_name)
+        
+        
 
     def on_start_disconnect(self):
 
@@ -164,7 +166,6 @@ class FriendNamespace(Namespace):
             ]
 
             self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
-            import ipdb;ipdb.set_trace()
             self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')
             
         else:

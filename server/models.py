@@ -110,7 +110,6 @@ class User(db.Model, SmartParkBase, SerializerMixin):
                             )
     
     def all_friends(self, user_id):
-        friend_list = []
 
         def create_filter_terms (friend_object, user_id):
             
@@ -126,20 +125,18 @@ class User(db.Model, SmartParkBase, SerializerMixin):
             else:
                 None
 
-        if self.friends_1.all():
+        # if self.friends_1.all():
             
-            for fo in self.friends_1.all():
+        #     for fo in self.friends_1.all():
 
-                friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id})
+        #         friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id})
 
-        if self.friends_2.all():
-            for fo in self.friends_2.all():
-                friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id})
+        # if self.friends_2.all():
+        #     for fo in self.friends_2.all():
+        #         friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id})
         
-        # return ([{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_1.all()] + 
-        #         [{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_2.all()])
-    
-        return friend_list
+        return ([{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id} for fo in self.friends_1.all() if self.friends_1.all()] + 
+                [{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id} for fo in self.friends_2.all() if self.friends_2.all()])
 
     def pending_friends(self):
 

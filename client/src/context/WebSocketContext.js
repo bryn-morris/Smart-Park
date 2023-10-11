@@ -37,6 +37,8 @@ function WebSocketProvider({children}) {
             })
 
             friendSocket.on('friend_request_response', (data)=>{
+                console.log("is this firing?")
+                
                 let handler_function = friend_request_response_map[data.config_key];
                 
                 if (handler_function) {

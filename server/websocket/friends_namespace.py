@@ -113,7 +113,6 @@ class FriendNamespace(Namespace):
         friend_id = data.get('friend_id')
 
         sel_friend = User.query.filter(User.id == friend_id).one()
-        sel_user = User.query.filter(User.id == user_id).one()
 
         if data['is_pending_boolean'] == True:
             ## user was a pending friend
@@ -121,50 +120,53 @@ class FriendNamespace(Namespace):
         elif data['is_pending_boolean'] == False:
             ## user was a friend
             try:
-                import ipdb;ipdb.set_trace()
                 sel_friendship = Friends.query.filter(Friends.id == data['friendship_id']).first()
             except:
                 raise ValueError('Unable to locate friendship!')
 
-            # db.session.delete(sel_friendship)
-            # db.session.commit()
+            db.session.delete(sel_friendship)
+            db.session.commit()
 
-            # user_serialized_friendships = [
-            #     {
-            #         'request_metadata': 
-            #             {
-            #             'friendship_id': fe['friendship_id'], 
-            #             }
-            #         ,
-            #         'friend_data':
-            #             {
-            #                 'image': fe['pfo'].image,
-            #                 'username' : fe['pfo'].username,
-            #                 'id' : fe['pfo'].id,
-            #             }
-            #         ,    
-            #     } for fe in sel_user.all_friends()
-            # ]
+            sel_user = User.query.filter(User.id == user_id).one()
+
+            user_serialized_friendships = [
+                {
+                    'request_metadata': 
+                        {
+                        'friendship_id': fe['friendship_id'], 
+                        }
+                    ,
+                    'friend_data':
+                        {
+                            'image': fe['pfo'].image,
+                            'username' : fe['pfo'].username,
+                            'id' : fe['pfo'].id,
+                        }
+                    ,    
+                } for fe in sel_user.all_friends(user_id) if sel_user.all_friends(user_id)
+            ]
         
-            # friend_serialized_friendships = [
-            #     {
-            #         'request_metadata': 
-            #             {
-            #             'friendship_id': fe['friendship_id'], 
-            #             }
-            #         ,
-            #         'friend_data':
-            #             {
-            #                 'image': fe['pfo'].image,
-            #                 'username' : fe['pfo'].username,
-            #                 'id' : fe['pfo'].id,
-            #             }
-            #         ,    
-            #     } for fe in sel_friend.all_friends()
-            # ]
+            friend_serialized_friendships = [
+                {
+                    'request_metadata': 
+                        {
+                        'friendship_id': fe['friendship_id'], 
+                        }
+                    ,
+                    'friend_data':
+                        {
+                            'image': fe['pfo'].image,
+                            'username' : fe['pfo'].username,
+                            'id' : fe['pfo'].id,
+                        }
+                    ,    
+                } for fe in sel_friend.all_friends(sel_friend.id) if sel_friend.all_friends(sel_friend.id)
+            ]
 
-            # self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
-            # self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')
+            self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
+            import ipdb;ipdb.set_trace()
+            self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')
+            
         else:
             pass
             ## key doesn't exist

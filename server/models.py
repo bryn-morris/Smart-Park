@@ -109,20 +109,38 @@ class User(db.Model, SmartParkBase, SerializerMixin):
                               lazy = 'dynamic'
                             )
     
-    def all_friends(self):
+    def all_friends(self, user_id):
+        friend_list = []
 
-        user_id = session.get('user_id')
-
-        def create_filter_terms (friend_object):
+        def create_filter_terms (friend_object, user_id):
             
             option1 = and_(friend_object.id == Friends.friend_1_id, user_id == Friends.friend_2_id)
             option2 = and_(friend_object.id == Friends.friend_2_id, user_id == Friends.friend_1_id) 
-    
-            return or_(option1, option2)
+
+            if Friends.query.filter(option1).first() and Friends.query.filter(option2).first():
+                return or_(option1, option2)
+            elif Friends.query.filter(option1).first() is not None and Friends.query.filter(option2).first() is None:
+                return option1
+            elif Friends.query.filter(option1).first() is None and Friends.query.filter(option2).first() is not None:
+                return option2
+            else:
+                None
+
+        if self.friends_1.all():
+            
+            for fo in self.friends_1.all():
+
+                friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id})
+
+        if self.friends_2.all():
+            for fo in self.friends_2.all():
+                friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id})
         
-        return ([{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_1.all()] + 
-                [{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_2.all()])
+        # return ([{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_1.all()] + 
+        #         [{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo)).first().id} for fo in self.friends_2.all()])
     
+        return friend_list
+
     def pending_friends(self):
 
         user_id = session.get('user_id')

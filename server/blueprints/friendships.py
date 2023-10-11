@@ -26,7 +26,7 @@ class Friendship(Resource):
                         'id' : pfe['pfo'].id,
                     }
                 ,    
-            } for pfe in currentUser.all_friends()
+            } for pfe in currentUser.all_friends(currentUser.id)
         ]
         
         return make_response(serialized_friendships,200)

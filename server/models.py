@@ -126,13 +126,10 @@ class User(db.Model, SmartParkBase, SerializerMixin):
                 import ipdb;ipdb.set_trace()
                 return or_(option1, option2)
             elif col_1_f and not col_2_f:
-                import ipdb;ipdb.set_trace()
                 return option1
             elif not col_1_f and col_2_f:
-                import ipdb;ipdb.set_trace()
                 return option2
             else:
-                import ipdb;ipdb.set_trace()
                 return None
             
         try:
@@ -151,9 +148,6 @@ class User(db.Model, SmartParkBase, SerializerMixin):
                     })
         except:
             friend_list = None
-        
-        # return ([{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id} for fo in self.friends_1.all()] + 
-        #         [{'pfo':fo, 'friendship_id':Friends.query.filter(create_filter_terms(fo, user_id)).first().id} for fo in self.friends_2.all()])
     
         return friend_list
 

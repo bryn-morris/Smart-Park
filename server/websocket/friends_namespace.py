@@ -86,7 +86,7 @@ class FriendNamespace(Namespace):
                         'id' : pfe['pfo'].id,
                     }
                 ,    
-            } for pfe in sel_user.pending_friends()
+            } for pfe in sel_user.pending_friends(sel_user.id) if sel_user.pending_friends(sel_user.id)
         ]
         
         friend_serialized_pending_friendships = [
@@ -103,7 +103,7 @@ class FriendNamespace(Namespace):
                         'id' : pfe['pfo'].id,
                     }
                 ,    
-            } for pfe in sel_friend.pending_friends()
+            } for pfe in sel_friend.pending_friends(sel_friend.id) if sel_friend.pending_friends(sel_friend.id)
         ]
 
         self.emit('friend_request_response',{"config_key": "request_response","pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)

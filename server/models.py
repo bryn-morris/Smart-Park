@@ -161,10 +161,10 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         def create_filter_terms (pending_friend_object, user_id, col_1_f, col_2_f):
             
             ## friend object is through friend_1 column
-            option1 = and_(pending_friend_object.id == Friends.friend_1_id, user_id == Friends.friend_2_id)      
+            option1 = and_(pending_friend_object.id == Pending_Friendships.pend_friend_1_id, user_id == Pending_Friendships.pend_friend_2_id)      
             
             ## friend object is through friend_2 column
-            option2 = and_(pending_friend_object.id == Friends.friend_2_id, user_id == Friends.friend_1_id) 
+            option2 = and_(pending_friend_object.id == Pending_Friendships.pend_friend_2_id, user_id == Pending_Friendships.pend_friend_1_id) 
 
             if col_1_f and col_2_f:
                 return or_(option1, option2)
@@ -177,16 +177,16 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         
         try:
             if cached_col_2_pend_friends:
-                for fo in cached_col_2_pend_friends:
-                    pending_friend_list.append({'fo':fo, 'friendship_id':Friends.query.filter(
-                        create_filter_terms(fo, user_id, cached_col_1_pend_friends, cached_col_2_pend_friends)
+                for pfo in cached_col_2_pend_friends:
+                    pending_friend_list.append({'pfo':pfo, 'sender': True, 'friendship_id':Pending_Friendships.query.filter(
+                        create_filter_terms(pfo, user_id, cached_col_1_pend_friends, cached_col_2_pend_friends)
                         ).first().id
                     })
 
             if cached_col_1_pend_friends:
-                for fo in cached_col_1_pend_friends:
-                    pending_friend_list.append({'fo':fo, 'friendship_id':Friends.query.filter(
-                        create_filter_terms(fo, user_id, cached_col_1_pend_friends, cached_col_2_pend_friends)
+                for pfo in cached_col_1_pend_friends:
+                    pending_friend_list.append({'pfo':pfo, 'sender': False, 'friendship_id':Pending_Friendships.query.filter(
+                        create_filter_terms(pfo, user_id, cached_col_1_pend_friends, cached_col_2_pend_friends)
                         ).first().id
                     })
         except:

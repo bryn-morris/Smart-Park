@@ -19,7 +19,7 @@ function WebSocketProvider({children}) {
     const friend_request_response_map = {
         "request_response" : (data)=>setPendingFriendsList(()=>data.pend_friend_state),
         "accept_response" : ()=>{},
-        "friend_delete_response" : (data)=>{setFriendsList(()=>data.friend_state)},
+        "friend_delete_response" : (data)=>setFriendsList(()=>data.friend_state),
         "pend_delete_response" : ()=>{}
     }
 

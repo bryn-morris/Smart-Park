@@ -39,7 +39,8 @@ function Main() {
 
       fetch('/pending_friends')
       .then(r=>r.json())
-      .then(pendingFriendshipsData => {
+      .then(
+        pendingFriendshipsData => {
             setPendingFriendsList(pendingFriendshipsData)
       })
 

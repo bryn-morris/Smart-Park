@@ -53,6 +53,7 @@ class Pending_Friends(Resource):
     
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
+
         serialized_pending_friendships = [
             {
                 'request_metadata': 
@@ -67,7 +68,7 @@ class Pending_Friends(Resource):
                         'id' : pfe['pfo'].id,
                     }
                 ,    
-            } for pfe in currentUser.pending_friends(currentUser.id)
+            } for pfe in currentUser.pending_friends(currentUser.id) if currentUser.pending_friends(currentUser.id)
         ]
         return make_response(serialized_pending_friendships, 200)
 

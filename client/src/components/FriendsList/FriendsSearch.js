@@ -1,12 +1,11 @@
-import { Search, Icon} from "semantic-ui-react"
+import { Search } from "semantic-ui-react"
 import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
-import { WebSocketContext } from "../../context/WebSocketContext"
+import FriendSearchIcon  from "./FriendSearchIcon"
 
 function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
 
         const {currentUser} = useContext(AuthContext)
-        const {sendFriendRequest} = useContext(WebSocketContext) 
 
         const modifiedResultsList = searchedResultsList.filter((eachEl)=>eachEl.username !== currentUser.username).map((eachRes)=>{
                 return {title: eachRes.username, image: eachRes.image, friend_id: eachRes.id}
@@ -22,11 +21,10 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
             return(
                 <div className="searchResult">
                     <div className = "searchResult iconContainer">
-                        <Icon
-                            name = "user plus"
-                            className="searchResult icon"
-                            title="Click to send friend request"
-                            onClick = {()=>sendFriendRequest(friend_id)}
+                        <FriendSearchIcon 
+                            title = {title} 
+                            image = {image}
+                            friend_id = {friend_id}
                         />
                     </div>
                     <div 

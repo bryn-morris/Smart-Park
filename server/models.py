@@ -194,9 +194,6 @@ class User(db.Model, SmartParkBase, SerializerMixin):
     
         return pending_friend_list
     
-        # return ([{'pfo':pf, 'sender': True, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_1.all()] + 
-        #         [{'pfo':pf, 'sender': False, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_2.all()])
-    
     # def add_friend(self, target_friend):
     #     pass
 

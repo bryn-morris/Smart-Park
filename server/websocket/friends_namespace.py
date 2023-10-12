@@ -41,7 +41,6 @@ class FriendNamespace(Namespace):
         ## May want to include what the error type is, so that action can be taken on the frontend
         self.emit('server_error_response', {'message':str(e)})
 
-    # this handles "/friend_request" events as flask-socketio follows event nomenclature following the on_ keyphrase
     def on_friend_request(self, data):
 
         user_id = session.get('user_id')

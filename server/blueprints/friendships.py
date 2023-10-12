@@ -67,7 +67,7 @@ class Pending_Friends(Resource):
                         'id' : pfe['pfo'].id,
                     }
                 ,    
-            } for pfe in currentUser.pending_friends()
+            } for pfe in currentUser.pending_friends(currentUser.id)
         ]
         return make_response(serialized_pending_friendships, 200)
 

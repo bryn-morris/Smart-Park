@@ -86,6 +86,7 @@ class User(db.Model, SmartParkBase, SerializerMixin):
                               back_populates = 'friends_2',
                               lazy = 'dynamic'
                             )
+    
     friends_2 = db.relationship('User',
                               secondary = 'friends',
                               primaryjoin = 'Friends.friend_2_id == User.id',
@@ -101,6 +102,7 @@ class User(db.Model, SmartParkBase, SerializerMixin):
                               back_populates = 'pend_friends_2',
                               lazy = 'dynamic'
                             )
+    
     pend_friends_2 = db.relationship('User',
                               secondary = 'pending_friendships',
                               primaryjoin = 'Pending_Friendships.pend_friend_2_id == User.id',
@@ -150,19 +152,50 @@ class User(db.Model, SmartParkBase, SerializerMixin):
     
         return friend_list
 
-    def pending_friends(self):
+    def pending_friends(self, user_id):
 
-        user_id = session.get('user_id')
+        pending_friend_list = []
+        cached_col_1_pend_friends = self.pend_friends_2.all()
+        cached_col_2_pend_friends = self.pend_friends_1.all()
 
-        def create_filter_terms (pending_friend_object):
+        def create_filter_terms (pending_friend_object, user_id, col_1_f, col_2_f):
+            
+            ## friend object is through friend_1 column
+            option1 = and_(pending_friend_object.id == Friends.friend_1_id, user_id == Friends.friend_2_id)      
+            
+            ## friend object is through friend_2 column
+            option2 = and_(pending_friend_object.id == Friends.friend_2_id, user_id == Friends.friend_1_id) 
 
-            option1 = and_(pending_friend_object.id == Pending_Friendships.pend_friend_1_id, user_id == Pending_Friendships.pend_friend_2_id)
-            option2 = and_(pending_friend_object.id == Pending_Friendships.pend_friend_2_id, user_id == Pending_Friendships.pend_friend_1_id) 
-    
-            return or_(option1, option2)
+            if col_1_f and col_2_f:
+                return or_(option1, option2)
+            elif col_1_f and not col_2_f:
+                return option1
+            elif not col_1_f and col_2_f:
+                return option2
+            else:
+                return None
         
-        return ([{'pfo':pf, 'sender': True, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_1.all()] + 
-                [{'pfo':pf, 'sender': False, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_2.all()])
+        try:
+            if cached_col_2_pend_friends:
+                for fo in cached_col_2_pend_friends:
+                    pending_friend_list.append({'fo':fo, 'friendship_id':Friends.query.filter(
+                        create_filter_terms(fo, user_id, cached_col_1_pend_friends, cached_col_2_pend_friends)
+                        ).first().id
+                    })
+
+            if cached_col_1_pend_friends:
+                for fo in cached_col_1_pend_friends:
+                    pending_friend_list.append({'fo':fo, 'friendship_id':Friends.query.filter(
+                        create_filter_terms(fo, user_id, cached_col_1_pend_friends, cached_col_2_pend_friends)
+                        ).first().id
+                    })
+        except:
+            pending_friend_list = None
+    
+        return pending_friend_list
+    
+        # return ([{'pfo':pf, 'sender': True, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_1.all()] + 
+        #         [{'pfo':pf, 'sender': False, 'friendship_id':Pending_Friendships.query.filter(create_filter_terms(pf)).first().id} for pf in self.pend_friends_2.all()])
     
     # def add_friend(self, target_friend):
     #     pass

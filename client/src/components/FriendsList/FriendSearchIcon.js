@@ -5,11 +5,35 @@ import { FriendsContext } from "../../context/FriendsContext"
 
 function FriendSearchIcon ({friend_id}) {
 
-    const [iconConfigCase, setIconConfigCase] = useState("case2")
+    const [iconConfigCase, setIconConfigCase] = useState("case1")
 
     const {sendFriendRequest, acceptFriendRequest} = useContext(WebSocketContext)
     const { friendsList, pendingFriendsList } = useContext(FriendsContext) 
 
+    useEffect(() => {
+        setIconConfigCase((prevIconConfigCase)=>{
+            // conditional logic to update state on render to select icon config
+            if (pendingFriendsList.some(pendFriendObj => {
+                return(
+                    pendFriendObj.friend_data.id === friend_id &&
+                    pendFriendObj.request_metadata.sender === false
+                )
+            })) {
+                return "case3"
+            } else if (pendingFriendsList.some(pendFriendObj => {
+                return(
+                    pendFriendObj.friend_data.id === friend_id &&
+                    pendFriendObj.request_metadata.sender === true
+                )
+            })) {
+                return "case2"
+            }else if (friendsList.some(friendObj => friendObj.friend_data.id === friend_id)) {
+                return "case4"   
+            } else {
+                return "case1"
+            }
+        })
+    }, [friend_id, friendsList, pendingFriendsList])
     
     const iconConfigurationMapping= {
         //     1. User a is not friends or pending friends with user b
@@ -20,7 +44,6 @@ function FriendSearchIcon ({friend_id}) {
             onClickFunction : ()=>sendFriendRequest(friend_id),
         },
         //     2. User a has sent friend request already
-        // classname points to css that shows disabled button or greyed out option
         case2: {
             iconName : "wait",
             className : "searchResult icon sent",
@@ -28,7 +51,6 @@ function FriendSearchIcon ({friend_id}) {
             onClickFunction : null
         },
         //     3. User a has option to accept friend request
-        // classname points to css that lets user click button similar to sending friend request
         case3: {
             iconName : "check circle outline",
             className : "searchResult icon accept",
@@ -43,13 +65,6 @@ function FriendSearchIcon ({friend_id}) {
             onClickFunction : null
         },
     };
-
-    // useEffect(() => {
-    //     setIconConfigCase((prevIconConfigCase)=>{
-    //         // conditional logic to update state on render to select icon config
-    //     })
-
-    // }, [])
 
     function searchIconConstructor({iconName, className, tooltipText, onClickFunction}) {
         return (

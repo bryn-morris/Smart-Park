@@ -51,4 +51,4 @@ jspm_packages
 .pytest_cache
 
 # database
-.instance
+/server/instance

@@ -22,8 +22,6 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
                 <div className="searchResult">
                     <div className = "searchResult iconContainer">
                         <FriendSearchIcon 
-                            title = {title} 
-                            image = {image}
                             friend_id = {friend_id}
                         />
                     </div>

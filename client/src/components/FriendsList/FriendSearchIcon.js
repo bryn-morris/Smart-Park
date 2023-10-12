@@ -5,12 +5,13 @@ import { FriendsContext } from "../../context/FriendsContext"
 
 function FriendSearchIcon ({friend_id}) {
 
-    const [iconConfigCase, setIconConfigCase] = useState("case1")
+    const [iconConfigCase, setIconConfigCase] = useState("case4")
 
     const {sendFriendRequest} = useContext(WebSocketContext)
     const { friendsList, pendingFriendsList } = useContext(FriendsContext) 
 
-    const iconConfiguration= {
+    
+    const iconConfigurationMapping= {
         //     1. User a is not friends or pending friends with user b
         case1: {
             iconName : "user plus",
@@ -19,11 +20,15 @@ function FriendSearchIcon ({friend_id}) {
         },
         //     2. User a has sent friend request already
         case2: {
-
+            iconName : "",
+            tooltipText : "",
+            onClickFunction : ""
         },
         //     3. User a has option to accept friend request
         case3: {
-            // 
+            iconName : "",
+            tooltipText : "",
+            onClickFunction : ""
         },
         //     4. User a is already friends with this user b
         case4: {
@@ -33,12 +38,12 @@ function FriendSearchIcon ({friend_id}) {
         },
     };
 
-    useEffect(() => {
-        setIconConfigCase((prevIconConfigCase)=>{
-            // conditional logic to update state on render to select icon config
-        })
+    // useEffect(() => {
+    //     setIconConfigCase((prevIconConfigCase)=>{
+    //         // conditional logic to update state on render to select icon config
+    //     })
 
-    }, [])
+    // }, [])
 
     function searchIconConstructor({iconName, tooltipText, onClickFunction}) {
         return (
@@ -51,11 +56,9 @@ function FriendSearchIcon ({friend_id}) {
         )
     }
 
-
-
     return(
         <div>
-            {searchIconConstructor(iconConfiguration[iconConfigCase])}
+            {searchIconConstructor(iconConfigurationMapping[iconConfigCase])}
         </div>
     )
 }

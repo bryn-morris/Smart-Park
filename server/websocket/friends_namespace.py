@@ -25,7 +25,6 @@ class FriendNamespace(Namespace):
         
         self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'}, room = self.room_name)
         
-        
     def on_start_disconnect(self):
 
         leave_room(self.room_name)

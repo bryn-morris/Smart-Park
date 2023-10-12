@@ -123,7 +123,6 @@ class User(db.Model, SmartParkBase, SerializerMixin):
             option2 = and_(friend_object.id == Friends.friend_2_id, user_id == Friends.friend_1_id) 
 
             if col_1_f and col_2_f:
-                import ipdb;ipdb.set_trace()
                 return or_(option1, option2)
             elif col_1_f and not col_2_f:
                 return option1
@@ -135,14 +134,14 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         try:
             if cached_col_2_friends:
                 for fo in cached_col_2_friends:
-                    friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(
+                    friend_list.append({'fo':fo, 'friendship_id':Friends.query.filter(
                         create_filter_terms(fo, user_id, cached_col_1_friends, cached_col_2_friends)
                         ).first().id
                     })
 
             if cached_col_1_friends:
                 for fo in cached_col_1_friends:
-                    friend_list.append({'pfo':fo, 'friendship_id':Friends.query.filter(
+                    friend_list.append({'fo':fo, 'friendship_id':Friends.query.filter(
                         create_filter_terms(fo, user_id, cached_col_1_friends, cached_col_2_friends)
                         ).first().id
                     })

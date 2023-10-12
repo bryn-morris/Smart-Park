@@ -16,17 +16,17 @@ class Friendship(Resource):
             {
                 'request_metadata': 
                     {
-                     'friendship_id': pfe['friendship_id'], 
+                     'friendship_id': fe['friendship_id'], 
                     }
                 ,
                 'friend_data':
                     {
-                        'image': pfe['pfo'].image,
-                        'username' : pfe['pfo'].username,
-                        'id' : pfe['pfo'].id,
+                        'image': fe['fo'].image,
+                        'username' : fe['fo'].username,
+                        'id' : fe['fo'].id,
                     }
                 ,    
-            } for pfe in currentUser.all_friends(currentUser.id)
+            } for fe in currentUser.all_friends(currentUser.id)
         ]
         
         return make_response(serialized_friendships,200)

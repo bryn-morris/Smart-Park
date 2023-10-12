@@ -140,9 +140,9 @@ class FriendNamespace(Namespace):
                     ,
                     'friend_data':
                         {
-                            'image': fe['pfo'].image,
-                            'username' : fe['pfo'].username,
-                            'id' : fe['pfo'].id,
+                            'image': fe['fo'].image,
+                            'username' : fe['fo'].username,
+                            'id' : fe['fo'].id,
                         }
                     ,    
                 } for fe in sel_user.all_friends(user_id) if sel_user.all_friends(user_id)
@@ -157,9 +157,9 @@ class FriendNamespace(Namespace):
                     ,
                     'friend_data':
                         {
-                            'image': fe['pfo'].image,
-                            'username' : fe['pfo'].username,
-                            'id' : fe['pfo'].id,
+                            'image': fe['fo'].image,
+                            'username' : fe['fo'].username,
+                            'id' : fe['fo'].id,
                         }
                     ,    
                 } for fe in sel_friend.all_friends(sel_friend.id) if sel_friend.all_friends(sel_friend.id)

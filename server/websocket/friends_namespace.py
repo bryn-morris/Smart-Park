@@ -106,8 +106,10 @@ class FriendNamespace(Namespace):
             } for pfe in sel_friend.pending_friends(sel_friend.id) if sel_friend.pending_friends(sel_friend.id)
         ]
 
-        self.emit('friend_request_response',{"config_key": "request_response","pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)
-        self.emit('friend_request_response',{"config_key": "request_response","pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
+        if user_serialized_pending_friendships:
+            self.emit('friend_request_response',{"config_key": "request_response","pend_friend_state" : user_serialized_pending_friendships}, room = self.room_name)
+        if friend_serialized_pending_friendships:
+            self.emit('friend_request_response',{"config_key": "request_response","pend_friend_state" : friend_serialized_pending_friendships}, room = f'{friend_id}')
 
     def on_delete_request(self, data):
 
@@ -120,7 +122,6 @@ class FriendNamespace(Namespace):
             ## user was a pending friend
             pass
         elif data['is_pending_boolean'] == False:
-            ## user was a friend
             try:
                 sel_friendship = Friends.query.filter(Friends.id == data['friendship_id']).first()
             except:
@@ -168,8 +169,7 @@ class FriendNamespace(Namespace):
             if user_serialized_friendships:
                 self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
             if friend_serialized_friendships:
-                self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')
-            
+                self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')  
         else:
             pass
             ## key doesn't exist

@@ -67,20 +67,6 @@ function WebSocketProvider({children}) {
         setFriendsList, 
         setPendingFriendsList,
     ])
-    
-    // Current User Accepts Friend Request
-    // include some sort of logic so that if a user accepts
-    // a pending request then change 'request_status' key from false
-    // to true, otherwise default to false, maybe pass in as an argument
-    // that is true and overwrite key value to argument
-    // value but only provide this value if pending request is accepted?
-    // once user is added on the backend through a post, make sure to update friendslist state
-
-    // Current User Sends Friend Request
-    // create logic so that currentUser state is updated
-    // with the pending friendship changes and a notification is given
-    // to the current user that a request has been sent
-    // also update pending friend frequest state
 
     function sendFriendRequest(friend_id) {
         friendSocket.emit('friend_request', {
@@ -104,7 +90,6 @@ function WebSocketProvider({children}) {
             friendship_id: friendship_id, 
             is_pending_boolean: isPendingBoolean
         })
-        // console.log(friend_id)
     }
 
     // Once the add friend buttons are rendered for each 

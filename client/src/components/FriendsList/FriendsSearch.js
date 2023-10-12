@@ -58,7 +58,6 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
             />
         </div>
     )
-
 }
 
 export default FriendsSearch

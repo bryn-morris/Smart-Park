@@ -32,15 +32,19 @@
   padding-right: 0.7em;
   margin: auto;
 }
-.searchResult .iconContainer .icon {
-  scale: 1.5;
+.searchResult .icon {
+  transform: scale(1.5);
   margin: auto;
   padding-right: 0.3em !important;
   height: 100%;
 }
-.searchResult .iconContainer .icon:hover {
-  transform: scale(0.85);
+.searchResult .icon.request:hover, .searchResult .icon.accept:hover {
+  transform: scale(1.2);
   color: grey;
+}
+.searchResult .icon.sent {
+  filter: grayscale(100%);
+  opacity: 0.5;
 }
 .searchResult .userContainer {
   margin: auto;

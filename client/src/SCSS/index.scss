@@ -1,3 +1,44 @@
+/////////////////////////////////////////////////
+///                Mixins 
+/////////////////////////////////////////////////
+
+@mixin icon-hover-effect {
+    &:hover {
+        transform: scale(1.2);
+        color: grey
+    }
+}
+
+@mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {
+    position: absolute;
+    height: $height;
+    width: $width;
+    text-align: center;
+    left: $left;
+    top: $top;
+    font-size: 30px;
+    font-family: Tahoma;
+    font-weight: 700;
+    color: red;
+    transform: scale(2) #{$transform};
+    opacity: 0;
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+@mixin pawIconStyle($transform, $left, $bottom: null, $color: null, $z-index: null ) {
+    position: absolute;
+    transform: $transform;
+    left : $left;
+    bottom: $bottom;
+    color: $color;
+    z-index: $z-index;
+}
+
+/////////////////////////////////////////////////
+///                SiteWide Content 
+/////////////////////////////////////////////////
+
 .site {
     position: absolute;
     height: 100%;
@@ -47,19 +88,25 @@
         // border-right: 1px solid grey;
         padding-right: .7em;
         margin: auto;
+    }
 
-        .icon{
-            scale: 1.5;
-            margin: auto;
-            padding-right: .3em !important;
-            height: 100%;
+    .icon{
+        transform: scale(1.5);
+        margin: auto;
+        padding-right: .3em !important;
+        height: 100%;
 
-            &:hover{
-                transform: scale(0.85);
-                color: grey
-            }
+        &.request,
+        &.accept{
+            @include icon-hover-effect;
+        }
+        
+        &.sent{
+            filter: grayscale(100%);
+            opacity: 0.5;
         }
     }
+    
     .userContainer{
 
         margin: auto;
@@ -125,22 +172,6 @@
   margin-top: 200px;
 }
 
-@mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {
-  position: absolute;
-  height: $height;
-  width: $width;
-  text-align: center;
-  left: $left;
-  top: $top;
-  font-size: 30px;
-  font-family: Tahoma;
-  font-weight: 700;
-  color: red;
-  transform: scale(2) #{$transform};
-  opacity: 0;
-  display: table-cell;
-  vertical-align: bottom;
-}
 
 @for $i from 1 to 5 {
     #checkInFeature#{$i} {
@@ -161,15 +192,6 @@
 }
 
 //////////////////// Dog Paw ////////////////////
-
-@mixin pawIconStyle($transform, $left, $bottom: null, $color: null, $z-index: null ) {
-    position: absolute;
-    transform: $transform;
-    left : $left;
-    bottom: $bottom;
-    color: $color;
-    z-index: $z-index;
-}
 
 @for $i from 1 to 14 {
     .dogPawIcon#{$i} {

@@ -78,10 +78,10 @@ function WebSocketProvider({children}) {
     }
 
     function acceptFriendRequest(friend_id) {
-
-        friendSocket.emit('accept_friend_request', {
-            friend_id: friend_id
-        })
+        console.log("Is this working?")
+        // friendSocket.emit('accept_friend_request', {
+        //     friend_id: friend_id
+        // })
     }
 
     function deleteFriend(friend_id, friendship_id, isPendingBoolean) {

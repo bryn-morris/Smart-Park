@@ -104,8 +104,8 @@ with app.app_context():
     fr3 = Friends(friend_1_id=3, friend_2_id = 4)
     fr4 = Friends(friend_1_id=4, friend_2_id = 1)
     
-    # print("Creating Pending Frienships...")
-    # pfr1 = Pending_Friendships(pend_friend_1_id = 2, pend_friend_2_id = 4)
+    print("Creating Pending Frienships...")
+    pfr1 = Pending_Friendships(pend_friend_1_id = 4, pend_friend_2_id = 2)
 
     # Using for Testing Unique Constraints
     # pfr2 = Pending_Friendships(pend_friend_1_id = 3, pend_friend_2_id = 1)
@@ -131,7 +131,7 @@ with app.app_context():
     db.session.add_all([r1,r2,r3,r4,r5])
     db.session.add_all([f1,f2,f3,f4,f5,f6,f7])
     db.session.add_all([fr1,fr2,fr3,fr4])
-    # db.session.add_all([pfr1, pfr2])
+    db.session.add_all([pfr1])
 
     # db.session.add_all([ws1, ws2])
     

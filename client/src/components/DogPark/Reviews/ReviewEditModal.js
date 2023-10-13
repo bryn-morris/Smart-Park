@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Button, Modal, Form, Input } from 'semantic-ui-react'
 import { AuthContext } from '../../../context/AuthContext';
 import { DogParkContext } from '../../../context/DogParkContext';
+import fetchData from '../../../utils/fetch_util';
 
 function ReviewEditModal ({
     isEditModalOpen, 
@@ -12,21 +13,25 @@ function ReviewEditModal ({
 }) {
 
     const {dogParks, setDogParks} = useContext(DogParkContext)
-    const {currentUser} = useContext(AuthContext)
+    const {currentUser, setIsReLogOpen} = useContext(AuthContext)
 
     function handleSubmitEdit () {
         setIsEditModalOpen(false)
   
         editModalFormObject.user_id = parseInt(currentUser.id);
         
-        fetch(`/review_dog_park/${eachDogPark.id}`, {
-          method: 'PATCH',
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(editModalFormObject)
-        })
-          .then( r=>{
-            if (r.ok){
-              r.json().then(resp_obj => {
+      const editRevDogParkConfigObj = {
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(editModalFormObject)
+      }
+
+
+        fetchData(`/review_dog_park/${eachDogPark.id}`,
+          setIsReLogOpen, 
+          editRevDogParkConfigObj
+        )
+        .then(resp_obj => {
                   setDogParks(
                     dogParks.map(eachDP=>{
                       if (eachDP.id === resp_obj.updated_dog_park.id){
@@ -36,11 +41,6 @@ function ReviewEditModal ({
                     })
                   )
                 })
-              }
-            else {
-              r.json().then(resp => alert(resp.message))
-            }
-          })
       }
 
     const handleEditFormInputChange = (e) => {

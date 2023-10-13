@@ -3,6 +3,9 @@ import { Form, Input, TextArea } from 'semantic-ui-react'
 
 import { DogParkContext } from '../../context/DogParkContext'
 import { handleFormInputChange } from '../helpers/helperFunctions'
+import { AuthContext } from "../../context/AuthContext"
+import fetchData from '../../utils/fetch_util'
+
 
 function EditDogParkForm({eachDogPark, setIsEditModalOpen}){
 
@@ -16,16 +19,19 @@ function EditDogParkForm({eachDogPark, setIsEditModalOpen}){
     const [dpFormObject, setDPFormObject] = useState(startingDPFormObject)
 
     const {dogParks, setDogParks} = useContext(DogParkContext)
+    const { setIsReLogOpen } = useContext(AuthContext)
+
 
     const handleSubmitDPEdit = (e) => {
         e.preventDefault();
 
-        fetch(`/dogparks/${eachDogPark.id}`, {
+        const dpEditConfigObj = {
             method : 'PATCH',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(dpFormObject)
-        })
-            .then(r=>r.json())
+        }
+
+        fetchData(`/dogparks/${eachDogPark.id}`, setIsReLogOpen, dpEditConfigObj)
             .then(patchedDogPark => {
                 setDogParks(
                     dogParks.map((eachDP)=>{

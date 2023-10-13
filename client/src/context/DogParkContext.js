@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import fetchData from "../utils/fetch_util";
 
 const DogParkContext = createContext()
 
@@ -7,7 +8,7 @@ function DogParkProvider({children}) {
 
     const [dogParks, setDogParks] = useState([])
     const [searchedPark, setSearchedPark] = useState('')
-    const { currentUser } = useContext(AuthContext)
+    const { currentUser, setIsReLogOpen } = useContext(AuthContext)
     
     const filteredParks = dogParks.filter(park => park.name.toLowerCase().includes(searchedPark))
     const favoritedParksByUser = dogParks.filter((eachPark)=>eachPark.favorited.some((eachFav)=>eachFav.user_id === currentUser.id))
@@ -17,23 +18,15 @@ function DogParkProvider({children}) {
     }
 
     function unFavorite (favoritedEntryID) {
-        fetch(`/favorite/${favoritedEntryID}`, {
-            method: 'DELETE'
-          })
-            .then(r=> {
-              if(r.ok){
-                r.json().then(selectedDogPark => {
-                  return setDogParks(dogParks.map((eachDogP) => {
-                    if (eachDogP.id === selectedDogPark.id) {
-                      return selectedDogPark
-                    }
-                    return eachDogP
-                  }))
-                  })
-              } else {
-                console.log('error!')
-              }
-            })
+      fetchData(`/favorite/${favoritedEntryID}`, setIsReLogOpen, {method: 'DELETE'})
+        .then(selectedDogPark => {
+          return setDogParks(dogParks.map((eachDogP) => {
+            if (eachDogP.id === selectedDogPark.id) {
+              return selectedDogPark
+            }
+            return eachDogP
+          }))
+        })
     }
 
     return (

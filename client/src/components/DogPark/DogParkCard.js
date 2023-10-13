@@ -6,12 +6,14 @@ import { DogParkContext } from "../../context/DogParkContext";
 import { AuthContext } from "../../context/AuthContext";
 import EditDogParkModal from "./EditDogParkModal";
 
+import fetchData from "../../utils/fetch_util";
+
 function DogParkCard({eachDogPark}){
 
   const [showFront, setShowFront] = useState(true);
   const [isEditModalOpen, setIsEditModalOpen ] = useState(false);
 
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser, setIsReLogOpen } = useContext(AuthContext)
   const { dogParks, setDogParks, unFavorite } = useContext(DogParkContext)
   
   const favoritedEntryArray = eachDogPark.favorited.filter((each)=>each.user_id === currentUser.id)
@@ -25,17 +27,18 @@ function DogParkCard({eachDogPark}){
     if (favoritedEntryArray.length > 0) {
       unFavorite(favoritedEntryArray[0].id)
     } else {
-      fetch('/favorite', {
+
+      const favConfigObj = {
         method: 'POST',
         headers : {'Content-Type':'application/json'},
         body: JSON.stringify({
           user_id : currentUser.id,
           dog_park_id : eachDogPark.id,
         })
-      })
-        .then(r=> {
-          if (r.ok){
-            r.json().then(selectedDogPark => {
+      }
+
+      fetchData('/favorite', setIsReLogOpen, favConfigObj)
+        .then(selectedDogPark => {
               return setDogParks(dogParks.map((eachDogP) => {
                 if (eachDogP.id === selectedDogPark.id) {
                   return selectedDogPark
@@ -43,21 +46,12 @@ function DogParkCard({eachDogPark}){
                 return eachDogP
               }))
             })
-          } else {
-            console.log('error!')
-          }
-        })
     }
   }
 
   const handleDelete = (e) => {
-    fetch(`/dogparks/${eachDogPark.id}`,{
-      method : "DELETE"
-    })
-      .then(r=>r.json())
-      .then(setDogParks(
-        dogParks.filter((eachDP)=>{return eachDP.id !== eachDogPark.id})
-      ))
+    fetchData(`/dogparks/${eachDogPark.id}`, setIsReLogOpen, {method : "DELETE"})
+      .then(setDogParks(dogParks.filter((eachDP)=>{return eachDP.id !== eachDogPark.id})))
   }
 
   const handleEdit = (e) => {

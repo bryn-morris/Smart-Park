@@ -11,6 +11,8 @@ import { FriendsContext } from "../context/FriendsContext";
 import FriendListElement from "./FriendsList/FriendListElement";
 import FriendsListButton from "./FriendsList/FriendsListButton";
 import ReLogModal from "./Logging/ReLogModal";
+import fetchData from "../utils/fetch_util";
+import { AuthContext } from "../context/AuthContext";
 
 function Main() {
 
@@ -25,44 +27,31 @@ function Main() {
   const { dogs, setDogs } = useContext(DogContext)
   const { setDogParks } = useContext(DogParkContext)
   const { setFriendsList, setPendingFriendsList } = useContext(FriendsContext)
+  const { setIsReLogOpen } = useContext(AuthContext) 
 
   useEffect(()=>{
-    
-    fetch('http://127.0.0.1:5555/dogparks')
-      .then(r=> {
-        if (!r.ok) {
-          if (r.status === 401) {
-            // if status code is 401, redirect to login
-            // and log user out
-          }
-          return r.json().then((errorObj)=>{
-            throw new Error(`HTTP Error: ${r.status} - ${errorObj.error}`)
-          });
-        }
-        return r.json();
-      })
-      .then(data => setDogParks(data))
-      .catch((error)=>console.error(error));
-      
-    fetch('/friends')
-      .then(r=>r.json())
-      .then(friendsData => {
-            setFriendsList(friendsData)
-          })
 
-      fetch('/pending_friends')
-      .then(r=>r.json())
-      .then(
-        pendingFriendshipsData => {
-            setPendingFriendsList(pendingFriendshipsData)
-      })
+    fetchData('http://127.0.0.1:5555/dogparks', setIsReLogOpen)
+      .then(data => setDogParks(data))
+
+    fetchData('/friends', setIsReLogOpen)
+      .then(friendsData => setFriendsList(friendsData))
+    
+    fetchData('/pending_friends', setIsReLogOpen)  
+    .then(pendingFriendshipsData => setPendingFriendsList(pendingFriendshipsData))
 
     //use sessionStorage to check if currently checked in 
     const sessionCheckInID = sessionStorage.getItem('currentCheckInID')
     if (sessionCheckInID){
       setCurrentCheckInID(sessionCheckInID)
     }
-  }, [setDogParks, setFriendsList, setPendingFriendsList])
+  }, [
+    setDogParks, 
+    setFriendsList, 
+    setPendingFriendsList, 
+    setIsReLogOpen
+  ]
+)
 
   const [seconds, setSeconds] = useState(0)
   const [intervalID, setIntervalID] = useState(null)
@@ -79,12 +68,14 @@ function Main() {
   }
 
   function checkOut () {
-    fetch(`/visits/${parseInt(currentCheckInID)}`,{
+
+    const configObj = {
       method: 'PATCH',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({actualLengthOfStay: seconds})
-    })
-      .then(r=>r.json())
+    }
+
+    fetchData(`/visits/${parseInt(currentCheckInID)}`,setIsReLogOpen, configObj)
       .then(updatedVisit => {
         setCurrentCheckInID(null)
         sessionStorage.clear()
@@ -92,27 +83,28 @@ function Main() {
   }
 
   function handleFormSubmission(formObj){
-    fetch('/visits', {
+
+    const getVisitConfigObj = {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(formObj)
-    })
-    .then(r=>r.json())
-    .then(newVisit => {
-      setCurrentCheckInID(newVisit.id)
-      setAccidentalCheckin(true)
-      sessionStorage.setItem('currentCheckInID', newVisit.id)
-    })
+    }
+
+    fetchData('/visits', setIsReLogOpen, getVisitConfigObj)
+      .then(newVisit => {
+        setCurrentCheckInID(newVisit.id)
+        setAccidentalCheckin(true)
+        sessionStorage.setItem('currentCheckInID', newVisit.id)
+      })
   }
 
   function deleteCheckIn(){
-    fetch(`/visits/${parseInt(currentCheckInID)}`, {
-      method: 'DELETE',
+
+    fetchData(`/visits/${parseInt(currentCheckInID)}`, setIsReLogOpen, {method: 'DELETE'})
+      .then(()=>{
+        setCurrentCheckInID(null)
+        sessionStorage.clear()
       })
-    .then(()=>{
-      setCurrentCheckInID(null)
-      sessionStorage.clear()
-    })
   }
 
   ///////////////////////////////////////

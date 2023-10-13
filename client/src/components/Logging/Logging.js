@@ -9,6 +9,7 @@ import { DogContext } from '../../context/DogContext';
 import { WebSocketContext } from '../../context/WebSocketContext';
 import Main from "../Main"
 import { handleFormInputChange } from '../helpers/helperFunctions';
+import fetchData from '../../utils/fetch_util';
 
 function Logging() {
 
@@ -23,23 +24,28 @@ function Logging() {
   const [isPasswordVisible, setIsPasswordVisible] =useState(false)
 
   const {  setDogs } = useContext(DogContext)
-  const { currentUser, setCurrentUser } = useContext(AuthContext)
+  const { currentUser, setCurrentUser, setIsReLogOpen } = useContext(AuthContext)
   const { setFriendSocket } = useContext(WebSocketContext)
+
 
   const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // Authentication Fetch
-    fetch(`/${logIn ? 'login' : 'signup' }`, {
+    const authConfigObj = {
       method: "POST",
       credentials: 'include',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(userFormObject)
-    })
-      .then(r => {
-        if (r.ok) {return r.json().then(user=>{
+    }
+
+    // Authentication Fetch
+    fetchData(`/${logIn ? 'login' : 'signup' }`,
+      setIsReLogOpen,
+      authConfigObj,
+    )
+    .then(user=>{
           setCurrentUser(user);
           setDogs(user.dogs);
           setFriendSocket(()=> io.connect('http://localhost:5555/friends-socket',{
@@ -47,11 +53,9 @@ function Logging() {
             withCredentials: true,
           }))
           history.push("/");
-        })}
-        // Replace/refactor this validation with FORMIK and YUP down the line. include catch for error or if !r.ok
-        else {return r.json().then(msg => alert(msg.error))};
-      })
-      setUserFormObject(emptyFormObject)
+        })
+    
+    setUserFormObject(emptyFormObject)
   }
 
   const createLoggingInput = (label, placeholder, type, value, children) => {

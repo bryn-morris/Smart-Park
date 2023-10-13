@@ -1,20 +1,27 @@
 import { useContext } from "react"
 import { Button } from "semantic-ui-react"
 import { DogParkContext } from "../../../context/DogParkContext"
+import { AuthContext } from "../../../context/AuthContext"
+import fetchData from "../../../utils/fetch_util" 
 
 function ReviewDeleteButton ({eachDogPark, review, setAddReviewDisabled}) {
 
     const {dogParks, setDogParks} = useContext(DogParkContext)
+    const {setIsReLogOpen} = useContext(AuthContext)
 
     function handleDeleteReview (review_id) {
 
-        fetch(`/review_dog_park/${eachDogPark.id}`, {
-          method : 'DELETE',
-          headers : {"Content-Type": "application/json"},
-          body: JSON.stringify({id: review_id}) 
-        })
-          .then(r=> r.ok?
-                r.json().then(delete_obj => {
+      const delRevConfigObj = {
+        method : 'DELETE',
+        headers : {"Content-Type": "application/json"},
+        body: JSON.stringify({id: review_id}) 
+      }
+
+      fetchData(`/review_dog_park/${eachDogPark.id}`,
+        setIsReLogOpen,
+        delRevConfigObj, 
+        )
+        .then(delete_obj => {
                   setAddReviewDisabled(false)
                   setDogParks(()=>{
                     return dogParks.map((eDP)=>{
@@ -34,9 +41,6 @@ function ReviewDeleteButton ({eachDogPark, review, setAddReviewDisabled}) {
                     })
                   })
                 })
-              :
-                r.json().then(resp => alert(resp.message))
-            )
     }
 
     return (

@@ -1,10 +1,11 @@
 import React, {useState, useContext} from 'react'
 import {Form, Button, Modal} from 'semantic-ui-react'
 import { AuthContext } from '../../context/AuthContext'
+import fetchData from '../../utils/fetch_util'
 
 function NewDogForm({createDog}) {
 
-  const {currentUser} = useContext(AuthContext)
+  const {currentUser, setIsReLogOpen} = useContext(AuthContext)
     
     const [name, setName] = useState("")
     const [breed, setBreed] = useState("")
@@ -25,17 +26,18 @@ function NewDogForm({createDog}) {
     
     const handleSubmit = (e) => {
       e.preventDefault()
-      fetch("/dogs", {
+
+      const dogPostConfigObj = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newDog)
-      })
-        .then(r=>r.json())
+      }
+
+      fetchData("/dogs", setIsReLogOpen, dogPostConfigObj)
         .then(dogResponse =>createDog(dogResponse))
         e.target.reset()
     }
   
-    
     return (
       <div style={{float:'right', margin:20}}className="new-dog-form">
         <Modal

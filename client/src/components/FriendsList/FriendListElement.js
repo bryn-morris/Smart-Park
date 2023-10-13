@@ -3,11 +3,14 @@ import { FriendsContext } from "../../context/FriendsContext"
 import AbortController from "abort-controller"
 import FriendCard from "./FriendCard"
 import FriendsSearch from "./FriendsSearch"
+import { AuthContext } from "../../context/AuthContext"
+import fetchData from "../../utils/fetch_util"
 
 
 function FriendListElement() {
 
     const { friendsList } = useContext(FriendsContext);
+    const { setIsReLogOpen } =useContext(AuthContext);
 
     const [userList, setUserList] = useState([]);
     const [searchedTerm, setSearchedTerm] = useState('')
@@ -26,27 +29,16 @@ function FriendListElement() {
 
     useEffect(()=>{
 
-        fetch('/users',{
-            signal: signal,
-        })
-            .then(r =>{
-                if (!r.ok) {
-                    console.error('Network Error')
-                }
-                return r.json()
-            })
+        fetchData('/users', setIsReLogOpen, {signal: signal})
             .then(users => setUserList(users))
-            .catch((error)=>{
-                console.error('User Fetch Error:', error)
-            })
-        
+            
         return( ()=>{
             // This will cancel request if component is unmounted before frontend receives promise
             controller.abort();
         }
         )
     }
-    ,[signal, controller])
+    ,[signal, controller, setIsReLogOpen])
 
     const handleSeachUser = (e) => {
         setSearchedTerm(e.target.value)

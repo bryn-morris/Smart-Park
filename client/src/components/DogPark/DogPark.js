@@ -7,11 +7,14 @@ import {Button, Modal} from 'semantic-ui-react'
 import { DogParkContext } from '../../context/DogParkContext'
 import ReviewForm from './Reviews/ReviewForm'
 import { ReviewContext } from '../../context/ReviewContext'
+import fetchData from '../../utils/fetch_util'
+import { AuthContext } from '../../context/AuthContext'
 
 function DogPark() {
 
   const [createdDogPark, setCreatedDogPark] = useState({})
   const {isDPModalOpen, setIsDPModalOpen } = useContext(ReviewContext)
+  const {setIsReLogOpen} = useContext(AuthContext)
 
   const {
     handleAddReview, 
@@ -28,19 +31,18 @@ function DogPark() {
 
   function handleAddDogPark (newDogPark) {
 
-    fetch('/dogparks', {
+    const dpConfigObj = {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newDogPark)
-    })
-    .then(r=>r.ok ?
-      r.json().then(data => {
-        setDogParks([...dogParks, data])
-        setCreatedDogPark(data)
-        setIsReviewFormRendered(true)
-      }):
-      r.json().then(response => alert(response))
-    )
+    }
+
+    fetchData('/dogparks', setIsReLogOpen, dpConfigObj)
+        .then(data => {
+          setDogParks([...dogParks, data])
+          setCreatedDogPark(data)
+          setIsReviewFormRendered(true)
+        })
   }
 
   function handleModalClose () {

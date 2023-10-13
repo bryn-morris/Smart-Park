@@ -41,7 +41,7 @@ class Dog_Parks(Resource):
                 image = request.get_json()['image']
             )
         except ValueError:
-            response_body = {'message':'hey u goofed put in a valid url pls'}
+            response_body = {'error':'hey u goofed put in a valid url pls'}
             return make_response(response_body, 409)
         else:
             db.session.add(dogpark)

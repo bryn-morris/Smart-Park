@@ -5,13 +5,15 @@ import { DogParkContext } from "./DogParkContext"
 import { FriendsContext } from "./FriendsContext"
 import { useHistory } from "react-router-dom"
 
+import fetchData from "../utils/fetch_util"; 
+
 const WebSocketContext = createContext()
 
 function WebSocketProvider({children}) {
 
     const [friendSocket, setFriendSocket] = useState(null)
 
-    const {setCurrentUser} = useContext(AuthContext)
+    const {setCurrentUser, setIsReLogOpen} = useContext(AuthContext)
     const {setDogParks} = useContext(DogParkContext)
     const {setFriendsList, setPendingFriendsList} = useContext(FriendsContext)
     const history = useHistory()
@@ -50,7 +52,12 @@ function WebSocketProvider({children}) {
             })
 
             friendSocket.on('friend_socket_disconnect', ()=>{
-                fetch('/logout', {method:"DELETE",})
+
+                fetchData(
+                    '/logout', 
+                    setIsReLogOpen,
+                    {method:"DELETE",},
+                )
                 setCurrentUser(null)
                 setDogParks([])
                 setFriendsList([])
@@ -66,6 +73,7 @@ function WebSocketProvider({children}) {
         setDogParks, 
         setFriendsList, 
         setPendingFriendsList,
+        setIsReLogOpen,
     ])
 
     function sendFriendRequest(friend_id) {

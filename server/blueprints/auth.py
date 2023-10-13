@@ -2,9 +2,7 @@ from flask import Blueprint, make_response, request, session
 from flask_restful import Resource
 
 from config import api, db
-from models import (
-    User,
-)
+from models import (User)
 
 auth_views = Blueprint('auth_views', __name__, url_prefix="/auth")
 
@@ -18,12 +16,11 @@ class Signup(Resource):
                 image = data['image'],
                 password = data['password']
             )
+
             db.session.add(new_user)
             db.session.commit()
 
-            user = User.query.filter(
-                User.username == data['username']
-            ).first()
+            user = User.query.filter(User.username == data['username']).first()
 
             session['user_id'] = user.id
             
@@ -42,9 +39,7 @@ class Login(Resource):
         try:
             data = request.get_json()
 
-            user = User.query.filter(
-                User.username == data['username']
-            ).first()
+            user = User.query.filter(User.username == data['username']).first()
             user.authenticate(data['password'])
 
             session['user_id'] = user.id

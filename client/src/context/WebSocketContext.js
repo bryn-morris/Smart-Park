@@ -77,11 +77,13 @@ function WebSocketProvider({children}) {
         // but user B -> sender = False can accept)
     }
 
-    function acceptFriendRequest(friend_id) {
+    function acceptFriendRequest(friend_id, friendship_id, isPendingBoolean) {
         console.log("Is this working?")
-        // friendSocket.emit('accept_friend_request', {
-        //     friend_id: friend_id
-        // })
+        friendSocket.emit('accept_friend_request', {
+            friend_id: friend_id, 
+            friendship_id: friendship_id, 
+            is_pending_boolean: isPendingBoolean
+        })
     }
 
     function deleteFriend(friend_id, friendship_id, isPendingBoolean) {

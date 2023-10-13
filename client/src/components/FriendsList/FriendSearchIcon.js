@@ -3,11 +3,17 @@ import { useContext, useState, useEffect } from "react"
 import { WebSocketContext } from "../../context/WebSocketContext"
 import { FriendsContext } from "../../context/FriendsContext"
 
+// tear out and refactor this component
+
 function FriendSearchIcon ({friend_id}) {
 
     const [iconConfigCase, setIconConfigCase] = useState("case1")
 
-    const {sendFriendRequest, acceptFriendRequest} = useContext(WebSocketContext)
+    const {
+        sendFriendRequest,
+        acceptFriendRequest,
+    } = useContext(WebSocketContext)
+
     const { friendsList, pendingFriendsList } = useContext(FriendsContext) 
 
     useEffect(() => {

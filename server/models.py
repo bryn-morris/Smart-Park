@@ -66,7 +66,7 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         # '-wsroom', 
     )
 
-    username = db.Column(db.String)
+    username = db.Column(db.String, unique = True)
     _password = db.Column(db.String)
     image = db.Column(db.String)
     admin = db.Column(db.Boolean)

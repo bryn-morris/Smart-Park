@@ -115,71 +115,53 @@ class FriendNamespace(Namespace):
 
         sel_friend = User.query.filter(User.id == friend_id).one()
 
-        if data['is_pending_boolean'] == True:
-            ## user was a pending friend
-            pass
-        elif data['is_pending_boolean'] == False:
-            try:
-                sel_friendship = Friends.query.filter(Friends.id == data['friendship_id']).first()
-            except:
-                raise ValueError('Unable to locate friendship!')
+        try:
+            sel_friendship = Friends.query.filter(Friends.id == data['friendship_id']).first()
+        except:
+            raise ValueError('Unable to locate friendship!')
 
-            db.session.delete(sel_friendship)
-            db.session.commit()
+        db.session.delete(sel_friendship)
+        db.session.commit()
 
-            sel_user = User.query.filter(User.id == user_id).one()
+        sel_user = User.query.filter(User.id == user_id).one()
 
-            user_serialized_friendships = [
-                {
-                    'request_metadata': 
-                        {
-                        'friendship_id': fe['friendship_id'], 
-                        }
-                    ,
-                    'friend_data':
-                        {
-                            'image': fe['fo'].image,
-                            'username' : fe['fo'].username,
-                            'id' : fe['fo'].id,
-                        }
-                    ,    
-                } for fe in sel_user.all_friends(user_id) if sel_user.all_friends(user_id)
-            ]
-        
-            friend_serialized_friendships = [
-                {
-                    'request_metadata': 
-                        {
-                        'friendship_id': fe['friendship_id'], 
-                        }
-                    ,
-                    'friend_data':
-                        {
-                            'image': fe['fo'].image,
-                            'username' : fe['fo'].username,
-                            'id' : fe['fo'].id,
-                        }
-                    ,    
-                } for fe in sel_friend.all_friends(sel_friend.id) if sel_friend.all_friends(sel_friend.id)
-            ]
+        user_serialized_friendships = [
+            {
+                'request_metadata': 
+                    {
+                    'friendship_id': fe['friendship_id'], 
+                    }
+                ,
+                'friend_data':
+                    {
+                        'image': fe['fo'].image,
+                        'username' : fe['fo'].username,
+                        'id' : fe['fo'].id,
+                    }
+                ,    
+            } for fe in sel_user.all_friends(user_id) if sel_user.all_friends(user_id)
+        ]
+    
+        friend_serialized_friendships = [
+            {
+                'request_metadata': 
+                    {
+                    'friendship_id': fe['friendship_id'], 
+                    }
+                ,
+                'friend_data':
+                    {
+                        'image': fe['fo'].image,
+                        'username' : fe['fo'].username,
+                        'id' : fe['fo'].id,
+                    }
+                ,    
+            } for fe in sel_friend.all_friends(sel_friend.id) if sel_friend.all_friends(sel_friend.id)
+        ]
 
 
-            self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
-            self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')  
-        else:
-            pass
-            ## key doesn't exist
-
-
-        ## remove from either pending or friends list
-        ## update both users with relevant data
-        ## exit function
-
-        ## Conditions for execution:
-        ### If User B declines, remove users from pending friendships table
-        ### If User A cancels, remove users from pending friendships table
-        ### User A removes from friends list
-        ### User B removes from friends list
+        self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
+        self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')  
 
     def on_accept_friend_request(self,data):
         pass

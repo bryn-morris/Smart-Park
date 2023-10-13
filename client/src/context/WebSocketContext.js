@@ -86,11 +86,10 @@ function WebSocketProvider({children}) {
         })
     }
 
-    function deleteFriend(friend_id, friendship_id, isPendingBoolean) {
+    function deleteFriend(friend_id, friendship_id) {
         friendSocket.emit('delete_request', {
             friend_id: friend_id, 
             friendship_id: friendship_id, 
-            is_pending_boolean: isPendingBoolean
         })
     }
 

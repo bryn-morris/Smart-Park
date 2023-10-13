@@ -10,6 +10,7 @@ import { DogParkContext } from "../context/DogParkContext";
 import { FriendsContext } from "../context/FriendsContext";
 import FriendListElement from "./FriendsList/FriendListElement";
 import FriendsListButton from "./FriendsList/FriendsListButton";
+import ReLogModal from "./Logging/ReLogModal";
 
 function Main() {
 
@@ -28,8 +29,20 @@ function Main() {
   useEffect(()=>{
     
     fetch('http://127.0.0.1:5555/dogparks')
-      .then(r=> r.json())
+      .then(r=> {
+        if (!r.ok) {
+          if (r.status === 401) {
+            // if status code is 401, redirect to login
+            // and log user out
+          }
+          return r.json().then((errorObj)=>{
+            throw new Error(`HTTP Error: ${r.status} - ${errorObj.error}`)
+          });
+        }
+        return r.json();
+      })
       .then(data => setDogParks(data))
+      .catch((error)=>console.error(error));
       
     fetch('/friends')
       .then(r=>r.json())
@@ -157,6 +170,7 @@ function Main() {
   return (
     <div className='site'>
       <Header/>
+      <ReLogModal/>
       <main className = 'site Content'>
       <FriendsListButton {...propsObjectToFriendsListButton}/>
       {isFriendsModalShowing ? <FriendListElement /> : null}

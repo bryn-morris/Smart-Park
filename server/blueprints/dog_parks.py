@@ -1,7 +1,7 @@
 from flask import make_response, request, Blueprint
 from flask_restful import Resource
 
-from auth_dec import Admin_Authentication_Decorator
+from auth_dec import Admin_Authentication_Decorator, Authentication_Decorator
 from config import db, api, app
 from models import Dog_Park, Visit, Dog
 
@@ -50,7 +50,7 @@ class Dog_Parks(Resource):
     
 api.add_resource(Dog_Parks, '/dogparks')
 
-@app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'])
+@app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'], endpoint = "dog_park_by_id")
 @Admin_Authentication_Decorator
 def dog_park_by_id(id):
 
@@ -90,7 +90,7 @@ def dog_park_by_id(id):
         return make_response({"error":"404 Dog Park Not Found"}, 404)
     
 class Check_In_To_Park(Resource):
-
+    @Authentication_Decorator
     def post(self):
 
         newVisit = Visit(
@@ -104,7 +104,8 @@ class Check_In_To_Park(Resource):
     
 api.add_resource(Check_In_To_Park, '/visits')
 
-@app.route('/visits/<int:id>', methods = ['DELETE', 'PATCH'])
+@app.route('/visits/<int:id>', methods = ['DELETE', 'PATCH'], endpoint = "visit_by_id")
+@Authentication_Decorator
 def visit_by_id(id):
 
     selVisit = Visit.query.filter(Visit.id == id).one()

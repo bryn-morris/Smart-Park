@@ -9,6 +9,7 @@ friendship_routes = Blueprint('friendship_routes', __name__)
 
 class Friendship(Resource):
 
+    @Authentication_Decorator
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
 
@@ -33,24 +34,9 @@ class Friendship(Resource):
 
 api.add_resource(Friendship, '/friends')
 
-class Friendship_by_Id(Resource):
-
-    def delete(self, id):
-        import ipdb;ipdb.set_trace()
-        try:
-            sel_friendship = Friends.query.filter(Friends.id == id).one()
-        except:
-            return make_response({"error": "Friendship Not Found"},404)
-
-        db.session.delete(sel_friendship)
-        db.session.commit()
-
-        return make_response({}, 204)
-
-api.add_resource(Friendship_by_Id, '/friends/<int:id>')
-
 class Pending_Friends(Resource):
     
+    @Authentication_Decorator
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
 

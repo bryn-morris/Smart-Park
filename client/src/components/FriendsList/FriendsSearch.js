@@ -11,11 +11,7 @@ function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {
                 return {title: eachRes.username, image: eachRes.image, friend_id: eachRes.id}
         })
 
-        // If user is already a friend, remove icon for add friend
-        // If user is a pending friend, change the icon and when user b clicks it will accept friend request
-            // If friend is in pending friends list, which is updated by websocket
         // Once add friend request button is clicked, user should not be able to click it again
-
 
         const resultRendererFunc = ({title, image, friend_id})=> {
             return(

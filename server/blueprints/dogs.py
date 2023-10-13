@@ -1,5 +1,6 @@
 from flask import make_response, request, Blueprint
 from flask_restful import Resource
+from auth_dec import Authentication_Decorator
 
 from config import db, api
 from models import Dog
@@ -7,6 +8,7 @@ from models import Dog
 dog_routes = Blueprint("dog_routes", __name__,)
 
 class Dogs(Resource):
+    @Authentication_Decorator
     def get(self):
         dogs = Dog.query.all()
 
@@ -14,7 +16,7 @@ class Dogs(Resource):
             [dog.to_dict(rules = ('user','dog_parks')) for dog in dogs],
             200
         )
-    
+    @Authentication_Decorator
     def post(self):
         data = request.get_json()
         new_dog = Dog(
@@ -36,18 +38,8 @@ class Dogs(Resource):
 api.add_resource(Dogs, '/dogs')
 
 class DogById(Resource):
-    def get(self,id):
-        dog = Dog.query.filter_by(id=id).first()
-        if not dog:
-            return make_response(
-                {'error': 'Dog not found.'},
-                404
-            )
-        return make_response(
-            dog.to_dict(rules = ('user',)),
-            200
-        )
 
+    @Authentication_Decorator
     def delete(self, id):
         dog = Dog.query.filter_by(id=id).first()
         if not dog:
@@ -62,6 +54,7 @@ class DogById(Resource):
             200
         )
     
+    @Authentication_Decorator
     def patch(self, id):
 
         data = request.get_json()

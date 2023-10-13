@@ -159,7 +159,6 @@ class FriendNamespace(Namespace):
             } for fe in sel_friend.all_friends(sel_friend.id) if sel_friend.all_friends(sel_friend.id)
         ]
 
-
         self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
         self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')  
 

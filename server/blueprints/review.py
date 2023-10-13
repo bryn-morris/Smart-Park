@@ -1,5 +1,6 @@
 from flask import Blueprint, make_response, request, session
 from flask_restful import Resource
+from auth_dec import Authentication_Decorator
 
 from config import api, app, db
 from models import (
@@ -18,6 +19,7 @@ class Reviews(Resource):
 api.add_resource(Reviews, '/reviews')
 
 @app.route('/review_dog_park/<int:id>', methods = ['POST', 'PATCH', 'DELETE', 'GET'])
+@Authentication_Decorator
 def add_review_and_patch_dog_park_rating(id):
     
     # import ipdb;ipdb.set_trace()
@@ -160,7 +162,8 @@ def add_review_and_patch_dog_park_rating(id):
 
         return make_response(response_body, 200)
 
-@app.route('/favorite', methods = ['POST'])
+@app.route('/favorite', methods = ['POST'], endpoint = "favorite")
+@Authentication_Decorator
 def favorite():
 
     dog_park_id = request.get_json()['dog_park_id']
@@ -191,7 +194,8 @@ def favorite():
         )
     ), 201)
 
-@app.route('/favorite/<int:id>', methods = ['DELETE'])
+@app.route('/favorite/<int:id>', methods = ['DELETE'], endpoint = "favorite_by_id")
+@Authentication_Decorator
 def favorite_by_id(id):
 
     try:

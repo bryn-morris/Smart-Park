@@ -2,6 +2,7 @@ from flask_socketio import Namespace
 from flask import session
 from config import db
 from models import User, Pending_Friendships, Friends
+from helpers.wsauthentication import auth_ws_connection
 from flask_socketio import (
     join_room, 
     leave_room,
@@ -16,9 +17,7 @@ class FriendNamespace(Namespace):
 
     def on_connect(self):
 
-        if not session.get('user_id'):
-            raise ValueError('Please relog! Unable to find user ID')
-            # disconnect()
+        auth_ws_connection()
 
         self.room_name = f'{session.get("user_id")}'
         join_room(self.room_name)
@@ -40,6 +39,8 @@ class FriendNamespace(Namespace):
         self.emit('server_error_response', {'message':str(e)})
 
     def on_friend_request(self, data):
+
+        auth_ws_connection()
 
         user_id = session.get('user_id')
         friend_id = data.get('friend_id')
@@ -110,6 +111,8 @@ class FriendNamespace(Namespace):
 
     def on_delete_request(self, data):
 
+        auth_ws_connection()
+
         user_id = session.get('user_id')
         friend_id = data.get('friend_id')
 
@@ -163,6 +166,9 @@ class FriendNamespace(Namespace):
         self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')  
 
     def on_accept_friend_request(self,data):
+
+        auth_ws_connection()
+
         pass
     ## User B (sender -> False )can accept or decline
     ## send packet containing sender value so backend can check

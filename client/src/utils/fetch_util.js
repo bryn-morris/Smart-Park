@@ -5,9 +5,7 @@ async function fetchData(
     reLogModalStateFunc, 
     configObj = {},
     httpStatusHandlers = {},
-
 ) {
-
     try {
         const response = await fetch(fetchString, configObj)
 

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Form, Input, Icon } from "semantic-ui-react"
-import { handleFormInputChange } from "../helpers/helperFunctions"
+import { handleFormInputChange } from "../helpers/inputChangeHelper"
 
 function LoginPage ({
     logIn,

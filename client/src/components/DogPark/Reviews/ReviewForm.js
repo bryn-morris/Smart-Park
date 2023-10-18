@@ -2,7 +2,7 @@ import {useContext, useState} from "react";
 import {Form, Input, TextArea} from 'semantic-ui-react'
 
 import { ReviewContext } from "../../../context/ReviewContext";
-import { handleFormInputChange } from "../../helpers/helperFunctions";
+import { handleFormInputChange } from "../../helpers/inputChangeHelper";
 
 function ReviewForm ({ dogParkID, setAddReviewDisabled, setModalContent}) {
 

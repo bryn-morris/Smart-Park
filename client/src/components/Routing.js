@@ -1,27 +1,28 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home/Home";
-import Header from "./Header/Header";
+// import Header from "./Header/Header";
+import NavMenu from "./NavMenu/NavMenu";
 import DogPark from "./DogPark/DogPark";
 import MyAccount from "./MyAccount/MyAccount";
 import { DogContext } from '../context/DogContext';
 import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
 import { FriendsContext } from "../context/FriendsContext";
-import FriendListElement from "./FriendsList/FriendListElement";
-import FriendsListButton from "./FriendsList/FriendsListButton";
+// import FriendListElement from "./FriendsList/FriendListElement";
+// import FriendsListButton from "./FriendsList/FriendsListButton";
 import ReLogModal from "./Logging/ReLogModal";
 import fetchData from "../utils/fetch_util";
 import { AuthContext } from "../context/AuthContext";
 
-function Main() {
+function Routing() {
 
   ///////////////////////////////////////
   /////////     Check-in & Out
   ///////////////////////////////////////
  
   
-  const [accidentalCheckin,setAccidentalCheckin ] = useState(false)
+  const [accidentalCheckin, setAccidentalCheckin ] = useState(false)
   const [currentCheckInID, setCurrentCheckInID] = useState(null)
 
   const { dogs, setDogs } = useContext(DogContext)
@@ -31,27 +32,27 @@ function Main() {
 
   useEffect(()=>{
 
-    fetchData('http://127.0.0.1:5555/dogparks', setIsReLogOpen)
-      .then(data => setDogParks(data))
+      fetchData('http://127.0.0.1:5555/dogparks', setIsReLogOpen)
+        .then(data => setDogParks(data))
 
-    fetchData('/friends', setIsReLogOpen)
-      .then(friendsData => setFriendsList(friendsData))
-    
-    fetchData('/pending_friends', setIsReLogOpen)  
-    .then(pendingFriendshipsData => setPendingFriendsList(pendingFriendshipsData))
+      fetchData('/friends', setIsReLogOpen)
+        .then(friendsData => setFriendsList(friendsData))
+      
+      fetchData('/pending_friends', setIsReLogOpen)  
+      .then(pendingFriendshipsData => setPendingFriendsList(pendingFriendshipsData))
 
-    //use sessionStorage to check if currently checked in 
-    const sessionCheckInID = sessionStorage.getItem('currentCheckInID')
-    if (sessionCheckInID){
-      setCurrentCheckInID(sessionCheckInID)
-    }
-  }, [
-    setDogParks, 
-    setFriendsList, 
-    setPendingFriendsList, 
-    setIsReLogOpen
-  ]
-)
+      //use sessionStorage to check if currently checked in 
+      const sessionCheckInID = sessionStorage.getItem('currentCheckInID')
+      if (sessionCheckInID){
+        setCurrentCheckInID(sessionCheckInID)
+      }
+    }, [
+      setDogParks, 
+      setFriendsList, 
+      setPendingFriendsList, 
+      setIsReLogOpen
+    ]
+  )
 
   const [seconds, setSeconds] = useState(0)
   const [intervalID, setIntervalID] = useState(null)
@@ -131,7 +132,7 @@ function Main() {
   /////////     Friendship
   ///////////////////////////////////////
 
-  const [isFriendsModalShowing, setIsFriendsModalShowing] = useState(false)
+  // const [isFriendsModalShowing, setIsFriendsModalShowing] = useState(false)
 
   ///////////////////////////////////////
   /////////     Props Objects
@@ -154,37 +155,36 @@ function Main() {
     createDog: createDog,
   }
 
-  const propsObjectToFriendsListButton = {
-    isFriendsModalShowing: isFriendsModalShowing,
-    setIsFriendsModalShowing: setIsFriendsModalShowing,
-  }
+  // const propsObjectToFriendsListButton = {
+  //   isFriendsModalShowing: isFriendsModalShowing,
+  //   setIsFriendsModalShowing: setIsFriendsModalShowing,
+  // }
 
   return (
     <div className='site'>
-      <Header/>
-      <ReLogModal/>
-      <main className = 'site Content'>
-      <FriendsListButton {...propsObjectToFriendsListButton}/>
-      {isFriendsModalShowing ? <FriendListElement /> : null}
-        <Switch>
-          <Route exact path="/">
-            <Home 
-              {...propsObjectToHome}
-            />
-          </Route>
-          <Route exact path="/dogparks">
-            <DogPark />
-          </Route>
-          <Route exact path="/myaccount">
-            <MyAccount {...propsObjectToMyAccount}/>
-          </Route>
-          <Route exact path="/aboutus">
-            <AboutUs/>
-          </Route>
-        </Switch>
-      </main>
+      {/* <Header/> */}
+      <ReLogModal />
+      <NavMenu />
+      {/* <FriendsListButton {...propsObjectToFriendsListButton}/> */}
+      {/* {isFriendsModalShowing ? <FriendListElement /> : null} */}
+      <Switch>
+        <Route exact path="/">
+          <Home 
+            {...propsObjectToHome}
+          />
+        </Route>
+        <Route exact path="/dogparks">
+          <DogPark />
+        </Route>
+        <Route exact path="/myaccount">
+          <MyAccount {...propsObjectToMyAccount}/>
+        </Route>
+        <Route exact path="/aboutus">
+          <AboutUs/>
+        </Route>
+      </Switch>
     </div>
   );
 }
 
-export default Main;
+export default Routing;

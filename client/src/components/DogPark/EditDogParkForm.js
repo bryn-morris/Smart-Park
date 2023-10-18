@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { Form, Input, TextArea } from 'semantic-ui-react'
 
 import { DogParkContext } from '../../context/DogParkContext'
-import { handleFormInputChange } from '../helpers/helperFunctions'
+import { handleFormInputChange } from '../helpers/inputChangeHelper'
 import { AuthContext } from "../../context/AuthContext"
 import fetchData from '../../utils/fetch_util'
 

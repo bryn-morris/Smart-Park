@@ -3,7 +3,7 @@ import {Form} from 'semantic-ui-react'
 
 import { DogContext } from "../../context/DogContext";
 import { DogParkContext } from "../../context/DogParkContext";
-import { handleFormInputChange } from "../helpers/helperFunctions";
+import { handleFormInputChange } from "../helpers/inputChangeHelper";
 
 function CheckOutForm({handleFormSubmission}){
 

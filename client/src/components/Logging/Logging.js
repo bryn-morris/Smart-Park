@@ -6,7 +6,7 @@ import io from 'socket.io-client'
 import { AuthContext } from '../../context/AuthContext';
 import { DogContext } from '../../context/DogContext';
 import { WebSocketContext } from '../../context/WebSocketContext';
-import Main from "../Main"
+import Routing from "../Routing"
 import fetchData from '../../utils/fetch_util';
 import LoginPage from './LoginPage';
 
@@ -21,6 +21,7 @@ function Logging() {
   const history = useHistory()
 
   const handleSubmit = (e, userFormObject, setUserFormObject, emptyFormObject) => {
+
     e.preventDefault()
 
     const authConfigObj = {
@@ -36,14 +37,14 @@ function Logging() {
       authConfigObj,
     )
     .then(user=>{
-          setCurrentUser(user);
-          setDogs(user.dogs);
-          setFriendSocket(()=> io.connect('http://localhost:5555/friends-socket',{
-            transport: ['websocket'],
-            withCredentials: true,
-          }))
-          history.push("/");
-        })
+      setCurrentUser(user);
+      setDogs(user.dogs);
+      setFriendSocket(()=> io.connect('http://localhost:5555/friends-socket',{
+        transport: ['websocket'],
+        withCredentials: true,
+      }))
+      history.push("/");
+    })
     
     setUserFormObject(emptyFormObject)
   }
@@ -55,7 +56,7 @@ function Logging() {
   }
 
   return (
-    currentUser ? <Main /> : <LoginPage {...loginPagePropsObj}/>
+    currentUser ? <Routing /> : <LoginPage {...loginPagePropsObj}/>
   );
 }
 

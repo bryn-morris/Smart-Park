@@ -3,9 +3,6 @@
   height: 100%;
   width: 100%;
 }
-.site .Content {
-  top: 4%;
-}
 
 .FriendsListElement {
   position: absolute;
@@ -331,6 +328,17 @@
   width: 150px;
   height: 70px;
   cursor: pointer;
+}
+
+.nav {
+  position: absolute;
+}
+.nav.Container {
+  background-color: #333333;
+  opacity: 90%;
+  height: 100%;
+  width: 15%;
+  right: 0%;
 }
 
 /*# sourceMappingURL=index.css.map */

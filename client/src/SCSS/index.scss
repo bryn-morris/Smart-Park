@@ -44,9 +44,9 @@
     height: 100%;
     width: 100%;
 
-    .Content {
-        top: 4%;
-    }
+    // .Content {
+    //     top: 4%;
+    // }
 }
 
 /////////////////////////////////////////////////
@@ -326,6 +326,19 @@
 ///                Navigation Bar
 /////////////////////////////////////////////////
 
+
+    .nav {
+
+        position: absolute;
+
+        &.Container {
+            background-color: #333333;
+            opacity: 90%;
+            height: 100%;
+            width: 15%;
+            right: 0%;
+        }
+    }
 // .navBar {
 //   height: 80%;
 // }

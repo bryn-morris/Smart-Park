@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Form, Input} from 'semantic-ui-react'
 
-import { handleFormInputChange } from '../helpers/helperFunctions'
+import { handleFormInputChange } from '../helpers/inputChangeHelper'
 
 function DogParkForm({handleAddDogPark}) {
 

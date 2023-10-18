@@ -347,11 +347,10 @@
         .Headcontainer {
             flex: 12%;
             width: 100%;
-
             display:flex;
             flex-direction: row;
 
-            .hammenu{
+            .menuButtonContainer{
                 height: 100%;
                 flex: 50%;
                 background-color: aquamarine;

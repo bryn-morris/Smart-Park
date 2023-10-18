@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext'
+import MenuButton from './MenuButton';
 
 function NavHead () {
 
@@ -7,9 +8,7 @@ function NavHead () {
 
     return(
         <div className="Headcontainer">
-            <div className="hammenu">
-
-            </div>
+            <MenuButton />
             <div className="imgContainer">
                 <img 
                     src = {currentUser.image}

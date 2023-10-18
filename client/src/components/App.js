@@ -9,9 +9,8 @@ import { FriendsProvider } from '../context/FriendsContext'
 import { WebSocketProvider } from '../context/WebSocketContext'
 
 function App() {
-  
-  return (
 
+  return (
     <AuthProvider>
       <DogProvider>
         <DogParkProvider>

@@ -327,18 +327,57 @@
 /////////////////////////////////////////////////
 
 
-    .nav {
+.nav {
 
-        position: absolute;
+    position: absolute;
 
-        &.Container {
+    &.Container{
+        height: 100%;
+        width: 15%;
+        right: 0%;
+        display: flex;
+        flex-direction: column;
+
+        .Menu {
             background-color: #333333;
-            opacity: 90%;
-            height: 100%;
-            width: 15%;
-            right: 0%;
+            opacity: 0.9;
+            width: 100%;
+            flex: 90%;            
         }
+        .Headcontainer {
+            flex: 12%;
+            width: 100%;
+
+            display:flex;
+            flex-direction: row;
+
+            .hammenu{
+                height: 100%;
+                flex: 50%;
+                background-color: aquamarine;
+            }
+            .imgContainer{
+                position:relative;
+                height: 100%;
+                flex: 50%;
+                background-color: bisque;
+                // align-content: center;
+                // display: flex;
+                // flex-wrap: wrap;
+
+                .userAvatar{
+                    position: absolute;
+                    right: 2.2vh;
+                    top: 2vh;
+                    height: 9vh;
+                    width: 9vh;
+                    border-radius: 50%;
+                    border: 4px solid black
+                }
+            }
+        } 
     }
+}
 // .navBar {
 //   height: 80%;
 // }

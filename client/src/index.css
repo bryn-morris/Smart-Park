@@ -334,11 +334,43 @@
   position: absolute;
 }
 .nav.Container {
-  background-color: #333333;
-  opacity: 90%;
   height: 100%;
   width: 15%;
   right: 0%;
+  display: flex;
+  flex-direction: column;
+}
+.nav.Container .Menu {
+  background-color: #333333;
+  opacity: 0.9;
+  width: 100%;
+  flex: 90%;
+}
+.nav.Container .Headcontainer {
+  flex: 12%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.nav.Container .Headcontainer .hammenu {
+  height: 100%;
+  flex: 50%;
+  background-color: aquamarine;
+}
+.nav.Container .Headcontainer .imgContainer {
+  position: relative;
+  height: 100%;
+  flex: 50%;
+  background-color: bisque;
+}
+.nav.Container .Headcontainer .imgContainer .userAvatar {
+  position: absolute;
+  right: 2.2vh;
+  top: 2vh;
+  height: 9vh;
+  width: 9vh;
+  border-radius: 50%;
+  border: 4px solid black;
 }
 
 /*# sourceMappingURL=index.css.map */

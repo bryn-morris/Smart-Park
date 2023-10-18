@@ -6,7 +6,7 @@ import io from 'socket.io-client'
 import { AuthContext } from '../../context/AuthContext';
 import { DogContext } from '../../context/DogContext';
 import { WebSocketContext } from '../../context/WebSocketContext';
-import Routing from "../Routing"
+import Layout from "../Layout"
 import fetchData from '../../utils/fetch_util';
 import LoginPage from './LoginPage';
 
@@ -56,7 +56,7 @@ function Logging() {
   }
 
   return (
-    currentUser ? <Routing /> : <LoginPage {...loginPagePropsObj}/>
+    currentUser ? <Layout /> : <LoginPage {...loginPagePropsObj}/>
   );
 }
 

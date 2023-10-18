@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home/Home";
 // import Header from "./Header/Header";
-import NavMenu from "./NavMenu/NavMenu";
+import NavContainer from "./Navigation/NavContainer";
 import DogPark from "./DogPark/DogPark";
 import MyAccount from "./MyAccount/MyAccount";
 import { DogContext } from '../context/DogContext';
@@ -15,7 +15,7 @@ import ReLogModal from "./Logging/ReLogModal";
 import fetchData from "../utils/fetch_util";
 import { AuthContext } from "../context/AuthContext";
 
-function Routing() {
+function Layout() {
 
   ///////////////////////////////////////
   /////////     Check-in & Out
@@ -164,7 +164,7 @@ function Routing() {
     <div className='site'>
       {/* <Header/> */}
       <ReLogModal />
-      <NavMenu />
+      <NavContainer />
       {/* <FriendsListButton {...propsObjectToFriendsListButton}/> */}
       {/* {isFriendsModalShowing ? <FriendListElement /> : null} */}
       <Switch>
@@ -187,4 +187,4 @@ function Routing() {
   );
 }
 
-export default Routing;
+export default Layout;

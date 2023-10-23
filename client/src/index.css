@@ -353,15 +353,81 @@
   flex-direction: row;
 }
 .nav.Container .Headcontainer .menuButtonContainer {
+  position: relative;
   height: 100%;
   flex: 50%;
-  background-color: aquamarine;
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton {
+  position: absolute;
+  width: 6vh;
+  height: 6vh;
+  top: 3vh;
+  right: 1vh;
+  transition-duration: 0.5s;
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton:hover {
+  cursor: pointer;
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton .icon-left {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: 0.4vh;
+  right: 3vh;
+  width: 4.5vh;
+  top: 3vh;
+  content: "";
+  background-color: #212121;
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton .icon-left:before {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: 4.5vh;
+  height: 0.4vh;
+  background-color: #212121;
+  top: 1.5vh;
+  content: "";
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton .icon-left:after {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: 4.5vh;
+  height: 0.4vh;
+  background-color: #212121;
+  top: -1.5vh;
+  content: "";
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton .icon-right {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: 0.4vh;
+  right: 3vh;
+  width: 4.5vh;
+  top: 3vh;
+  content: "";
+  background-color: #212121;
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton .icon-right:before {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: 4.5vh;
+  height: 0.4vh;
+  background-color: #212121;
+  top: 1.5vh;
+  content: "";
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton .icon-right:after {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: 4.5vh;
+  height: 0.4vh;
+  background-color: #212121;
+  top: -1.5vh;
+  content: "";
 }
 .nav.Container .Headcontainer .imgContainer {
   position: relative;
   height: 100%;
   flex: 50%;
-  background-color: bisque;
 }
 .nav.Container .Headcontainer .imgContainer .userAvatar {
   position: absolute;

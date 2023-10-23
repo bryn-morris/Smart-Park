@@ -409,27 +409,27 @@ $dark: #212121;
                         cursor: pointer;
                     }
                     .icon-left{
-                        @include hamIcon(0.4vh, 2.2vh, 3vh);
+                        @include hamIcon(0.5vh, 2.2vh, 3vh);
                         right: 2.2vh;
 
                         &:before{
-                            @include hamIconBefore(0.4vh, 2.2vh, 1.5vh);
+                            @include hamIconBefore(0.5vh, 2.2vh, 1.5vh);
                         }
 
                         &:after{
-                            @include hamIconAfter(0.4vh, 2.2vh, -1.5vh);
+                            @include hamIconAfter(0.5vh, 2.2vh, -1.5vh);
                         }
                     }
                     .icon-right{
-                        @include hamIcon(.4vh, 2.2vh, 3vh);
+                        @include hamIcon(.5vh, 2.2vh, 3vh);
                         right: 0vh;
 
                         &:before{
-                            @include hamIconBefore(0.4vh, 2.2vh, 1.5vh);
+                            @include hamIconBefore(0.5vh, 2.2vh, 1.5vh);
                         }
 
                         &:after{
-                            @include hamIconAfter(0.4vh, 2.2vh, -1.5vh);
+                            @include hamIconAfter(0.5vh, 2.2vh, -1.5vh);
                         }
                     }
                 }

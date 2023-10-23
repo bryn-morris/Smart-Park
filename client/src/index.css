@@ -371,7 +371,7 @@
 .nav.Container .Headcontainer .menuButtonContainer .navButton .icon-left {
   transition-duration: 0.5s;
   position: absolute;
-  height: 0.4vh;
+  height: 0.5vh;
   width: 2.2vh;
   top: 3vh;
   content: "";
@@ -382,7 +382,7 @@
   transition-duration: 0.5s;
   position: absolute;
   width: 2.2vh;
-  height: 0.4vh;
+  height: 0.5vh;
   background-color: #212121;
   top: 1.5vh;
   content: "";
@@ -391,7 +391,7 @@
   transition-duration: 0.5s;
   position: absolute;
   width: 2.2vh;
-  height: 0.4vh;
+  height: 0.5vh;
   background-color: #212121;
   top: -1.5vh;
   content: "";
@@ -399,7 +399,7 @@
 .nav.Container .Headcontainer .menuButtonContainer .navButton .icon-right {
   transition-duration: 0.5s;
   position: absolute;
-  height: 0.4vh;
+  height: 0.5vh;
   width: 2.2vh;
   top: 3vh;
   content: "";
@@ -410,7 +410,7 @@
   transition-duration: 0.5s;
   position: absolute;
   width: 2.2vh;
-  height: 0.4vh;
+  height: 0.5vh;
   background-color: #212121;
   top: 1.5vh;
   content: "";
@@ -419,7 +419,7 @@
   transition-duration: 0.5s;
   position: absolute;
   width: 2.2vh;
-  height: 0.4vh;
+  height: 0.5vh;
   background-color: #212121;
   top: -1.5vh;
   content: "";

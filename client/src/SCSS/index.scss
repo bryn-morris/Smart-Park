@@ -35,35 +35,35 @@
     z-index: $z-index;
 }
 
-@mixin hamIconLeft($height, $right, $width, $top) {
+@mixin hamIcon($height, $width, $top) {
 
-        transition-duration: 0.5s;
-        position: absolute;
-        height: $height;
-        right: $right;
-        width: $width;
-        top: $top;
-        content: "";
-        background-color: $dark;
+    transition-duration: 0.5s;
+    position: absolute;
+    height: $height;
+    width: $width;
+    top: $top;
+    content: "";
+    background-color: $dark;
+}
 
-        &:before{
-            transition-duration: 0.5s;
-            position: absolute;
-            width: 4.5vh;
-            height: 0.4vh;
-            background-color: $dark;
-            top: 1.5vh;
-            content:"";
-        }
-        &:after{
-            transition-duration: 0.5s;
-            position: absolute;
-            width: 4.5vh;
-            height: 0.4vh;
-            background-color: $dark;
-            top: -1.5vh;
-            content:"";
-        }
+@mixin hamIconBefore($height, $width, $top) {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: $width;
+    height: $height;
+    background-color: $dark;
+    top: $top;
+    content:"";
+}
+
+@mixin hamIconAfter($height, $width, $top){
+    transition-duration: 0.5s;
+    position: absolute;
+    width: $width;
+    height: $height;
+    background-color: $dark;
+    top: $top;
+    content:"";
 }
 
 @mixin hamIconRight() {
@@ -409,65 +409,29 @@ $dark: #212121;
                         cursor: pointer;
                     }
                     .icon-left{
-                        // @include hamIconLeft(0.4vh, 3vh, 4.5vh, 3vh)
-                        transition-duration: 0.5s;
-                        position: absolute;
-                        height: 0.4vh;
-                        right: 3vh;
-                        width: 4.5vh;
-                        top: 3vh;
-                        content: "";
-                        background-color: $dark;
+                        @include hamIcon(0.4vh, 2.2vh, 3vh);
+                        right: 2.2vh;
 
                         &:before{
-                            transition-duration: 0.5s;
-                            position: absolute;
-                            width: 4.5vh;
-                            height: 0.4vh;
-                            background-color: $dark;
-                            top: 1.5vh;
-                            content:"";
+                            @include hamIconBefore(0.4vh, 2.2vh, 1.5vh);
                         }
+
                         &:after{
-                            transition-duration: 0.5s;
-                            position: absolute;
-                            width: 4.5vh;
-                            height: 0.4vh;
-                            background-color: $dark;
-                            top: -1.5vh;
-                            content:"";
+                            @include hamIconAfter(0.4vh, 2.2vh, -1.5vh);
                         }
                     }
                     .icon-right{
-                        transition-duration: 0.5s;
-                        position: absolute;
-                        height: 0.4vh;
-                        right: 3vh;
-                        width: 4.5vh;
-                        top: 3vh;
-                        content: "";
-                        background-color: $dark;
+                        @include hamIcon(.4vh, 2.2vh, 3vh);
+                        right: 0vh;
 
                         &:before{
-                            transition-duration: 0.5s;
-                            position: absolute;
-                            width: 4.5vh;
-                            height: 0.4vh;
-                            background-color: $dark;
-                            top: 1.5vh;
-                            content:"";
+                            @include hamIconBefore(0.4vh, 2.2vh, 1.5vh);
                         }
+
                         &:after{
-                            transition-duration: 0.5s;
-                            position: absolute;
-                            width: 4.5vh;
-                            height: 0.4vh;
-                            background-color: $dark;
-                            top: -1.5vh;
-                            content:"";
+                            @include hamIconAfter(0.4vh, 2.2vh, -1.5vh);
                         }
                     }
-
                 }
             }
             .imgContainer{

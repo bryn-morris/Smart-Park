@@ -372,16 +372,16 @@
   transition-duration: 0.5s;
   position: absolute;
   height: 0.4vh;
-  right: 3vh;
-  width: 4.5vh;
+  width: 2.2vh;
   top: 3vh;
   content: "";
   background-color: #212121;
+  right: 2.2vh;
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton .icon-left:before {
   transition-duration: 0.5s;
   position: absolute;
-  width: 4.5vh;
+  width: 2.2vh;
   height: 0.4vh;
   background-color: #212121;
   top: 1.5vh;
@@ -390,7 +390,7 @@
 .nav.Container .Headcontainer .menuButtonContainer .navButton .icon-left:after {
   transition-duration: 0.5s;
   position: absolute;
-  width: 4.5vh;
+  width: 2.2vh;
   height: 0.4vh;
   background-color: #212121;
   top: -1.5vh;
@@ -400,16 +400,16 @@
   transition-duration: 0.5s;
   position: absolute;
   height: 0.4vh;
-  right: 3vh;
-  width: 4.5vh;
+  width: 2.2vh;
   top: 3vh;
   content: "";
   background-color: #212121;
+  right: 0vh;
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton .icon-right:before {
   transition-duration: 0.5s;
   position: absolute;
-  width: 4.5vh;
+  width: 2.2vh;
   height: 0.4vh;
   background-color: #212121;
   top: 1.5vh;
@@ -418,7 +418,7 @@
 .nav.Container .Headcontainer .menuButtonContainer .navButton .icon-right:after {
   transition-duration: 0.5s;
   position: absolute;
-  width: 4.5vh;
+  width: 2.2vh;
   height: 0.4vh;
   background-color: #212121;
   top: -1.5vh;

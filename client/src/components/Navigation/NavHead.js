@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext'
 import MenuButton from './MenuButton';
 
-function NavHead () {
+function NavHead (props) {
 
     const { currentUser } = useContext(AuthContext) 
 
     return(
         <div className="Headcontainer">
-            <MenuButton />
+            <MenuButton {...props} />
             <div className="imgContainer">
                 <img 
                     src = {currentUser.image}

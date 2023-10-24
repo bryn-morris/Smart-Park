@@ -1,12 +1,4 @@
-import { useState } from 'react'
-
-function MenuButton () {
-
-    const [isActive, setIsActive] = useState(false)
-
-    function toggleButton () {
-        setIsActive(!isActive)
-    }
+function MenuButton ({isActive, toggleButton}) {
 
     return(
         <div className="menuButtonContainer">

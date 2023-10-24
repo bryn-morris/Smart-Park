@@ -1,9 +1,9 @@
 
 
-function NavMenu(){
+function NavMenu({isActive, toggleButton}){
 
     return (
-        <div className="Menu">
+        <div className={`Menu ${isActive ? "active" : ""}`}>
 
         </div>
     )

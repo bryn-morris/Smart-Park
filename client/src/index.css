@@ -341,10 +341,15 @@
   flex-direction: column;
 }
 .nav.Container .Menu {
+  transition-duration: 0.5s;
   background-color: #212121;
   opacity: 0.9;
-  width: 100%;
+  width: 0%;
   flex: 90%;
+}
+.nav.Container .Menu.active {
+  transition-duration: 0.5s;
+  width: 100%;
 }
 .nav.Container .Headcontainer {
   flex: 12%;

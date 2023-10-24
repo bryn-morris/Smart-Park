@@ -62,7 +62,7 @@
 }
 
 .home {
-  width: 100%;
+  width: 85%;
   position: relative;
   height: 100%;
 }
@@ -423,6 +423,26 @@
   background-color: #212121;
   top: -1.5vh;
   content: "";
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-left {
+  transition-duration: 0.5s;
+  background: transparent;
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-left:before {
+  transform: rotateZ(-45deg) scaleX(1.4) translate(4px, -4px);
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-left:after {
+  transform: rotateZ(45deg) scaleX(1.4) translate(4px, 4px);
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-right {
+  transition-duration: 0.5s;
+  background: transparent;
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-right:before {
+  transform: rotateZ(45deg) scaleX(1.4) translate(-4px, -4px);
+}
+.nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-right:after {
+  transform: rotateZ(-45deg) scaleX(1.4) translate(-4px, 4px);
 }
 .nav.Container .Headcontainer .imgContainer {
   position: relative;

@@ -167,7 +167,7 @@ $dark: #212121;
 /////////////////////////////////////////////////
 
 .home {
-    width: 100%;
+    width: 85%;
     position: relative;
     height: 100%;
 
@@ -422,6 +422,30 @@ $dark: #212121;
 
                         &:after{
                             @include hamIconAfter(0.5vh, 2.2vh, -1.5vh);
+                        }
+                    }
+                    &.active{
+                        .icon-left {
+                            transition-duration: 0.5s;
+                            background: transparent;
+
+                            &:before{
+                                transform: rotateZ(-45deg) scaleX(1.4) translate(4px, -4px);
+                            }
+                            &:after{
+                                transform: rotateZ(45deg) scaleX(1.4) translate(4px, 4px);
+                            }
+                        }
+                        .icon-right {
+                            transition-duration: 0.5s;
+                            background: transparent;
+
+                            &:before {
+                                transform: rotateZ(45deg) scaleX(1.4) translate(-4px, -4px);
+                            }
+                            &:after{
+                                transform: rotateZ(-45deg) scaleX(1.4) translate(-4px, 4px);
+                            }
                         }
                     }
                 }

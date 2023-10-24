@@ -10,7 +10,10 @@ function MenuButton () {
 
     return(
         <div className="menuButtonContainer">
-            <div className = 'navButton' onClick={toggleButton}>
+            <div 
+                className = {`navButton ${isActive ? 'active' :''}`}
+                onClick={toggleButton}
+            >
                 <div className='icon-left'></div>
                 <div className = 'icon-right'></div>
             </div>

@@ -6,14 +6,10 @@ function NavHead (props) {
 
     const { currentUser } = useContext(AuthContext)
 
-    const activeHeadStyling = {
-        backgroundColor: props.isActive ? '#212121' : 'none',
-    }
-
     return(
         <div 
             className="Headcontainer"
-            style={activeHeadStyling}
+            style={props.isActive ? {backgroundColor: '#212121'} : null}
         >
             <MenuButton {...props} />
             <div className="imgContainer">

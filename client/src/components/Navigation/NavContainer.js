@@ -17,7 +17,7 @@ function NavContainer () {
     }
 
     const borderDivStyling = {
-        flex: '.1%',
+        height: '0.2vh',
         backgroundColor: '#E5E7E6',
         width: '80%',
     }

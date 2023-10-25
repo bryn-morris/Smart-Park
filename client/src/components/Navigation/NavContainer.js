@@ -16,9 +16,19 @@ function NavContainer () {
         toggleButton : toggleButton,
     }
 
+    const borderDivStyling = {
+        flex: '.1%',
+        backgroundColor: '#E5E7E6',
+        width: '80%',
+    }
+
     return (
         <div className = "nav Container">
             <NavHead {...menuStatePropsObject}/>
+            {isActive ?
+            <div style = {borderDivStyling} />
+            : null
+            }
             <NavMenu {...menuStatePropsObject}/>
         </div>
     )

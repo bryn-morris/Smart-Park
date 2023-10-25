@@ -375,7 +375,7 @@ $light: #E5E7E6;
         .Menu {
             transition-duration: 0.5s;
             background-color: $dark;
-            opacity: 0.9;
+            opacity: 0.95;
             width: 100%;
             flex: 90%;
             transform: translateX(100%);
@@ -386,7 +386,9 @@ $light: #E5E7E6;
                 transform: translateX(0%);
             }
         }
+        
         .Headcontainer {
+            transition-duration: .5s;
             flex: 12%;
             width: 100%;
             display:flex;

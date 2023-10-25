@@ -437,9 +437,11 @@
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-left:before {
   transform: rotateZ(-45deg) scaleX(1.2) translate(0.3vh, -0.3vh);
+  background-color: #E5E7E6;
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-left:after {
   transform: rotateZ(45deg) scaleX(1.2) translate(0.3vh, 0.3vh);
+  background-color: #E5E7E6;
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-right {
   transition-duration: 0.5s;
@@ -447,9 +449,11 @@
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-right:before {
   transform: rotateZ(45deg) scaleX(1.2) translate(-0.3vh, -0.3vh);
+  background-color: #E5E7E6;
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton.active .icon-right:after {
   transform: rotateZ(-45deg) scaleX(1.2) translate(-0.3vh, 0.3vh);
+  background-color: #E5E7E6;
 }
 .nav.Container .Headcontainer .imgContainer {
   position: relative;

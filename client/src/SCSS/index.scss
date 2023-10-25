@@ -71,6 +71,7 @@
 /////////////////////////////////////////////////
 
 $dark: #212121;
+$light: #E5E7E6;
 
 /////////////////////////////////////////////////
 ///                SiteWide Content 
@@ -439,9 +440,11 @@ $dark: #212121;
 
                             &:before{
                                 transform: rotateZ(-45deg) scaleX(1.2) translate(0.3vh, -0.3vh);
+                                background-color: $light;
                             }
                             &:after{
                                 transform: rotateZ(45deg) scaleX(1.2) translate(0.3vh, 0.3vh);
+                                background-color: $light;
                             }
                         }
                         .icon-right {
@@ -450,9 +453,11 @@ $dark: #212121;
 
                             &:before {
                                 transform: rotateZ(45deg) scaleX(1.2) translate(-0.3vh, -0.3vh);
+                                background-color: $light;
                             }
                             &:after{
                                 transform: rotateZ(-45deg) scaleX(1.2) translate(-0.3vh, 0.3vh);
+                                background-color: $light;
                             }
                         }
                     }

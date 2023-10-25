@@ -4,10 +4,18 @@ import MenuButton from './MenuButton';
 
 function NavHead (props) {
 
-    const { currentUser } = useContext(AuthContext) 
+    const { currentUser } = useContext(AuthContext)
+
+    const activeStyling = {
+        backgroundColor: props.isActive ? '#212121' : '',
+
+    }
 
     return(
-        <div className="Headcontainer">
+        <div 
+            className="Headcontainer"
+            style={activeStyling}
+        >
             <MenuButton {...props} />
             <div className="imgContainer">
                 <img 

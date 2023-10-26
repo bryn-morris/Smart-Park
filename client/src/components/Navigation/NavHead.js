@@ -12,11 +12,12 @@ function NavHead (props) {
             style={props.isActive ? {backgroundColor: '#212121'} : null}
         >
             <MenuButton {...props} />
-            <div className="imgContainer">
+            <div className="imgContainer">  
                 <img 
                     src = {currentUser.image}
                     alt = "profile pic"
                     className='userAvatar'
+                    style = {props.isActive ? {borderColor : "#212121"} : null}
                 />
             </div>
         </div>

@@ -477,7 +477,8 @@ $light: #E5E7E6;
                     height: 9vh;
                     width: 9vh;
                     border-radius: 50%;
-                    border: 0.6vh solid black
+                    border: 0.6vh solid;
+                    border-color: #212121;
                 }
             }
         } 

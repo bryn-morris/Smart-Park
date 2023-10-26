@@ -17,9 +17,8 @@ function NavContainer () {
     }
 
     const borderDivStyling = {
-        height: '0.2vh',
+        height: '0.11vh',
         backgroundColor: '#E5E7E6',
-        width: '80%',
     }
 
     return (

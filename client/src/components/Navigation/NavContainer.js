@@ -16,16 +16,11 @@ function NavContainer () {
         toggleButton : toggleButton,
     }
 
-    const borderDivStyling = {
-        height: '0.11vh',
-        backgroundColor: '#E5E7E6',
-    }
-
     return (
         <div className = "nav Container">
             <NavHead {...menuStatePropsObject}/>
             {isActive ?
-            <div style = {borderDivStyling} />
+            <div style = {{height: '0.11vh', backgroundColor: '#E5E7E6',}} />
             : null
             }
             <NavMenu {...menuStatePropsObject}/>

@@ -1,9 +1,13 @@
 
 
-function MenuElement () {
+function MenuElement ({labelText}) {
 
     return(
-        <div>
+        <div className="menuElement">
+            <div className="spacer" />
+            <div className = "text">
+                {labelText}
+            </div>
 
         </div>
     )

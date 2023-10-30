@@ -462,6 +462,7 @@
   flex: 50%;
 }
 .nav.Container .Headcontainer .imgContainer .userAvatar {
+  transition-duration: 0.8s;
   position: absolute;
   right: 2.2vh;
   top: 2vh;

@@ -17,7 +17,7 @@ function NavHead (props) {
                     src = {currentUser.image}
                     alt = "profile pic"
                     className='userAvatar'
-                    style = {props.isActive ? {borderColor : "#212121"} : null}
+                    style = {props.isActive ? {borderColor : "#E5E7E6"} : null}
                 />
             </div>
         </div>

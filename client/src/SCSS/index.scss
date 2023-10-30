@@ -471,6 +471,7 @@ $light: #E5E7E6;
                 flex: 50%;
 
                 .userAvatar{
+                    transition-duration: .8s;
                     position: absolute;
                     right: 2.2vh;
                     top: 2vh;

@@ -1,6 +1,7 @@
 import { Icon, Popup } from "semantic-ui-react"
 import { AuthContext } from "../../context/AuthContext"
 import { useContext } from "react"
+import { capitalizeInputHelper } from "../helpers/capitalizeInputHelper"
 
 
 function MenuIcon ({labelIconString, listCount}) {
@@ -9,7 +10,7 @@ function MenuIcon ({labelIconString, listCount}) {
 
     return(
         <Popup 
-            content = {`Navigate to ${labelIconString.toUpperCase()}`}
+            content = {`Navigate to ${capitalizeInputHelper(labelIconString)}`}
             position = 'bottom center'
             trigger = {
                 <div 

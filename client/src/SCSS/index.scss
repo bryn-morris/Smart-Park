@@ -125,6 +125,7 @@ $hovered: #D6D6D6;
 
         width: 10%;
         // border-right: 1px solid grey;
+        
         padding-right: .7em;
         margin: auto;
     }
@@ -519,6 +520,11 @@ $hovered: #D6D6D6;
         } 
     }
 }
+
+.selectedNav {
+    background-color: $hovered;
+}
+
 // .navBar {
 //   height: 80%;
 // }

@@ -12,7 +12,7 @@ import ReLogModal from "./Logging/ReLogModal";
 import fetchData from "../utils/fetch_util";
 import { AuthContext } from "../context/AuthContext";
 import LogOutModal from "./Logging/LogOutModal";
-import Settings from "./Settings";
+import SettingsModal from "./SettingsModal";
 
 function Layout() {
 
@@ -155,12 +155,10 @@ function Layout() {
 
   return (
     <div className='site'>
-      {/* <Header/> */}
       <ReLogModal />
       <NavContainer />
       <LogOutModal/>
-      {/* <FriendsListButton {...propsObjectToFriendsListButton}/> */}
-      {/* {isFriendsModalShowing ? <FriendListElement /> : null} */}
+      {/* <SettingsModal /> */}
       <Switch>
         <Route exact path="/">
           <Home 
@@ -175,9 +173,6 @@ function Layout() {
         </Route>
         <Route exact path="/aboutus">
           <AboutUs/>
-        </Route>
-        <Route exact path="/settings">
-          <Settings />
         </Route>
       </Switch>
     </div>

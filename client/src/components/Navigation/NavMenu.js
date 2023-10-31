@@ -36,16 +36,13 @@ function NavMenu({isActive, toggleButton}){
                     // passFunc = () => console.log('testing')
                     break;
                 case 'settings':
-                    passFunc = () => console.log('settings')
+                    passFunc = () => console.log('settings modal render')
                     break;
                 default:
                     passFunc = () => alert('No Matching Icon Found!')
             }
             
             return(
-            // write switch/case statement reading the value of menuIcons list
-            // and passing a different prop as an on click function to MenuIcon
-            // based on the value of eachIconString
             
             <MenuIcon
                 key={eachIconString}

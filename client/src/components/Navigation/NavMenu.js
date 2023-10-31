@@ -21,21 +21,22 @@ function NavMenu({isActive, toggleButton}){
     // }
 
     function generateIconItems (menuIconsList) {
-        menuIconsList.map((eachIconString)=>{return(
+        return menuIconsList.map((eachIconString)=>{return(
             <MenuIcon 
                 labelIconString = {eachIconString}
+                listCount = {menuIconsList.length}
             />
         )})
     }
 
     return (
         <div className={`Menu ${isActive ? "active" : ""}`}>
-            {/* {generateMenuItems()} */}
+            
             <div className="iconMenu">
                 {generateIconItems(menuIcons)}
             </div>
             <div className="routingMenu">
-
+                {/* {generateMenuItems(menuLabels)} */}
             </div>
             
         </div>

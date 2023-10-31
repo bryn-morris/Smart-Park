@@ -389,12 +389,19 @@ $light: #E5E7E6;
             }
 
             .iconMenu {
-                background-color: aqua;
                 flex: 6%;
+                display: flex;
+                flex-direction: row;
+
+                .iconContainer {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-content: center;
+                }
             }
 
             .routingMenu {
-                background-color: red;
                 flex: 94%;
             }
         }

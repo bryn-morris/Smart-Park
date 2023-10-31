@@ -3,16 +3,24 @@ import { AuthContext } from "../../context/AuthContext"
 import { useContext } from "react"
 
 
-function MenuIcon ({labelIconString}) {
+function MenuIcon ({labelIconString, listCount}) {
 
     const {currentUser} = useContext(AuthContext)
 
     return(
-        <Icon
-            bordered
-            loading = {currentUser ? false : true}
-            name = {currentUser ? labelIconString : "spinner"}
-        />
+        <div 
+            className="iconContainer"
+            style={{flex: 100/listCount}}
+        >
+            <Icon
+                inverted
+                bordered
+                large
+                loading = {currentUser ? false : true}
+                name = {currentUser ? labelIconString : "spinner"}
+            />
+        </div>
+        
     )
 }
 

@@ -14,11 +14,10 @@ function MenuIcon ({labelIconString, listCount}) {
         >
             <Icon
                 inverted
-                color= "teal"
+                className="navIcon"
                 size = "large"
-                name= {labelIconString}
-                // loading = {currentUser ? false : true}
-                // name = {currentUser ? labelIconString : "spinner"}
+                loading = {currentUser ? false : true}
+                name = {currentUser ? labelIconString : "spinner"}
             />
         </div>
         

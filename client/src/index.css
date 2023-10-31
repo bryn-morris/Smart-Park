@@ -367,9 +367,11 @@
   align-content: center;
 }
 .nav.Container .Menu .iconMenu .iconContainer:hover {
-  background-color: #E5E7E6;
-  opacity: 0.7;
+  background-color: #D6D6D6;
   cursor: pointer;
+}
+.nav.Container .Menu .iconMenu .iconContainer .navIcon {
+  color: #3AA8C1;
 }
 .nav.Container .Menu .routingMenu {
   flex: 94%;

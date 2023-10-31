@@ -72,6 +72,10 @@
 
 $dark: #212121;
 $light: #E5E7E6;
+$accent1: #91972A;
+$accent2: #1D7874;
+$accent3: #3AA8C1;
+$hovered: #D6D6D6;
 
 /////////////////////////////////////////////////
 ///                SiteWide Content 
@@ -400,9 +404,12 @@ $light: #E5E7E6;
                     align-content: center;
 
                     &:hover{
-                        background-color: $light;
-                        opacity: 0.7;
+                        background-color: $hovered;
                         cursor: pointer;
+                    }
+
+                    .navIcon {
+                        color: $accent3;
                     }
                 }
             }

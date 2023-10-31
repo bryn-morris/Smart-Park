@@ -35,6 +35,7 @@ function NavMenu({isActive, toggleButton}){
             <div className="iconMenu">
                 {generateIconItems(menuIcons)}
             </div>
+            <div style = {{height: '0.11vh', backgroundColor: '#E5E7E6',}} />
             <div className="routingMenu">
                 {/* {generateMenuItems(menuLabels)} */}
             </div>

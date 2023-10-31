@@ -1,12 +1,11 @@
 import MenuElement from "./MenuElement"
+import NavDivider from "./NavDivider"
 import MenuIcon from "./MenuIcon"
 
 function NavMenu({isActive, toggleButton}){
 
     const menuLabels = ["Profile","Checkout"]
     const menuIcons = ["logout", "settings"]
-
-    const divider = <div style = {{height: '0.11vh', backgroundColor: '#E5E7E6',}} />
 
     // Menu Icons are going to need a new component similar to head
     // Instead of having lougout text and settings text
@@ -33,11 +32,11 @@ function NavMenu({isActive, toggleButton}){
 
     return (
         <div className={`Menu ${isActive ? "active" : ""}`}>
-            {divider}
+            <NavDivider />
             <div className="iconMenu">
                 {generateIconItems(menuIcons)}
             </div>
-            {divider}
+            <NavDivider />
             <div className="routingMenu">
                 {/* {generateMenuItems(menuLabels)} */}
             </div>

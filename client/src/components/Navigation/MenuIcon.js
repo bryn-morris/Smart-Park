@@ -12,7 +12,7 @@ function MenuIcon ({labelIconString, listCount, onClickFunction}) {
         <Popup 
             content = {`Navigate to ${capitalizeInputHelper(labelIconString)}`}
             position = 'bottom center'
-            // on={'hover'}
+            on='hover'
             trigger = {
                 <div 
                     className="iconContainer"

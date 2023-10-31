@@ -7,7 +7,7 @@ import { DogParkContext } from "../../context/DogParkContext"
 import { List } from 'semantic-ui-react'
 
 
-function MyAccount({showRemainingDogs, updatedDogs, createDog}) {
+function Profile({showRemainingDogs, updatedDogs, createDog}) {
     
   const {dogs} = useContext(DogContext)
   const { favoritedParksByUser } = useContext(DogParkContext)
@@ -45,4 +45,4 @@ function MyAccount({showRemainingDogs, updatedDogs, createDog}) {
   )
 }
 
-export default MyAccount
+export default Profile

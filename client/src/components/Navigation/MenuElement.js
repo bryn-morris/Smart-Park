@@ -1,15 +1,18 @@
+import {NavLink} from "react-router-dom"
 
-
-function MenuElement ({labelText}) {
+function MenuElement ({labelText, navRoute}) {
 
     return(
-        <div className="menuElement">
-            <div className="spacer" />
+        <NavLink 
+            className="menuElement"
+            to = {navRoute}
+            activeStyle = {{backgroundColor : "#D6D6D6"}}
+        >
             <div className = "text">
                 {labelText}
             </div>
 
-        </div>
+        </NavLink>
     )
 }
 

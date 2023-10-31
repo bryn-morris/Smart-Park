@@ -1,6 +1,6 @@
 
 
-function SettingsModal () {
+function Settings () {
     return(
         <div>
             <h1>SETTINGS MODAL</h1>
@@ -8,4 +8,4 @@ function SettingsModal () {
     )
 }
 
-export default SettingsModal
+export default Settings

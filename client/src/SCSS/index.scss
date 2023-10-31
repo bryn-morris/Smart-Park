@@ -419,6 +419,12 @@ $hovered: #D6D6D6;
 
             .routingMenu {
                 flex: 94%;
+
+                .menuElement {
+                    width: 100%;
+                    height: 5vh;
+                    background-color: aqua;
+                }
             }
         }
         

@@ -8,9 +8,24 @@ function MenuIcon ({labelIconString, listCount, onClickFunction}) {
 
     const {currentUser} = useContext(AuthContext)
 
+    let tooltipContent;
+
+    switch (labelIconString) {
+        case ('logout'): {
+            tooltipContent = capitalizeInputHelper(labelIconString)
+            break;
+        }
+        case ('paw'):{
+            tooltipContent = "CheckOut!"
+            break;
+        }
+        default:
+            tooltipContent = 'No Label Found!'
+    }
+
     return(
         <Popup 
-            content = {`Navigate to ${capitalizeInputHelper(labelIconString)}`}
+            content = {tooltipContent}
             position = 'bottom center'
             on='hover'
             trigger = {

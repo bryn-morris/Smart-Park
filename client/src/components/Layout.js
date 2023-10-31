@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Home/Home";
 import NavContainer from "./Navigation/NavContainer";
 import DogPark from "./DogPark/DogPark";
-import MyAccount from "./MyAccount/MyAccount";
+import Profile from "./MyAccount/Profile";
 import { DogContext } from '../context/DogContext';
 import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
@@ -12,7 +12,7 @@ import ReLogModal from "./Logging/ReLogModal";
 import fetchData from "../utils/fetch_util";
 import { AuthContext } from "../context/AuthContext";
 import LogOutModal from "./Logging/LogOutModal";
-import SettingsModal from "./SettingsModal";
+import Settings from "./Settings";
 
 function Layout() {
 
@@ -142,7 +142,7 @@ function Layout() {
     startTimer: startTimer,
   }
 
-  const propsObjectToMyAccount = {
+  const propsObjectToProfile = {
     showRemainingDogs: showRemainingDogs,
     updatedDogs: updatedDogs,
     createDog: createDog,
@@ -168,11 +168,14 @@ function Layout() {
         <Route exact path="/dogparks">
           <DogPark />
         </Route>
-        <Route exact path="/myaccount">
-          <MyAccount {...propsObjectToMyAccount}/>
+        <Route exact path="/profile">
+          <Profile {...propsObjectToProfile}/>
         </Route>
         <Route exact path="/aboutus">
           <AboutUs/>
+        </Route>
+        <Route exact path="/settings">
+          <Settings/>
         </Route>
       </Switch>
     </div>

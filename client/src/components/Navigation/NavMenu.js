@@ -6,8 +6,8 @@ import { AuthContext } from "../../context/AuthContext"
 
 function NavMenu({isActive, toggleButton}){
 
-    const menuLabels = ["Profile","Checkout"]
-    const menuIcons = ["logout", "settings"]
+    const menuLabels = ["Home","Profile","Settings"]
+    const menuIcons = ["logout", "paw"]
 
     const {setIsLogOutModalRendered} = useContext(AuthContext)
 
@@ -17,13 +17,36 @@ function NavMenu({isActive, toggleButton}){
     // a settings icon and a logout icon that sits at the bottom of the menu
     // highlight when you hover over them and have a tooltip
 
-    // function generateMenuItems (menuLabelsList) {
-    //     menuLabels.map((eachLabel)=>{return(
-    //         <div>
+    function generateMenuItems (menuLabelsList) {
+        return menuLabelsList.map((eachLabel)=>{
+            
+            let navRoute;
 
-    //         </div>
-    //     )})
-    // }
+            switch (eachLabel) {
+                case 'Home': {
+                    navRoute = '/'
+                    break;
+                }
+                case 'Profile': {
+                    navRoute = '/profile'
+                    break;
+                }
+                case 'Settings': {
+                    navRoute = '/settings'
+                    break;
+                }
+                default:
+                    navRoute = () => alert('No Matching Route Label Found!')
+            }
+
+            return(
+                <MenuElement
+                    navRoute = {navRoute} 
+                    labelText={eachLabel}
+                />
+            )
+        })
+    }
 
     function generateIconItems (menuIconsList) {
         return menuIconsList.map((eachIconString)=>{
@@ -35,8 +58,8 @@ function NavMenu({isActive, toggleButton}){
                     passFunc = () => setIsLogOutModalRendered(true)
                     // passFunc = () => console.log('testing')
                     break;
-                case 'settings':
-                    passFunc = () => console.log('settings modal render')
+                case 'paw':
+                    passFunc = () => console.log('checkout modal render')
                     break;
                 default:
                     passFunc = () => alert('No Matching Icon Found!')
@@ -56,12 +79,16 @@ function NavMenu({isActive, toggleButton}){
     return (
         <div className={`Menu ${isActive ? "active" : ""}`}>
             <NavDivider />
+            <NavDivider />
+            <NavDivider />
             <div className="iconMenu">
                 {generateIconItems(menuIcons)}
             </div>
             <NavDivider />
             <div className="routingMenu">
-                {/* {generateMenuItems(menuLabels)} */}
+                <NavDivider />
+                {generateMenuItems(menuLabels)}
+                <NavDivider />
             </div>
             
         </div>

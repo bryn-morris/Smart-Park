@@ -12,6 +12,7 @@ import ReLogModal from "./Logging/ReLogModal";
 import fetchData from "../utils/fetch_util";
 import { AuthContext } from "../context/AuthContext";
 import LogOutModal from "./Logging/LogOutModal";
+import Settings from "./Settings";
 
 function Layout() {
 
@@ -174,6 +175,9 @@ function Layout() {
         </Route>
         <Route exact path="/aboutus">
           <AboutUs/>
+        </Route>
+        <Route exact path="/settings">
+          <Settings />
         </Route>
       </Switch>
     </div>

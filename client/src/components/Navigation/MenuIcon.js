@@ -4,7 +4,7 @@ import { useContext } from "react"
 import { capitalizeInputHelper } from "../helpers/capitalizeInputHelper"
 
 
-function MenuIcon ({labelIconString, listCount}) {
+function MenuIcon ({labelIconString, listCount, onClickFunction}) {
 
     const {currentUser} = useContext(AuthContext)
 
@@ -12,10 +12,12 @@ function MenuIcon ({labelIconString, listCount}) {
         <Popup 
             content = {`Navigate to ${capitalizeInputHelper(labelIconString)}`}
             position = 'bottom center'
+            // on={'hover'}
             trigger = {
                 <div 
                     className="iconContainer"
                     style={{flex: 100/listCount}}
+                    onClick = {onClickFunction}
                 >
                     <Icon
                         inverted

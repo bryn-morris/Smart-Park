@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home/Home";
-// import Header from "./Header/Header";
 import NavContainer from "./Navigation/NavContainer";
 import DogPark from "./DogPark/DogPark";
 import MyAccount from "./MyAccount/MyAccount";
@@ -9,11 +8,10 @@ import { DogContext } from '../context/DogContext';
 import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
 import { FriendsContext } from "../context/FriendsContext";
-// import FriendListElement from "./FriendsList/FriendListElement";
-// import FriendsListButton from "./FriendsList/FriendsListButton";
 import ReLogModal from "./Logging/ReLogModal";
 import fetchData from "../utils/fetch_util";
 import { AuthContext } from "../context/AuthContext";
+import LogOutModal from "./Logging/LogOutModal";
 
 function Layout() {
 
@@ -129,12 +127,6 @@ function Layout() {
   }
 
   ///////////////////////////////////////
-  /////////     Friendship
-  ///////////////////////////////////////
-
-  // const [isFriendsModalShowing, setIsFriendsModalShowing] = useState(false)
-
-  ///////////////////////////////////////
   /////////     Props Objects
   ///////////////////////////////////////
 
@@ -165,6 +157,7 @@ function Layout() {
       {/* <Header/> */}
       <ReLogModal />
       <NavContainer />
+      <LogOutModal/>
       {/* <FriendsListButton {...propsObjectToFriendsListButton}/> */}
       {/* {isFriendsModalShowing ? <FriendListElement /> : null} */}
       <Switch>

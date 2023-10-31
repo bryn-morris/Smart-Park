@@ -6,6 +6,7 @@ function AuthProvider({children}) {
 
     const [currentUser, setCurrentUser] = useState(null)
     const [isReLogOpen, setIsReLogOpen] = useState(false)
+    const [isLogOutModalRendered, setIsLogOutModalRendered] = useState(false)
 
     return (
         <AuthContext.Provider 
@@ -13,7 +14,9 @@ function AuthProvider({children}) {
                         currentUser,
                         setCurrentUser,
                         isReLogOpen,
-                        setIsReLogOpen
+                        setIsReLogOpen,
+                        isLogOutModalRendered,
+                        setIsLogOutModalRendered
                     }}
         >
             {children}

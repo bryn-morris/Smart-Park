@@ -2,10 +2,12 @@ import { Button, Modal } from "semantic-ui-react"
 import { useContext } from "react"
 
 import { WebSocketContext } from "../../context/WebSocketContext"
-
-function LogOutModal ({isLogOutModalRendered, setIsLogOutModalRendered}) {
+import { AuthContext } from "../../context/AuthContext"
+function LogOutModal () {
 
     const { friendSocket } = useContext(WebSocketContext)
+    const { isLogOutModalRendered,
+        setIsLogOutModalRendered } = useContext(AuthContext)
 
     return(
     <div>

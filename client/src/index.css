@@ -354,6 +354,7 @@
 .nav.Container .Menu.active {
   width: 100%;
   transform: translateX(0%);
+  border-left: 2px solid rgba(33, 33, 33, 0.05);
 }
 .nav.Container .Menu .iconMenu {
   flex: 6%;

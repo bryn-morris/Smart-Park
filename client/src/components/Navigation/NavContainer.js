@@ -19,10 +19,6 @@ function NavContainer () {
     return (
         <div className = "nav Container">
             <NavHead {...menuStatePropsObject}/>
-            {isActive ?
-            <div style = {{height: '0.11vh', backgroundColor: '#E5E7E6',}} />
-            : null
-            }
             <NavMenu {...menuStatePropsObject}/>
         </div>
     )

@@ -6,6 +6,8 @@ function NavMenu({isActive, toggleButton}){
     const menuLabels = ["Profile","Checkout"]
     const menuIcons = ["logout", "settings"]
 
+    const divider = <div style = {{height: '0.11vh', backgroundColor: '#E5E7E6',}} />
+
     // Menu Icons are going to need a new component similar to head
     // Instead of having lougout text and settings text
     // have a subdivided menu towards the top that just contains
@@ -31,11 +33,11 @@ function NavMenu({isActive, toggleButton}){
 
     return (
         <div className={`Menu ${isActive ? "active" : ""}`}>
-            
+            {divider}
             <div className="iconMenu">
                 {generateIconItems(menuIcons)}
             </div>
-            <div style = {{height: '0.11vh', backgroundColor: '#E5E7E6',}} />
+            {divider}
             <div className="routingMenu">
                 {/* {generateMenuItems(menuLabels)} */}
             </div>

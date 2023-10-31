@@ -14,10 +14,11 @@ function MenuIcon ({labelIconString, listCount}) {
         >
             <Icon
                 inverted
-                bordered
-                large
-                loading = {currentUser ? false : true}
-                name = {currentUser ? labelIconString : "spinner"}
+                color= "teal"
+                size = "large"
+                name= {labelIconString}
+                // loading = {currentUser ? false : true}
+                // name = {currentUser ? labelIconString : "spinner"}
             />
         </div>
         

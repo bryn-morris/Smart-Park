@@ -398,6 +398,12 @@ $light: #E5E7E6;
                     flex-wrap: wrap;
                     justify-content: center;
                     align-content: center;
+
+                    &:hover{
+                        background-color: $light;
+                        opacity: 0.7;
+                        cursor: pointer;
+                    }
                 }
             }
 

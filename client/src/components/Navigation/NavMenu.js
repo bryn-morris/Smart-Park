@@ -4,7 +4,7 @@ import MenuIcon from "./MenuIcon"
 function NavMenu({isActive, toggleButton}){
 
     const menuLabels = ["Profile","Checkout"]
-    const menuIcons = ["Logout", "Settings"]
+    const menuIcons = ["logout", "settings"]
 
     // Menu Icons are going to need a new component similar to head
     // Instead of having lougout text and settings text

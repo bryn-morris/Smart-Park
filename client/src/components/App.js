@@ -7,6 +7,7 @@ import { DogParkProvider } from '../context/DogParkContext'
 import { ReviewProvider } from '../context/ReviewContext'
 import { FriendsProvider } from '../context/FriendsContext'
 import { WebSocketProvider } from '../context/WebSocketContext'
+import { CheckInProvider } from '../context/CheckInContext'
 
 function App() {
 
@@ -17,7 +18,9 @@ function App() {
           <ReviewProvider>
             <FriendsProvider>
               <WebSocketProvider>
-                <Logging />
+                <CheckInProvider>
+                  <Logging />
+                </CheckInProvider>
               </WebSocketProvider>
             </FriendsProvider> 
           </ReviewProvider>

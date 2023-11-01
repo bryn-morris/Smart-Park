@@ -5,7 +5,7 @@ import { DogContext } from "../../context/DogContext";
 import { DogParkContext } from "../../context/DogParkContext";
 import { handleFormInputChange } from "../helpers/inputChangeHelper";
 
-function CheckOutForm({handleFormSubmission}){
+export default function CheckOutForm({handleFormSubmission}){
 
     const {dogs} = useContext(DogContext)
     const {dogParks} = useContext(DogParkContext)
@@ -160,5 +160,3 @@ function CheckOutForm({handleFormSubmission}){
         </div>
     )
 }
-
-export default CheckOutForm

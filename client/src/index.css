@@ -378,6 +378,7 @@
   flex: 94%;
 }
 .nav.Container .Menu .routingMenu .menuElement {
+  display: grid;
   width: 100%;
   height: 5vh;
   background-color: aqua;

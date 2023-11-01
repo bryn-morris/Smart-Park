@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/AuthContext"
 function NavMenu({isActive, toggleButton}){
 
     const menuLabels = ["Home","Profile","Settings"]
-    const menuIcons = ["logout", "paw"]
+    const menuIcons = ["paw", "logout"]
 
     const {setIsLogOutModalRendered} = useContext(AuthContext)
 

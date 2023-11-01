@@ -160,11 +160,6 @@ function Layout() {
       <LogOutModal/>
       {/* <SettingsModal /> */}
       <Switch>
-        <Route exact path="/">
-          <Home 
-            {...propsObjectToHome}
-          />
-        </Route>
         <Route exact path="/dogparks">
           <DogPark />
         </Route>
@@ -176,6 +171,11 @@ function Layout() {
         </Route>
         <Route exact path="/settings">
           <Settings/>
+        </Route>
+        <Route exact path="/">
+          <Home 
+            {...propsObjectToHome}
+          />
         </Route>
       </Switch>
     </div>

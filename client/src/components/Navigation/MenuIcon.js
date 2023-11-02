@@ -11,7 +11,7 @@ function MenuIcon ({labelIconString, listCount, onClickFunction}) {
     let tooltipContent;
 
     switch (labelIconString) {
-        case ('logout'): {
+        case ('log out'): {
             tooltipContent = capitalizeInputHelper(labelIconString)
             break;
         }
@@ -39,7 +39,8 @@ function MenuIcon ({labelIconString, listCount, onClickFunction}) {
                         className="navIcon"
                         size = "large"
                         loading = {currentUser ? false : true}
-                        name = {currentUser ? labelIconString : "spinner"}
+                        // name = {currentUser ? labelIconString : "spinner"}
+                        name = {labelIconString }
                     />
                 </div>
             }

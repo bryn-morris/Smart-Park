@@ -68,8 +68,6 @@ function CheckInProvider({children}) {
         setSeconds(0)
     }
 
-
-
     return (
         <CheckInContext.Provider 
             value ={{

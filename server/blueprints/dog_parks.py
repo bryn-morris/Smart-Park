@@ -115,6 +115,8 @@ def visit_by_id(id):
         db.session.delete(selVisit)
         db.session.commit()
 
+        import ipdb;ipdb.set_trace()
+
         return make_response({}, 204)
     
     if request.method == 'PATCH':

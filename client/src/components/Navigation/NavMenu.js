@@ -41,6 +41,7 @@ function NavMenu({isActive, toggleButton}){
 
             return(
                 <MenuElement
+                    key = {eachLabel}
                     navRoute = {navRoute} 
                     labelText={eachLabel}
                 />

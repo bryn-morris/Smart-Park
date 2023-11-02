@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card, Image} from 'semantic-ui-react'
 
-function DogCard({name, breed, weight, age, image, dog_parks}) {
+function DogCard({name, breed, weight, age, image}) {
 
   return (
     <Card>

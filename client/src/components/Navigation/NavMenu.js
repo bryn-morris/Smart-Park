@@ -55,7 +55,7 @@ function NavMenu({isActive, toggleButton}){
             let passFunc;
 
             switch (eachIconString) {
-                case 'logout':
+                case 'log out':
                     passFunc = () => setIsLogOutModalRendered(true)
                     // passFunc = () => console.log('testing')
                     break;

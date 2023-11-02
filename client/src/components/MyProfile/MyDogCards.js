@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {Form, Button, Modal} from 'semantic-ui-react'
 import DogCard from './DogCard'
+import { DogContext } from '../../context/DogContext'
 
 
-function MyDogCards({dog_parks, dog, showRemainingDogs, updatedDogs}) {
+function MyDogCards({dog}) {
     
     const [dogAttribute, setDogAttribute]= useState('')
     const [newInfo, setNewInfo] = useState('')
@@ -11,6 +12,7 @@ function MyDogCards({dog_parks, dog, showRemainingDogs, updatedDogs}) {
     const handleAttributeChange = e => setDogAttribute(e.target.value)
     const handleNewInfo = e => setNewInfo(e.target.value)
     
+    const {showRemainingDogs, updatedDogs} = useContext(DogContext)
 
     const deleteDog = () => {
         setIsModalOpen(false)
@@ -43,10 +45,7 @@ function MyDogCards({dog_parks, dog, showRemainingDogs, updatedDogs}) {
         width:"20%", 
         padding:"30px"}}
     >
-        <DogCard 
-            dog_parks = {dog_parks} 
-            {...dog}
-        />
+        <DogCard {...dog} />
         <Modal
             onClose={() =>setIsModalOpen(false)}
             onOpen={() => setIsModalOpen(true)}

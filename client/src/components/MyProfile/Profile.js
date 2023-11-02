@@ -7,7 +7,7 @@ import { DogParkContext } from "../../context/DogParkContext"
 import { List } from 'semantic-ui-react'
 
 
-function Profile({showRemainingDogs, updatedDogs, createDog}) {
+function Profile() {
     
   const {dogs} = useContext(DogContext)
   const { favoritedParksByUser } = useContext(DogParkContext)
@@ -17,8 +17,6 @@ function Profile({showRemainingDogs, updatedDogs, createDog}) {
         <MyDogCards 
           key = {dog.id} 
           dog = {dog}
-          showRemainingDogs={showRemainingDogs} 
-          updatedDogs={updatedDogs}
         />
       )
     }
@@ -36,9 +34,7 @@ function Profile({showRemainingDogs, updatedDogs, createDog}) {
         )})}
       </List>
       <div>
-        <NewDogForm 
-          createDog={createDog}
-        />
+        <NewDogForm />
       </div>
         {myDogs}
     </div>

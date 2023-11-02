@@ -3,8 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Home/Home";
 import NavContainer from "./Navigation/NavContainer";
 import DogPark from "./DogPark/DogPark";
-import Profile from "./MyAccount/Profile";
-import { DogContext } from '../context/DogContext';
+import Profile from "./MyProfile/Profile";
 import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
 import { FriendsContext } from "../context/FriendsContext";
@@ -17,7 +16,6 @@ import { CheckInContext } from "../context/CheckInContext";
 
 function Layout() {
 
-  const { dogs, setDogs } = useContext(DogContext)
   const { setDogParks } = useContext(DogParkContext)
   const { setFriendsList, setPendingFriendsList } = useContext(FriendsContext)
   const { setIsReLogOpen } = useContext(AuthContext) 
@@ -48,36 +46,6 @@ function Layout() {
     ]
   )
 
-  ///////////////////////////////////////
-  /////////     Dogs
-  ///////////////////////////////////////
-
-  const createDog = (newDog) => {
-    setDogs([...dogs, newDog])
-  }
-
-  const showRemainingDogs = (id) => {
-    const newDogArray = dogs.filter(dogObj => dogObj.id !== id)
-    setDogs(newDogArray)
-  }
-
-  const updatedDogs = (editedDog) => {
-    const changedDogArr = dogs.map(dog => {
-      return (dog.id !== editedDog.id ? dog : editedDog)
-    })
-    setDogs(changedDogArr)
-  }
-
-  ///////////////////////////////////////
-  /////////     Props Objects
-  ///////////////////////////////////////
-
-  const propsObjectToProfile = {
-    showRemainingDogs: showRemainingDogs,
-    updatedDogs: updatedDogs,
-    createDog: createDog,
-  }
-
   return (
     <div className='site'>
       <ReLogModal />
@@ -85,11 +53,14 @@ function Layout() {
       <LogOutModal/>
       {/* <SettingsModal /> */}
       <Switch>
+        <Route exact path="/">
+            <Home />
+        </Route>
         <Route exact path="/dogparks">
           <DogPark />
         </Route>
         <Route exact path="/profile">
-          <Profile {...propsObjectToProfile}/>
+          <Profile/>
         </Route>
         <Route exact path="/aboutus">
           <AboutUs/>
@@ -97,9 +68,7 @@ function Layout() {
         <Route exact path="/settings">
           <Settings/>
         </Route>
-        <Route exact path="/">
-          <Home />
-        </Route>
+        
       </Switch>
     </div>
   );

@@ -117,7 +117,7 @@ def visit_by_id(id):
 
         import ipdb;ipdb.set_trace()
 
-        return make_response({}, 204)
+        return make_response({}, 200)
     
     if request.method == 'PATCH':
 

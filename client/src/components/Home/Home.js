@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import CheckInModal from './CheckInModal'
+import CheckInModal from './CheckIn/CheckInModal'
 import PawPrintIcons from './PawPrintIcons'
 import { useContext } from 'react'
 import { CheckInContext } from '../../context/CheckInContext'

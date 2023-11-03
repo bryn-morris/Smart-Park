@@ -1,7 +1,7 @@
 import { Button, Modal } from "semantic-ui-react"
 import { useState, useContext } from "react"
 import CheckOutForm from "./CheckOutForm"
-import { CheckInContext } from "../../context/CheckInContext"
+import { CheckInContext } from "../../../context/CheckInContext"
 import CheckInButton from "./CheckInButton"
 
 function CheckInModal () {

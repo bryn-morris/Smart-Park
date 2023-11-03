@@ -80,12 +80,9 @@ function NavMenu({isActive, toggleButton}){
     return (
         <div className={`Menu ${isActive ? "active" : ""}`}>
             <NavDivider />
-            <NavDivider />
-            <NavDivider />
             <div className="iconMenu">
                 {generateIconItems(menuIcons)}
             </div>
-            <NavDivider />
             <div className="routingMenu">
                 <NavDivider />
                 {generateMenuItems(menuLabels)}

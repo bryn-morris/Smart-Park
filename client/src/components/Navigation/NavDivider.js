@@ -1,10 +1,16 @@
 
 
 function NavDivider () {
+
+    const dividerStyling = {
+        height: '0.11vh', 
+        backgroundColor: '#E5E7E6',
+        // marginBottom: '1vh',
+        // marginTop: '1vh',
+    }
+
     return(
-        <div 
-            style = {{height: '0.11vh', backgroundColor: '#E5E7E6',}} 
-        />
+        <div style = {dividerStyling} />
     )
 }
 

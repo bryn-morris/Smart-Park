@@ -79,14 +79,14 @@ function NavMenu({isActive, toggleButton}){
 
     return (
         <div className={`Menu ${isActive ? "active" : ""}`}>
-            <NavDivider />
+            <NavDivider optionalStyling={{height : '.3vh'}}/>
             <div className="iconMenu">
                 {generateIconItems(menuIcons)}
             </div>
             <div className="routingMenu">
-                <NavDivider />
+                <NavDivider optionalStyling={{height : '.3vh'}}/>
                 {generateMenuItems(menuLabels)}
-                <NavDivider />
+                <NavDivider/>
             </div>
             
         </div>

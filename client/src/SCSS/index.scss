@@ -176,22 +176,24 @@ $hovered: #D6D6D6;
     width: 85%;
     position: relative;
     height: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
 
     .Header {
-        position: absolute;
-        font-size: 300px;
-        text-align: center;
-        margin-top: 100px;
         font-family: Tahoma;
+        position: absolute;
+        font-size: 16vw;
         font-weight: 700;
-        top: 40%;
-        height: auto;
+        height: 30%;
+        top:30%;
     }
 }
 
 //////////////////// Check In ////////////////////
 
-.checkInmodalContainer {
+.checkInModalContainer {
     position: fixed ;
     height: 20%;
     width: 20%;
@@ -212,23 +214,23 @@ $hovered: #D6D6D6;
     margin-top: 200px;
 }
 
-@for $i from 1 to 5 {
-    #checkInFeature#{$i} {
-        @if $i == 1 {
-            @include checkInIconStyle(100%, 100%, 0%, 15%, rotate(10deg))
-        } @else if $i == 2 {
-            @include checkInIconStyle(100%, 100%, 10%, 25%, rotate(20deg))
-        } @else if $i == 3 {
-            @include checkInIconStyle(40%, 25%, 24%, 4%, rotate(-20deg))
-        } @else if $i == 4 {
-            @include checkInIconStyle(50%, 25%, 5%, 30%, rotate(-37deg), table-cell, bottom)
-        }
+// @for $i from 1 to 5 {
+//     #checkInFeature#{$i} {
+//         @if $i == 1 {
+//             @include checkInIconStyle(100%, 100%, 0%, 15%, rotate(10deg))
+//         } @else if $i == 2 {
+//             @include checkInIconStyle(100%, 100%, 10%, 25%, rotate(20deg))
+//         } @else if $i == 3 {
+//             @include checkInIconStyle(40%, 25%, 24%, 4%, rotate(-20deg))
+//         } @else if $i == 4 {
+//             @include checkInIconStyle(50%, 25%, 5%, 30%, rotate(-37deg), table-cell, bottom)
+//         }
 
-        &:hover {
-            opacity: 1;
-        }
-    }
-}
+//         &:hover {
+//             opacity: 1;
+//         }
+//     }
+// }
 
 //////////////////// Dog Paw ////////////////////
 
@@ -236,7 +238,7 @@ $hovered: #D6D6D6;
     .dogPawIcon#{$i} {
         @if $i == 1 {
             @include pawIconStyle(scale(3),40%)
-        } @else if $i == 2 {
+        } @if $i == 2 {
             @include pawIconStyle(rotate(55deg),0%,15%)
         } @else if $i == 3 {
             @include pawIconStyle(rotate(50deg),10%,16%)

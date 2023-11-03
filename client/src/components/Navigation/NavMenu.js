@@ -88,7 +88,6 @@ function NavMenu({isActive, toggleButton}){
                 {generateMenuItems(menuLabels)}
                 <NavDivider/>
             </div>
-            
         </div>
     )
 }

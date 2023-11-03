@@ -39,64 +39,62 @@ function CheckInModal () {
       }
 
     return(
-        <div className="checkInmodalContainer">    
-        {/* <div id = 'checkInFeature'>{currentCheckInID ? 'Check Out!' : 'Check In!'}</div>            */}
-                  
-                  <Modal
-                      onClose={() => handleModalClose()}
-                      onOpen={() => setIsModalOpen(true)}
-                      open={isModalOpen}
-                      trigger={<div><CheckInButton /></div>}
-                      size= 'small'
+        <div className="checkInModalContainer">                      
+          <Modal
+              onClose={() => handleModalClose()}
+              onOpen={() => setIsModalOpen(true)}
+              open={isModalOpen}
+              trigger={<div><CheckInButton/></div>}
+              size= 'small'
+          >
+          <Modal.Header>{currentCheckInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>
+              {currentCheckInID && accidentalCheckin === false ?
+                <Modal.Content>
+                  <Button
+                    onClick={handleCheckOut}
                   >
-                  <Modal.Header>{currentCheckInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>
-                      {currentCheckInID && accidentalCheckin === false ?
-                        <Modal.Content>
-                          <Button
-                            onClick={handleCheckOut}
-                          >
-                            Want to Check Out?
-                          </Button>
-                        </Modal.Content> :
-                        <Modal.Content>
-                            {accidentalCheckin ? 
-                            accidentalCheckInMessage:
-                            <CheckOutForm
-                              handleFormSubmission = {handleCheckInFormSubmission}
-                            />
-                            }
-                        </Modal.Content>
-                      }
-                      {currentCheckInID ?
-                        <Modal.Actions>
-                          {accidentalCheckin ?
-                            <div>
-                              <Button 
-                                onClick={handleDeleteCheckIn}>
-                                  Cancel Check-In?
-                              </Button>
-                            </div>
-                            :
-                            null
-                          }
-                        </Modal.Actions>:
-                        <Modal.Actions>
-                              <Button
-                                form="checkInForm" 
-                                type="submit"
-                                onClick={startTimer} 
-                              >
-                                Submit
-                              </Button>
-                              <Button
-                                onClick={()=>setIsModalOpen(false)} 
-                              >
-                                Close
-                              </Button>
-                          </Modal.Actions>}
-                  </Modal>
-  
-              </div>
+                    Want to Check Out?
+                  </Button>
+                </Modal.Content> :
+                <Modal.Content>
+                    {accidentalCheckin ? 
+                    accidentalCheckInMessage:
+                    <CheckOutForm
+                      handleFormSubmission = {handleCheckInFormSubmission}
+                    />
+                    }
+                </Modal.Content>
+              }
+              {currentCheckInID ?
+                <Modal.Actions>
+                  {accidentalCheckin ?
+                    <div>
+                      <Button 
+                        onClick={handleDeleteCheckIn}>
+                          Cancel Check-In?
+                      </Button>
+                    </div>
+                    :
+                    null
+                  }
+                </Modal.Actions>:
+                <Modal.Actions>
+                  <Button
+                    form="checkInForm" 
+                    type="submit"
+                    onClick={startTimer} 
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    onClick={()=>setIsModalOpen(false)} 
+                  >
+                    Close
+                  </Button>
+                </Modal.Actions>}
+          </Modal>
+
+        </div>
     )
 }
 

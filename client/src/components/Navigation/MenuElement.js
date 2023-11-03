@@ -5,6 +5,7 @@ function MenuElement ({labelText, navRoute}) {
     return(
         <NavLink 
             className="menuElement"
+            exact = {labelText === 'Home' ? true : false}
             to = {navRoute}
             activeStyle = {{backgroundColor : "#D6D6D6"}}
         >

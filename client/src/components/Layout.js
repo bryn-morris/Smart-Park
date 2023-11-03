@@ -54,21 +54,20 @@ function Layout() {
       {/* <SettingsModal /> */}
       <Switch>
         <Route exact path="/">
-            <Home />
+          <Home />
         </Route>
-        <Route exact path="/dogparks">
+        <Route path="/dogparks">
           <DogPark />
         </Route>
-        <Route exact path="/profile">
+        <Route path="/profile">
           <Profile/>
         </Route>
-        <Route exact path="/aboutus">
+        <Route path="/aboutus">
           <AboutUs/>
         </Route>
-        <Route exact path="/settings">
+        <Route path="/settings">
           <Settings/>
         </Route>
-        
       </Switch>
     </div>
   );

@@ -446,17 +446,20 @@ $hovered: #D6D6D6;
 
             .menuButtonContainer{
                 position: relative;
-                display: flex;
                 height: 100%;
                 flex: 50%;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
 
                 .navButton{
 
                     position: absolute;
                     width: 6vh;
                     height: 6vh;
-                    top: 3vh;
-                    right: 1vh;
+                    // top: 3vh;
+                    // right: 1vh;
                     transition-duration: 0.5s;
 
                     &:hover{
@@ -518,16 +521,20 @@ $hovered: #D6D6D6;
             }
             .imgContainer{
                 position:relative;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
                 height: 100%;
                 flex: 50%;
 
                 .userAvatar{
                     transition-duration: .8s;
                     position: absolute;
-                    right: 2.2vh;
-                    top: 2vh;
-                    height: 9vh;
-                    width: 9vh;
+                    // right: 2.2vh;
+                    // top: 2vh;
+                    height: 11vh;
+                    width: 11vh;
                     border-radius: 50%;
                     border: 0.6vh solid;
                     border-color: #212121;

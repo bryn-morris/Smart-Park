@@ -398,16 +398,17 @@
 }
 .nav.Container .Headcontainer .menuButtonContainer {
   position: relative;
-  display: flex;
   height: 100%;
   flex: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton {
   position: absolute;
   width: 6vh;
   height: 6vh;
-  top: 3vh;
-  right: 1vh;
   transition-duration: 0.5s;
 }
 .nav.Container .Headcontainer .menuButtonContainer .navButton:hover {
@@ -495,16 +496,18 @@
 }
 .nav.Container .Headcontainer .imgContainer {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   flex: 50%;
 }
 .nav.Container .Headcontainer .imgContainer .userAvatar {
   transition-duration: 0.8s;
   position: absolute;
-  right: 2.2vh;
-  top: 2vh;
-  height: 9vh;
-  width: 9vh;
+  height: 11vh;
+  width: 11vh;
   border-radius: 50%;
   border: 0.6vh solid;
   border-color: #212121;

@@ -20,7 +20,11 @@ function Home() {
     <div className='home'>
       <div className='home Header'>SmartPark</div>
       <PawPrintIcons selectedIcon={selectedIcon}/>
-      {currentCheckInID ? <div className='checkInText'>You're all checked in!</div> : null}
+      {currentCheckInID ? 
+        <div className='checkInText'>
+          You're all checked in!
+        </div> : 
+        null}
       <CheckInModal/>
     </div>
   )

@@ -85,7 +85,7 @@ function NavMenu({isActive, toggleButton}){
             </div>
             <div className="routingMenu">
                 <NavDivider optionalStyling={{height : '.3vh'}}/>
-                {generateMenuItems(menuLabels)}
+                    {generateMenuItems(menuLabels)}
                 <NavDivider/>
             </div>
         </div>

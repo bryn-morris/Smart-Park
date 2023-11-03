@@ -7,10 +7,10 @@ import CheckInButton from "./CheckInButton"
 function CheckInModal () {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
+    
     const {
         currentCheckInID,
         accidentalCheckin,
-        handleCheckInFormSubmission,
         startTimer,
         setAccidentalCheckin,
         deleteCheckIn,
@@ -52,17 +52,13 @@ function CheckInModal () {
                 <Modal.Content>
                   <Button
                     onClick={handleCheckOut}
-                  >
-                    Want to Check Out?
-                  </Button>
+                    content="Want to Check Out?"
+                  />
                 </Modal.Content> :
                 <Modal.Content>
                     {accidentalCheckin ? 
                     accidentalCheckInMessage:
-                    <CheckOutForm
-                      handleFormSubmission = {handleCheckInFormSubmission}
-                    />
-                    }
+                    <CheckOutForm/>}
                 </Modal.Content>
               }
               {currentCheckInID ?
@@ -70,27 +66,24 @@ function CheckInModal () {
                   {accidentalCheckin ?
                     <div>
                       <Button 
-                        onClick={handleDeleteCheckIn}>
-                          Cancel Check-In?
-                      </Button>
+                        onClick={handleDeleteCheckIn}
+                        content = "Cancel Check-In?"
+                      />
                     </div>
                     :
-                    null
-                  }
+                    null}
                 </Modal.Actions>:
                 <Modal.Actions>
                   <Button
                     form="checkInForm" 
                     type="submit"
                     onClick={startTimer} 
-                  >
-                    Submit
-                  </Button>
-                  <Button
-                    onClick={()=>setIsModalOpen(false)} 
-                  >
-                    Close
-                  </Button>
+                    content = "Submit"
+                  />
+                  <Button 
+                    onClick={()=>setIsModalOpen(false)}
+                    content = "Close"
+                  />
                 </Modal.Actions>}
           </Modal>
 

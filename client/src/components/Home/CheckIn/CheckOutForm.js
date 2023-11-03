@@ -4,11 +4,13 @@ import {Form} from 'semantic-ui-react'
 import { DogContext } from "../../../context/DogContext";
 import { DogParkContext } from "../../../context/DogParkContext";
 import { handleFormInputChange } from "../../helpers/inputChangeHelper";
+import { CheckInContext } from "../../../context/CheckInContext";
 
-export default function CheckOutForm({handleFormSubmission}){
+export default function CheckOutForm(){
 
     const {dogs} = useContext(DogContext)
     const {dogParks} = useContext(DogParkContext)
+    const {handleCheckInFormSubmission} = useContext(CheckInContext)
 
     const emptyFormObject = {
         dogParkName: '',
@@ -22,11 +24,9 @@ export default function CheckOutForm({handleFormSubmission}){
     // const [selectedDogName, setSelectedDogName] = useState('')
     // const [selectedLOS, setSelectedLOS] = useState('')
 
-
-
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        handleFormSubmission(formObject)
+        handleCheckInFormSubmission(formObject)
         setFormObject(emptyFormObject)
         // setSelectedDogPark('')
         // setSelectedDogName('')

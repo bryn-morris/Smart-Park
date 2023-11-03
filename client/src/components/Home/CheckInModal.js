@@ -1,7 +1,8 @@
-import { Button, Modal, Icon } from "semantic-ui-react"
+import { Button, Modal } from "semantic-ui-react"
 import { useState, useContext } from "react"
 import CheckOutForm from "./CheckOutForm"
 import { CheckInContext } from "../../context/CheckInContext"
+import CheckInButton from "./CheckInButton"
 
 function CheckInModal () {
 
@@ -45,17 +46,7 @@ function CheckInModal () {
                       onClose={() => handleModalClose()}
                       onOpen={() => setIsModalOpen(true)}
                       open={isModalOpen}
-                      trigger={
-                                <Icon className = 'massive ui green dogPawIcon1' name = 'paw'>
-                                  <div id = 'checkInFeature1'>?</div>
-                                  <div id = 'checkInFeature2'>?</div> 
-                                  <div id = 'checkInFeature3'>!</div>
-                                  <div id = 'checkInFeature4'>?</div> 
-                                </Icon>
-                                // <Button className = "massive ui icon modalbutton">
-                                //   {currentCheckInID ? <Icon name = 'paw' content = 'Check Out!'/> : <Icon name = 'paw' content = 'Check in!'/> }
-                                // </Button>
-                                }
+                      trigger={<div><CheckInButton /></div>}
                       size= 'small'
                   >
                   <Modal.Header>{currentCheckInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>

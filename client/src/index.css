@@ -73,20 +73,36 @@
 .home .Header {
   font-family: Tahoma;
   position: absolute;
-  font-size: 16vw;
+  font-size: 12vw;
   font-weight: 700;
-  height: 30%;
+  height: 40%;
   top: 30%;
 }
 
 .checkInModalContainer {
-  position: fixed;
-  height: 20%;
-  width: 20%;
-  border: 2px;
-  border-color: blue;
-  top: 25%;
-  left: 45%;
+  position: absolute;
+  top: 2vh;
+  left: 65vh;
+  height: 40vh;
+  width: 30vw;
+}
+.checkInModalContainer .checkInButton {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+}
+.checkInModalContainer .checkInButton .icon {
+  position: absolute;
+  margin: 0px;
+  top: 8vh;
+  flex: 100%;
+  color: red;
+  height: auto;
+  transform: scale(13);
 }
 
 .checkInText {

@@ -18,7 +18,7 @@ function Home() {
 
   return (
     <div className='home'>
-      <div className='home Header'>SmartPark</div>
+      <div className='home Header'>Smart Park</div>
       <PawPrintIcons selectedIcon={selectedIcon}/>
       {currentCheckInID ? 
         <div className='checkInText'>

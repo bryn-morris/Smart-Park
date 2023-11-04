@@ -3,7 +3,7 @@ import { Icon } from "semantic-ui-react"
 function CheckInButton () {
 
     return(
-        <div className="CheckInButton">
+        <div className="checkInButton">
             <Icon className = 'Icon' name = 'paw'/>
             <div id = 'checkInFeature1'>?</div>
             <div id = 'checkInFeature2'>?</div> 

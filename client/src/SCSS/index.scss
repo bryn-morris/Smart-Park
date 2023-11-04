@@ -210,30 +210,30 @@ $hovered: #D6D6D6;
         .icon {
             position:absolute;
             margin: 0px;
-            top:8vh;
+            top: 20vh;
             flex:100%;
             color: red;
             height:auto;
             transform: scale(13);
         }
 
-        // @for $i from 1 to 5 {
-        //     #checkInFeature#{$i} {
-        //         @if $i == 1 {
-        //             @include checkInIconStyle(40%, 25%, 0%, 15%, rotate(10deg))
-        //         } @else if $i == 2 {
-        //             @include checkInIconStyle(40%, 25%, 10%, 25%, rotate(20deg))
-        //         } @else if $i == 3 {
-        //             @include checkInIconStyle(40%, 25%, 24%, 4%, rotate(-20deg))
-        //         } @else if $i == 4 {
-        //             @include checkInIconStyle(40%, 25%, 5%, 30%, rotate(-37deg), table-cell, bottom)
-        //         }
+        @for $i from 1 to 5 {
+            #checkInFeature#{$i} {
+                @if $i == 1 {
+                    @include checkInIconStyle(23vh, 3vw, 6vw, 12vh, rotate(325deg))
+                } @else if $i == 2 {
+                    @include checkInIconStyle(5vh, 10vw, 7vw, 20vh, rotate(70deg))
+                } @else if $i == 3 {
+                    @include checkInIconStyle(5vh, 10vw, 24%, 4%, rotate(-20deg))
+                } @else if $i == 4 {
+                    @include checkInIconStyle(5vh, 10vw, 5%, 30%, rotate(-37deg), table-cell, bottom)
+                }
 
-        //         &:hover {
-        //             opacity: 1;
-        //         }
-        //     }
-        // }
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
     }
 }
 

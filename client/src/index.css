@@ -98,11 +98,79 @@
 .checkInModalContainer .checkInButton .icon {
   position: absolute;
   margin: 0px;
-  top: 8vh;
+  top: 20vh;
   flex: 100%;
   color: red;
   height: auto;
   transform: scale(13);
+}
+.checkInModalContainer .checkInButton #checkInFeature1 {
+  position: absolute;
+  height: 23vh;
+  width: 3vw;
+  text-align: center;
+  left: 6vw;
+  top: 12vh;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) rotate(325deg);
+  opacity: 0;
+}
+.checkInModalContainer .checkInButton #checkInFeature1:hover {
+  opacity: 1;
+}
+.checkInModalContainer .checkInButton #checkInFeature2 {
+  position: absolute;
+  height: 5vh;
+  width: 10vw;
+  text-align: center;
+  left: 7vw;
+  top: 20vh;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) rotate(70deg);
+  opacity: 0;
+}
+.checkInModalContainer .checkInButton #checkInFeature2:hover {
+  opacity: 1;
+}
+.checkInModalContainer .checkInButton #checkInFeature3 {
+  position: absolute;
+  height: 5vh;
+  width: 10vw;
+  text-align: center;
+  left: 24%;
+  top: 4%;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) rotate(-20deg);
+  opacity: 0;
+}
+.checkInModalContainer .checkInButton #checkInFeature3:hover {
+  opacity: 1;
+}
+.checkInModalContainer .checkInButton #checkInFeature4 {
+  position: absolute;
+  height: 5vh;
+  width: 10vw;
+  text-align: center;
+  left: 5%;
+  top: 30%;
+  font-size: 30px;
+  font-family: Tahoma;
+  font-weight: 700;
+  color: red;
+  transform: scale(2) rotate(-37deg);
+  opacity: 0;
+}
+.checkInModalContainer .checkInButton #checkInFeature4:hover {
+  opacity: 1;
 }
 
 .checkInText {

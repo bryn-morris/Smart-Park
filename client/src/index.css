@@ -95,6 +95,9 @@
   height: 100%;
   width: 100%;
 }
+.checkInModalContainer .checkInButton:hover {
+  cursor: pointer;
+}
 .checkInModalContainer .checkInButton .icon {
   position: absolute;
   margin: 0px;
@@ -109,65 +112,69 @@
   height: 23vh;
   width: 3vw;
   text-align: center;
-  left: 6vw;
+  left: 6.5vw;
   top: 12vh;
   font-size: 30px;
   font-family: Tahoma;
   font-weight: 700;
   color: red;
-  transform: scale(2) rotate(325deg);
+  transform: scale(2) rotate(330deg);
   opacity: 0;
+  z-index: 2;
 }
 .checkInModalContainer .checkInButton #checkInFeature1:hover {
   opacity: 1;
 }
 .checkInModalContainer .checkInButton #checkInFeature2 {
   position: absolute;
-  height: 5vh;
-  width: 10vw;
+  height: 23vh;
+  width: 3vw;
   text-align: center;
-  left: 7vw;
-  top: 20vh;
+  left: 12vw;
+  top: 10vh;
   font-size: 30px;
   font-family: Tahoma;
   font-weight: 700;
   color: red;
-  transform: scale(2) rotate(70deg);
+  transform: scale(2) rotate(340deg);
   opacity: 0;
+  z-index: 2;
 }
 .checkInModalContainer .checkInButton #checkInFeature2:hover {
   opacity: 1;
 }
 .checkInModalContainer .checkInButton #checkInFeature3 {
   position: absolute;
-  height: 5vh;
-  width: 10vw;
+  height: 23vh;
+  width: 3vw;
   text-align: center;
-  left: 24%;
-  top: 4%;
+  left: 15vw;
+  top: 10vh;
   font-size: 30px;
   font-family: Tahoma;
   font-weight: 700;
   color: red;
-  transform: scale(2) rotate(-20deg);
+  transform: scale(2) rotate(20deg);
   opacity: 0;
+  z-index: 2;
 }
 .checkInModalContainer .checkInButton #checkInFeature3:hover {
   opacity: 1;
 }
 .checkInModalContainer .checkInButton #checkInFeature4 {
   position: absolute;
-  height: 5vh;
-  width: 10vw;
+  height: 23vh;
+  width: 3vw;
   text-align: center;
-  left: 5%;
-  top: 30%;
+  left: 20vw;
+  top: 12vh;
   font-size: 30px;
   font-family: Tahoma;
   font-weight: 700;
   color: red;
-  transform: scale(2) rotate(-37deg);
+  transform: scale(2) rotate(30deg);
   opacity: 0;
+  z-index: 2;
 }
 .checkInModalContainer .checkInButton #checkInFeature4:hover {
   opacity: 1;

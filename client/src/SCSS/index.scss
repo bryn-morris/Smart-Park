@@ -22,6 +22,7 @@
     color: red;
     transform: scale(2) #{$transform};
     opacity: 0;
+    z-index: 2;
 }
 
 @mixin pawIconStyle($transform, $left, $bottom: null, $color: null, $z-index: null ) {
@@ -207,6 +208,10 @@ $hovered: #D6D6D6;
         height:100%;
         width:100%;
 
+        &:hover {
+            cursor: pointer;
+        }
+
         .icon {
             position:absolute;
             margin: 0px;
@@ -220,13 +225,13 @@ $hovered: #D6D6D6;
         @for $i from 1 to 5 {
             #checkInFeature#{$i} {
                 @if $i == 1 {
-                    @include checkInIconStyle(23vh, 3vw, 6vw, 12vh, rotate(325deg))
+                    @include checkInIconStyle(23vh, 3vw, 6.5vw, 12vh, rotate(330deg))
                 } @else if $i == 2 {
-                    @include checkInIconStyle(5vh, 10vw, 7vw, 20vh, rotate(70deg))
+                    @include checkInIconStyle(23vh, 3vw, 12vw, 10vh, rotate(340deg))
                 } @else if $i == 3 {
-                    @include checkInIconStyle(5vh, 10vw, 24%, 4%, rotate(-20deg))
+                    @include checkInIconStyle(23vh, 3vw, 15vw, 10vh, rotate(20deg))
                 } @else if $i == 4 {
-                    @include checkInIconStyle(5vh, 10vw, 5%, 30%, rotate(-37deg), table-cell, bottom)
+                    @include checkInIconStyle(23vh, 3vw, 20vw, 12vh, rotate(30deg), table-cell, bottom)
                 }
 
                 &:hover {

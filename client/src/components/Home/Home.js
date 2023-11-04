@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import PawPrintIcons from './PawPrintIcons'
+import CheckInButton from '../CheckIn/CheckInButton'
 import { useContext } from 'react'
 import { CheckInContext } from '../../context/CheckInContext'
 import HomeSearch from './HomeSearch'
@@ -7,8 +8,8 @@ import HomeSearch from './HomeSearch'
 function Home() {
 
   const [selectedIcon, setSelectedIcon] =useState(1)
-  const { currentCheckInID } = useContext(CheckInContext)
-  
+  const { currentCheckInID, setIsModalOpen } = useContext(CheckInContext)
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -26,6 +27,12 @@ function Home() {
           You're all checked in!
         </div> : 
         null}
+        <div 
+          className="checkInModalContainer"
+          onClick = {()=>setIsModalOpen(true)}
+        >
+          <CheckInButton/>
+        </div>
       <HomeSearch />
     </div>
   )

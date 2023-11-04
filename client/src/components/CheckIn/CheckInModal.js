@@ -2,7 +2,6 @@ import { Button, Modal } from "semantic-ui-react"
 import { useContext } from "react"
 import CheckOutForm from "./CheckOutForm"
 import { CheckInContext } from "../../context/CheckInContext"
-import CheckInButton from "./CheckInButton"
 
 function CheckInModal () {
     
@@ -43,11 +42,11 @@ function CheckInModal () {
               onClose={() => handleModalClose()}
               onOpen={() => setIsModalOpen(true)}
               open={isModalOpen}
-              trigger={
-                <div className="checkInModalContainer">
-                  <CheckInButton/>
-                </div>
-              }
+              // trigger={
+              //   <div className="checkInModalContainer">
+              //     <CheckInButton/>
+              //   </div>
+              // }
               size= 'small'
           >
           <Modal.Header>{currentCheckInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>

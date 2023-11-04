@@ -13,6 +13,7 @@ import { AuthContext } from "../context/AuthContext";
 import LogOutModal from "./Logging/LogOutModal";
 import Settings from "./Settings";
 import { CheckInContext } from "../context/CheckInContext";
+import CheckInModal from "./CheckIn/CheckInModal"
 
 function Layout() {
 
@@ -51,6 +52,7 @@ function Layout() {
       <ReLogModal />
       <NavContainer />
       <LogOutModal/>
+      <CheckInModal/>
       {/* <SettingsModal /> */}
       <Switch>
         <Route exact path="/">

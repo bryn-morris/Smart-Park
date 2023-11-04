@@ -1,12 +1,10 @@
 import { Button, Modal } from "semantic-ui-react"
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import CheckOutForm from "./CheckOutForm"
-import { CheckInContext } from "../../../context/CheckInContext"
+import { CheckInContext } from "../../context/CheckInContext"
 import CheckInButton from "./CheckInButton"
 
 function CheckInModal () {
-
-    const [isModalOpen, setIsModalOpen] = useState(false)
     
     const {
         currentCheckInID,
@@ -16,6 +14,8 @@ function CheckInModal () {
         deleteCheckIn,
         endTimer,
         checkOut,
+        isModalOpen,
+        setIsModalOpen,
     } = useContext(CheckInContext)
 
     const accidentalCheckInMessage = 'Thanks for checking in :D ! If that checkin was a mistake you can delete below!'

@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react'
-import CheckInModal from './CheckIn/CheckInModal'
 import PawPrintIcons from './PawPrintIcons'
 import { useContext } from 'react'
 import { CheckInContext } from '../../context/CheckInContext'
@@ -9,6 +8,7 @@ function Home() {
 
   const [selectedIcon, setSelectedIcon] =useState(1)
   const { currentCheckInID } = useContext(CheckInContext)
+  
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -19,9 +19,8 @@ function Home() {
 
   return (
     <div className='home'>
-      <CheckInModal/>
       <div className='home Header'>Smart Park</div>
-      <PawPrintIcons selectedIcon={selectedIcon}/>
+      {/* <PawPrintIcons selectedIcon={selectedIcon}/> */}
       {currentCheckInID ? 
         <div className='checkInText'>
           You're all checked in!

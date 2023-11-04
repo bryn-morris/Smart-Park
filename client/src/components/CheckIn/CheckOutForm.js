@@ -1,10 +1,10 @@
 import {useState, useContext} from "react";
 import {Form} from 'semantic-ui-react'
 
-import { DogContext } from "../../../context/DogContext";
-import { DogParkContext } from "../../../context/DogParkContext";
-import { handleFormInputChange } from "../../helpers/inputChangeHelper";
-import { CheckInContext } from "../../../context/CheckInContext";
+import { DogContext } from "../../context/DogContext";
+import { DogParkContext } from "../../context/DogParkContext";
+import { handleFormInputChange } from "../helpers/inputChangeHelper";
+import { CheckInContext } from "../../context/CheckInContext";
 
 export default function CheckOutForm(){
 

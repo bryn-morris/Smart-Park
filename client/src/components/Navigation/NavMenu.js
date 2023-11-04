@@ -3,13 +3,15 @@ import NavDivider from "./NavDivider"
 import MenuIcon from "./MenuIcon"
 import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
+import { CheckInContext } from "../../context/CheckInContext"
 
-function NavMenu({isActive, toggleButton}){
+function NavMenu({isActive}){
 
     const menuLabels = ["Home","Profile","Settings"]
     const menuIcons = ["paw", "log out"]
 
     const {setIsLogOutModalRendered} = useContext(AuthContext)
+    const {setIsModalOpen} = useContext(CheckInContext)
 
     // Menu Icons are going to need a new component similar to head
     // Instead of having lougout text and settings text
@@ -60,7 +62,7 @@ function NavMenu({isActive, toggleButton}){
                     // passFunc = () => console.log('testing')
                     break;
                 case 'paw':
-                    passFunc = () => console.log('checkout modal render')
+                    passFunc = () => setIsModalOpen(true)
                     break;
                 default:
                     passFunc = () => alert('No Matching Icon Found!')

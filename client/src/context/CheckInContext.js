@@ -10,6 +10,7 @@ function CheckInProvider({children}) {
 
     const [accidentalCheckin, setAccidentalCheckin ] = useState(false)
     const [currentCheckInID, setCurrentCheckInID] = useState(0)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const [seconds, setSeconds] = useState(0)
     const [intervalID, setIntervalID] = useState(null)
 
@@ -71,15 +72,17 @@ function CheckInProvider({children}) {
     return (
         <CheckInContext.Provider 
             value ={{
-                       accidentalCheckin,
-                       setAccidentalCheckin,
-                       currentCheckInID,
-                       setCurrentCheckInID,
-                       checkOut,
-                       startTimer,
-                       endTimer,
-                       handleCheckInFormSubmission,
-                       deleteCheckIn,
+                      accidentalCheckin,
+                      setAccidentalCheckin,
+                      currentCheckInID,
+                      setCurrentCheckInID,
+                      checkOut,
+                      startTimer,
+                      endTimer,
+                      handleCheckInFormSubmission,
+                      deleteCheckIn,
+                      isModalOpen,
+                      setIsModalOpen
                     }}
         >
             {children}

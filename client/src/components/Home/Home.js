@@ -3,6 +3,7 @@ import CheckInModal from './CheckIn/CheckInModal'
 import PawPrintIcons from './PawPrintIcons'
 import { useContext } from 'react'
 import { CheckInContext } from '../../context/CheckInContext'
+import HomeSearch from './HomeSearch'
 
 function Home() {
 
@@ -18,6 +19,7 @@ function Home() {
 
   return (
     <div className='home'>
+      <CheckInModal/>
       <div className='home Header'>Smart Park</div>
       <PawPrintIcons selectedIcon={selectedIcon}/>
       {currentCheckInID ? 
@@ -25,7 +27,7 @@ function Home() {
           You're all checked in!
         </div> : 
         null}
-      <CheckInModal/>
+      <HomeSearch />
     </div>
   )
 }

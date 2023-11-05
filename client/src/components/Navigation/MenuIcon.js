@@ -2,7 +2,7 @@ import { Icon, Popup } from "semantic-ui-react"
 import { AuthContext } from "../../context/AuthContext"
 import { useContext } from "react"
 import { capitalizeInputHelper } from "../helpers/capitalizeInputHelper"
-
+import NavIconStatus from "./NavIconStatus"
 
 function MenuIcon ({labelIconString, listCount, onClickFunction}) {
 
@@ -41,7 +41,12 @@ function MenuIcon ({labelIconString, listCount, onClickFunction}) {
                         loading = {currentUser ? false : true}
                         // name = {currentUser ? labelIconString : "spinner"}
                         name = {labelIconString }
-                    />
+                    >
+                        {labelIconString === 'paw' ?
+                            <NavIconStatus/> :
+                            null}
+                    </Icon>
+                    
                 </div>
             }
         />

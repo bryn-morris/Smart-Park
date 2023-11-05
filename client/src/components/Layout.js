@@ -49,11 +49,12 @@ function Layout() {
 
   return (
     <div className='site'>
+      {/* Modals */}
       <ReLogModal />
       <NavContainer />
       <LogOutModal/>
       <CheckInModal/>
-      {/* <SettingsModal /> */}
+      {/* Switch */}
       <Switch>
         <Route exact path="/">
           <Home />

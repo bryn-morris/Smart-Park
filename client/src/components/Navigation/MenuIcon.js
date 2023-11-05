@@ -3,10 +3,12 @@ import { AuthContext } from "../../context/AuthContext"
 import { useContext } from "react"
 import { capitalizeInputHelper } from "../helpers/capitalizeInputHelper"
 import NavIconStatus from "./NavIconStatus"
+import { CheckInContext } from "../../context/CheckInContext"
 
 function MenuIcon ({labelIconString, listCount, onClickFunction}) {
 
     const {currentUser} = useContext(AuthContext)
+    const {currentCheckInID} = useContext(CheckInContext)
 
     let tooltipContent;
 
@@ -16,7 +18,10 @@ function MenuIcon ({labelIconString, listCount, onClickFunction}) {
             break;
         }
         case ('paw'):{
-            tooltipContent = "CheckOut!"
+
+            tooltipContent = currentCheckInID ?
+                "Let's Check Out!" :
+                "Let's Check In!"
             break;
         }
         default:

@@ -37,14 +37,12 @@ function MenuIcon ({labelIconString, listCount, onClickFunction}) {
                     <Icon
                         inverted
                         className="navIcon"
-                        size = "large"
                         loading = {currentUser ? false : true}
-                        // name = {currentUser ? labelIconString : "spinner"}
                         name = {labelIconString }
                     >
                         {labelIconString === 'paw' ?
-                            <NavIconStatus/> :
-                            null}
+                        <NavIconStatus/> :
+                        null}
                     </Icon>
                     
                 </div>

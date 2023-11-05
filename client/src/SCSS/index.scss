@@ -435,7 +435,16 @@ $hovered: #D6D6D6;
                     }
 
                     .navIcon {
+                        position:relative;
                         color: $accent3;
+                        font-size:2.4vw;
+
+                        .navIconStatus {
+                            position: absolute;
+                            bottom: -0.5vh;
+                            left: 3vh;
+                            font-size: 1.3vw;
+                        }
                     }
                 }
             }

@@ -385,7 +385,15 @@
   cursor: pointer;
 }
 .nav.Container .Menu .iconMenu .iconContainer .navIcon {
+  position: relative;
   color: #3AA8C1;
+  font-size: 2.4vw;
+}
+.nav.Container .Menu .iconMenu .iconContainer .navIcon .navIconStatus {
+  position: absolute;
+  bottom: -0.5vh;
+  left: 3vh;
+  font-size: 1.3vw;
 }
 .nav.Container .Menu .routingMenu {
   flex: 94%;

@@ -10,7 +10,6 @@ function NavIconStatus () {
         <Icon
             inverted
             className = "navIconStatus"
-            size = "tiny"
             name = {
                 currentCheckInID ?
                 "times circle outline" :

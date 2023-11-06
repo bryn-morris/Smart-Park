@@ -1,0 +1,22 @@
+/////////////////////////////////////////////////
+///                 Home Screen
+/////////////////////////////////////////////////
+
+.home {
+    width: 85%;
+    position: relative;
+    height: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    .Header {
+        font-family: Tahoma;
+        position: absolute;
+        font-size: 12vw;
+        font-weight: 700;
+        height: 40%;
+        top:30%;
+    }
+}

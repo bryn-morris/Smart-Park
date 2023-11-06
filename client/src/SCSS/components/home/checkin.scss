@@ -1,0 +1,62 @@
+//////////////////// Check In ////////////////////
+
+.checkInModalContainer {
+    position:absolute;
+    top: 2vh;
+    left: 65vh;
+    height: 40vh;
+    width: 30vw;
+    
+    .checkInButton {
+        position:absolute;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap:wrap;
+        height:100%;
+        width:100%;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        .icon {
+            position:absolute;
+            margin: 0px;
+            top: 20vh;
+            flex:100%;
+            color: $accent2;
+            height:auto;
+            transform: scale(13);
+        }
+
+        @for $i from 1 to 5 {
+            #checkInFeature#{$i} {
+                @if $i == 1 {
+                    @include checkInIconStyle(23vh, 3vw, 6.5vw, 12vh, rotate(330deg))
+                } @else if $i == 2 {
+                    @include checkInIconStyle(23vh, 3vw, 12vw, 10vh, rotate(340deg))
+                } @else if $i == 3 {
+                    @include checkInIconStyle(23vh, 3vw, 15vw, 10vh, rotate(20deg))
+                } @else if $i == 4 {
+                    @include checkInIconStyle(23vh, 3vw, 20vw, 12vh, rotate(30deg), table-cell, bottom)
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.checkInText{
+    position:fixed;
+    top:50%;
+    right:15%;
+    font-size: 30px;
+    font-family: Tahoma;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 200px;
+}

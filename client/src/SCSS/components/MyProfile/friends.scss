@@ -1,0 +1,76 @@
+/////////////////////////////////////////////////
+///                Friendship Element
+/////////////////////////////////////////////////
+
+.FriendsListElement {
+    position: absolute;
+    z-index: 10;
+    background-color: blue;
+    height: 100%;
+    right: 0%;
+    width: 16%;
+}
+
+.FriendsListButton {
+    position: absolute;
+    z-index: 12;
+    bottom: 10%;
+    right: 5%;
+}
+
+//////////////////// Search Bar ////////////////////
+
+ // needed to add important to semanticUI Search doesn't overwrite SCSS values
+
+.searchResult{
+
+    display: inline-flex;
+    right: 0%;
+    // padding: 5px;
+
+    .iconContainer{
+
+        width: 10%;
+        // border-right: 1px solid grey;
+        
+        padding-right: .7em;
+        margin: auto;
+    }
+
+    .icon{
+        transform: scale(1.5);
+        margin: auto;
+        padding-right: .3em !important;
+        height: 100%;
+
+        &.request,
+        &.accept{
+            @include icon-hover-effect;
+        }
+        
+        &.sent{
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+    }
+    
+    .userContainer{
+
+        margin: auto;
+        padding-left: .3em;
+
+        .title{
+            font-size: 1em !important;
+            padding-left: .3em !important;
+            padding-right: .3em !important;
+            margin-left: .2em ! important;
+            bottom: 10% !important;
+        }
+        .image{
+            height: 36px !important;
+            width: 36px !important;
+            border-radius: 50% !important;
+            border: 2px solid black;
+        }
+    }
+}

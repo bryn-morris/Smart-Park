@@ -1,0 +1,33 @@
+//////////////////// Dog Paw ////////////////////
+
+@for $i from 1 to 14 {
+    .dogPawIcon#{$i} {
+        @if $i == 1 {
+            @include pawIconStyle(scale(3),40%)
+        } @if $i == 2 {
+            @include pawIconStyle(rotate(55deg),0%,15%)
+        } @else if $i == 3 {
+            @include pawIconStyle(rotate(50deg),10%,16%)
+        } @else if $i == 4 {
+            @include pawIconStyle(rotate(40deg),14%,29%)
+        } @else if $i == 5 {
+            @include pawIconStyle(rotate(30deg),25%,32%)
+        } @else if $i == 6 {
+            @include pawIconStyle(rotate(28deg),22%,48%, green)
+        } @else if $i == 7 {
+            @include pawIconStyle(rotate(20deg),34%,50%, green)
+        } @else if $i == 8 {
+            @include pawIconStyle(rotate(25deg),30%,62%)
+        } @else if $i == 9 {
+            @include pawIconStyle(rotate(30deg),40%,68%, $z-index: 3)
+        } @else if $i == 10 {
+            @include pawIconStyle(rotate(30deg),38%,83%, $z-index: 3)
+        } @else if $i == 11 {
+            @include pawIconStyle(rotate(20deg),48%,84%, $z-index: 3)
+        } @else if $i == 12 {
+            @include pawIconStyle(rotate(15deg),46%,97%, green, 3)
+        } @else if $i == 13 {
+            @include pawIconStyle(rotate(40deg),95%,40%, green, 3)
+        }
+    }
+}

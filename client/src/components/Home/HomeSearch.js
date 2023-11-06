@@ -1,9 +1,12 @@
-
+import { Search } from "semantic-ui-react"
 
 function HomeSearch () {
     return(
-        <div>
-
+        <div className="SearchContainer">
+            <Search
+                className="Bar"
+                
+            />
         </div>
     )
 }

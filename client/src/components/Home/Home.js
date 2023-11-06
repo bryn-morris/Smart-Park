@@ -22,17 +22,19 @@ function Home() {
     <div className='home'>
       <div className='home Header'>Smart Park</div>
       {/* <PawPrintIcons selectedIcon={selectedIcon}/> */}
-      {currentCheckInID ? 
+      {
+        currentCheckInID ? 
         <div className='checkInText'>
           You're all checked in!
         </div> : 
-        null}
-        <div 
-          className="checkInModalContainer"
-          onClick = {()=>setIsModalOpen(true)}
-        >
-          <CheckInButton/>
-        </div>
+        null
+      }
+      <div 
+        className="checkInModalContainer"
+        onClick = {()=>setIsModalOpen(true)}
+      >
+        <CheckInButton/>
+      </div>
       <HomeSearch />
     </div>
   )

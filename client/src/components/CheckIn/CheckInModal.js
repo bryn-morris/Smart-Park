@@ -71,6 +71,10 @@ function CheckInModal () {
                         onClick={handleDeleteCheckIn}
                         content = "Cancel Check-In?"
                       />
+                      <Button
+                        onClick = {handleModalClose}
+                        content = {"Confirm Check-In"}
+                      />
                     </div>
                     :
                     null}

@@ -35,7 +35,7 @@ function Home() {
       >
         <CheckInButton/>
       </div>
-      <HomeSearch />
+      {/* <HomeSearch /> */}
     </div>
   )
 }

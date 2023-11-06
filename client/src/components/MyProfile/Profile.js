@@ -23,10 +23,11 @@ function Profile() {
   )
 
   return (
-    <div 
-      className = 'myAcctBack' 
-      style={{backgroundImage:"url('https://img.freepik.com/free-photo/grungy-gray-marble-textured-background_53876-108405.jpg?w=2000')"}}
-    >
+    // <div 
+    //   className = 'myAcctBack' 
+    //   style={{backgroundImage:"url('https://img.freepik.com/free-photo/grungy-gray-marble-textured-background_53876-108405.jpg?w=2000')"}}
+    // >
+    <div className = "MyProfile">
       <h1 className='accountHeader'>My Account</h1>
       <List>
         {favoritedParksByUser.map((eachPark)=>{return(

@@ -1,0 +1,66 @@
+/////////////////////////////////////////////////
+///                Mixins 
+/////////////////////////////////////////////////
+
+@mixin icon-hover-effect {
+    &:hover {
+        transform: scale(1.2);
+        color: grey
+    }
+}
+
+@mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {
+    position: absolute;
+    height: $height;
+    width: $width;
+    text-align: center;
+    left: $left;
+    top: $top;
+    font-size: 30px;
+    font-family: Tahoma;
+    font-weight: 700;
+    color: $accent1;
+    transform: scale(2) #{$transform};
+    opacity: 0;
+    z-index: 2;
+}
+
+@mixin pawIconStyle($transform, $left, $bottom: null, $color: null, $z-index: null ) {
+    position: absolute;
+    transform: $transform;
+    left : $left;
+    bottom: $bottom;
+    color: $color;
+    z-index: $z-index;
+}
+
+@mixin hamIcon($height, $width, $top) {
+
+    transition-duration: 0.5s;
+    position: absolute;
+    height: $height;
+    width: $width;
+    top: $top;
+    content: "";
+    background-color: $dark;
+}
+
+@mixin hamIconBefore($height, $width, $top) {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: $width;
+    height: $height;
+    background-color: $dark;
+    top: $top;
+    content:"";
+}
+
+@mixin hamIconAfter($height, $width, $top){
+    transition-duration: 0.5s;
+    position: absolute;
+    width: $width;
+    height: $height;
+    background-color: $dark;
+    top: $top;
+    content:"";
+}

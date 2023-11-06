@@ -5,7 +5,7 @@ function HomeSearch () {
         <div className="SearchContainer">
             <Search
                 className="Bar"
-                
+                placeholder="Search for Dog Parks or other Users Here!"
             />
         </div>
     )

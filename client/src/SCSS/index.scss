@@ -1,82 +1,5 @@
-/////////////////////////////////////////////////
-///                Mixins 
-/////////////////////////////////////////////////
-
-@mixin icon-hover-effect {
-    &:hover {
-        transform: scale(1.2);
-        color: grey
-    }
-}
-
-@mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {
-    position: absolute;
-    height: $height;
-    width: $width;
-    text-align: center;
-    left: $left;
-    top: $top;
-    font-size: 30px;
-    font-family: Tahoma;
-    font-weight: 700;
-    color: $accent1;
-    transform: scale(2) #{$transform};
-    opacity: 0;
-    z-index: 2;
-}
-
-@mixin pawIconStyle($transform, $left, $bottom: null, $color: null, $z-index: null ) {
-    position: absolute;
-    transform: $transform;
-    left : $left;
-    bottom: $bottom;
-    color: $color;
-    z-index: $z-index;
-}
-
-@mixin hamIcon($height, $width, $top) {
-
-    transition-duration: 0.5s;
-    position: absolute;
-    height: $height;
-    width: $width;
-    top: $top;
-    content: "";
-    background-color: $dark;
-}
-
-@mixin hamIconBefore($height, $width, $top) {
-    transition-duration: 0.5s;
-    position: absolute;
-    width: $width;
-    height: $height;
-    background-color: $dark;
-    top: $top;
-    content:"";
-}
-
-@mixin hamIconAfter($height, $width, $top){
-    transition-duration: 0.5s;
-    position: absolute;
-    width: $width;
-    height: $height;
-    background-color: $dark;
-    top: $top;
-    content:"";
-}
-
-/////////////////////////////////////////////////
-///                Variables
-/////////////////////////////////////////////////
-
-$dark: #212121;
-$light: #E5E7E6;
-$accent1: #91972A;
-$accent2: #1D7874;
-$accent3: #3AA8C1;
-$accent4: #CE4027;
-$hovered: #D6D6D6;
-
+@import "common/variables.scss";
+@import "common/mixins.scss";
 
 /////////////////////////////////////////////////
 ///                SiteWide Content 
@@ -194,7 +117,7 @@ $hovered: #D6D6D6;
     .SearchContainer {
 
         .Bar{
-            
+
         }
 
     }
@@ -379,6 +302,9 @@ $hovered: #D6D6D6;
 ///                Account Screen
 /////////////////////////////////////////////////
 
+.MyProfile {
+    
+}
 /// .accountHeader{
 //   font-size: 50px;
 //   margin: 25px;
@@ -397,7 +323,6 @@ $hovered: #D6D6D6;
 /////////////////////////////////////////////////
 ///                Navigation Bar
 /////////////////////////////////////////////////
-
 
 .nav {
 

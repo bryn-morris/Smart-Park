@@ -1,9 +1,10 @@
 .Container{
 
-    height:22vh;
+    height:22%;
     width: 100%;
     position:absolute;
     border-bottom: solid .6vh $dark;
+    z-index: 2;
 
     .Header{
         font-family: Tahoma;

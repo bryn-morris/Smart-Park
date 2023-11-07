@@ -7,7 +7,7 @@ function ProfileHeader () {
 
     return(
         <div className='Container'>
-        <div className='Header'>My Profile</div>
+        <div className='Header'>{currentUser.username}</div>
         <div className = "ImageContainer">
           <img 
             className = "userAvatar"

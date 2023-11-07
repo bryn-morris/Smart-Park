@@ -6,11 +6,14 @@
 .MyProfile {
     height:100%;
     width:100%;
-    position:absolute;
+    position:relative;
     
     @import "profileheader";
 
     .ContentWindow {
-        
+        position:absolute;
+        border: 2px solid red;
+        height: 80%;
+        width: 80%;
     }
 }

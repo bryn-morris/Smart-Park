@@ -1,13 +1,14 @@
 .MyProfile {
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: relative;
 }
 .MyProfile .Container {
-  height: 22vh;
+  height: 22%;
   width: 100%;
   position: absolute;
   border-bottom: solid 0.6vh #212121;
+  z-index: 2;
 }
 .MyProfile .Container .Header {
   font-family: Tahoma;
@@ -70,6 +71,13 @@
   font-size: 1.5vw;
   font-weight: 400;
 }
+.MyProfile .ContentWindow {
+  position: absolute;
+  border: 2px solid red;
+  height: 80%;
+  width: 80%;
+}
+
 .FriendsListElement {
   position: absolute;
   z-index: 10;

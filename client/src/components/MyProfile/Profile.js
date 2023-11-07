@@ -1,12 +1,5 @@
-import MyDogCards from './MyDogCards'
-import NewDogForm from './NewDogForm'
-import FavoriteParkListEntry from './FavoriteParkListEntry'
-import { useContext } from 'react'
-import { DogContext } from '../../context/DogContext'
-import { DogParkContext } from "../../context/DogParkContext"
-import { List } from 'semantic-ui-react'
 import ProfileHeader from './ProfileHeader'
-
+import AccentLine from './AccentLine'
 
 function Profile() {
     
@@ -26,6 +19,7 @@ function Profile() {
   return (
     <div className = "MyProfile">
       <ProfileHeader />
+      <AccentLine />
       <div className = "ContentWindow">
 
       </div>

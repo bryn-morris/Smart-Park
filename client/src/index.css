@@ -15,7 +15,7 @@
   font-size: 5vw;
   font-weight: 400;
   top: 36%;
-  left: 20%;
+  left: 21%;
 }
 .MyProfile .Container .ImageContainer {
   display: flex;
@@ -41,7 +41,7 @@
   height: 5vh;
   width: 30vw;
   top: 70%;
-  left: 20%;
+  left: 21%;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;

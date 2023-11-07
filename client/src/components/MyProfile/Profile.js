@@ -20,9 +20,10 @@ function Profile() {
     <div className = "MyProfile">
       <ProfileHeader />
       <AccentLine />
-      <div className = "ContentWindow">
+      {/* <div className = "ContentWindow">
 
-      </div>
+      </div> */}
+      
       {/* <List>
         {favoritedParksByUser.map((eachPark)=>{return(
           <FavoriteParkListEntry key = {eachPark.id} eachPark = {eachPark}/>

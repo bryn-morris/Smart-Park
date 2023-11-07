@@ -14,7 +14,13 @@ function ProfileHeader () {
             src = {currentUser.image} 
             alt = "User Profile"
           />
+          <div 
+            className = "Backing"
+          />
         </div>
+        <div className="AccentLine"/>
+        <div className="cover1"/>
+        <div className="cover2"/>
         <div className = "DetailsContainer">
           <div className='BadgeContainer'>
             <div className='Badge'>[SAMPLE BADGE]</div>

@@ -1,10 +1,10 @@
 .Container{
 
-    height:22%;
+    height:38%;
     width: 100%;
     position:absolute;
     // background-color: $light;
-    // border-bottom: solid .6vh $dark;
+    border: solid .6vh red;
     z-index: 2;
 
     .Header{
@@ -12,27 +12,36 @@
         position: absolute;
         font-size: 5vw;
         font-weight: 400;
-        top: 36%;
+        top: 28%;
         left: 22%;
     }
     .ImageContainer{
         @include AvatarContainer();
 
         position:absolute;
-        height:32vh;
-        width:32vh;
-        top: 14%;
-        left : 2%;
+        height:38vh;
+        width:38vh;
+        // top: 14%;
+        left : 1%;
         
         .userAvatar{
             @include userIcon(32vh);
+            z-index: 2;
+        }
+        .Backing{
+            @include userIcon(36vh);
+
+            border: solid .6vh $dark;
+            background-color: $accent2;
+            z-index: 1;
         }
     }
+
     .DetailsContainer{
         position: absolute;
         height: 5vh;
         width: 30vw;
-        top:70%;
+        top: 56%;
         left: 22%;
         display:flex;
         flex-wrap: nowrap;
@@ -69,5 +78,33 @@
                 font-weight: 400;
             }
         }
+    }
+    .AccentLine{
+        position: absolute;
+        border-top: solid .6vh $dark;
+        border-bottom: solid .6vh $dark;
+        width: 100%;
+        height: 3.2vh;
+        background-color: $accent2;
+        top: 70%;
+    }
+    .cover1{
+        position:absolute;
+        z-index: 2;
+        background-color: $accent2;
+        // border: solid 3px green;
+        height: 2.1vh;
+        width: 3.2vw;
+        top:71.6%;
+    }
+    .cover2{
+        position:absolute;
+        z-index: 2;
+        background-color: $accent2;
+        // border: solid 3px green;
+        height: 2.1vh;
+        width: 3.2vw;
+        top:71.6%;
+        left: 17%;
     }
 }

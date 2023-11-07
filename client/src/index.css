@@ -4,9 +4,10 @@
   position: relative;
 }
 .MyProfile .Container {
-  height: 22%;
+  height: 38%;
   width: 100%;
   position: absolute;
+  border: solid 0.6vh red;
   z-index: 2;
 }
 .MyProfile .Container .Header {
@@ -14,7 +15,7 @@
   position: absolute;
   font-size: 5vw;
   font-weight: 400;
-  top: 36%;
+  top: 28%;
   left: 22%;
 }
 .MyProfile .Container .ImageContainer {
@@ -23,10 +24,9 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  height: 32vh;
-  width: 32vh;
-  top: 14%;
-  left: 2%;
+  height: 38vh;
+  width: 38vh;
+  left: 1%;
 }
 .MyProfile .Container .ImageContainer .userAvatar {
   position: absolute;
@@ -35,12 +35,24 @@
   border-radius: 50%;
   border: 0.6vh solid;
   border-color: #212121;
+  z-index: 2;
+}
+.MyProfile .Container .ImageContainer .Backing {
+  position: absolute;
+  height: 36vh;
+  width: 36vh;
+  border-radius: 50%;
+  border: 0.6vh solid;
+  border-color: #212121;
+  border: solid 0.6vh #212121;
+  background-color: #1D7874;
+  z-index: 1;
 }
 .MyProfile .Container .DetailsContainer {
   position: absolute;
   height: 5vh;
   width: 30vw;
-  top: 70%;
+  top: 56%;
   left: 22%;
   display: flex;
   flex-wrap: nowrap;
@@ -70,55 +82,36 @@
   font-size: 1.5vw;
   font-weight: 400;
 }
-.MyProfile .AccentLineContainer {
-  position: relative;
-  width: 100%;
-  height: 38vh;
-  z-index: 1;
-}
-.MyProfile .AccentLineContainer .AccentLine {
+.MyProfile .Container .AccentLine {
   position: absolute;
   border-top: solid 0.6vh #212121;
   border-bottom: solid 0.6vh #212121;
   width: 100%;
   height: 3.2vh;
   background-color: #1D7874;
-  top: 58%;
+  top: 70%;
 }
-.MyProfile .AccentLineContainer .cutout {
-  position: absolute;
-  height: 36vh;
-  width: 36vh;
-  border-radius: 50%;
-  border: 0.6vh solid;
-  border-color: #212121;
-  top: 2.4%;
-  left: 0.9%;
-  border: solid 0.6vh #212121;
-  background-color: #1D7874;
-  z-index: 1;
-}
-.MyProfile .AccentLineContainer .cover1 {
+.MyProfile .Container .cover1 {
   position: absolute;
   z-index: 2;
   background-color: #1D7874;
-  height: 2.2vh;
-  width: 3vw;
-  top: 59.3%;
+  height: 2.1vh;
+  width: 3.2vw;
+  top: 71.6%;
 }
-.MyProfile .AccentLineContainer .cover2 {
+.MyProfile .Container .cover2 {
   position: absolute;
   z-index: 2;
   background-color: #1D7874;
-  height: 2.2vh;
-  width: 3vw;
-  top: 59.3%;
-  left: 19.5%;
+  height: 2.1vh;
+  width: 3.2vw;
+  top: 71.6%;
+  left: 17%;
 }
 .MyProfile .ContentWindow {
   position: absolute;
-  border: 2px solid red;
-  height: 80%;
+  left: 10%;
+  height: 50%;
   width: 80%;
 }
 

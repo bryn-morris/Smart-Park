@@ -1,5 +1,5 @@
 import ProfileHeader from './ProfileHeader'
-import AccentLine from './AccentLine'
+import ContentWindow from './Content/ContentWindow'
 
 function Profile() {
     
@@ -19,11 +19,8 @@ function Profile() {
   return (
     <div className = "MyProfile">
       <ProfileHeader />
-      <AccentLine />
-      {/* <div className = "ContentWindow">
+      {/* <ContentWindow /> */}
 
-      </div> */}
-      
       {/* <List>
         {favoritedParksByUser.map((eachPark)=>{return(
           <FavoriteParkListEntry key = {eachPark.id} eachPark = {eachPark}/>

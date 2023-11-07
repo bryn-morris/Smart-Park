@@ -21,7 +21,7 @@
             font-size: 5vw;
             font-weight: 400;
             top: 36%;
-            left: 23%;
+            left: 20%;
         }
         .ImageContainer{
             @include AvatarContainer();
@@ -41,7 +41,7 @@
             height: 5vh;
             width: 30vw;
             top:70%;
-            left: 23%;
+            left: 20%;
             display:flex;
             flex-wrap: nowrap;
             flex-direction: row;

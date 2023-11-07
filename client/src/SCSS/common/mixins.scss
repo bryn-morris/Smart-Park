@@ -64,3 +64,20 @@
     top: $top;
     content:"";
 }
+
+@mixin AvatarContainer() {
+    position:relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin userIcon($height,) {
+        position: absolute;
+        height: $height;
+        width: $height;
+        border-radius: 50%;
+        border: 0.6vh solid;
+        border-color: #212121;
+}

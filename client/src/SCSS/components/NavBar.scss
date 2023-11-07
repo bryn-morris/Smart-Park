@@ -164,24 +164,13 @@
                 }
             }
             .imgContainer{
-                position:relative;
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
+                @include AvatarContainer();
                 height: 100%;
                 flex: 50%;
 
                 .userAvatar{
+                    @include userIcon(11vh);
                     transition-duration: .8s;
-                    position: absolute;
-                    // right: 2.2vh;
-                    // top: 2vh;
-                    height: 11vh;
-                    width: 11vh;
-                    border-radius: 50%;
-                    border: 0.6vh solid;
-                    border-color: #212121;
                 }
             }
         } 

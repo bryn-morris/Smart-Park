@@ -19,9 +19,15 @@
 
         }
         .ImageContainer{
+            @include AvatarContainer();
+
             border: 2px solid red;
-            height:6vh;
-            width:6vw;    
+            height:12vh;
+            width:12vh; 
+            
+            .userAvatar{
+
+            }
         }
         .DetailsContainer{
 

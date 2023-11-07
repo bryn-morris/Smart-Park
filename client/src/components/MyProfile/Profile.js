@@ -25,10 +25,6 @@ function Profile() {
   )
 
   return (
-    // <div 
-    //   className = 'myAcctBack' 
-    //   style={{backgroundImage:"url('https://img.freepik.com/free-photo/grungy-gray-marble-textured-background_53876-108405.jpg?w=2000')"}}
-    // >
     <div className = "MyProfile">
       <div className='Container'>
         <div className='Header'>My Profile</div>

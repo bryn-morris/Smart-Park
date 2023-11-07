@@ -9,6 +9,14 @@
   width: 100%;
   position: absolute;
 }
+.MyProfile .Container .Header {
+  font-family: Tahoma;
+  position: absolute;
+  font-size: 4vw;
+  font-weight: 400;
+  top: 32%;
+  left: 16%;
+}
 .MyProfile .Container .ImageContainer {
   display: flex;
   flex-wrap: wrap;
@@ -22,12 +30,21 @@
 }
 .MyProfile .Container .ImageContainer .userAvatar {
   position: absolute;
-  height: 16vh;
-  width: 16vh;
+  height: 14vh;
+  width: 14vh;
   border-radius: 50%;
   border: 0.6vh solid;
   border-color: #212121;
 }
+.MyProfile .Container .DetailsContainer {
+  position: absolute;
+  border: solid 2px red;
+  height: 5vh;
+  width: 25vw;
+  top: 56%;
+  left: 16%;
+}
+
 .FriendsListElement {
   position: absolute;
   z-index: 10;

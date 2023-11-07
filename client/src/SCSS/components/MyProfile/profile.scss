@@ -16,7 +16,12 @@
         position:absolute;
 
         .Header{
-
+            font-family: Tahoma;
+            position: absolute;
+            font-size: 4vw;
+            font-weight: 400;
+            top: 32%;
+            left: 16%;
         }
         .ImageContainer{
             @include AvatarContainer();
@@ -28,10 +33,16 @@
             left : 6%;
             
             .userAvatar{
-                @include userIcon(16vh);
+                @include userIcon(14vh);
             }
         }
         .DetailsContainer{
+            position: absolute;
+            border: solid 2px red;
+            height: 5vh;
+            width: 25vw;
+            top:56%;
+            left: 16%;
 
         }
     }

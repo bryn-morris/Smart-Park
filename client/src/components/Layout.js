@@ -1,19 +1,14 @@
 import React, { useEffect, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home/Home";
-import NavContainer from "./Navigation/NavContainer";
-import DogPark from "./DogPark/DogPark";
 import Profile from "./MyProfile/Profile";
-import AboutUs from "./AboutUs";
 import { DogParkContext } from "../context/DogParkContext";
 import { FriendsContext } from "../context/FriendsContext";
-import ReLogModal from "./Logging/ReLogModal";
 import fetchData from "../utils/fetch_util";
 import { AuthContext } from "../context/AuthContext";
-import LogOutModal from "./Logging/LogOutModal";
 import Settings from "./Settings";
 import { CheckInContext } from "../context/CheckInContext";
-import CheckInModal from "./CheckIn/CheckInModal"
+import SiteModals from "./SiteModals";
 
 function Layout() {
 
@@ -49,25 +44,36 @@ function Layout() {
 
   return (
     <div className='site'>
-      {/* Modals */}
-      <ReLogModal />
-      <NavContainer />
-      <LogOutModal/>
-      <CheckInModal/>
+      <SiteModals/>
       {/* Switch */}
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/dogparks">
+        {/* <Route path="/dogparks">
           <DogPark />
-        </Route>
+        </Route> */}
         <Route path="/profile">
-          <Profile/>
+          <Profile>
+            {/* <Switch>
+              <Route path = "/profile/parks">
+                <ProfileParks/>
+              </Route>
+              <Route path = "/profile/badges">
+                <ProfileBadges/>
+              </Route>
+              <Route path = "/profile/friends">
+                <ProfileFriends/>
+              </Route>
+              <Route path = "/profile/pets">
+                <ProfilePets/>
+              </Route>
+            </Switch> */}
+          </Profile>
         </Route>
-        <Route path="/aboutus">
+        {/* <Route path="/aboutus">
           <AboutUs/>
-        </Route>
+        </Route> */}
         <Route path="/settings">
           <Settings/>
         </Route>
@@ -75,5 +81,7 @@ function Layout() {
     </div>
   );
 }
+
+
 
 export default Layout;

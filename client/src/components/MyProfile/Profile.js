@@ -1,5 +1,5 @@
 import ProfileHeader from './ProfileHeader'
-import ContentWindow from './Content/ContentWindow'
+import ContentContainer from './Content/ContentContainer'
 
 function Profile() {
     
@@ -19,7 +19,7 @@ function Profile() {
   return (
     <div className = "MyProfile">
       <ProfileHeader />
-      {/* <ContentWindow /> */}
+      <ContentContainer />
 
       {/* <List>
         {favoritedParksByUser.map((eachPark)=>{return(

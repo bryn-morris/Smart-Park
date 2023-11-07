@@ -10,10 +10,36 @@
     
     @import "profileheader";
 
-    .ContentWindow {
-        position:absolute;
+    .ContentContainer {
+        position:relative;
+        top: 40%;
         left:10%;
         height: 50%;
         width: 80%;
+        // border: 2px solid red;
+
+        .TabNav{
+            position:absolute;
+            background-color: aquamarine;
+            height: 100%;
+            width: 15%;
+
+            .tab{
+
+                .Label{
+
+                }
+                .pointyBit{
+                    
+                }
+            }
+        }
+        .Window{
+            background-color: greenyellow;
+            position:absolute;
+            height: 100%;
+            left: 15%;
+            width: 85%;
+        }
     }
 }

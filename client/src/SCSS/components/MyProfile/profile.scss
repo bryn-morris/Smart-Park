@@ -8,89 +8,9 @@
     width:100%;
     position:absolute;
     
-    .Container{
+    @import "profileheader";
 
-        height:22vh;
-        width: 100%;
-        position:absolute;
-        border-bottom: solid .6vh $dark;
-
-        .Header{
-            font-family: Tahoma;
-            position: absolute;
-            font-size: 5vw;
-            font-weight: 400;
-            top: 36%;
-            left: 20%;
-        }
-        .ImageContainer{
-            @include AvatarContainer();
-
-            position:absolute;
-            height:32vh;
-            width:32vh;
-            top: 14%;
-            left : 2%;
-            
-            .userAvatar{
-                @include userIcon(32vh);
-            }
-        }
-        .DetailsContainer{
-            position: absolute;
-            height: 5vh;
-            width: 30vw;
-            top:70%;
-            left: 20%;
-            display:flex;
-            flex-wrap: nowrap;
-            flex-direction: row;
-
-            .BadgeContainer{
-
-                flex:50%;
-                display:flex;
-                justify-content: center;
-                align-items: center;
-
-                .Badge{
-                    
-                    font-family: Tahoma;
-                    position: absolute;
-                    font-size: 1.5vw;
-                    font-weight: 400;
-                }
-            }
-
-            .CurrencyContainer{
-
-                flex:50%;
-                display:flex;
-                justify-content: center;
-                align-items: center;
-
-                .Currency{
-                    
-                    font-family: Tahoma;
-                    position: absolute;
-                    font-size: 1.5vw;
-                    font-weight: 400;
-                }
-            }
-        }
+    .ContentWindow {
+        
     }
 }
-/// .accountHeader{
-//   font-size: 50px;
-//   margin: 25px;
-//   text-align: left;
-//   margin-top: 100px;
-//   font-family: Tahoma;
-//   font-weight: 700;
-// }
-
-// .myAcctBack{
-//   position: absolute;
-//   height:100%;
-//   width: 100%;
-// }

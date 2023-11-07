@@ -4,17 +4,27 @@
 /////////////////////////////////////////////////
 
 .MyProfile {
+    height:100%;
+    width:100%;
+    position:absolute;
     
     .Container{
+
+        background-color: aqua;
+        height:22vh;
+        width: 100%;
+        position:absolute;
 
         .Header{
 
         }
         .ImageContainer{
-                
+            border: 2px solid red;
+            height:6vh;
+            width:6vw;    
         }
         .DetailsContainer{
-            
+
         }
     }
 }

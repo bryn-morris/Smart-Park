@@ -1,3 +1,19 @@
+.MyProfile {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.MyProfile .Container {
+  background-color: aqua;
+  height: 22vh;
+  width: 100%;
+  position: absolute;
+}
+.MyProfile .Container .ImageContainer {
+  border: 2px solid red;
+  height: 6vh;
+  width: 6vw;
+}
 .FriendsListElement {
   position: absolute;
   z-index: 10;
@@ -286,6 +302,7 @@
 
 .nav {
   position: absolute;
+  z-index: 999;
 }
 .nav.Container {
   height: 100%;
@@ -303,7 +320,6 @@
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  z-index: 999;
 }
 .nav.Container .Menu.active {
   width: 100%;

@@ -4,18 +4,18 @@
   position: absolute;
 }
 .MyProfile .Container {
-  background-color: aqua;
   height: 22vh;
   width: 100%;
   position: absolute;
+  border-bottom: solid 0.6vh #212121;
 }
 .MyProfile .Container .Header {
   font-family: Tahoma;
   position: absolute;
-  font-size: 4vw;
+  font-size: 5vw;
   font-weight: 400;
-  top: 32%;
-  left: 16%;
+  top: 36%;
+  left: 23%;
 }
 .MyProfile .Container .ImageContainer {
   display: flex;
@@ -23,15 +23,15 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  height: 16vh;
-  width: 16vh;
-  top: 13%;
-  left: 6%;
+  height: 32vh;
+  width: 32vh;
+  top: 14%;
+  left: 2%;
 }
 .MyProfile .Container .ImageContainer .userAvatar {
   position: absolute;
-  height: 14vh;
-  width: 14vh;
+  height: 32vh;
+  width: 32vh;
   border-radius: 50%;
   border: 0.6vh solid;
   border-color: #212121;
@@ -39,9 +39,9 @@
 .MyProfile .Container .DetailsContainer {
   position: absolute;
   height: 5vh;
-  width: 25vw;
-  top: 56%;
-  left: 16%;
+  width: 30vw;
+  top: 70%;
+  left: 23%;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -55,7 +55,7 @@
 .MyProfile .Container .DetailsContainer .BadgeContainer .Badge {
   font-family: Tahoma;
   position: absolute;
-  font-size: 1.1vw;
+  font-size: 1.5vw;
   font-weight: 400;
 }
 .MyProfile .Container .DetailsContainer .CurrencyContainer {
@@ -67,7 +67,7 @@
 .MyProfile .Container .DetailsContainer .CurrencyContainer .Currency {
   font-family: Tahoma;
   position: absolute;
-  font-size: 1.1vw;
+  font-size: 1.5vw;
   font-weight: 400;
 }
 

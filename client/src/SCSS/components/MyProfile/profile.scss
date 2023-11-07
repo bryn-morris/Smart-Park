@@ -23,14 +23,16 @@
             background-color: aquamarine;
             height: 100%;
             width: 15%;
+            display:flex;
+            flex-direction: column;
 
             .tab{
-
+                
                 .Label{
 
                 }
                 .pointyBit{
-                    
+
                 }
             }
         }

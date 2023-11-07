@@ -1,11 +1,16 @@
 import { useState } from "react"
+import { Switch, Route } from 'react-router-dom/'
 import Tab from "./Tab"
+import ProfileBadges from "./ProfileBadges"
+import ProfileFriends from "./ProfileFriends"
+import ProfileParks from "./ProfileParks"
+import ProfilePets from "./ProfilePets"
 
 function ContentContainer () {
 
-    const tabList = ["Parks, Badges, Friends, Pets"]
+    const tabList = ["parks", "badges", "friends", "pets"]
 
-    const [selectedTab, setSelectedTab] = useState("Parks")
+    const [selectedTab, setSelectedTab] = useState("parks")
 
     function renderTabs (tabLabels) {
         return tabLabels.map((eachLabel)=> {
@@ -19,14 +24,28 @@ function ContentContainer () {
         })
     }
 
-    // use switch statement to render content within window based on selected tab
 
     return(
         <div className = "ContentContainer">
             <div className = "TabNav">
                 {renderTabs(tabList)}
             </div>
-            <div className= "Window"></div>
+            <div className= "Window">
+                <Switch>
+                    <Route path = "/profile/parks">
+                        <ProfileParks/>
+                    </Route>
+                    <Route path = "/profile/badges">
+                        <ProfileBadges/>
+                    </Route>
+                    <Route path = "/profile/friends">
+                        <ProfileFriends/>
+                    </Route>
+                    <Route path = "/profile/pets">
+                        <ProfilePets/>
+                    </Route>
+                </Switch>
+            </div>
         </div>
     )
 }

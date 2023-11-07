@@ -102,6 +102,8 @@
   background-color: aquamarine;
   height: 100%;
   width: 15%;
+  display: flex;
+  flex-direction: column;
 }
 .MyProfile .ContentContainer .Window {
   background-color: greenyellow;

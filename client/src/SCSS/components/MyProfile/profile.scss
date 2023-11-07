@@ -21,12 +21,14 @@
         .ImageContainer{
             @include AvatarContainer();
 
-            border: 2px solid red;
-            height:12vh;
-            width:12vh; 
+            position:absolute;
+            height:16vh;
+            width:16vh;
+            top: 13%;
+            left : 6%;
             
             .userAvatar{
-
+                @include userIcon(16vh);
             }
         }
         .DetailsContainer{

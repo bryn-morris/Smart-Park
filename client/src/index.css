@@ -10,14 +10,23 @@
   position: absolute;
 }
 .MyProfile .Container .ImageContainer {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  border: 2px solid red;
-  height: 12vh;
-  width: 12vh;
+  position: absolute;
+  height: 16vh;
+  width: 16vh;
+  top: 13%;
+  left: 6%;
+}
+.MyProfile .Container .ImageContainer .userAvatar {
+  position: absolute;
+  height: 16vh;
+  width: 16vh;
+  border-radius: 50%;
+  border: 0.6vh solid;
+  border-color: #212121;
 }
 .FriendsListElement {
   position: absolute;
@@ -476,11 +485,11 @@
   background-color: #E5E7E6;
 }
 .nav.Container .Headcontainer .imgContainer {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  position: relative;
   height: 100%;
   flex: 50%;
 }

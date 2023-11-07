@@ -2,6 +2,7 @@ import MyDogCards from './MyDogCards'
 import NewDogForm from './NewDogForm'
 import FavoriteParkListEntry from './FavoriteParkListEntry'
 import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 import { DogContext } from '../../context/DogContext'
 import { DogParkContext } from "../../context/DogParkContext"
 import { List } from 'semantic-ui-react'
@@ -10,6 +11,7 @@ import { List } from 'semantic-ui-react'
 function Profile() {
     
   const {dogs} = useContext(DogContext)
+  const {currentUser} = useContext(AuthContext)
   const { favoritedParksByUser } = useContext(DogParkContext)
 
   const myDogs = dogs.map((dog)=>{
@@ -30,7 +32,13 @@ function Profile() {
     <div className = "MyProfile">
       <div className='Container'>
         <div className='Header'>My Profile</div>
-        <div className = "ImageContainer"></div>
+        <div className = "ImageContainer">
+          <img 
+            className = "userAvatar"
+            src = {currentUser.image} 
+            alt = "User Profile"
+          />
+        </div>
         <div className = "DetailsContainer"></div>
       </div>
       

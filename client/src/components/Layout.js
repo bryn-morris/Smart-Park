@@ -45,7 +45,7 @@ function Layout() {
   return (
     <div className='site'>
       <SiteModals/>
-      {/* Switch */}
+
       <Switch>
         <Route exact path="/">
           <Home />
@@ -54,22 +54,7 @@ function Layout() {
           <DogPark />
         </Route> */}
         <Route path="/profile">
-          <Profile>
-            {/* <Switch>
-              <Route path = "/profile/parks">
-                <ProfileParks/>
-              </Route>
-              <Route path = "/profile/badges">
-                <ProfileBadges/>
-              </Route>
-              <Route path = "/profile/friends">
-                <ProfileFriends/>
-              </Route>
-              <Route path = "/profile/pets">
-                <ProfilePets/>
-              </Route>
-            </Switch> */}
-          </Profile>
+          <Profile/>
         </Route>
         {/* <Route path="/aboutus">
           <AboutUs/>
@@ -78,6 +63,7 @@ function Layout() {
           <Settings/>
         </Route>
       </Switch>
+
     </div>
   );
 }

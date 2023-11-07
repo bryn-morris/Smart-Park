@@ -38,11 +38,37 @@
 }
 .MyProfile .Container .DetailsContainer {
   position: absolute;
-  border: solid 2px red;
   height: 5vh;
   width: 25vw;
   top: 56%;
   left: 16%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.MyProfile .Container .DetailsContainer .BadgeContainer {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MyProfile .Container .DetailsContainer .BadgeContainer .Badge {
+  font-family: Tahoma;
+  position: absolute;
+  font-size: 1.1vw;
+  font-weight: 400;
+}
+.MyProfile .Container .DetailsContainer .CurrencyContainer {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MyProfile .Container .DetailsContainer .CurrencyContainer .Currency {
+  font-family: Tahoma;
+  position: absolute;
+  font-size: 1.1vw;
+  font-weight: 400;
 }
 
 .FriendsListElement {

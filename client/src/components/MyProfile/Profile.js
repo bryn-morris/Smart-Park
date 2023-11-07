@@ -35,7 +35,14 @@ function Profile() {
             alt = "User Profile"
           />
         </div>
-        <div className = "DetailsContainer"></div>
+        <div className = "DetailsContainer">
+          <div className='BadgeContainer'>
+            <div className='Badge'>[SAMPLE BADGE]</div>
+          </div>
+          <div className='CurrencyContainer'>
+            <div className ='Currency'>[SAMPLE CURRENCY]</div>
+          </div>
+        </div>
       </div>
       
       {/* <List>

@@ -7,7 +7,6 @@
   height: 38%;
   width: 100%;
   position: absolute;
-  border: solid 0.6vh red;
   z-index: 2;
 }
 .MyProfile .Container .Header {
@@ -95,17 +94,17 @@
   position: absolute;
   z-index: 2;
   background-color: #1D7874;
-  height: 2.1vh;
-  width: 3.2vw;
-  top: 71.6%;
+  height: 2vh;
+  width: 3.4vw;
+  top: 71.7%;
 }
 .MyProfile .Container .cover2 {
   position: absolute;
   z-index: 2;
   background-color: #1D7874;
-  height: 2.1vh;
+  height: 2vh;
   width: 3.2vw;
-  top: 71.6%;
+  top: 71.7%;
   left: 17%;
 }
 .MyProfile .ContentWindow {

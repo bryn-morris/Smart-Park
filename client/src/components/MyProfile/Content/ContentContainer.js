@@ -18,6 +18,7 @@ function ContentContainer () {
                 <Tab
                     key = {eachLabel}
                     tabLabel = {eachLabel}
+                    selectedTab = {selectedTab}
                     setSelectedTab = {setSelectedTab}
                 />
             )

@@ -1,7 +1,7 @@
 import { capitalizeInputHelper } from "../../helpers/capitalizeInputHelper"
 import { NavLink } from "react-router-dom/"
 
-function Tab ({tabLabel}) {
+function Tab ({tabLabel, selectedTab, setSelectedTab}) {
 
  // if is selected is true for this tab, add class to change styling and render different content
 
@@ -9,10 +9,16 @@ function Tab ({tabLabel}) {
         <div>
             <NavLink
                 to = {`/profile/${tabLabel}`}
-                className="Tab" 
+                className="Tab"
+                onClick = {()=>setSelectedTab(tabLabel)} 
             >
                 <div className="Label"/>{capitalizeInputHelper(tabLabel)}
-                <div className = "pointyBit"/>
+                {
+                    selectedTab === tabLabel ?
+                    <div className = "pointyBit"/>:
+                    ""
+                }
+                
             </NavLink>
         </div>
 

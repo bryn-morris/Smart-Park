@@ -2,7 +2,8 @@
 function NavDivider ({optionalStyling}) {
 
     const dividerStyling = {
-        height: '0.11vh', 
+        height: '0.11vh',
+        width: '100%', 
         backgroundColor: '#E5E7E6',
         ...optionalStyling
     }

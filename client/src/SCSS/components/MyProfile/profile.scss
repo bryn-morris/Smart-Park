@@ -27,53 +27,60 @@
             flex:10%;
             border-right: 2px solid $accent3;
 
-            .Tab{
-                
+            .tabContainer{
                 position:relative;
-                display:flex;
-                flex-wrap: wrap;
-                flex: 25%;
-                align-content: center;
-                justify-content: center;
-                z-index: 1;
+                flex:25%;
+
+                .Tab{
                 
-
-                .Label{
-
-                    font-size: 18pt;
-
-                }
-
-                .container{
-
                     position:absolute;
-                    width:3vw;
-                    height:2vh;
-                    top: 2.5vh;
-                    left:99%;
-
-                    .pointyBit{
-
-                        position:absolute;
-                        width:2.5vw;
-                        height:1.5vh;
-                        background-color: $hovered;
-                        clip-path: polygon(0vw .25vh,1.5vw 0.75vh,0vw 1.5vh);
-                        z-index: 2;
-
+                    height:100%;
+                    width: 100%;
+                    display:flex;
+                    flex-wrap: wrap;
+                    align-content: center;
+                    justify-content: center;
+                    z-index: 1;
+                    
+    
+                    .Label{
+    
+                        font-size: 18pt;
+    
                     }
-                    .borderElement{
+    
+                    .container{
+    
                         position:absolute;
-                        width:2.8vw;
-                        height:1.8vh;
-                        left:.1vw;
-                        background-color: $accent3;
-                        clip-path: polygon(0vw 0vh,1.75vw .75vh,0vw 1.75vh);
-                        z-index: -1;
+                        width:3vw;
+                        height:2vh;
+                        top: 2.5vh;
+                        left:99%;
+    
+                        .pointyBit{
+    
+                            position:absolute;
+                            width:2.5vw;
+                            height:1.5vh;
+                            background-color: $hovered;
+                            clip-path: polygon(0vw .25vh,1.5vw 0.75vh,0vw 1.5vh);
+                            z-index: 2;
+    
+                        }
+                        .borderElement{
+                            position:absolute;
+                            width:2.8vw;
+                            height:1.8vh;
+                            left:.1vw;
+                            background-color: $accent3;
+                            clip-path: polygon(0vw 0vh,1.75vw .75vh,0vw 1.75vh);
+                            z-index: -1;
+                        }
                     }
+                    
                 }
-                
             }
+
         }
         .Window{
             background-color: $dark;

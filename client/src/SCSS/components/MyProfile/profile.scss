@@ -18,32 +18,43 @@
         left:10%;
         height: 50%;
         width: 80%;
-        border: 2px solid red;
+        // border: 2px solid red;
 
         .TabNav{
             display:flex;
             flex-direction: column;
-            background-color: aquamarine;
-            flex:15%;
+            background-color: $dark;
+            flex:10%;
 
             .Tab{
                 
+                position:relative;
+                display:flex;
+                flex-wrap: wrap;
                 flex: 25%;
+                align-content: center;
+                justify-content: center;
 
                 .Label{
 
-
+                    font-size: 18pt;
 
                 }
                 .pointyBit{
 
-
+                    position:absolute;
+                    top: 2.5vh;
+                    left:99%;
+                    width:2.5vw;
+                    height:1.5vh;
+                    background-color: $hovered;
+                    clip-path: polygon(0vw 0vh,1.5vw 0.75vh,0vw 1.5vh);
                 }
             }
         }
         .Window{
-            background-color: greenyellow;
-            flex: 85%;
+            background-color: $dark;
+            flex: 90%;
             height: 100%;
         }
     }

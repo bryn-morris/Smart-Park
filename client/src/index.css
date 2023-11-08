@@ -98,20 +98,36 @@
   left: 10%;
   height: 50%;
   width: 80%;
-  border: 2px solid red;
 }
 .MyProfile .ContentContainer .TabNav {
   display: flex;
   flex-direction: column;
-  background-color: aquamarine;
-  flex: 15%;
+  background-color: #212121;
+  flex: 10%;
 }
 .MyProfile .ContentContainer .TabNav .Tab {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
   flex: 25%;
+  align-content: center;
+  justify-content: center;
+}
+.MyProfile .ContentContainer .TabNav .Tab .Label {
+  font-size: 18pt;
+}
+.MyProfile .ContentContainer .TabNav .Tab .pointyBit {
+  position: absolute;
+  top: 2.5vh;
+  left: 99%;
+  width: 2.5vw;
+  height: 1.5vh;
+  background-color: #D6D6D6;
+  clip-path: polygon(0vw 0vh, 1.5vw 0.75vh, 0vw 1.5vh);
 }
 .MyProfile .ContentContainer .Window {
-  background-color: greenyellow;
-  flex: 85%;
+  background-color: #212121;
+  flex: 90%;
   height: 100%;
 }
 

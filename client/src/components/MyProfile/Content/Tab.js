@@ -9,6 +9,7 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
             <NavLink
                 to = {`/profile/${tabLabel}`}
                 className="Tab"
+                activeStyle = {{backgroundColor : "#D6D6D6"}}
                 onClick = {()=>setSelectedTab(tabLabel)} 
             >
                 <div className="Label"/>{capitalizeInputHelper(tabLabel)}

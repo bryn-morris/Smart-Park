@@ -5,7 +5,7 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { CheckInContext } from "../../context/CheckInContext"
 
-function NavMenu({isActive}){
+function NavMenu({isActive, toggleButton}){
 
     const menuLabels = ["Home","Profile","Settings"]
     const menuIcons = ["paw", "log out"]
@@ -40,6 +40,7 @@ function NavMenu({isActive}){
                     key = {eachLabel}
                     navRoute = {navRoute} 
                     labelText={eachLabel}
+                    toggleButton = {toggleButton}
                 />
             )
         })
@@ -52,11 +53,16 @@ function NavMenu({isActive}){
 
             switch (eachIconString) {
                 case 'log out':
-                    passFunc = () => setIsLogOutModalRendered(true)
-                    // passFunc = () => console.log('testing')
+                    passFunc = () => {
+                        setIsLogOutModalRendered(true)
+                        toggleButton(false)
+                    }
                     break;
                 case 'paw':
-                    passFunc = () => setIsModalOpen(true)
+                    passFunc = () => {
+                        setIsModalOpen(true)
+                        toggleButton(false)
+                    }
                     break;
                 default:
                     passFunc = () => alert('No Matching Icon Found!')

@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom"
 import NavDivider from "./NavDivider"
 
-function MenuElement ({labelText, navRoute}) {
+function MenuElement ({labelText, navRoute, toggleButton}) {
 
     const menuStyling = {
         marginRight: '2vh',
@@ -15,6 +15,7 @@ function MenuElement ({labelText, navRoute}) {
                 exact = {labelText === 'Home' ? true : false}
                 to = {navRoute}
                 activeStyle = {{backgroundColor : "#D6D6D6"}}
+                onClick = {()=>toggleButton(false)}
             >
                 <div className = "text">
                     {labelText}

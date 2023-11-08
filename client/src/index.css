@@ -92,25 +92,29 @@
 }
 .MyProfile .ContentContainer {
   position: relative;
+  display: flex;
+  flex-direction: row;
   top: 40%;
   left: 10%;
   height: 50%;
   width: 80%;
+  border: 2px solid red;
 }
 .MyProfile .ContentContainer .TabNav {
-  position: absolute;
-  background-color: aquamarine;
-  height: 100%;
-  width: 15%;
   display: flex;
   flex-direction: column;
+  background-color: aquamarine;
+  flex: 15%;
+  height: 100%;
+}
+.MyProfile .ContentContainer .TabNav .Tab {
+  position: absolute;
+  flex: 25%;
 }
 .MyProfile .ContentContainer .Window {
   background-color: greenyellow;
-  position: absolute;
+  flex: 85%;
   height: 100%;
-  left: 15%;
-  width: 85%;
 }
 
 .FriendsListElement {

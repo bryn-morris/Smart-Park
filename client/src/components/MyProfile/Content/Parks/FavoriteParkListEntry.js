@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { List, Image } from "semantic-ui-react"
-import { AuthContext } from "../../context/AuthContext"
-import { DogParkContext } from "../../context/DogParkContext"
+import { AuthContext } from "../../../../context/AuthContext"
+import { DogParkContext } from "../../../../context/DogParkContext"
 
 function FavoriteParkListEntry({eachPark}){
 

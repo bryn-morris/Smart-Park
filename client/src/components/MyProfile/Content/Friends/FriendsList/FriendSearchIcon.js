@@ -1,7 +1,7 @@
 import {Icon} from "semantic-ui-react"
 import { useContext, useState, useEffect } from "react"
-import { WebSocketContext } from "../../context/WebSocketContext"
-import { FriendsContext } from "../../context/FriendsContext"
+import { WebSocketContext } from "../../../../../context/WebSocketContext"
+import { FriendsContext } from "../../../../../context/FriendsContext"
 
 // tear out and refactor this component
 

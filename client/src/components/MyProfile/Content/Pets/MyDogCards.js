@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import {Form, Button, Modal} from 'semantic-ui-react'
 import DogCard from './DogCard'
-import { DogContext } from '../../context/DogContext'
+import { DogContext } from '../../../../context/DogContext'
 
 
 function MyDogCards({dog}) {

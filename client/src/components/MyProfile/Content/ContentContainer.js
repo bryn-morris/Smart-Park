@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { Switch, Route } from 'react-router-dom/'
 import Tab from "./Tab"
-import ProfileBadges from "./ProfileBadges"
-import ProfileFriends from "./ProfileFriends"
-import ProfileParks from "./ProfileParks"
-import ProfilePets from "./ProfilePets"
+import ProfileBadges from "./Badges/ProfileBadges"
+import ProfileFriends from "./Friends/ProfileFriends"
+import ProfileParks from "./Parks/ProfileParks"
+import ProfilePets from "./Pets/ProfilePets"
 
 function ContentContainer () {
 

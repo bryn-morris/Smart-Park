@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { WebSocketContext } from "../../context/WebSocketContext"
+import { WebSocketContext } from "../../../../../context/WebSocketContext"
 import { Icon } from "semantic-ui-react"
 
 function FriendCard ({eachFr}) {

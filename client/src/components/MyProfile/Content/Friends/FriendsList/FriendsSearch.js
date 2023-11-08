@@ -1,6 +1,6 @@
 import { Search } from "semantic-ui-react"
 import { useContext } from "react"
-import { AuthContext } from "../../context/AuthContext"
+import { AuthContext } from "../../../../../context/AuthContext"
 import FriendSearchIcon  from "./FriendSearchIcon"
 
 function FriendsSearch ({searchedResultsList, handleSeachUser, searchedTerm}) {

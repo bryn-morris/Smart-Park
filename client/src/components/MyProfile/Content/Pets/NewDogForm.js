@@ -1,8 +1,8 @@
 import React, {useState, useContext} from 'react'
 import {Form, Button, Modal} from 'semantic-ui-react'
-import { AuthContext } from '../../context/AuthContext'
-import fetchData from '../../utils/fetch_util'
-import { DogContext } from '../../context/DogContext'
+import { AuthContext } from '../../../../context/AuthContext'
+import fetchData from '../../../../utils/fetch_util'
+import { DogContext } from '../../../../context/DogContext'
 
 function NewDogForm() {
 

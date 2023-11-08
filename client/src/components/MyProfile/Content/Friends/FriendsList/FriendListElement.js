@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState, useMemo } from "react"
-import { FriendsContext } from "../../context/FriendsContext"
+import { FriendsContext } from "../../../../../context/FriendsContext"
 import AbortController from "abort-controller"
 import FriendCard from "./FriendCard"
 import FriendsSearch from "./FriendsSearch"
-import { AuthContext } from "../../context/AuthContext"
-import fetchData from "../../utils/fetch_util"
+import { AuthContext } from "../../../../../context/AuthContext"
+import fetchData from "../../../../../utils/fetch_util"
 
 
 function FriendListElement() {

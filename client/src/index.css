@@ -105,10 +105,8 @@
   flex-direction: column;
   background-color: aquamarine;
   flex: 15%;
-  height: 100%;
 }
 .MyProfile .ContentContainer .TabNav .Tab {
-  position: absolute;
   flex: 25%;
 }
 .MyProfile .ContentContainer .Window {

@@ -6,7 +6,6 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
  // if is selected is true for this tab, add class to change styling and render different content
 
     return(
-        <div>
             <NavLink
                 to = {`/profile/${tabLabel}`}
                 className="Tab"
@@ -20,8 +19,6 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
                 }
                 
             </NavLink>
-        </div>
-
     )
 }
 

@@ -25,6 +25,7 @@
             flex-direction: column;
             background-color: $dark;
             flex:10%;
+            border-right: 2px solid $accent3;
 
             .Tab{
                 
@@ -34,22 +35,44 @@
                 flex: 25%;
                 align-content: center;
                 justify-content: center;
+                z-index: 1;
+                
 
                 .Label{
 
                     font-size: 18pt;
 
                 }
-                .pointyBit{
+
+                .container{
 
                     position:absolute;
+                    width:3vw;
+                    height:2vh;
                     top: 2.5vh;
                     left:99%;
-                    width:2.5vw;
-                    height:1.5vh;
-                    background-color: $hovered;
-                    clip-path: polygon(0vw 0vh,1.5vw 0.75vh,0vw 1.5vh);
+
+                    .pointyBit{
+
+                        position:absolute;
+                        width:2.5vw;
+                        height:1.5vh;
+                        background-color: $hovered;
+                        clip-path: polygon(0vw .25vh,1.5vw 0.75vh,0vw 1.5vh);
+                        z-index: 2;
+
+                    }
+                    .borderElement{
+                        position:absolute;
+                        width:2.8vw;
+                        height:1.8vh;
+                        left:.1vw;
+                        background-color: $accent3;
+                        clip-path: polygon(0vw 0vh,1.75vw .75vh,0vw 1.75vh);
+                        z-index: -1;
+                    }
                 }
+                
             }
         }
         .Window{

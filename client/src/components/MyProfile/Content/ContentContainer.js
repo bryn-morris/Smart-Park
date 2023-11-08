@@ -10,7 +10,7 @@ function ContentContainer () {
 
     const tabList = ["parks", "badges", "friends", "pets"]
 
-    const [selectedTab, setSelectedTab] = useState("parks")
+    const [selectedTab, setSelectedTab] = useState(null)
 
     function renderTabs (tabLabels) {
         return tabLabels.map((eachLabel)=> {

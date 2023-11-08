@@ -15,7 +15,11 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
                 <div className="Label"/>{capitalizeInputHelper(tabLabel)}
                 {
                     selectedTab === tabLabel ?
-                    <div className = "pointyBit"/>:
+                    <div className="container">
+                        <div className = "pointyBit"/>
+                        <div className= "borderElement"/>
+                    </div>
+                    :
                     ""
                 }
                 

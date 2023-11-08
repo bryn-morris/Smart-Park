@@ -104,6 +104,7 @@
   flex-direction: column;
   background-color: #212121;
   flex: 10%;
+  border-right: 2px solid #3AA8C1;
 }
 .MyProfile .ContentContainer .TabNav .Tab {
   position: relative;
@@ -112,18 +113,34 @@
   flex: 25%;
   align-content: center;
   justify-content: center;
+  z-index: 1;
 }
 .MyProfile .ContentContainer .TabNav .Tab .Label {
   font-size: 18pt;
 }
-.MyProfile .ContentContainer .TabNav .Tab .pointyBit {
+.MyProfile .ContentContainer .TabNav .Tab .container {
   position: absolute;
+  width: 3vw;
+  height: 2vh;
   top: 2.5vh;
   left: 99%;
+}
+.MyProfile .ContentContainer .TabNav .Tab .container .pointyBit {
+  position: absolute;
   width: 2.5vw;
   height: 1.5vh;
   background-color: #D6D6D6;
-  clip-path: polygon(0vw 0vh, 1.5vw 0.75vh, 0vw 1.5vh);
+  clip-path: polygon(0vw 0.25vh, 1.5vw 0.75vh, 0vw 1.5vh);
+  z-index: 2;
+}
+.MyProfile .ContentContainer .TabNav .Tab .container .borderElement {
+  position: absolute;
+  width: 2.8vw;
+  height: 1.8vh;
+  left: 0.1vw;
+  background-color: #3AA8C1;
+  clip-path: polygon(0vw 0vh, 1.75vw 0.75vh, 0vw 1.75vh);
+  z-index: -1;
 }
 .MyProfile .ContentContainer .Window {
   background-color: #212121;

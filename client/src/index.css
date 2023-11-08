@@ -25,8 +25,8 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  height: 38vh;
-  width: 38vh;
+  height: 36vh;
+  width: 36vh;
   left: 1%;
 }
 .MyProfile .Container .ImageContainer .userAvatar {
@@ -94,16 +94,19 @@
 }
 .MyProfile .ProfileBody {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
   flex: 70%;
   width: 100%;
+  background-color: #E5E7E6;
 }
 .MyProfile .ProfileBody .ContentContainer {
-  position: absolute;
   display: flex;
   flex-direction: row;
-  top: 40%;
-  left: 10%;
-  height: 50%;
+  height: 80%;
   width: 80%;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav {

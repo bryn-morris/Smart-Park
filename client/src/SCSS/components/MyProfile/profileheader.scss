@@ -1,8 +1,8 @@
 .Container{
 
-    height:38%;
+    position:relative;
+    flex:30%;
     width: 100%;
-    position:absolute;
     z-index: 2;
 
     .Header{
@@ -78,13 +78,13 @@
         }
     }
     .AccentLine{
-        position: relative;
+        position: absolute;
         border-top: solid .6vh $dark;
         border-bottom: solid .6vh $dark;
         width: 100%;
         height: 3.2vh;
         background-color: $accent2;
-        top: 70%;
+        bottom: 0%;
 
     //     .cover1{
     //         position:absolute;

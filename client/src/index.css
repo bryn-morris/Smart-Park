@@ -2,11 +2,13 @@
   height: 100%;
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .MyProfile .Container {
-  height: 38%;
+  position: relative;
+  flex: 30%;
   width: 100%;
-  position: absolute;
   z-index: 2;
 }
 .MyProfile .Container .Header {
@@ -82,16 +84,21 @@
   font-weight: 400;
 }
 .MyProfile .Container .AccentLine {
-  position: relative;
+  position: absolute;
   border-top: solid 0.6vh #212121;
   border-bottom: solid 0.6vh #212121;
   width: 100%;
   height: 3.2vh;
   background-color: #1D7874;
-  top: 70%;
+  bottom: 0%;
 }
-.MyProfile .ContentContainer {
+.MyProfile .ProfileBody {
   position: relative;
+  flex: 70%;
+  width: 100%;
+}
+.MyProfile .ProfileBody .ContentContainer {
+  position: absolute;
   display: flex;
   flex-direction: row;
   top: 40%;
@@ -99,18 +106,18 @@
   height: 50%;
   width: 80%;
 }
-.MyProfile .ContentContainer .TabNav {
+.MyProfile .ProfileBody .ContentContainer .TabNav {
   display: flex;
   flex-direction: column;
   background-color: #212121;
   flex: 10%;
   border-right: 2px solid #3AA8C1;
 }
-.MyProfile .ContentContainer .TabNav .tabContainer {
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer {
   position: relative;
   flex: 25%;
 }
-.MyProfile .ContentContainer .TabNav .tabContainer .Tab {
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -120,17 +127,17 @@
   justify-content: center;
   z-index: 1;
 }
-.MyProfile .ContentContainer .TabNav .tabContainer .Tab .Label {
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .Label {
   font-size: 18pt;
 }
-.MyProfile .ContentContainer .TabNav .tabContainer .Tab .container {
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container {
   position: absolute;
   width: 3vw;
   height: 2vh;
   top: 2.5vh;
   left: 99%;
 }
-.MyProfile .ContentContainer .TabNav .tabContainer .Tab .container .pointyBit {
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container .pointyBit {
   position: absolute;
   width: 2.5vw;
   height: 1.5vh;
@@ -138,7 +145,7 @@
   clip-path: polygon(0vw 0.25vh, 1.5vw 0.75vh, 0vw 1.5vh);
   z-index: 2;
 }
-.MyProfile .ContentContainer .TabNav .tabContainer .Tab .container .borderElement {
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container .borderElement {
   position: absolute;
   width: 2.8vw;
   height: 1.8vh;
@@ -147,7 +154,7 @@
   clip-path: polygon(0vw 0vh, 1.75vw 0.75vh, 0vw 1.75vh);
   z-index: -1;
 }
-.MyProfile .ContentContainer .Window {
+.MyProfile .ProfileBody .ContentContainer .Window {
   background-color: #212121;
   flex: 90%;
   height: 100%;

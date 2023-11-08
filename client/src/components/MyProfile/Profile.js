@@ -20,7 +20,10 @@ function Profile() {
   return (
     <div className = "MyProfile">
       <ProfileHeader />
-      <ContentContainer />
+      <div className='ProfileBody'>
+        <ContentContainer />
+      </div>
+
       {/* <List>
         {favoritedParksByUser.map((eachPark)=>{return(
           <FavoriteParkListEntry key = {eachPark.id} eachPark = {eachPark}/>

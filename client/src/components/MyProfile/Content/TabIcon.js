@@ -1,8 +1,6 @@
 import {Icon} from "semantic-ui-react";
 
-function TabIcon ({tabLabel}) {
-
-    console.log(tabLabel)
+function TabIcon ({tabLabel, optionalStyling}) {
 
     let tabIconProp;
     switch(tabLabel) {
@@ -22,12 +20,11 @@ function TabIcon ({tabLabel}) {
             break;
     }
 
-    console.log(tabIconProp)
-
     return(
         <Icon
             name = {tabIconProp}
             className="tabIcon"
+            style = {optionalStyling}
         />
     )
 }

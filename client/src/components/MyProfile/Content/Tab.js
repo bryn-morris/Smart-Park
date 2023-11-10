@@ -5,19 +5,26 @@ import { NavLink } from "react-router-dom/"
 
 function Tab ({tabLabel, selectedTab, setSelectedTab}) {
 
- // if is selected is true for this tab, add class to change styling and render different content
+    const selectedTabIconStyling = {
+        color: "#91972A",
+        border: "2px #91972A solid",
+    }
 
     return(
-        <div 
-            className="tabContainer"
-        >
+        <div className="tabContainer">
             <NavLink
                 to = {`/profile/${tabLabel}`}
                 className="Tab"
                 onClick = {()=>setSelectedTab(tabLabel)} 
             >
-                <div className="innerNav">
-                    <TabIcon tabLabel = {tabLabel}/>
+                <div 
+                    className="innerNav"
+                    style={selectedTab === tabLabel ? selectedTabIconStyling : null} 
+                >
+                    <TabIcon 
+                        tabLabel = {tabLabel}
+                        optionalStyling={selectedTab === tabLabel ? {color: "#91972A"} : null}
+                    />
                     <div className="Label"/>{capitalizeInputHelper(tabLabel)} 
                 </div>
                 {

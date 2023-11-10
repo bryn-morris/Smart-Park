@@ -131,15 +131,18 @@
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav {
   position: relative;
-  border: 2px red solid;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  height: 13vh;
+  width: 13vh;
+  border-radius: 6.5vh;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .tabIcon {
-  position: relative;
-  color: aqua;
-  z-index: inherit;
+  font-size: 4vh;
+  color: #3AA8C1;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .Label {
   height: auto;

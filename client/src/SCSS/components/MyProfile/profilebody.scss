@@ -16,7 +16,6 @@
         flex-direction: row;
         height: 80%;
         width: 80%;
-        // border: 2px solid red;
 
         .TabNav{
             display:flex;
@@ -28,6 +27,7 @@
             .tabContainer{
                 position:relative;
                 flex:25%;
+                border-radius: 5%;
 
                 .Tab{
                 

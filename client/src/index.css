@@ -119,6 +119,7 @@
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer {
   position: relative;
   flex: 25%;
+  border-radius: 5%;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab {
   position: absolute;

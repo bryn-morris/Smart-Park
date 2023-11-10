@@ -14,6 +14,7 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
                 activeStyle = {{backgroundColor : "#D6D6D6"}}
                 onClick = {()=>setSelectedTab(tabLabel)} 
             >
+                <div className="innerNav">
                 <div className="Label"/>{capitalizeInputHelper(tabLabel)}
                 {
                     selectedTab === tabLabel ?
@@ -23,7 +24,9 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
                     </div>
                     :
                     ""
-                }    
+                } 
+                </div>
+                   
             </NavLink>
             {tabLabel !== 'pets' ? <NavDivider optionalStyling = {{top:"100%", position:"absolute"}} /> : null}
         </div>

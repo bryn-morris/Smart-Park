@@ -1,5 +1,6 @@
 import { capitalizeInputHelper } from "../../helpers/capitalizeInputHelper"
 import NavDivider from "../../Navigation/NavDivider"
+import TabIcon from "./TabIcon";
 import { NavLink } from "react-router-dom/"
 
 function Tab ({tabLabel, selectedTab, setSelectedTab}) {
@@ -7,15 +8,18 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
  // if is selected is true for this tab, add class to change styling and render different content
 
     return(
-        <div className="tabContainer">
+        <div 
+            className="tabContainer"
+        >
             <NavLink
                 to = {`/profile/${tabLabel}`}
                 className="Tab"
-                activeStyle = {{backgroundColor : "#D6D6D6"}}
                 onClick = {()=>setSelectedTab(tabLabel)} 
             >
                 <div className="innerNav">
-                <div className="Label"/>{capitalizeInputHelper(tabLabel)}
+                    <TabIcon tabLabel = {tabLabel}/>
+                    <div className="Label"/>{capitalizeInputHelper(tabLabel)} 
+                </div>
                 {
                     selectedTab === tabLabel ?
                     <div className="container">
@@ -24,8 +28,7 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
                     </div>
                     :
                     ""
-                } 
-                </div>
+                }
                    
             </NavLink>
             {tabLabel !== 'pets' ? <NavDivider optionalStyling = {{top:"100%", position:"absolute"}} /> : null}

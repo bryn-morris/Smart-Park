@@ -7,7 +7,7 @@
 }
 .MyProfile .Container {
   position: relative;
-  flex: 30%;
+  flex: 24%;
   width: 100%;
   z-index: 2;
 }
@@ -25,14 +25,14 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  height: 36vh;
-  width: 36vh;
+  height: 31vh;
+  width: 31vh;
   left: 1%;
 }
 .MyProfile .Container .ImageContainer .userAvatar {
   position: absolute;
-  height: 32vh;
-  width: 32vh;
+  height: 27vh;
+  width: 27vh;
   border-radius: 50%;
   border: 0.6vh solid;
   border-color: #212121;
@@ -40,8 +40,8 @@
 }
 .MyProfile .Container .ImageContainer .Backing {
   position: absolute;
-  height: 36vh;
-  width: 36vh;
+  height: 31vh;
+  width: 31vh;
   border-radius: 50%;
   border: 0.6vh solid;
   border-color: #212121;
@@ -85,10 +85,8 @@
 }
 .MyProfile .Container .AccentLine {
   position: absolute;
-  border-top: solid 0.6vh #212121;
-  border-bottom: solid 0.6vh #212121;
   width: 100%;
-  height: 3.2vh;
+  height: 0.5vh;
   background-color: #1D7874;
   bottom: 0%;
 }
@@ -106,13 +104,13 @@
 .MyProfile .ProfileBody .ContentContainer {
   display: flex;
   flex-direction: row;
-  height: 80%;
-  width: 80%;
+  height: 89%;
+  width: 90%;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav {
   display: flex;
   flex-direction: column;
-  background-color: #212121;
+  background-color: #D6D6D6;
   flex: 10%;
   border-right: 2px solid #3AA8C1;
 }
@@ -131,7 +129,20 @@
   justify-content: center;
   z-index: 1;
 }
-.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .Label {
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav {
+  position: relative;
+  border: 2px red solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .tabIcon {
+  position: relative;
+  color: aqua;
+  z-index: inherit;
+}
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .Label {
+  height: auto;
   font-size: 18pt;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container {
@@ -159,7 +170,7 @@
   z-index: -1;
 }
 .MyProfile .ProfileBody .ContentContainer .Window {
-  background-color: #212121;
+  background-color: #D6D6D6;
   flex: 90%;
   height: 100%;
 }

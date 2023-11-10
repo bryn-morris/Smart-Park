@@ -1,7 +1,7 @@
 .Container{
 
     position:relative;
-    flex:30%;
+    flex:24%;
     width: 100%;
     z-index: 2;
 
@@ -17,16 +17,16 @@
         @include AvatarContainer();
 
         position:absolute;
-        height:36vh;
-        width:36vh;
+        height:31vh;
+        width:31vh;
         left : 1%;
         
         .userAvatar{
-            @include userIcon(32vh);
+            @include userIcon(27vh);
             z-index: 2;
         }
         .Backing{
-            @include userIcon(36vh);
+            @include userIcon(31vh);
 
             border: solid .6vh $dark;
             background-color: $accent2;
@@ -78,10 +78,10 @@
     }
     .AccentLine{
         position: absolute;
-        border-top: solid .6vh $dark;
-        border-bottom: solid .6vh $dark;
+        // border-top: solid .1vh $dark;
+        // border-bottom: solid .1vh $dark;
         width: 100%;
-        height: 3.2vh;
+        height: 0.5vh;
         background-color: $accent2;
         bottom: 0%;
 

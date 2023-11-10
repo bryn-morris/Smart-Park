@@ -14,13 +14,13 @@
 
         display:flex;
         flex-direction: row;
-        height: 80%;
-        width: 80%;
+        height: 89%;
+        width: 90%;
 
         .TabNav{
             display:flex;
             flex-direction: column;
-            background-color: $dark;
+            background-color: $hovered;
             flex:10%;
             border-right: 2px solid $accent3;
 
@@ -40,15 +40,28 @@
                     justify-content: center;
                     z-index: 1;
                     
+                    .innerNav{
+
+                        position:relative;
+                        border: 2px red solid;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        .tabIcon{
+                            position: relative;
+                            color:aqua;
+                            z-index: inherit;
+                        }
+
+                        .Label{
+                            height: auto;
+                            font-size: 18pt;
     
-                    .Label{
-    
-                        font-size: 18pt;
-    
+                        }  
                     }
-    
                     .container{
-    
+        
                         position:absolute;
                         width:3vw;
                         height:2vh;
@@ -75,13 +88,12 @@
                             z-index: -1;
                         }
                     }
-                    
                 }
             }
 
         }
         .Window{
-            background-color: $dark;
+            background-color: $hovered;
             flex: 90%;
             height: 100%;
         }

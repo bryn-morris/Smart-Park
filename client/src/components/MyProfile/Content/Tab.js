@@ -25,7 +25,7 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
                         tabLabel = {tabLabel}
                         optionalStyling={selectedTab === tabLabel ? {color: "#91972A"} : null}
                     />
-                    <div className="Label"/>{capitalizeInputHelper(tabLabel)} 
+                    <div className="text"/>{capitalizeInputHelper(tabLabel)} 
                 </div>
                 {
                     selectedTab === tabLabel ?

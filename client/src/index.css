@@ -143,10 +143,10 @@
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .tabIcon {
   font-size: 4vh;
   color: #3AA8C1;
+  margin: 0px;
 }
-.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .Label {
-  height: auto;
-  font-size: 18pt;
+.MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .text {
+  font-size: 3vh;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container {
   position: absolute;
@@ -527,7 +527,7 @@
   justify-content: center;
 }
 .nav.Container .Menu .routingMenu .menuElement .text {
-  font-size: 14pt;
+  font-size: 3.5vh;
 }
 .nav.Container .Headcontainer {
   transition-duration: 0.5s;

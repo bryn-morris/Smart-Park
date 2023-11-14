@@ -33,7 +33,10 @@ function ProfileParks () {
 
     function renderVisibleParks (parkArray) {
         return (parkArray.map((eachPark)=>{return(
-            <FavoritePark />
+            <FavoritePark 
+                eachPark = {eachPark}
+                key = {eachPark.id}
+            />
         )})
         )
     }
@@ -46,7 +49,7 @@ function ProfileParks () {
                 <div className="parkCardContainer">
                     {renderVisibleParks(favoritedParksByUser.slice(
                         countObj['startIndex'],
-                        countObj['endIndex']
+                        countObj['endIndex'],
                     ))}
                 </div>
             </div>

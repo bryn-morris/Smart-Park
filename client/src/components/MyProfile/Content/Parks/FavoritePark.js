@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { Image, Icon } from "semantic-ui-react"
+import { Icon } from "semantic-ui-react"
 import { AuthContext } from "../../../../context/AuthContext"
 import { DogParkContext } from "../../../../context/DogParkContext"
 
@@ -11,23 +11,37 @@ function FavoritePark({eachPark}){
     const favoritedEntryID = eachPark.favorited.filter((each)=>each.user_id === currentUser.id)[0].id
 
     return(
-
-            <List.Icon 
-                verticalAlign="middle" 
-                size = "large" 
-                name="heart"
-                onClick = {()=>{unFavorite(favoritedEntryID)}}
+        <div className="cardContainer">
+            <img 
+                src = {eachPark.image}
+                alt = "park"
+                className="parkImage"
             />
-            <List.Content>
-                <List.Header>{eachPark.name}</List.Header>
-                <Image
-                    size = 'tiny'
-                    src = {eachPark.image}
-                    rounded
-                    bordered
-                />  
-            </List.Content>
-        </List.Item>
+            <div className="labelContainer">
+                <Icon
+                    className="heartIcon"
+                    name="heart"
+                    onClick = {()=>{unFavorite(favoritedEntryID)}}
+                />
+                <div className="label"/>{eachPark.name}
+            </div>
+        </div>
+        //     <List.Icon 
+        //         verticalAlign="middle" 
+        //         size = "large" 
+        //         name="heart"
+        //         onClick = {()=>{unFavorite(favoritedEntryID)}}
+        //     />
+        //     <List.Content>
+        //         <List.Header>{eachPark.name}</List.Header>
+        //         <Image
+        //             size = 'tiny'
+        //             src = {eachPark.image}
+        //             rounded
+        //             bordered
+        //         />  
+        //     </List.Content>
+        // </List.Item>
     )
 }
 

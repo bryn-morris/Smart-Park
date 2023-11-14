@@ -1,5 +1,5 @@
 import { DogParkContext } from "../../../../context/DogParkContext"
-import FavoriteParks from "./FavoriteParkListEntry"
+import FavoritePark from "./FavoritePark"
 import { useState, useContext } from "react"
 
 
@@ -7,13 +7,10 @@ function ProfileParks () {
 
     const {favoritedParksByUser} = useContext(DogParkContext)
 
-    const initialCountObj = {
+    const [countObj, setCountObj] = useState({
         startIndex : 0,
         endIndex : 5,
-    }
-
-    const [countObj, setCountObj] = useState(initialCountObj)
-    const [visibleFavoriteParks, setVisibleFavoriteParks] = useState(favoritedParksByUser.slice(countObj["startIndex"], countObj["endIndex"]))
+    })
 
     function incrementFavParks () {
         if (countObj.endIndex !== favoritedParksByUser.length + 1) {
@@ -32,14 +29,26 @@ function ProfileParks () {
                 endIndex: prevState.endIndex - 1,
             })})
         }
+    }
 
+    function renderVisibleParks (parkArray) {
+        return (parkArray.map((eachPark)=>{return(
+            <FavoritePark />
+        )})
+        )
     }
 
     return(
         <div className = "parksContainer">
             <div className = "favoritesContainer">
-                favoriteparks
-                {/* <FavoriteParks /> */}
+                <div className="leftArrow" onClick={decrementFavParks}/>
+                <div className="rightArrow" onClick={incrementFavParks}/>
+                <div className="parkCardContainer">
+                    {renderVisibleParks(favoritedParksByUser.slice(
+                        countObj['startIndex'],
+                        countObj['endIndex']
+                    ))}
+                </div>
             </div>
             <div className = "recentsContainer">
                 reccentparks
@@ -48,8 +57,6 @@ function ProfileParks () {
                 reviewedparks
             </div>
         </div>
-
-        
     )
 }
 

@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import { List, Image } from "semantic-ui-react"
+import { Image, Icon } from "semantic-ui-react"
 import { AuthContext } from "../../../../context/AuthContext"
 import { DogParkContext } from "../../../../context/DogParkContext"
 
-function FavoriteParkListEntry({eachPark}){
+function FavoritePark({eachPark}){
 
     const { currentUser } = useContext(AuthContext)
     const { unFavorite } = useContext(DogParkContext)
@@ -11,7 +11,7 @@ function FavoriteParkListEntry({eachPark}){
     const favoritedEntryID = eachPark.favorited.filter((each)=>each.user_id === currentUser.id)[0].id
 
     return(
-        <List.Item>
+
             <List.Icon 
                 verticalAlign="middle" 
                 size = "large" 
@@ -31,4 +31,4 @@ function FavoriteParkListEntry({eachPark}){
     )
 }
 
-export default FavoriteParkListEntry
+export default FavoritePark

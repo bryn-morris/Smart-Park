@@ -105,8 +105,9 @@
   display: flex;
   flex-direction: row;
   height: 89%;
+  max-height: 65vh;
   width: 90%;
-  overflow: auto;
+  overflow: hidden;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav {
   display: flex;
@@ -333,6 +334,28 @@
   bottom: 40%;
   color: green;
   z-index: 3;
+}
+
+.parksContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+.parksContainer .favoritesContainer {
+  background-color: aquamarine;
+  width: 100%;
+  height: 25vh;
+}
+.parksContainer .recentsContainer {
+  background-color: orangered;
+  width: 100%;
+  height: 25vh;
+}
+.parksContainer .reviewsContainer {
+  background-color: green;
+  width: 100%;
+  height: 40vh;
 }
 
 .home {

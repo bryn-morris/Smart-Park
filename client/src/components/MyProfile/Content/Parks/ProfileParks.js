@@ -3,14 +3,14 @@ import FavoriteParks from "./FavoriteParkListEntry"
 function ProfileParks () {
     return(
         <div className = "parksContainer">
-            <div className = "favorites">
+            <div className = "favoritesContainer">
                 favoriteparks
                 {/* <FavoriteParks /> */}
             </div>
-            <div className = "recents">
+            <div className = "recentsContainer">
                 reccentparks
             </div>
-            <div className = "reviews">
+            <div className = "reviewsContainer">
                 reviewedparks
             </div>
         </div>

@@ -16,13 +16,14 @@
         flex-direction: row;
         height: 89%;
         width: 90%;
+        overflow: auto;
 
         .TabNav{
             display:flex;
             flex-direction: column;
             background-color: $hovered;
             flex:10%;
-            border-right: 2px solid $accent3;
+            border-right: 2px solid $light;
 
             .tabContainer{
                 position:relative;
@@ -85,7 +86,7 @@
                             width:2.8vw;
                             height:1.8vh;
                             left:.1vw;
-                            background-color: $accent3;
+                            background-color: $light;
                             clip-path: polygon(0vw 0vh,1.75vw .75vh,0vw 1.75vh);
                             z-index: -1;
                         }

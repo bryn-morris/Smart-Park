@@ -1,11 +1,26 @@
 .parkCardContainer {
 
+    position:relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
     .cardContainer {
+
+        flex:20%;
+        margin: 5%;
 
         .parkImage {
 
+            position:absolute;
+            height: 10vh;
+            width: 8vw;
+
         }
         .labelContainer{
+            position:absolute;
 
             .heartIcon{
 

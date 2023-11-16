@@ -347,6 +347,26 @@
   width: 100%;
   height: 25vh;
 }
+.parksContainer .favoritesContainer .parkCardContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer {
+  flex: 20%;
+  margin: 5%;
+}
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer .parkImage {
+  position: absolute;
+  height: 10vh;
+  width: 8vw;
+}
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer .labelContainer {
+  position: absolute;
+}
 .parksContainer .recentsContainer {
   background-color: orangered;
   width: 100%;

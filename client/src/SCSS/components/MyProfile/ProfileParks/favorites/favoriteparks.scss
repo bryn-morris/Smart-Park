@@ -2,12 +2,6 @@
 
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-content: center;
-    gap: 2vw;
 
     @import './favCardContainer.scss';
 
@@ -16,11 +10,14 @@
     }
     .cardContainer1 {
         @extend .cardContainer;
+        left: 24vw;
     }
     .cardContainer2 {
         @extend .cardContainer;
+        left: 48vw;
     }
     .cardContainer3 {
         @extend .cardContainer;
+        left: 72vw;
     }
 }

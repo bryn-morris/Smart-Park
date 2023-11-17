@@ -358,31 +358,45 @@
 .parksContainer .favoritesContainer .parkCardContainer {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: center;
-  gap: 2vw;
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardContainer, .parksContainer .favoritesContainer .parkCardContainer .cardContainer3, .parksContainer .favoritesContainer .parkCardContainer .cardContainer2, .parksContainer .favoritesContainer .parkCardContainer .cardContainer1, .parksContainer .favoritesContainer .parkCardContainer .cardContainer0 {
   flex: 0 0 20vw;
-  position: relative;
-  height: 20vh;
-  top: 3vh;
+  position: absolute;
+  height: 22vh;
+  width: 20vw;
+  display: flex;
   margin-right: 2vw;
   margin-left: 2vw;
   margin-top: 4vh;
   margin-bottom: 4vh;
   border: 2px solid #212121;
 }
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer .card, .parksContainer .favoritesContainer .parkCardContainer .cardContainer3 .card, .parksContainer .favoritesContainer .parkCardContainer .cardContainer2 .card, .parksContainer .favoritesContainer .parkCardContainer .cardContainer1 .card, .parksContainer .favoritesContainer .parkCardContainer .cardContainer0 .card {
+  width: 100%;
+  height: 100%;
+}
 .parksContainer .favoritesContainer .parkCardContainer .cardContainer .card .parkImage, .parksContainer .favoritesContainer .parkCardContainer .cardContainer3 .card .parkImage, .parksContainer .favoritesContainer .parkCardContainer .cardContainer2 .card .parkImage, .parksContainer .favoritesContainer .parkCardContainer .cardContainer1 .card .parkImage, .parksContainer .favoritesContainer .parkCardContainer .cardContainer0 .card .parkImage {
   position: absolute;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardContainer .card .labelContainer, .parksContainer .favoritesContainer .parkCardContainer .cardContainer3 .card .labelContainer, .parksContainer .favoritesContainer .parkCardContainer .cardContainer2 .card .labelContainer, .parksContainer .favoritesContainer .parkCardContainer .cardContainer1 .card .labelContainer, .parksContainer .favoritesContainer .parkCardContainer .cardContainer0 .card .labelContainer {
   position: absolute;
+  bottom: 0%;
+  height: 4vh;
+  width: 100%;
+  background-color: #91972A;
+  display: flex;
+  flex-direction: row;
+}
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer1 {
+  left: 24vw;
+}
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer2 {
+  left: 48vw;
+}
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer3 {
+  left: 72vw;
 }
 .parksContainer .recentsContainer {
   background-color: orangered;

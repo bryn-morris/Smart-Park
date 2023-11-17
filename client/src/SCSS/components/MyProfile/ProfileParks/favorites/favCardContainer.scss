@@ -1,9 +1,11 @@
 .cardContainer {
 
     flex:0 0 20vw;
-    position:relative;
-    height:20vh;
-    top:3vh;
+    position:absolute;
+    height:22vh;
+    width: 20vw;
+    display: flex;
+
     margin-right:2vw;
     margin-left:2vw;
     margin-top:4vh;
@@ -12,20 +14,28 @@
 
     .card{
 
-        .parkImage {
+        width:100%;
+        height: 100%;
 
-            position:absolute;
-            height: 100%;
+        .parkImage {
+            position: absolute;
             width: 100%;
-            
+            height: 100%;
         }
         .labelContainer{
+            
             position:absolute;
+            bottom: 0%;
+            height: 4vh;
+            width: 100%;
+            background-color: $accent1;
+            display: flex;
+            flex-direction: row;
 
             .heartIcon{
 
             }
-            .label{
+            .label{              
 
             }
         }

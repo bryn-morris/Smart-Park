@@ -23,7 +23,7 @@ function FavoritePark({eachPark}){
                     name="heart"
                     onClick = {()=>{unFavorite(favoritedEntryID)}}
                 />
-                <div className="label"/>{eachPark.name}
+                <div className="label">{eachPark.name}</div>
             </div>
         </div>
         //     <List.Icon 

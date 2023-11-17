@@ -33,10 +33,14 @@
             flex-direction: row;
 
             .heartIcon{
-
+                flex: 20%;
+                font-size: 3vh;
+                margin-left: .5vh;
             }
-            .label{              
-
+            .label{
+                flex:80%;              
+                font-size: 3vh;
+                font-weight: 100;
             }
         }
     }

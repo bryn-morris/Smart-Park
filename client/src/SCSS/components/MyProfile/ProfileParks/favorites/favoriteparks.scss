@@ -1,0 +1,26 @@
+.parkCardContainer {
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    gap: 2vw;
+
+    @import './favCardContainer.scss';
+
+    .cardContainer0 {
+        @extend .cardContainer;
+    }
+    .cardContainer1 {
+        @extend .cardContainer;
+    }
+    .cardContainer2 {
+        @extend .cardContainer;
+    }
+    .cardContainer3 {
+        @extend .cardContainer;
+    }
+}

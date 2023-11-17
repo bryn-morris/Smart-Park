@@ -43,7 +43,9 @@ function ProfileParks () {
 
     // Current Solution to carousel, render 
     // four boxes that have a fixed position, 
-    // cardContainers 0-3, when arrow is clicked 
+    // cardContainers 0-3, 
+    
+    //when arrow is clicked 
     // start index is changed and the values that
     // are passed to each of these containers
     // (representing each park's data) increments 
@@ -66,16 +68,32 @@ function ProfileParks () {
                 <div className="rightArrow" onClick={incrementFavParks}/>
                 <div className="parkCardContainer">
                     <div className="cardContainer0">
-                        <FavoritePark eachPark={favoritedParksByUser[startIndex]} />
+                        {
+                            favoritedParksByUser[countObj['startIndex']] ?
+                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex']]} /> : 
+                            null
+                        }
                     </div>
                     <div className="cardContainer1">
-                        <FavoritePark eachPark={favoritedParksByUser[startIndex+1]} />
+                        {
+                            favoritedParksByUser[countObj['startIndex'+1]] ?
+                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+1]]} /> : 
+                            null
+                        }
                     </div>
                     <div className="cardContainer2">
-                        <FavoritePark eachPark={favoritedParksByUser[startIndex+2]} />
+                        {
+                            favoritedParksByUser[countObj['startIndex'+2]] ?
+                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+2]]} /> : 
+                            null
+                        }
                     </div>
                     <div className="cardContainer3">
-                        <FavoritePark eachPark={favoritedParksByUser[startIndex+3]} />
+                        {
+                            favoritedParksByUser[countObj['startIndex'+3]] ?
+                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+3]]} /> : 
+                            null
+                        }
                     </div>
                     {/* {renderVisibleParks(favoritedParksByUser.slice(
                         countObj['startIndex'],

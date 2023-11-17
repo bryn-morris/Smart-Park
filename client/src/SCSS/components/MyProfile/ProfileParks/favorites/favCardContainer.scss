@@ -1,0 +1,33 @@
+.cardContainer {
+
+    flex:0 0 20vw;
+    position:relative;
+    height:20vh;
+    top:3vh;
+    margin-right:2vw;
+    margin-left:2vw;
+    margin-top:4vh;
+    margin-bottom: 4vh;
+    border: 2px solid $dark;
+
+    .card{
+
+        .parkImage {
+
+            position:absolute;
+            height: 100%;
+            width: 100%;
+            
+        }
+        .labelContainer{
+            position:absolute;
+
+            .heartIcon{
+
+            }
+            .label{
+
+            }
+        }
+    }
+}

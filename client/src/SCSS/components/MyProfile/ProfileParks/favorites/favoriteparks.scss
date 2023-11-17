@@ -1,7 +1,7 @@
 .parkCardContainer {
 
-    height: 100%;
-    width: 100%;
+    flex: 86%;
+    position: relative;
 
     @import './favCardContainer.scss';
 
@@ -10,14 +10,14 @@
     }
     .cardContainer1 {
         @extend .cardContainer;
-        left: 24vw;
+        left: 20vw;
     }
     .cardContainer2 {
         @extend .cardContainer;
-        left: 48vw;
+        left: 40vw;
     }
     .cardContainer3 {
         @extend .cardContainer;
-        left: 72vw;
+        left: 60vw;
     }
 }

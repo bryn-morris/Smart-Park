@@ -41,31 +41,10 @@ function ProfileParks () {
         )
     }
 
-    // Current Solution to carousel, render 
-    // four boxes that have a fixed position, 
-    // cardContainers 0-3, 
-    
-    //when arrow is clicked 
-    // start index is changed and the values that
-    // are passed to each of these containers
-    // (representing each park's data) increments 
-    // or decrements. 
-    // Will need to reorganize logic for 
-    // the increment and decrement functions. 
-    // Will need to reorganize scss and likely 
-    // extract out cardContainer styling to a mixin 
-    // to reduce repetition. 
-    // Also need to figure out how to make card 
-    // div and image div empty when no data is 
-    // passed in (ie if a user only has one
-    // favorite park) - this issue will likely 
-    // take care of itself. 
-
     return(
         <div className = "parksContainer">
             <div className = "favoritesContainer">
                 <div className="leftArrow" onClick={decrementFavParks}/>
-                <div className="rightArrow" onClick={incrementFavParks}/>
                 <div className="parkCardContainer">
                     <div className="cardContainer0">
                         {
@@ -95,11 +74,8 @@ function ProfileParks () {
                             null
                         }
                     </div>
-                    {/* {renderVisibleParks(favoritedParksByUser.slice(
-                        countObj['startIndex'],
-                        countObj['endIndex'],
-                    ))} */}
                 </div>
+                <div className="rightArrow" onClick={incrementFavParks}/>
             </div>
             <div className = "recentsContainer">
                 reccentparks

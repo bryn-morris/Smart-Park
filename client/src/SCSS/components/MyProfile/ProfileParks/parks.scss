@@ -11,14 +11,21 @@
         background-color: aquamarine;
         width:100%;
         height: 30vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
 
         .leftArrow {
             background-color: aqua;
-            width: 5vw;
+            width: 7%;
+            height: 100%;
+            z-index: 1;
         }
         .rightArrow {
             background-color: aqua;
-            width:5vw;
+            width: 7%;
+            height: 100%;
+            z-index: 1;
         }
 
         @import "./favorites/favoriteparks.scss";

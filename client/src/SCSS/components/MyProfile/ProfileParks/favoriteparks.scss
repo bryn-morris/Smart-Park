@@ -1,34 +1,45 @@
 .parkCardContainer {
 
-    position:relative;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 8vw;
 
     .cardContainer {
 
-        flex:20%;
-        margin: 5%;
+        flex:0 0 20vw;
+        position:relative;
+        height:20vh;
+        // top:2vh;
+        // margin-right:4vw;
+        // margin-left:4vw;
+        // margin-top:4vh;
+        // margin-bottom: 4vh;
+        border: 2px solid $dark;
 
-        .parkImage {
+        .card{
 
-            position:absolute;
-            height: 10vh;
-            width: 8vw;
+            .parkImage {
 
-        }
-        .labelContainer{
-            position:absolute;
-
-            .heartIcon{
-
+                position:absolute;
+                height: 100%;
+                width: 100%;
+                
             }
-            .label{
-
+            .labelContainer{
+                position:absolute;
+    
+                .heartIcon{
+    
+                }
+                .label{
+    
+                }
             }
         }
-
     }
 } 

@@ -345,32 +345,36 @@
 .parksContainer .favoritesContainer {
   background-color: aquamarine;
   width: 100%;
-  height: 25vh;
+  height: 30vh;
 }
 .parksContainer .favoritesContainer .parkCardContainer {
-  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 8vw;
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardContainer {
-  flex: 20%;
-  margin: 5%;
+  flex: 0 0 20vw;
+  position: relative;
+  height: 20vh;
+  border: 2px solid #212121;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardContainer .parkImage {
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer .card .parkImage {
   position: absolute;
-  height: 10vh;
-  width: 8vw;
+  height: 100%;
+  width: 100%;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardContainer .labelContainer {
+.parksContainer .favoritesContainer .parkCardContainer .cardContainer .card .labelContainer {
   position: absolute;
 }
 .parksContainer .recentsContainer {
   background-color: orangered;
   width: 100%;
-  height: 25vh;
+  height: 30vh;
 }
 .parksContainer .reviewsContainer {
   background-color: green;

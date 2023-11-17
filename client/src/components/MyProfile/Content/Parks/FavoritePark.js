@@ -11,7 +11,7 @@ function FavoritePark({eachPark}){
     const favoritedEntryID = eachPark.favorited.filter((each)=>each.user_id === currentUser.id)[0].id
 
     return(
-        <div className="cardContainer">
+        <div className="card">
             <img 
                 src = {eachPark.image}
                 alt = "park"

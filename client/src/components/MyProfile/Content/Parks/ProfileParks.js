@@ -31,14 +31,20 @@ function ProfileParks () {
         }
     }
 
-    function renderVisibleParks (parkArray) {
-        return (parkArray.map((eachPark)=>{return(
-            <FavoritePark 
-                eachPark = {eachPark}
-                key = {eachPark.id}
-            />
-        )})
-        )
+    // Could probably refactor this into a JS generator
+    //  that stops when values are not present
+
+    function generateFavParkContainers(containerQuant){
+
+        // create an array that increments on value at a time
+        // based on the containerQuant
+        // for each value within that array
+        // check to make sure a value exists at
+        // favoritedParksByUser[countObj['startIndex']]
+        // if it does not create null, if so
+        // create the cardContainer${index}
+        // and the datatypes and pass in the style component necessary
+
     }
 
     return(

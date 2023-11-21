@@ -1,23 +1,37 @@
 .parkCardContainer {
 
     flex: 86%;
-    position: relative;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position:relative;
 
-    @import './favCardContainer.scss';
+    .titleContainer{
+        
+        flex: 10%;
+    }
 
-    .cardContainer0 {
-        @extend .cardContainer;
-    }
-    .cardContainer1 {
-        @extend .cardContainer;
-        left: 20vw;
-    }
-    .cardContainer2 {
-        @extend .cardContainer;
-        left: 40vw;
-    }
-    .cardContainer3 {
-        @extend .cardContainer;
-        left: 60vw;
+    .cardsContainer{
+
+        flex:90%;
+
+        @import './favCardContainer.scss';
+
+        .cardContainer0 {
+            @extend .cardContainer;
+        }
+        .cardContainer1 {
+            @extend .cardContainer;
+            left: 20vw;
+        }
+        .cardContainer2 {
+            @extend .cardContainer;
+            left: 40vw;
+        }
+        .cardContainer3 {
+            @extend .cardContainer;
+            left: 60vw;
+        }
+
     }
 }

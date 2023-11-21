@@ -39,22 +39,24 @@ function ProfileParks () {
         const parkArray = Array.from({length: containerQuant}, (_,index)=>index);
         const borderStyle = {border: "2px solid #212121"}
 
-        parkArray.map((eachIndex)=>{
+        return parkArray.map((eachIndex)=>{
 
-            const parkCondition = favoritedParksByUser[ctObj['startIndex'+ {eachIndex}]]
+            const favPark = favoritedParksByUser[ctObj['startIndex']+ eachIndex]
 
-            if(parkCondition){
+            if(favPark){
                 return(
                     <div 
                         className={`cardContainer${eachIndex}`}
                         style = {borderStyle}
                     >
-                        <FavoritePark eachPark={parkCondition} />
+                        <FavoritePark key={favPark.id} eachPark={favPark} />
                     </div>
                 )
+            } else{
+                return <div className={`cardContainer${eachIndex}`}/>
             }
 
-            return `cardContainer${eachIndex}`
+        
         })
     }
 
@@ -63,7 +65,10 @@ function ProfileParks () {
             <div className = "favoritesContainer">
                 <div className="leftArrow" onClick={decrementFavParks}/>
                 <div className="parkCardContainer">
-                    {generateFavParkContainers(4, countObj)}
+                    <div className="titleContainer">Favorite Parks</div>
+                    <div className="cardsContainer">
+                        {generateFavParkContainers(4, countObj)}
+                    </div>
                 </div>
                 <div className="rightArrow" onClick={incrementFavParks}/>
             </div>

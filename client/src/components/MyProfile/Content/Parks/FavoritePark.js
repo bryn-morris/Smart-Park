@@ -26,22 +26,6 @@ function FavoritePark({eachPark}){
                 <div className="label">{eachPark.name}</div>
             </div>
         </div>
-        //     <List.Icon 
-        //         verticalAlign="middle" 
-        //         size = "large" 
-        //         name="heart"
-        //         onClick = {()=>{unFavorite(favoritedEntryID)}}
-        //     />
-        //     <List.Content>
-        //         <List.Header>{eachPark.name}</List.Header>
-        //         <Image
-        //             size = 'tiny'
-        //             src = {eachPark.image}
-        //             rounded
-        //             bordered
-        //         />  
-        //     </List.Content>
-        // </List.Item>
     )
 }
 

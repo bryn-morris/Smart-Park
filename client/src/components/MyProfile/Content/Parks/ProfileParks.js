@@ -46,28 +46,56 @@ function ProfileParks () {
             <div className = "favoritesContainer">
                 <div className="leftArrow" onClick={decrementFavParks}/>
                 <div className="parkCardContainer">
-                    <div className="cardContainer0">
+                    <div 
+                        className="cardContainer0"
+                        style = {
+                            favoritedParksByUser[countObj['startIndex']] ?
+                            {border: "2px solid #212121"} : 
+                            null
+                        }
+                    >
                         {
                             favoritedParksByUser[countObj['startIndex']] ?
                             <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex']]} /> : 
                             null
                         }
                     </div>
-                    <div className="cardContainer1">
+                    <div 
+                        className="cardContainer1"
+                        style = {
+                            favoritedParksByUser[countObj['startIndex'+1]] ?
+                            {border: "2px solid #212121"} : 
+                            null
+                        }
+                    >
                         {
                             favoritedParksByUser[countObj['startIndex'+1]] ?
                             <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+1]]} /> : 
                             null
                         }
                     </div>
-                    <div className="cardContainer2">
+                    <div 
+                        className="cardContainer2"
+                        style = {
+                            favoritedParksByUser[countObj['startIndex'+2]] ?
+                            {border: "2px solid #212121"} : 
+                            null
+                        }
+                    >
                         {
                             favoritedParksByUser[countObj['startIndex'+2]] ?
-                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+2]]} /> : 
+                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+2]]}/> : 
                             null
                         }
                     </div>
-                    <div className="cardContainer3">
+                    <div 
+                        className="cardContainer3"
+                        style = {
+                            favoritedParksByUser[countObj['startIndex'+3]] ?
+                            {border: "2px solid #212121"} : 
+                            null
+                        }
+                    >
                         {
                             favoritedParksByUser[countObj['startIndex'+3]] ?
                             <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+3]]} /> : 

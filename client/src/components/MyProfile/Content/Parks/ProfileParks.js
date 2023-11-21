@@ -34,17 +34,28 @@ function ProfileParks () {
     // Could probably refactor this into a JS generator
     //  that stops when values are not present
 
-    function generateFavParkContainers(containerQuant){
+    function generateFavParkContainers(containerQuant, ctObj){
+        
+        const parkArray = Array.from({length: containerQuant}, (_,index)=>index);
+        const borderStyle = {border: "2px solid #212121"}
 
-        // create an array that increments on value at a time
-        // based on the containerQuant
-        // for each value within that array
-        // check to make sure a value exists at
-        // favoritedParksByUser[countObj['startIndex']]
-        // if it does not create null, if so
-        // create the cardContainer${index}
-        // and the datatypes and pass in the style component necessary
+        parkArray.map((eachIndex)=>{
 
+            const parkCondition = favoritedParksByUser[ctObj['startIndex'+ {eachIndex}]]
+
+            if(parkCondition){
+                return(
+                    <div 
+                        className={`cardContainer${eachIndex}`}
+                        style = {borderStyle}
+                    >
+                        <FavoritePark eachPark={parkCondition} />
+                    </div>
+                )
+            }
+
+            return `cardContainer${eachIndex}`
+        })
     }
 
     return(
@@ -52,62 +63,7 @@ function ProfileParks () {
             <div className = "favoritesContainer">
                 <div className="leftArrow" onClick={decrementFavParks}/>
                 <div className="parkCardContainer">
-                    <div 
-                        className="cardContainer0"
-                        style = {
-                            favoritedParksByUser[countObj['startIndex']] ?
-                            {border: "2px solid #212121"} : 
-                            null
-                        }
-                    >
-                        {
-                            favoritedParksByUser[countObj['startIndex']] ?
-                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex']]} /> : 
-                            null
-                        }
-                    </div>
-                    <div 
-                        className="cardContainer1"
-                        style = {
-                            favoritedParksByUser[countObj['startIndex'+1]] ?
-                            {border: "2px solid #212121"} : 
-                            null
-                        }
-                    >
-                        {
-                            favoritedParksByUser[countObj['startIndex'+1]] ?
-                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+1]]} /> : 
-                            null
-                        }
-                    </div>
-                    <div 
-                        className="cardContainer2"
-                        style = {
-                            favoritedParksByUser[countObj['startIndex'+2]] ?
-                            {border: "2px solid #212121"} : 
-                            null
-                        }
-                    >
-                        {
-                            favoritedParksByUser[countObj['startIndex'+2]] ?
-                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+2]]}/> : 
-                            null
-                        }
-                    </div>
-                    <div 
-                        className="cardContainer3"
-                        style = {
-                            favoritedParksByUser[countObj['startIndex'+3]] ?
-                            {border: "2px solid #212121"} : 
-                            null
-                        }
-                    >
-                        {
-                            favoritedParksByUser[countObj['startIndex'+3]] ?
-                            <FavoritePark eachPark={favoritedParksByUser[countObj['startIndex'+3]]} /> : 
-                            null
-                        }
-                    </div>
+                    {generateFavParkContainers(4, countObj)}
                 </div>
                 <div className="rightArrow" onClick={incrementFavParks}/>
             </div>

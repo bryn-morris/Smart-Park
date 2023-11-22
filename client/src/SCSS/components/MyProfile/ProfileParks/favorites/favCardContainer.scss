@@ -33,10 +33,18 @@
             flex-direction: row;
 
             .heartIcon{
+
                 flex: 20%;
                 font-size: 3vh;
                 margin-left: .5vh;
+
+                &:hover{
+                    color:$hovered;
+                    cursor: pointer;
+                    transform: scale(1.2);
+                }
             }
+
             .label{
                 flex:80%;              
                 font-size: 3vh;

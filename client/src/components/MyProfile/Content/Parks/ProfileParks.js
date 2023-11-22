@@ -49,11 +49,16 @@ function ProfileParks () {
                         className={`cardContainer${eachIndex}`}
                         style = {borderStyle}
                     >
-                        <FavoritePark key={favPark.id} eachPark={favPark} />
+                        <FavoritePark key={eachIndex} eachPark={favPark} />
                     </div>
                 )
             } else{
-                return <div className={`cardContainer${eachIndex}`}/>
+                return (
+                    <div 
+                    className={`cardContainer${eachIndex}`}
+                    key = {eachIndex}
+                    />
+                )
             }
 
         

@@ -9,6 +9,15 @@
     .titleContainer{
         
         flex: 10%;
+
+        .title{
+            top: .25vh;
+            position:absolute;
+            width: auto;
+            font-size:small;
+            left:3vw;
+
+        }
     }
 
     .cardsContainer{

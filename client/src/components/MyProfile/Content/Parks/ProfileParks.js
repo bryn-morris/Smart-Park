@@ -1,3 +1,4 @@
+import { Icon } from "semantic-ui-react"
 import { DogParkContext } from "../../../../context/DogParkContext"
 import FavoritePark from "./FavoritePark"
 import { useState, useContext } from "react"
@@ -70,7 +71,12 @@ function ProfileParks () {
             <div className = "favoritesContainer">
                 <div className="leftArrow" onClick={decrementFavParks}/>
                 <div className="parkCardContainer">
-                    <div className="titleContainer">Favorite Parks</div>
+                    <div className="titleContainer">    
+                        <div className="title">
+                            <Icon name = "heart"/>
+                            Favorite Parks
+                        </div>
+                    </div>
                     <div className="cardsContainer">
                         {generateFavParkContainers(4, countObj)}
                     </div>

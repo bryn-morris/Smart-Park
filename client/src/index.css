@@ -374,20 +374,27 @@
 .parksContainer .favoritesContainer .parkCardContainer .titleContainer {
   flex: 10%;
 }
+.parksContainer .favoritesContainer .parkCardContainer .titleContainer .title {
+  top: 0.25vh;
+  position: absolute;
+  width: auto;
+  font-size: small;
+  left: 3vw;
+}
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer {
   flex: 90%;
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 {
   flex: 0 0 20vw;
   position: absolute;
-  height: 22vh;
+  height: 21vh;
   width: 16vw;
   display: flex;
   top: 0%;
   margin-right: 2vw;
   margin-left: 2vw;
-  margin-top: 4vh;
-  margin-bottom: 4vh;
+  margin-top: 4.5vh;
+  margin-bottom: 4.5vh;
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 .card {
   width: 100%;

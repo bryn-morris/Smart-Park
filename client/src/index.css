@@ -375,7 +375,7 @@
   flex: 10%;
 }
 .parksContainer .favoritesContainer .parkCardContainer .titleContainer .title {
-  top: 0.25vh;
+  top: 1vh;
   position: absolute;
   width: auto;
   font-size: small;
@@ -393,8 +393,8 @@
   top: 0%;
   margin-right: 2vw;
   margin-left: 2vw;
-  margin-top: 4.5vh;
-  margin-bottom: 4.5vh;
+  margin-top: 6vh;
+  margin-bottom: 3vh;
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 .card {
   width: 100%;

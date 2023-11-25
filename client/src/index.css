@@ -354,15 +354,37 @@
 }
 .parksContainer .favoritesContainer .leftArrow {
   background-color: aqua;
+  position: relative;
   width: 7%;
   height: 100%;
   z-index: 1;
 }
+.parksContainer .favoritesContainer .leftArrow::before {
+  position: absolute;
+  top: 10.5vh;
+  content: "";
+  width: 3vw;
+  height: 10vh;
+  background-color: #212121;
+  left: 1vw;
+  clip-path: polygon(0vw 5vh, 3vw 0vh, 3vw 10vh);
+}
 .parksContainer .favoritesContainer .rightArrow {
   background-color: aqua;
+  position: relative;
   width: 7%;
   height: 100%;
   z-index: 1;
+}
+.parksContainer .favoritesContainer .rightArrow::before {
+  position: absolute;
+  top: 10.5vh;
+  content: "";
+  width: 3vw;
+  height: 10vh;
+  background-color: #212121;
+  right: 1vw;
+  clip-path: polygon(3vw 5vh, 0vw 0vh, 0vw 10vh);
 }
 .parksContainer .favoritesContainer .parkCardContainer {
   flex: 86%;

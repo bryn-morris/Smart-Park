@@ -18,16 +18,10 @@
         flex-wrap: nowrap;
 
         .leftArrow {
-            background-color: aqua;
-            width: 7%;
-            height: 100%;
-            z-index: 1;
+            @include carouselArrow('leftArrow');
         }
         .rightArrow {
-            background-color: aqua;
-            width: 7%;
-            height: 100%;
-            z-index: 1;
+            @include carouselArrow('rightArrow');
         }
 
         @import "./favorites/favoriteparks.scss";

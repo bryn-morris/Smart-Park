@@ -80,3 +80,30 @@
         border: 0.6vh solid;
         border-color: #212121;
 }
+
+@mixin carouselArrow($class) {
+
+        background-color: aqua;
+        position:relative;
+        width: 7%;
+        height: 100%;
+        z-index: 1;
+
+        &::before {
+            position:absolute;
+            top:10.5vh;
+            content: "";
+            width:3vw;
+            height: 10vh;
+            background-color: $dark;
+            
+            @if $class == 'leftArrow' {
+                left:1vw;
+                clip-path: polygon(0vw 5vh,3vw 0vh,3vw 10vh);
+            }
+            @if $class == 'rightArrow'{
+                right: 1vw;
+                clip-path: polygon(3vw 5vh,0vw 0vh,0vw 10vh);
+            }
+        }
+}

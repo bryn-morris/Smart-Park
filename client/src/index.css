@@ -353,15 +353,15 @@
   flex-wrap: nowrap;
 }
 .parksContainer .favoritesContainer .leftArrow {
-  background-color: aqua;
   position: relative;
   width: 7%;
   height: 100%;
   z-index: 1;
+  background-color: aquamarine;
 }
 .parksContainer .favoritesContainer .leftArrow::before {
   position: absolute;
-  top: 10.5vh;
+  top: 11vh;
   content: "";
   width: 3vw;
   height: 10vh;
@@ -370,15 +370,15 @@
   clip-path: polygon(0vw 5vh, 3vw 0vh, 3vw 10vh);
 }
 .parksContainer .favoritesContainer .rightArrow {
-  background-color: aqua;
   position: relative;
   width: 7%;
   height: 100%;
   z-index: 1;
+  background-color: aquamarine;
 }
 .parksContainer .favoritesContainer .rightArrow::before {
   position: absolute;
-  top: 10.5vh;
+  top: 11vh;
   content: "";
   width: 3vw;
   height: 10vh;

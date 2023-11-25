@@ -96,6 +96,7 @@ with app.app_context():
     f5 = Favorited(dog_park=dp3, user = u4)
     f6 = Favorited(dog_park=dp1, user = u2)
     f7 = Favorited(dog_park=dp4, user = u2)
+    f8 = Favorited(dog_park=dp3, user = u2)
 
     print("Creating Friendships...")
 
@@ -129,7 +130,7 @@ with app.app_context():
     db.session.add_all([v1, v2, v3, v4])
     db.session.add_all([dp1, dp2, dp3, dp4, dp5])
     db.session.add_all([r1,r2,r3,r4,r5])
-    db.session.add_all([f1,f2,f3,f4,f5,f6,f7])
+    db.session.add_all([f1,f2,f3,f4,f5,f6,f7,f8])
     db.session.add_all([fr1,fr2,fr3,fr4])
     db.session.add_all([pfr1])
 

@@ -14,13 +14,15 @@ function ProfileParks () {
     })
 
     function incrementFavParks () {
+        console.log('testing')
         if (countObj.endIndex !== favoritedParksByUser.length + 1) {
             setCountObj((prevState)=>{return({
                 ...prevState,
                 startIndex: prevState.startIndex + 1,
                 endIndex: prevState.endIndex + 1,
             })})
-        }}
+        }
+    }
 
     function decrementFavParks () {
         if(countObj.startIndex !== 0){
@@ -60,9 +62,7 @@ function ProfileParks () {
                     key = {eachIndex}
                     />
                 )
-            }
-
-        
+            }       
         })
     }
 

@@ -451,14 +451,17 @@
   font-size: 3vh;
   font-weight: 100;
 }
+.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 {
+  margin-left: 0%;
+}
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 {
-  left: 20vw;
+  left: 17vw;
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 {
-  left: 40vw;
+  left: 36vw;
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 {
-  left: 60vw;
+  left: 55vw;
 }
 .parksContainer .recentsContainer {
   background-color: orangered;

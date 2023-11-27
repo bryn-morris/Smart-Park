@@ -28,18 +28,19 @@
 
         .cardContainer0 {
             @extend .cardContainer;
+            margin-left: 0%;
         }
         .cardContainer1 {
             @extend .cardContainer;
-            left: 20vw;
+            left: 17vw;
         }
         .cardContainer2 {
             @extend .cardContainer;
-            left: 40vw;
+            left: 36vw;
         }
         .cardContainer3 {
             @extend .cardContainer;
-            left: 60vw;
+            left: 55vw;
         }
 
     }

@@ -369,6 +369,10 @@
   left: 1vw;
   clip-path: polygon(0vw 5vh, 3vw 0vh, 3vw 10vh);
 }
+.parksContainer .favoritesContainer .leftArrow:hover {
+  cursor: pointer;
+  background-color: #D6D6D6;
+}
 .parksContainer .favoritesContainer .rightArrow {
   position: relative;
   width: 7%;
@@ -385,6 +389,10 @@
   background-color: #212121;
   right: 1vw;
   clip-path: polygon(3vw 5vh, 0vw 0vh, 0vw 10vh);
+}
+.parksContainer .favoritesContainer .rightArrow:hover {
+  cursor: pointer;
+  background-color: #D6D6D6;
 }
 .parksContainer .favoritesContainer .parkCardContainer {
   flex: 86%;

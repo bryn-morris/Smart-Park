@@ -106,4 +106,8 @@
                 clip-path: polygon(3vw 5vh,0vw 0vh,0vw 10vh);
             }
         }
+        &:hover{
+            cursor: pointer;
+            background-color:$hovered;
+        }
 }

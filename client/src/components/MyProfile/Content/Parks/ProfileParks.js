@@ -18,6 +18,7 @@ function ProfileParks () {
     const decrementArrowLogic = countObj.startIndex !== 0
 
     function incrementFavParks () {
+        console.log("test")
         if (incrementArrowLogic) {
             setCountObj((prevState)=>{return({
                 ...prevState,

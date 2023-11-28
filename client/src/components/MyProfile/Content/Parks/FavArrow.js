@@ -5,29 +5,18 @@ function FavArrow({
     arrowLogic
 }) {
 
-    // Style Logic to add to arrow components
-    let styleLogicVariable;
-    if (arrowLogic){
-        styleLogicVariable = null
-    } else {
-        styleLogicVariable = 
-        {
-            // remove hover,
-            "" : "",
-            // remove on click,
-            "" : "",
-            // remove background color
-            "" : "",
-            // remove clip path
-            "" : "",
-        }
-    }
+    // can't target anchor tags or pseudoselectors with
+    // inline styling, will need to use something 
+    // like radium to handle this. 
 
     return(
         <div 
             className={`${arrowDirection}Arrow`}
-            onClick={favArrowFunction}
-            style = {styleLogicVariable}
+            onClick={
+                arrowLogic === true ?
+                favArrowFunction: null
+            }
+            // style = {styleLogicVariable}
         />
     )
 }

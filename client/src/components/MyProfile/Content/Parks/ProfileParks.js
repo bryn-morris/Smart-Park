@@ -2,6 +2,7 @@ import { Icon } from "semantic-ui-react"
 import { DogParkContext } from "../../../../context/DogParkContext"
 import FavoritePark from "./FavoritePark"
 import { useState, useContext } from "react"
+import FavArrow from "./FavArrow"
 
 
 function ProfileParks () {
@@ -13,8 +14,11 @@ function ProfileParks () {
         endIndex : 5,
     })
 
+    const incrementArrowLogic = countObj.endIndex !== favoritedParksByUser.length + 2
+    const decrementArrowLogic = countObj.startIndex !== 0
+
     function incrementFavParks () {
-        if (countObj.endIndex !== favoritedParksByUser.length + 2) {
+        if (incrementArrowLogic) {
             setCountObj((prevState)=>{return({
                 ...prevState,
                 startIndex: prevState.startIndex + 1,
@@ -24,7 +28,7 @@ function ProfileParks () {
     }
 
     function decrementFavParks () {
-        if(countObj.startIndex !== 0){
+        if(decrementArrowLogic){
             setCountObj((prevState)=>{return({
                 ...prevState,
                 startIndex: prevState.startIndex - 1,
@@ -68,7 +72,11 @@ function ProfileParks () {
     return(
         <div className = "parksContainer">
             <div className = "favoritesContainer">
-                <div className="leftArrow" onClick={()=>decrementFavParks()}/>
+                <FavArrow 
+                    arrowDirection="left"
+                    favArrowFunction = {decrementFavParks}
+                    arrowLogic={decrementArrowLogic}
+                />
                 <div className="parkCardContainer">
                     <div className="titleContainer">    
                         <div className="title">
@@ -80,7 +88,20 @@ function ProfileParks () {
                         {generateFavParkContainers(4, countObj)}
                     </div>
                 </div>
-                <div className="rightArrow" onClick={()=>incrementFavParks()}/>
+                <FavArrow 
+                    arrowDirection="right"
+                    favArrowFunction={incrementFavParks}
+                    arrowLogic={incrementArrowLogic}
+                />
+                {/* <div 
+                    className="rightArrow" 
+                    onClick={()=>incrementFavParks()}
+                    // style = {
+                    //     countObj.endIndex !== favoritedParksByUser.length + 2 ? 
+                    //     null :
+                    //     {"&::before" : {"clipPath":""}} 
+                    // }
+                /> */}
             </div>
             <div className = "recentsContainer">
                 reccentparks

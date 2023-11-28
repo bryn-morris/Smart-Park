@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { Icon } from "semantic-ui-react"
-import { AuthContext } from "../../../../context/AuthContext"
-import { DogParkContext } from "../../../../context/DogParkContext"
+import { AuthContext } from "../../../../../context/AuthContext"
+import { DogParkContext } from "../../../../../context/DogParkContext"
 
 function FavoritePark({eachPark}){
 

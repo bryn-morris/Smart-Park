@@ -163,7 +163,7 @@
   height: 1.5vh;
   background-color: #D6D6D6;
   clip-path: polygon(0vw 0.25vh, 1.5vw 0.75vh, 0vw 1.5vh);
-  z-index: 2;
+  z-index: 5;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container .borderElement {
   position: absolute;
@@ -356,7 +356,6 @@
   position: relative;
   width: 7%;
   height: 100%;
-  z-index: 1;
   background-color: aquamarine;
 }
 .parksContainer .favoritesContainer .leftArrow::before {
@@ -377,7 +376,6 @@
   position: relative;
   width: 7%;
   height: 100%;
-  z-index: 1;
   background-color: aquamarine;
 }
 .parksContainer .favoritesContainer .rightArrow::before {

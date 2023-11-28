@@ -69,7 +69,7 @@ function ProfileParks () {
     return(
         <div className = "parksContainer">
             <div className = "favoritesContainer">
-                <div className="leftArrow" onClick={decrementFavParks}/>
+                <div className="leftArrow" onClick={()=>console.log('testing2')}/>
                 <div className="parkCardContainer">
                     <div className="titleContainer">    
                         <div className="title">
@@ -81,7 +81,7 @@ function ProfileParks () {
                         {generateFavParkContainers(4, countObj)}
                     </div>
                 </div>
-                <div className="rightArrow" onClick={incrementFavParks}/>
+                <div className="rightArrow" onClick={()=>console.log('testing')}/>
             </div>
             <div className = "recentsContainer">
                 reccentparks

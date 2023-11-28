@@ -606,7 +606,6 @@
 
 .nav {
   position: absolute;
-  z-index: 999;
 }
 .nav.Container {
   height: 100%;
@@ -623,6 +622,7 @@
   flex: 90%;
   display: flex;
   flex-direction: column;
+  z-index: 999;
   transform: translateX(100%);
 }
 .nav.Container .Menu.active {
@@ -675,6 +675,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  z-index: 999;
 }
 .nav.Container .Headcontainer .menuButtonContainer {
   position: relative;

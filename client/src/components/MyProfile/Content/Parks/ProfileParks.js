@@ -14,8 +14,7 @@ function ProfileParks () {
     })
 
     function incrementFavParks () {
-        console.log('testing')
-        if (countObj.endIndex !== favoritedParksByUser.length + 1) {
+        if (countObj.endIndex !== favoritedParksByUser.length + 2) {
             setCountObj((prevState)=>{return({
                 ...prevState,
                 startIndex: prevState.startIndex + 1,
@@ -69,7 +68,7 @@ function ProfileParks () {
     return(
         <div className = "parksContainer">
             <div className = "favoritesContainer">
-                <div className="leftArrow" onClick={()=>console.log('testing2')}/>
+                <div className="leftArrow" onClick={()=>decrementFavParks()}/>
                 <div className="parkCardContainer">
                     <div className="titleContainer">    
                         <div className="title">
@@ -81,7 +80,7 @@ function ProfileParks () {
                         {generateFavParkContainers(4, countObj)}
                     </div>
                 </div>
-                <div className="rightArrow" onClick={()=>console.log('testing')}/>
+                <div className="rightArrow" onClick={()=>incrementFavParks()}/>
             </div>
             <div className = "recentsContainer">
                 reccentparks

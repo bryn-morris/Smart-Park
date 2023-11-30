@@ -108,7 +108,7 @@
   max-height: 65vh;
   width: 90%;
   overflow: hidden;
-  border: 2px solid #D6D6D6;
+  border: 0.3vh solid #D6D6D6;
   border-radius: 1%;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav {
@@ -413,6 +413,10 @@
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer {
   flex: 90%;
+}
+.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .hiddenCard {
+  opacity: 0;
+  transform: scale(0.7);
 }
 .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 {
   flex: 0 0 20vw;

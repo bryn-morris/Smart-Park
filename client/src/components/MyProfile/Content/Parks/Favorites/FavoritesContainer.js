@@ -18,8 +18,21 @@ function FavoritesContainer () {
     const incrementArrowLogic = countObj.endIndex !== favoritedParksByUser.length + 2
     const decrementArrowLogic = countObj.startIndex !== 0
 
+    const hiddenIndices = {
+        startIndex : countObj !== 0 ? countObj.startIndex-1 : 0,
+        endIndex : countObj.endIndex + 1
+    }
+
     // Could probably refactor this into a JS generator
     //  that stops when values are not present
+
+    // will likely need to change cards container from a 
+    // flexbox to allow for overflow (which is then hidden)
+    
+    // render one card container before and one card container after the
+    // visible elements. When data moves into those spaces (arrow click)
+    // it is given the hiddenCard styling
+    // this will trigger their transition
 
     function generateFavParkContainers(containerQuant, ctObj){
         

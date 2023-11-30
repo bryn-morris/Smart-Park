@@ -1,3 +1,8 @@
+.hiddenCard{
+    opacity:0;
+    transform: scale(0.7);
+}
+
 .cardContainer {
 
     flex:0 0 20vw;
@@ -11,6 +16,8 @@
     margin-left:2vw;
     margin-top:6vh;
     margin-bottom: 3vh;
+
+    // transition: transform 0.5s ease-in-out,opacity 0.5s ease-in-out;
 
     .card{
 

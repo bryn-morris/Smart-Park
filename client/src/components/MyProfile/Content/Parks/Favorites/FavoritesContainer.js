@@ -61,8 +61,8 @@ function FavoritesContainer () {
             } else{
                 return (
                     <div 
-                    className={`cardContainer${eachIndex}`}
-                    key = {eachIndex}
+                        className={`cardContainer${eachIndex}`}
+                        key = {eachIndex}
                     />
                 )
             }       

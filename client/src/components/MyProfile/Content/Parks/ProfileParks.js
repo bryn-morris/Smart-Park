@@ -1,16 +1,14 @@
 import FavoritesContainer from "./Favorites/FavoritesContainer"
+import RecentsContainer from "./FavRecents/RecentsContainer"
+import ReviewsContainer from "./FavReviews/ReviewsContainer"
 
 function ProfileParks () {
 
     return(
         <div className = "parksContainer">
             <FavoritesContainer />
-            <div className = "recentsContainer">
-                reccentparks
-            </div>
-            <div className = "reviewsContainer">
-                reviewedparks
-            </div>
+            <RecentsContainer />
+            <ReviewsContainer />
         </div>
     )
 }

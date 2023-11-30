@@ -16,7 +16,6 @@ function FavArrow({
                 arrowLogic === true ?
                 favArrowFunction: null
             }
-            // style = {styleLogicVariable}
         />
     )
 }

@@ -7,7 +7,7 @@ function FavArrow({
 
     // can't target anchor tags or pseudoselectors with
     // inline styling, will need to use something 
-    // like radium to handle this. 
+    // like radium to handle removing pseudoselector upon arrowLogic change. 
 
     return(
         <div 

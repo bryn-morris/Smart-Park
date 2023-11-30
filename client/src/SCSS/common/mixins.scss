@@ -86,7 +86,7 @@
         position:relative;
         width: 7%;
         height: 100%;
-        background-color: aquamarine;
+        background-color: $light;
 
         &::before {
             position:absolute;
@@ -94,7 +94,8 @@
             content: "";
             width:3vw;
             height: 10vh;
-            background-color: $dark;
+            // background-color: $dark;
+            border: 12px solid $dark;
             
             @if $class == 'leftArrow' {
                 left:1vw;

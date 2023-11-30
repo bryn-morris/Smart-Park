@@ -4,7 +4,6 @@ import { Icon } from "semantic-ui-react"
 import { DogParkContext } from "../../../../../context/DogParkContext"
 import FavoritePark from "./FavoritePark"
 import FavArrow from "./FavArrow"
-import { incrementParks, decrementParks } from "../../../../helpers/parksArrowHelpers"
 
 function FavoritesContainer () {
 
@@ -17,6 +16,26 @@ function FavoritesContainer () {
 
     const incrementArrowLogic = countObj.endIndex !== favoritedParksByUser.length + 2
     const decrementArrowLogic = countObj.startIndex !== 0
+
+    function incrementFavParks (arrowLogic) {
+        if (arrowLogic) {
+            setCountObj((prevState)=>{return({
+                ...prevState,
+                startIndex: prevState.startIndex + 1,
+                endIndex: prevState.endIndex + 1,
+            })})
+        }
+    }
+
+    function decrementFavParks (arrowLogic) {
+        if(arrowLogic){
+            setCountObj((prevState)=>{return({
+                ...prevState,
+                startIndex: prevState.startIndex - 1,
+                endIndex: prevState.endIndex - 1,
+            })})
+        }
+    }
 
     // Could probably refactor this into a JS generator
     //  that stops when values are not present
@@ -54,7 +73,7 @@ function FavoritesContainer () {
         <div className = "favoritesContainer">
                 <FavArrow 
                     arrowDirection="left"
-                    favArrowFunction = {()=>decrementParks(decrementArrowLogic, setCountObj)}
+                    favArrowFunction = {decrementFavParks(decrementArrowLogic)}
                     arrowLogic={decrementArrowLogic}
                 />
                 <div className="parkCardContainer">
@@ -70,7 +89,7 @@ function FavoritesContainer () {
                 </div>
                 <FavArrow 
                     arrowDirection="right"
-                    favArrowFunction={()=>incrementParks(incrementArrowLogic, setCountObj)}
+                    favArrowFunction={incrementFavParks(incrementArrowLogic)}
                     arrowLogic={incrementArrowLogic}
                 />
             </div>

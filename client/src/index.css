@@ -409,11 +409,12 @@
   flex: 10%;
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .titleContainer .title {
-  top: 1vh;
+  top: 1.6vh;
   position: absolute;
   width: auto;
-  font-size: small;
+  font-size: 3vh;
   left: 1.5vw;
+  font-weight: 400;
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer {
   flex: 90%;
@@ -480,7 +481,7 @@
   flex: 80%;
   display: flex;
   align-items: center;
-  font-size: 3vh;
+  font-size: 2.6vh;
   font-weight: 400;
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 {

@@ -1,7 +1,7 @@
 import { Icon } from "semantic-ui-react"
 import { useState } from "react"
 
-import CarouselPark from "./CarouselPark"
+import CarouselCard from "./CarouselCard"
 import CarouselArrow from "./CarouselArrow"
 import { incrementParks, decrementParks } from "../../../../helpers/parksArrowHelpers"
 
@@ -47,7 +47,7 @@ function Carousel ({dataArray}) {
                         style = {borderStyle}
                         key = {eachIndex}
                     >
-                        <CarouselPark key={eachIndex} eachPark={favPark} />
+                        <CarouselCard key={eachIndex} eachPark={favPark} />
                     </div>
                 )
             } else{

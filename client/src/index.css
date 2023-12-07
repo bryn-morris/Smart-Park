@@ -370,13 +370,23 @@
   content: "";
   width: 3vw;
   height: 10vh;
-  border: 12px solid #212121;
+  background-color: #212121;
   left: 1vw;
   clip-path: polygon(0vw 5vh, 3vw 0vh, 3vw 10vh);
 }
 .parksContainer .favoritesContainer .carouselContainer .leftArrow:hover {
   cursor: pointer;
   background-color: #D6D6D6;
+}
+.parksContainer .favoritesContainer .carouselContainer .leftArrow::after {
+  position: absolute;
+  top: 11vh;
+  width: 5vh;
+  height: 9vh;
+  content: "";
+  background-color: #E5E7E6;
+  left: 1.3vw;
+  clip-path: polygon(0vw 5vh, 2.5vw 1vh, 2.5vw 9vh);
 }
 .parksContainer .favoritesContainer .carouselContainer .rightArrow {
   position: relative;
@@ -390,13 +400,23 @@
   content: "";
   width: 3vw;
   height: 10vh;
-  border: 12px solid #212121;
+  background-color: #212121;
   right: 1vw;
   clip-path: polygon(3vw 5vh, 0vw 0vh, 0vw 10vh);
 }
 .parksContainer .favoritesContainer .carouselContainer .rightArrow:hover {
   cursor: pointer;
   background-color: #D6D6D6;
+}
+.parksContainer .favoritesContainer .carouselContainer .rightArrow::after {
+  position: absolute;
+  top: 11vh;
+  width: 5vh;
+  height: 9vh;
+  content: "";
+  background-color: #E5E7E6;
+  right: 0.85vw;
+  clip-path: polygon(2.5vw 5vh, 0vw 1vh, 0vw 9vh);
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer {
   flex: 86%;

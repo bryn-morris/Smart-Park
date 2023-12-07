@@ -18,11 +18,21 @@ function CarouselPark({eachPark}){
                 className="parkImage"
             />
             <div className="labelContainer">
-                <Icon
-                    className="heartIcon"
-                    name="heart"
-                    onClick = {()=>{unFavorite(favoritedEntryID)}}
-                />
+                <div
+                    className="iconContainer"
+                >
+                    <Icon
+                        className="heartIcon"
+                        name="heart"
+                        onClick = {()=>{unFavorite(favoritedEntryID)}}
+                    >
+                        <Icon
+                            className="uncheckIcon"
+                            name = "times circle outline"
+                        />
+                    </Icon>
+                </div>
+                
                 <div className="label">{eachPark.name}</div>
             </div>
         </div>

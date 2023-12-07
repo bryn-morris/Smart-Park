@@ -24,7 +24,7 @@
 
         flex:90%;
 
-        @import './favCardContainer.scss';
+        @import './cardContainerTemplate.scss';
 
         .cardContainer0 {
             @extend .cardContainer;

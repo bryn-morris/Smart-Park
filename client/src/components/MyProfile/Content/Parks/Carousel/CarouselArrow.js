@@ -1,7 +1,7 @@
 
-function FavArrow({
+function CarouselArrow({
     arrowDirection,
-    favArrowFunction,
+    carArrowFunction,
     arrowLogic
 }) {
 
@@ -14,10 +14,10 @@ function FavArrow({
             className={`${arrowDirection}Arrow`}
             onClick={
                 arrowLogic === true ?
-                favArrowFunction: null
+                carArrowFunction: null
             }
         />
     )
 }
 
-export default FavArrow
+export default CarouselArrow

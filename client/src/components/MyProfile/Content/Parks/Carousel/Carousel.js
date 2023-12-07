@@ -1,21 +1,18 @@
-import { useContext, useState } from "react"
 import { Icon } from "semantic-ui-react"
+import { useState } from "react"
 
-import { DogParkContext } from "../../../../../context/DogParkContext"
-import FavoritePark from "./FavoritePark"
-import FavArrow from "./FavArrow"
+import CarouselPark from "./CarouselPark"
+import CarouselArrow from "./CarouselArrow"
 import { incrementParks, decrementParks } from "../../../../helpers/parksArrowHelpers"
 
-function FavoritesContainer () {
-
-    const {favoritedParksByUser} = useContext(DogParkContext)
+function Carousel ({dataArray}) {
 
     const [countObj, setCountObj] = useState({
         startIndex : 0,
         endIndex : 5,
     })
 
-    const incrementArrowLogic = countObj.endIndex !== favoritedParksByUser.length + 2
+    const incrementArrowLogic = countObj.endIndex !== dataArray.length + 2
     const decrementArrowLogic = countObj.startIndex !== 0
 
     const hiddenIndices = {
@@ -41,7 +38,7 @@ function FavoritesContainer () {
 
         return parkArray.map((eachIndex)=>{
 
-            const favPark = favoritedParksByUser[ctObj['startIndex']+ eachIndex]
+            const favPark = dataArray[ctObj['startIndex']+ eachIndex]
 
             if(favPark){
                 return(
@@ -50,7 +47,7 @@ function FavoritesContainer () {
                         style = {borderStyle}
                         key = {eachIndex}
                     >
-                        <FavoritePark key={eachIndex} eachPark={favPark} />
+                        <CarouselPark key={eachIndex} eachPark={favPark} />
                     </div>
                 )
             } else{
@@ -65,10 +62,10 @@ function FavoritesContainer () {
     }
 
     return(
-        <div className = "favoritesContainer">
-            <FavArrow 
+        <div className = "carouselContainer">
+            <CarouselArrow 
                 arrowDirection="left"
-                favArrowFunction = {()=>decrementParks(decrementArrowLogic, setCountObj)}
+                carArrowFunction = {()=>decrementParks(decrementArrowLogic, setCountObj)}
                 arrowLogic={decrementArrowLogic}
             />
             <div className="parkCardContainer">
@@ -82,13 +79,13 @@ function FavoritesContainer () {
                     {generateFavParkContainers(4, countObj)}
                 </div>
             </div>
-            <FavArrow
+            <CarouselArrow
                 arrowDirection="right"
-                favArrowFunction={()=>incrementParks(incrementArrowLogic, setCountObj)}
+                carArrowFunction={()=>incrementParks(incrementArrowLogic, setCountObj)}
                 arrowLogic={incrementArrowLogic}
             />
         </div>
     )
 }
 
-export default FavoritesContainer
+export default Carousel

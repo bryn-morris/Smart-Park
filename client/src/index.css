@@ -346,21 +346,26 @@
   overflow-x: hidden;
 }
 .parksContainer .favoritesContainer {
-  position: relative;
+  position: absolute;
   background-color: #E5E7E6;
   width: 100%;
   height: 30vh;
+}
+.parksContainer .favoritesContainer .carouselContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
-.parksContainer .favoritesContainer .leftArrow {
+.parksContainer .favoritesContainer .carouselContainer .leftArrow {
   position: relative;
   width: 7%;
   height: 100%;
   background-color: #E5E7E6;
 }
-.parksContainer .favoritesContainer .leftArrow::before {
+.parksContainer .favoritesContainer .carouselContainer .leftArrow::before {
   position: absolute;
   top: 11vh;
   content: "";
@@ -370,17 +375,17 @@
   left: 1vw;
   clip-path: polygon(0vw 5vh, 3vw 0vh, 3vw 10vh);
 }
-.parksContainer .favoritesContainer .leftArrow:hover {
+.parksContainer .favoritesContainer .carouselContainer .leftArrow:hover {
   cursor: pointer;
   background-color: #D6D6D6;
 }
-.parksContainer .favoritesContainer .rightArrow {
+.parksContainer .favoritesContainer .carouselContainer .rightArrow {
   position: relative;
   width: 7%;
   height: 100%;
   background-color: #E5E7E6;
 }
-.parksContainer .favoritesContainer .rightArrow::before {
+.parksContainer .favoritesContainer .carouselContainer .rightArrow::before {
   position: absolute;
   top: 11vh;
   content: "";
@@ -390,35 +395,35 @@
   right: 1vw;
   clip-path: polygon(3vw 5vh, 0vw 0vh, 0vw 10vh);
 }
-.parksContainer .favoritesContainer .rightArrow:hover {
+.parksContainer .favoritesContainer .carouselContainer .rightArrow:hover {
   cursor: pointer;
   background-color: #D6D6D6;
 }
-.parksContainer .favoritesContainer .parkCardContainer {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer {
   flex: 86%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   position: relative;
 }
-.parksContainer .favoritesContainer .parkCardContainer .titleContainer {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .titleContainer {
   flex: 10%;
 }
-.parksContainer .favoritesContainer .parkCardContainer .titleContainer .title {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .titleContainer .title {
   top: 1vh;
   position: absolute;
   width: auto;
   font-size: small;
   left: 1.5vw;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer {
   flex: 90%;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .hiddenCard {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .hiddenCard {
   opacity: 0;
   transform: scale(0.7);
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 {
   flex: 0 0 20vw;
   position: absolute;
   height: 21vh;
@@ -430,16 +435,16 @@
   margin-top: 6vh;
   margin-bottom: 3vh;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 .card, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 .card {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3 .card, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2 .card, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1 .card, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 .card {
   width: 100%;
   height: 100%;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer .card .parkImage, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 .card .parkImage, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 .card .parkImage, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 .card .parkImage, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 .card .parkImage {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .parkImage, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3 .card .parkImage, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2 .card .parkImage, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1 .card .parkImage, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 .card .parkImage {
   position: absolute;
   width: 100%;
   height: 100%;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 .card .labelContainer, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 .card .labelContainer, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 .card .labelContainer, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 .card .labelContainer {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3 .card .labelContainer, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2 .card .labelContainer, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1 .card .labelContainer, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 .card .labelContainer {
   position: absolute;
   bottom: 0%;
   height: 4vh;
@@ -448,31 +453,31 @@
   display: flex;
   flex-direction: row;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .heartIcon, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 .card .labelContainer .heartIcon, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 .card .labelContainer .heartIcon, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 .card .labelContainer .heartIcon, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 .card .labelContainer .heartIcon {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .heartIcon, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3 .card .labelContainer .heartIcon, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2 .card .labelContainer .heartIcon, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1 .card .labelContainer .heartIcon, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 .card .labelContainer .heartIcon {
   flex: 20%;
   font-size: 3vh;
   margin-left: 0.5vh;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .heartIcon:hover, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 .card .labelContainer .heartIcon:hover, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 .card .labelContainer .heartIcon:hover, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 .card .labelContainer .heartIcon:hover, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 .card .labelContainer .heartIcon:hover {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .heartIcon:hover, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3 .card .labelContainer .heartIcon:hover, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2 .card .labelContainer .heartIcon:hover, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1 .card .labelContainer .heartIcon:hover, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 .card .labelContainer .heartIcon:hover {
   color: #D6D6D6;
   cursor: pointer;
   transform: scale(1.2);
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 .card .labelContainer .label, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 .card .labelContainer .label, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 .card .labelContainer .label, .parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 .card .labelContainer .label {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3 .card .labelContainer .label, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2 .card .labelContainer .label, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1 .card .labelContainer .label, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 .card .labelContainer .label {
   flex: 80%;
   font-size: 3vh;
   font-weight: 100;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer0 {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 {
   margin-left: 0%;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer1 {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1 {
   left: 17vw;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer2 {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2 {
   left: 36vw;
 }
-.parksContainer .favoritesContainer .parkCardContainer .cardsContainer .cardContainer3 {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3 {
   left: 55vw;
 }
 .parksContainer .recentsContainer {

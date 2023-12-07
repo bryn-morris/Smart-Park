@@ -9,22 +9,29 @@
 
     .favoritesContainer{
 
-        position:relative;
+        position:absolute;
         background-color: $light;
         width:100%;
         height: 30vh;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
 
-        .leftArrow {
-            @include carouselArrow('leftArrow');
-        }
-        .rightArrow {
-            @include carouselArrow('rightArrow');
-        }
+        .carouselContainer{
 
-        @import "./favorites/favoriteparks.scss";
+            position: relative;
+            width:100%;
+            height:100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            .leftArrow {
+                @include carouselArrow('leftArrow');
+            }
+            .rightArrow {
+                @include carouselArrow('rightArrow');
+            }
+    
+            @import "./favorites/favoriteparks.scss";
+        }
 
     }
 

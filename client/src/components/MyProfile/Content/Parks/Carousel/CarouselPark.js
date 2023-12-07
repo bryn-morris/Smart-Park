@@ -3,7 +3,7 @@ import { Icon } from "semantic-ui-react"
 import { AuthContext } from "../../../../../context/AuthContext"
 import { DogParkContext } from "../../../../../context/DogParkContext"
 
-function FavoritePark({eachPark}){
+function CarouselPark({eachPark}){
 
     const { currentUser } = useContext(AuthContext)
     const { unFavorite } = useContext(DogParkContext)
@@ -29,4 +29,4 @@ function FavoritePark({eachPark}){
     )
 }
 
-export default FavoritePark
+export default CarouselPark

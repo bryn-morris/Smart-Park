@@ -1,0 +1,64 @@
+.carouselContainer{
+
+    position: relative;
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .leftArrow {
+        @include carouselArrow('leftArrow');
+    }
+    .rightArrow {
+        @include carouselArrow('rightArrow');
+    }
+
+    .parkCardContainer {
+
+        flex: 86%;
+        display:flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        position:relative;
+    
+        .titleContainer{
+            
+            flex: 10%;
+    
+            .title{
+                top: 1vh;
+                position:absolute;
+                width: auto;
+                font-size:small;
+                left:1.5vw;
+    
+            }
+        }
+    
+        .cardsContainer{
+    
+            flex:90%;
+    
+            @import '../../../common/style-templates/cardContainerTemplate.scss';
+    
+            .cardContainer0 {
+                @extend .cardContainer;
+                margin-left: 0%;
+            }
+            .cardContainer1 {
+                @extend .cardContainer;
+                left: 17vw;
+            }
+            .cardContainer2 {
+                @extend .cardContainer;
+                left: 36vw;
+            }
+            .cardContainer3 {
+                @extend .cardContainer;
+                left: 55vw;
+            }
+    
+        }
+    }
+}

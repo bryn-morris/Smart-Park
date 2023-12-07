@@ -418,10 +418,6 @@
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer {
   flex: 90%;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .hiddenCard {
-  opacity: 0;
-  transform: scale(0.7);
-}
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer3, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer2, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer1, .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer0 {
   flex: 0 0 20vw;
   position: absolute;

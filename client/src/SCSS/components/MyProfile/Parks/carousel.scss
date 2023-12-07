@@ -58,6 +58,16 @@
             .cardContainer3 {
                 @extend .cardContainer;
                 left: 55vw;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: -5%;
+                    right: 25%;
+                    width: 15%;
+                    height: 110%;
+                    background: linear-gradient(to right, rgba(255, 255, 255, 0), $light 90%);
+                  }
             }
     
         }

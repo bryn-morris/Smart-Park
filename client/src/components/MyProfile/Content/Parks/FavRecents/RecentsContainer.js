@@ -1,6 +1,5 @@
 import FavArrow from "../Favorites/FavArrow"
 
-
 function RecentsContainer () {
 
     // Determine Arrow logic and pass in arrowDirection props

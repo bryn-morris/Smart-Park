@@ -24,8 +24,8 @@ function FavoritesContainer () {
     }
 
     // Could probably refactor this into a JS generator
-    //  that stops when values are not present
-
+    // that stops when values are not present
+    
     // will likely need to change cards container from a 
     // flexbox to allow for overflow (which is then hidden)
     
@@ -48,6 +48,7 @@ function FavoritesContainer () {
                     <div 
                         className={`cardContainer${eachIndex}`}
                         style = {borderStyle}
+                        key = {eachIndex}
                     >
                         <FavoritePark key={eachIndex} eachPark={favPark} />
                     </div>
@@ -65,28 +66,28 @@ function FavoritesContainer () {
 
     return(
         <div className = "favoritesContainer">
-                <FavArrow 
-                    arrowDirection="left"
-                    favArrowFunction = {()=>decrementParks(decrementArrowLogic, setCountObj)}
-                    arrowLogic={decrementArrowLogic}
-                />
-                <div className="parkCardContainer">
-                    <div className="titleContainer">    
-                        <div className="title">
-                            <Icon name = "heart"/>
-                            Favorite Parks
-                        </div>
-                    </div>
-                    <div className="cardsContainer">
-                        {generateFavParkContainers(4, countObj)}
+            <FavArrow 
+                arrowDirection="left"
+                favArrowFunction = {()=>decrementParks(decrementArrowLogic, setCountObj)}
+                arrowLogic={decrementArrowLogic}
+            />
+            <div className="parkCardContainer">
+                <div className="titleContainer">    
+                    <div className="title">
+                        <Icon name = "heart"/>
+                        Favorite Parks
                     </div>
                 </div>
-                <FavArrow 
-                    arrowDirection="right"
-                    favArrowFunction={()=>incrementParks(incrementArrowLogic, setCountObj)}
-                    arrowLogic={incrementArrowLogic}
-                />
+                <div className="cardsContainer">
+                    {generateFavParkContainers(4, countObj)}
+                </div>
             </div>
+            <FavArrow
+                arrowDirection="right"
+                favArrowFunction={()=>incrementParks(incrementArrowLogic, setCountObj)}
+                arrowLogic={incrementArrowLogic}
+            />
+        </div>
     )
 }
 

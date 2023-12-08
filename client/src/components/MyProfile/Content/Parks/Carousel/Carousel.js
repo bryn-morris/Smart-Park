@@ -26,8 +26,15 @@ function Carousel ({dataArray}) {
     // will likely need to change cards container from a 
     // flexbox to allow for overflow (which is then hidden)
     
-    // render one card container before and one card container after the
-    // visible elements. When data moves into those spaces (arrow click)
+    // render 2 card containers before and 2 card container after the
+    // visible elements. 
+    
+    // each entry in the favorites list gets their own box. 
+    // when an arrow is clicked those boxes physically move and pop out of existence after 2 indices are exceeded from the 
+    // start index 
+
+    // the first element in the hidden index, other than the 0th index, is rendered with teh hiddenCard style
+    // as well as the last element
     // it is given the hiddenCard styling
     // this will trigger their transition
 

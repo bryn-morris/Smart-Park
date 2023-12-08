@@ -97,6 +97,7 @@ with app.app_context():
     f6 = Favorited(dog_park=dp1, user = u2)
     f7 = Favorited(dog_park=dp4, user = u2)
     f8 = Favorited(dog_park=dp3, user = u2)
+    f9 = Favorited(dog_park=dp5, user = u2)
 
     print("Creating Friendships...")
 

@@ -1,5 +1,3 @@
-@import "../../../common/style-templates/cardArrowContainer.scss";
-
 .carouselContainer{
 
     position: relative;
@@ -9,11 +7,11 @@
     flex-direction: row;
     flex-wrap: nowrap;
 
-    .leftArrow {
-        @extend .carouselArrowContainer;
+    .leftArrowContainer {
+        @include arrowIconContainer('left');
     }
-    .rightArrow {
-        @extend .carouselArrowContainer;
+    .rightArrowContainer {
+        @include arrowIconContainer('right');
     }
 
     .parkCardContainer {

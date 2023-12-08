@@ -1,3 +1,5 @@
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 function CarouselArrow({
     arrowDirection,
@@ -11,12 +13,20 @@ function CarouselArrow({
 
     return(
         <div 
-            className={`${arrowDirection}Arrow`}
+            className={`${arrowDirection}ArrowContainer`}
             onClick={
                 arrowLogic === true ?
                 carArrowFunction: null
             }
-        />
+        >
+            {arrowDirection === "right" ? 
+            <ArrowRightIcon 
+                className='icon'
+            /> : 
+            <ArrowLeftIcon 
+                className='icon'
+            />}
+        </div>
     )
 }
 

@@ -80,3 +80,69 @@
         border: 0.6vh solid;
         border-color: #212121;
 }
+
+@mixin arrowIconContainer($class,){
+
+    position:relative;
+    width: 7%;
+    height: 100%;
+    background-color: $light;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+        cursor: pointer;
+        background-color:$hovered;
+    }
+    
+    .icon{
+
+        position: absolute;
+        font-size: 14vh;
+
+        @if $class == 'left'{
+            left: -.7vw;
+        }
+        @if $class == 'right'{
+            right: -.7vw;
+        }
+    }
+    
+        // &::after{
+        //     position:absolute;
+        //     top:11vh;
+        //     width:5vh;
+        //     height:9vh;
+        //     content:"";
+        //     background-color: $light;
+        //     @if $class == 'leftArrow' {
+        //         left:1.3vw;
+        //         clip-path: polygon(0vw 5vh,2.5vw 1vh,2.5vw 9vh);
+        //     }
+        //     @if $class == 'rightArrow'{
+        //         right: 0.85vw;
+        //         clip-path: polygon(2.5vw 5vh,0vw 1vh,0vw 9vh);
+        //     }
+        // }
+    
+        // &::before {
+        //     position:absolute;
+        //     top:11vh;
+        //     content: "";
+        //     width:3vw;
+        //     height: 10vh;
+        //     background-color: $dark;
+            
+        //     @if $class == 'leftArrow' {
+        //         left:1vw;
+        //         clip-path: polygon(0vw 5vh,3vw 0vh,3vw 10vh);
+        //     }
+        //     @if $class == 'rightArrow'{
+        //         right: 1vw;
+        //         clip-path: polygon(3vw 5vh,0vw 0vh,0vw 10vh);
+        //     }
+        // }
+}

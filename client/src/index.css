@@ -350,16 +350,6 @@
   width: 100%;
   height: 30vh;
 }
-.parksContainer .favoritesContainer .carouselArrowContainer, .parksContainer .favoritesContainer .carouselContainer .rightArrow, .parksContainer .favoritesContainer .carouselContainer .leftArrow {
-  position: relative;
-  width: 7%;
-  height: 100%;
-  background-color: #E5E7E6;
-}
-.parksContainer .favoritesContainer .carouselArrowContainer:hover, .parksContainer .favoritesContainer .carouselContainer .rightArrow:hover, .parksContainer .favoritesContainer .carouselContainer .leftArrow:hover {
-  cursor: pointer;
-  background-color: #D6D6D6;
-}
 .parksContainer .favoritesContainer .carouselContainer {
   position: relative;
   width: 100%;
@@ -367,6 +357,46 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+}
+.parksContainer .favoritesContainer .carouselContainer .leftArrowContainer {
+  position: relative;
+  width: 7%;
+  height: 100%;
+  background-color: #E5E7E6;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.parksContainer .favoritesContainer .carouselContainer .leftArrowContainer:hover {
+  cursor: pointer;
+  background-color: #D6D6D6;
+}
+.parksContainer .favoritesContainer .carouselContainer .leftArrowContainer .icon {
+  position: absolute;
+  font-size: 14vh;
+  left: -0.7vw;
+}
+.parksContainer .favoritesContainer .carouselContainer .rightArrowContainer {
+  position: relative;
+  width: 7%;
+  height: 100%;
+  background-color: #E5E7E6;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.parksContainer .favoritesContainer .carouselContainer .rightArrowContainer:hover {
+  cursor: pointer;
+  background-color: #D6D6D6;
+}
+.parksContainer .favoritesContainer .carouselContainer .rightArrowContainer .icon {
+  position: absolute;
+  font-size: 14vh;
+  right: -0.7vw;
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer {
   flex: 86%;

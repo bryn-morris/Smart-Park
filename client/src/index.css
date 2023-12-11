@@ -425,6 +425,8 @@
   height: 21vh;
   width: 16vw;
   display: flex;
+  max-height: 21vh;
+  max-width: 16vw;
   top: 0%;
   margin-right: 2vw;
   margin-left: 2vw;

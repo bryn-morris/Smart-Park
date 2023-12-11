@@ -57,13 +57,6 @@ function Carousel ({dataArray}) {
                         <CarouselCard key={eachIndex} eachPark={favPark} />
                     </div>
                 )
-            } else{
-                return (
-                    <div 
-                        className={`cardContainer${eachIndex}`}
-                        key = {eachIndex}
-                    />
-                )
             }       
         })
     }

@@ -50,7 +50,7 @@ function Carousel ({dataArray}) {
             if(favPark){
                 return(
                     <div 
-                        className={`cardContainer${eachIndex}`}
+                        className="cardContainer"
                         style = {borderStyle}
                         key = {eachIndex}
                     >

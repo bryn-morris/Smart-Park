@@ -84,7 +84,7 @@
 @mixin arrowIconContainer($class,){
 
     position:relative;
-    width: 7%;
+    flex: 7%;
     height: 100%;
     background-color: $light;
     display:flex;

@@ -7,9 +7,6 @@ function ProfileParks () {
 
     const {favoritedParksByUser} = useContext(DogParkContext)
 
-
-
-
     return(
         <div className = "parksContainer">
             <div className = "favoritesContainer">

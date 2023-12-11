@@ -393,6 +393,15 @@
   cursor: pointer;
   background-color: #D6D6D6;
 }
+.parksContainer .favoritesContainer .carouselContainer .rightArrowContainer:after {
+  content: "";
+  position: absolute;
+  right: 100%;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #E5E7E6 90%);
+  z-index: 2;
+}
 .parksContainer .favoritesContainer .carouselContainer .rightArrowContainer .icon {
   position: absolute;
   font-size: 14vh;

@@ -57,7 +57,9 @@ function Carousel ({dataArray}) {
                         <CarouselCard key={eachIndex} eachPark={favPark} />
                     </div>
                 )
-            }       
+            }
+            
+            return null
         })
     }
 

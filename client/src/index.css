@@ -445,6 +445,12 @@
   margin-left: 2vw;
   margin-top: 6vh;
   margin-bottom: 3vh;
+  transition: margin-left 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer.hidden {
+  opacity: 0;
+  margin-left: -18vw;
+  transform: scale(0);
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card {
   width: 100%;

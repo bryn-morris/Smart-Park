@@ -92,8 +92,9 @@ with app.app_context():
     f1 = Favorited(dog_park=dp4, user = u4)
     f2 = Favorited(dog_park=dp2, user = u1)
     f3 = Favorited(dog_park=dp5, user = u3)
-    f4 = Favorited(dog_park=dp2, user = u2)
     f5 = Favorited(dog_park=dp3, user = u4)
+
+    f4 = Favorited(dog_park=dp2, user = u2)
     f6 = Favorited(dog_park=dp1, user = u2)
     f7 = Favorited(dog_park=dp4, user = u2)
     f8 = Favorited(dog_park=dp3, user = u2)

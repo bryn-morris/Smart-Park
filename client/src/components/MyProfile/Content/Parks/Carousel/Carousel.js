@@ -12,8 +12,8 @@ function Carousel ({dataArray}) {
         endIndex : Math.min(4, dataArray.length),
     })
 
-    const incrementArrowLogic = countObj.endIndex !== dataArray.length + 2
-    const decrementArrowLogic = countObj.startIndex !== 0
+    const incrementArrowLogic = countObj.endIndex !== dataArray.length + 1;
+    const decrementArrowLogic = countObj.startIndex > 0;
 
     const hiddenIndices = {
         startIndex : countObj !== 0 ? countObj.startIndex-1 : 0,
@@ -34,17 +34,18 @@ function Carousel ({dataArray}) {
 
     function generateFavParkContainers(ctObj){
         
-        const parkArray = Array.from({length: 4}, (_,index)=>index);
+        const parkArray = Array.from({length: dataArray.length}, (_,index)=>index);
         const borderStyle = {border: "2px solid #212121"}
 
         return parkArray.map((eachIndex)=>{
 
-            const favPark = dataArray[ctObj['startIndex']+ eachIndex]
+            const favPark = dataArray[eachIndex]
+            const isVisible = eachIndex >= ctObj.startIndex && eachIndex < ctObj.endIndex;
 
             if(favPark){
                 return(
                     <div 
-                        className={`cardContainer carouselIndex${eachIndex}`}
+                        className={`cardContainer ${isVisible ? '' : 'hidden'}`}
                         style = {borderStyle}
                         key = {eachIndex}
                     >

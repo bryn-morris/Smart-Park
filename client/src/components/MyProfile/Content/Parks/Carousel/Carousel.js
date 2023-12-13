@@ -20,18 +20,6 @@ function Carousel ({dataArray}) {
         endIndex : countObj.endIndex + 1
     }
 
-    // Could probably refactor this into a JS generator
-    // that stops when values are not present
-
-    // if dataArray has length of 3 or less, dataArray length is rendered, arrows are disabled
-    // if dataArray has length of 4, 
-        // 4 containers are initially rendered, left arrow is clicked and visible indices change, elements
-        // outside of the visible index values +-1 are hidden with css styling
-
-        // when an arrow is clicked, old hidden container is deleted, and container on the edge is shrunk
-            // left arrow shrinks leftmost visible element
-            
-
     function generateFavParkContainers(ctObj){
         
         const parkArray = Array.from({length: dataArray.length}, (_,index)=>index);

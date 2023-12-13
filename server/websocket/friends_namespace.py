@@ -1,7 +1,8 @@
 from flask_socketio import Namespace
 from flask import session
 from config import db
-from models import User, Pending_Friendships, Friends
+from models.models import Pending_Friendships, Friends
+from models.user import User
 from helpers.wsauthentication import auth_ws_connection
 from flask_socketio import (
     join_room, 

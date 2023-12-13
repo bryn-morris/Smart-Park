@@ -2,7 +2,7 @@ from flask import make_response, session, request, Blueprint, jsonify
 from flask_restful import Resource
 
 from config import db, api
-from models import User, Friends
+from models.user import User
 from auth_dec import Authentication_Decorator
 
 friendship_routes = Blueprint('friendship_routes', __name__)

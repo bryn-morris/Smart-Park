@@ -2,7 +2,7 @@ from flask import make_response, Blueprint
 from flask_restful import Resource
 from auth_dec import Authentication_Decorator
 
-from models import User
+from models.user import User
 from config import api
 
 user_routes = Blueprint('user_routes', __name__)

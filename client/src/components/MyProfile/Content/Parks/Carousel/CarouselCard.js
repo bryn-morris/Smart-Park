@@ -29,6 +29,7 @@ function CarouselCard({eachPark}){
                         <Icon
                             className="uncheckIcon"
                             name = "times circle outline"
+                            title = "Remove Park from Favorites"
                         />
                     </Icon>
                 </div>

@@ -5,7 +5,7 @@ import CarouselCard from "./CarouselCard"
 import CarouselArrow from "./CarouselArrow"
 import { incrementParks, decrementParks } from "../../../../helpers/parksArrowHelpers"
 
-function Carousel ({dataArray}) {
+function Carousel ({dataArray, sectionTitle}) {
 
     const [countObj, setCountObj] = useState({
         startIndex : 0,
@@ -14,11 +14,6 @@ function Carousel ({dataArray}) {
 
     const incrementArrowLogic = countObj.endIndex !== dataArray.length + 1;
     const decrementArrowLogic = countObj.startIndex > 0;
-
-    const hiddenIndices = {
-        startIndex : countObj !== 0 ? countObj.startIndex-1 : 0,
-        endIndex : countObj.endIndex + 1
-    }
 
     function generateFavParkContainers(ctObj){
         
@@ -39,8 +34,6 @@ function Carousel ({dataArray}) {
                     <CarouselCard key={eachIndex} eachPark={favPark} />
                 </div>
             )
-            
-
         })
     }
 
@@ -55,7 +48,7 @@ function Carousel ({dataArray}) {
                 <div className="titleContainer">    
                     <div className="title">
                         <Icon name = "heart"/>
-                        Favorite Parks
+                        {sectionTitle}
                     </div>
                 </div>
                 <div className="cardsContainer">

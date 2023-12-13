@@ -2,7 +2,7 @@ from flask import Blueprint, make_response, request, session
 from flask_restful import Resource
 
 from config import api, db
-from models import (User)
+from models.user import User
 
 auth_views = Blueprint('auth_views', __name__, url_prefix="/auth")
 

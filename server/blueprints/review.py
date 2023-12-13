@@ -3,7 +3,7 @@ from flask_restful import Resource
 from auth_dec import Authentication_Decorator
 
 from config import api, app, db
-from models import (
+from models.models import (
     Review,
     Dog_Park,
     Favorited

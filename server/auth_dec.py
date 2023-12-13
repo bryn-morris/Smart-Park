@@ -1,4 +1,4 @@
-from models import User
+from models.user import User
 from flask import session, make_response
 
 def Admin_Authentication_Decorator(func):

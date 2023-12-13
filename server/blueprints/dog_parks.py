@@ -3,7 +3,7 @@ from flask_restful import Resource
 
 from auth_dec import Admin_Authentication_Decorator
 from config import db, api, app
-from models import Dog_Park
+from models.models import Dog_Park
 
 dog_park_routes = Blueprint('dog_park_routes', __name__,)
 

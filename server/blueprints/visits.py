@@ -1,9 +1,8 @@
 from flask import Blueprint, request, make_response
 from flask_restful import Resource
-from models import Visit, Dog, Dog_Park
+from models.models import Visit, Dog, Dog_Park
 from config import db, api, app
 from auth_dec import Authentication_Decorator
-
 
 visit_routes = Blueprint('visit_routes', __name__)
 

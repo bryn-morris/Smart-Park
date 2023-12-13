@@ -12,6 +12,7 @@ function ProfileParks () {
             <div className = "favoritesContainer">
                 <Carousel 
                     dataArray = {favoritedParksByUser}
+                    sectionTitle="Favorite Parks"
                 />
             </div>
             <div className = "recentsContainer">

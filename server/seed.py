@@ -10,8 +10,7 @@ from faker import Faker
 from app import app
 from config import db
 
-from models import (
-    User, 
+from models.models import (
     Dog, 
     Visit,
     Dog_Park,
@@ -21,6 +20,8 @@ from models import (
     Pending_Friendships,
     # WebSocket_Rooms,
 )
+
+from models.user import User
 
 with app.app_context():
 

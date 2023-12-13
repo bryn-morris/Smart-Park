@@ -9,7 +9,7 @@ function Carousel ({dataArray}) {
 
     const [countObj, setCountObj] = useState({
         startIndex : 0,
-        endIndex : 5,
+        endIndex : Math.min(4, dataArray.length),
     })
 
     const incrementArrowLogic = countObj.endIndex !== dataArray.length + 2
@@ -22,25 +22,19 @@ function Carousel ({dataArray}) {
 
     // Could probably refactor this into a JS generator
     // that stops when values are not present
-    
-    // will likely need to change cards container from a 
-    // flexbox to allow for overflow (which is then hidden)
-    
-    // render 2 card containers before and 2 card container after the
-    // visible elements. 
-    
-    // each entry in the favorites list gets their own box. 
-    // when an arrow is clicked those boxes physically move and pop out of existence after 2 indices are exceeded from the 
-    // start index 
 
-    // the first element in the hidden index, other than the 0th index, is rendered with teh hiddenCard style
-    // as well as the last element
-    // it is given the hiddenCard styling
-    // this will trigger their transition
+    // if dataArray has length of 3 or less, dataArray length is rendered, arrows are disabled
+    // if dataArray has length of 4, 
+        // 4 containers are initially rendered, left arrow is clicked and visible indices change, elements
+        // outside of the visible index values +-1 are hidden with css styling
 
-    function generateFavParkContainers(containerQuant, ctObj){
+        // when an arrow is clicked, old hidden container is deleted, and container on the edge is shrunk
+            // left arrow shrinks leftmost visible element
+            
+
+    function generateFavParkContainers(ctObj){
         
-        const parkArray = Array.from({length: containerQuant}, (_,index)=>index);
+        const parkArray = Array.from({length: 4}, (_,index)=>index);
         const borderStyle = {border: "2px solid #212121"}
 
         return parkArray.map((eachIndex)=>{
@@ -50,7 +44,7 @@ function Carousel ({dataArray}) {
             if(favPark){
                 return(
                     <div 
-                        className="cardContainer"
+                        className={`cardContainer carouselIndex${eachIndex}`}
                         style = {borderStyle}
                         key = {eachIndex}
                     >
@@ -78,7 +72,7 @@ function Carousel ({dataArray}) {
                     </div>
                 </div>
                 <div className="cardsContainer">
-                    {generateFavParkContainers(4, countObj)}
+                    {generateFavParkContainers(countObj)}
                 </div>
             </div>
             <CarouselArrow

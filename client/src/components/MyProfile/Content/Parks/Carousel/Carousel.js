@@ -30,19 +30,17 @@ function Carousel ({dataArray}) {
             const favPark = dataArray[eachIndex]
             const isVisible = eachIndex >= ctObj.startIndex && eachIndex < ctObj.endIndex;
 
-            if(favPark){
-                return(
-                    <div 
-                        className={`cardContainer ${isVisible ? '' : 'hidden'}`}
-                        style = {borderStyle}
-                        key = {eachIndex}
-                    >
-                        <CarouselCard key={eachIndex} eachPark={favPark} />
-                    </div>
-                )
-            }
+            return(
+                <div 
+                    className={`cardContainer ${isVisible ? '' : 'hidden'}`}
+                    style = {borderStyle}
+                    key = {eachIndex}
+                >
+                    <CarouselCard key={eachIndex} eachPark={favPark} />
+                </div>
+            )
             
-            return null
+
         })
     }
 

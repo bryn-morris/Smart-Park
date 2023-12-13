@@ -12,7 +12,7 @@ import SiteModals from "./SiteModals";
 
 function Layout() {
 
-  const { setDogParks } = useContext(DogParkContext)
+  const { setDogParks, setRecentParks } = useContext(DogParkContext)
   const { setFriendsList, setPendingFriendsList } = useContext(FriendsContext)
   const { setIsReLogOpen } = useContext(AuthContext) 
   const { setCurrentCheckInID } = useContext(CheckInContext)
@@ -27,6 +27,9 @@ function Layout() {
       
       fetchData('/pending_friends', setIsReLogOpen)  
       .then(pendingFriendshipsData => setPendingFriendsList(pendingFriendshipsData))
+
+      fetchData('/recent_parks', setIsReLogOpen)
+      .then(recentParksData => setRecentParks(recentParksData))
 
       //use sessionStorage to check if currently checked in 
       const sessionCheckInID = sessionStorage.getItem('currentCheckInID')

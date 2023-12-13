@@ -8,8 +8,10 @@ function DogParkProvider({children}) {
 
     const [dogParks, setDogParks] = useState([])
     const [searchedPark, setSearchedPark] = useState('')
+    const [recentParks, setRecentParks] =useState('')
+
     const { currentUser, setIsReLogOpen } = useContext(AuthContext)
-    
+
     const filteredParks = dogParks.filter(park => park.name.toLowerCase().includes(searchedPark))
     const favoritedParksByUser = dogParks.filter((eachPark)=>eachPark.favorited.some((eachFav)=>eachFav.user_id === currentUser.id))
     
@@ -37,7 +39,9 @@ function DogParkProvider({children}) {
                         filteredParks,
                         specificPark,
                         favoritedParksByUser,
-                        unFavorite
+                        unFavorite,
+                        recentParks,
+                        setRecentParks,
                     }}
         >
             {children}

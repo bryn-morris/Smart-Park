@@ -6,7 +6,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from config import db, bcrypt
 from models.smart_park_base import SmartParkBase
 
-from models.models import Friends,Pending_Friendships,Favorited
+from models.models import Friends,Pending_Friendships,Favorited, Visit
 
 class User(db.Model, SmartParkBase, SerializerMixin):
 
@@ -41,36 +41,36 @@ class User(db.Model, SmartParkBase, SerializerMixin):
     # if a user checks in use websocket to update the recent parks data in their active session
 
     friends_1 = db.relationship('User',
-                              secondary = 'friends',
-                              primaryjoin = 'Friends.friend_1_id == User.id',
-                              secondaryjoin = 'Friends.friend_2_id == User.id',
-                              back_populates = 'friends_2',
-                              lazy = 'dynamic'
-                            )
+            secondary = 'friends',
+            primaryjoin = 'Friends.friend_1_id == User.id',
+            secondaryjoin = 'Friends.friend_2_id == User.id',
+            back_populates = 'friends_2',
+            lazy = 'dynamic'
+        )
     
     friends_2 = db.relationship('User',
-                              secondary = 'friends',
-                              primaryjoin = 'Friends.friend_2_id == User.id',
-                              secondaryjoin = 'Friends.friend_1_id == User.id',
-                              back_populates = 'friends_1',
-                              lazy = 'dynamic'
-                            )
+            secondary = 'friends',
+            primaryjoin = 'Friends.friend_2_id == User.id',
+            secondaryjoin = 'Friends.friend_1_id == User.id',
+            back_populates = 'friends_1',
+            lazy = 'dynamic'
+        )
     
     pend_friends_1 = db.relationship('User',
-                              secondary = 'pending_friendships',
-                              primaryjoin = 'Pending_Friendships.pend_friend_1_id == User.id',
-                              secondaryjoin = 'Pending_Friendships.pend_friend_2_id == User.id',
-                              back_populates = 'pend_friends_2',
-                              lazy = 'dynamic'
-                            )
+            secondary = 'pending_friendships',
+            primaryjoin = 'Pending_Friendships.pend_friend_1_id == User.id',
+            secondaryjoin = 'Pending_Friendships.pend_friend_2_id == User.id',
+            back_populates = 'pend_friends_2',
+            lazy = 'dynamic'
+        )
     
     pend_friends_2 = db.relationship('User',
-                              secondary = 'pending_friendships',
-                              primaryjoin = 'Pending_Friendships.pend_friend_2_id == User.id',
-                              secondaryjoin = 'Pending_Friendships.pend_friend_1_id == User.id',
-                              back_populates = 'pend_friends_1',
-                              lazy = 'dynamic'
-                            )
+                secondary = 'pending_friendships',
+                primaryjoin = 'Pending_Friendships.pend_friend_2_id == User.id',
+                secondaryjoin = 'Pending_Friendships.pend_friend_1_id == User.id',
+                back_populates = 'pend_friends_1',
+                lazy = 'dynamic'
+            )
     
     def all_friends(self, user_id):
         friend_list = []
@@ -161,8 +161,34 @@ class User(db.Model, SmartParkBase, SerializerMixin):
     # def delete_friend(self, target_friend):
     #     pass
 
+    def recent_parks(self):
+        
+        ## query visits database
+        ## grab the last 7 UNIQUE dogpark instances associated with this user
+            ## if a person went to park twice recently, give the most updated date
+    
+        dog_id_list = [dog.id for dog in self.dogs]
+        recent_visits = (Visit.query.filter(
+                    Visit.dogs_id.in_(dog_id_list)
+                ).order_by(Visit.created_at.desc())
+                .distinct(Visit.dog_parks_id)
+                .limit(7)
+                .all()
+            )
+
+        recents_list = []
+
+        for visit in recent_visits:
+            recents_list.append(
+                {
+                    'date_of_visit' : visit.created_at,
+                    'dog_park_data' : visit.dog_park
+                }
+            )
+            
+        return recents_list
+
     def add_favorite_park(self, user):
-        ## check to see if this entry already exists in db
         if len(self.favorited.filter(Favorited.dog_park_id == user.id)) == 0:
             self.favorited.append(user)
 
@@ -184,4 +210,3 @@ class User(db.Model, SmartParkBase, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(
             self._password, password.encode('utf-8'))
-

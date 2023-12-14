@@ -37,6 +37,11 @@ function Carousel ({dataArray, sectionTitle}) {
         })
     }
 
+    // Write switch statement to detect section title
+    // assign variable based on section title string
+    // this variable controls heart icon render in title
+    // and also heart icon render in card
+
     return(
         <div className = "carouselContainer">
             <CarouselArrow 

@@ -1,5 +1,5 @@
 import { Icon } from "semantic-ui-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import CarouselCard from "./CarouselCard"
 import CarouselArrow from "./CarouselArrow"
@@ -12,7 +12,20 @@ function Carousel ({dataArray, sectionTitle}) {
         endIndex : Math.min(4, dataArray.length),
     })
 
-    const incrementArrowLogic = countObj.endIndex !== dataArray.length + 1;
+    const [incrementArrowLogic, setIncrementArrowLogic] = useState(false)
+
+    useEffect(()=>{
+        if (dataArray.length < 4){
+            setIncrementArrowLogic(false)
+        } else {
+            setIncrementArrowLogic(countObj.endIndex !== dataArray.length + 1)
+        }
+    }, [
+        setIncrementArrowLogic,
+        countObj.endIndex,
+        dataArray.length,
+    ])
+
     const decrementArrowLogic = countObj.startIndex > 0;
 
     function generateFavParkContainers(ctObj){
@@ -54,10 +67,6 @@ function Carousel ({dataArray, sectionTitle}) {
             iconName = null;
             break;
     }
-    // Write switch statement to detect section title
-    // assign variable based on section title string
-    // this variable controls heart icon render in title
-    // and also heart icon render in card
 
     return(
         <div className = "carouselContainer">

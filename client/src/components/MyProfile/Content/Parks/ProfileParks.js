@@ -7,8 +7,8 @@ function ProfileParks () {
 
     const {favoritedParksByUser, recentParks} = useContext(DogParkContext)
 
-    console.log(recentParks)
-    console.log(favoritedParksByUser)
+    // console.log(recentParks)
+    // console.log(favoritedParksByUser)
 
     return(
         <div className = "parksContainer">

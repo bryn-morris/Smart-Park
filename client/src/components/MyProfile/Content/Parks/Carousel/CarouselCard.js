@@ -34,25 +34,25 @@ function CarouselCard({eachPark, sectionTitle}){
                 className="parkImage"
             />
             <div className="labelContainer">
-                    {
-                        sectionTitle === 'Favorite Parks' ? 
-                        <div
-                            className="iconContainer"
+                {
+                    sectionTitle === 'Favorite Parks' ? 
+                    <div
+                        className="iconContainer"
+                    >
+                        <Icon
+                            className="heartIcon"
+                            name="heart"
+                            title = "Remove Park from Favorites"
+                            onClick = {()=>{unFavorite(favEntryID)}}
                         >
                             <Icon
-                                className="heartIcon"
-                                name="heart"
-                                onClick = {()=>{unFavorite(favEntryID)}}
-                            >
-                                <Icon
-                                    className="uncheckIcon"
-                                    name = "times circle outline"
-                                    title = "Remove Park from Favorites"
-                                />
-                            </Icon>
-                        </div>
-                        : null
-                    }
+                                className="uncheckIcon"
+                                name = "times circle outline"
+                            />
+                        </Icon>
+                    </div>
+                    : null
+                }
                 <div className="label">{eachPark.name}</div>
             </div>
         </div>

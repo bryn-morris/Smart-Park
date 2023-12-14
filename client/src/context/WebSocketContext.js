@@ -18,7 +18,10 @@ function WebSocketProvider({children}) {
         setIsReLogOpen, 
         setIsLogOutModalRendered
     } = useContext(AuthContext)
-    const {setDogParks} = useContext(DogParkContext)
+    const {
+        setDogParks,
+        setRecentParks,
+    } = useContext(DogParkContext)
     const {
         setFriendsList, 
         setPendingFriendsList
@@ -68,6 +71,7 @@ function WebSocketProvider({children}) {
                 setCurrentUser(null)
                 setDogParks([])
                 setFriendsList([])
+                setRecentParks([])
                 friendSocket.disconnect()
                 history.push("/")
                 setIsLogOutModalRendered(false)
@@ -83,6 +87,7 @@ function WebSocketProvider({children}) {
         setPendingFriendsList,
         setIsReLogOpen,
         setIsLogOutModalRendered,
+        setRecentParks,
     ])
 
     function sendFriendRequest(friend_id) {

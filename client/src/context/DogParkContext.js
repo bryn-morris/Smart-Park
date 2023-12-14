@@ -8,7 +8,7 @@ function DogParkProvider({children}) {
 
     const [dogParks, setDogParks] = useState([])
     const [searchedPark, setSearchedPark] = useState('')
-    const [recentParks, setRecentParks] =useState('')
+    const [recentParks, setRecentParks] =useState([])
 
     const { currentUser, setIsReLogOpen } = useContext(AuthContext)
 

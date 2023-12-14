@@ -41,7 +41,8 @@ function Layout() {
       setFriendsList, 
       setPendingFriendsList, 
       setIsReLogOpen,
-      setCurrentCheckInID
+      setCurrentCheckInID,
+      setRecentParks,
     ]
   )
 

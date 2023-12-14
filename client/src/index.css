@@ -483,6 +483,7 @@
   position: relative;
   font-size: 2.3vh;
   margin-left: 0.5vh;
+  line-height: 1em;
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .heartIcon:hover {
   color: #D6D6D6;

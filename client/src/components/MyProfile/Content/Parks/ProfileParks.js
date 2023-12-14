@@ -8,6 +8,7 @@ function ProfileParks () {
     const {favoritedParksByUser, recentParks} = useContext(DogParkContext)
 
     console.log(recentParks)
+    console.log(favoritedParksByUser)
 
     return(
         <div className = "parksContainer">
@@ -18,7 +19,10 @@ function ProfileParks () {
                 />
             </div>
             <div className = "recentsContainer">
-                recentparks
+                <Carousel
+                    dataArray = {recentParks}
+                    sectionTitle={"Recent Parks"}
+                />
             </div>
             <div className = "reviewsContainer">
                 reviewedparks

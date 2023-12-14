@@ -1,14 +1,30 @@
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { Icon } from "semantic-ui-react"
 import { AuthContext } from "../../../../../context/AuthContext"
 import { DogParkContext } from "../../../../../context/DogParkContext"
 
-function CarouselCard({eachPark}){
+function CarouselCard({eachPark, sectionTitle}){
 
     const { currentUser } = useContext(AuthContext)
     const { unFavorite } = useContext(DogParkContext)
 
-    const favoritedEntryID = eachPark.favorited.filter((each)=>each.user_id === currentUser.id)[0].id
+    const [favEntryID, setFavEntryID] = useState(null)
+
+    useEffect(
+        ()=>{
+            if(sectionTitle === 'Favorite Parks'){
+                setFavEntryID(()=>{
+                    return(eachPark.favorited.filter((each)=>each.user_id === currentUser.id)[0].id)
+                })
+            }
+        }
+        ,[
+            setFavEntryID,
+            currentUser.id,
+            eachPark.favorited,
+            sectionTitle,
+        ]
+    )
 
     return(
         <div className="card">
@@ -18,22 +34,25 @@ function CarouselCard({eachPark}){
                 className="parkImage"
             />
             <div className="labelContainer">
-                <div
-                    className="iconContainer"
-                >
-                    <Icon
-                        className="heartIcon"
-                        name="heart"
-                        onClick = {()=>{unFavorite(favoritedEntryID)}}
-                    >
-                        <Icon
-                            className="uncheckIcon"
-                            name = "times circle outline"
-                            title = "Remove Park from Favorites"
-                        />
-                    </Icon>
-                </div>
-                
+                    {
+                        sectionTitle === 'Favorite Parks' ? 
+                        <div
+                            className="iconContainer"
+                        >
+                            <Icon
+                                className="heartIcon"
+                                name="heart"
+                                onClick = {()=>{unFavorite(favEntryID)}}
+                            >
+                                <Icon
+                                    className="uncheckIcon"
+                                    name = "times circle outline"
+                                    title = "Remove Park from Favorites"
+                                />
+                            </Icon>
+                        </div>
+                        : null
+                    }
                 <div className="label">{eachPark.name}</div>
             </div>
         </div>

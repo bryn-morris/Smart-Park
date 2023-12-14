@@ -22,7 +22,7 @@ function Carousel ({dataArray, sectionTitle}) {
 
         return parkArray.map((eachIndex)=>{
 
-            const favPark = dataArray[eachIndex]
+            const eachPark = dataArray[eachIndex]
             const isVisible = eachIndex >= ctObj.startIndex && eachIndex < ctObj.endIndex;
 
             return(
@@ -31,12 +31,29 @@ function Carousel ({dataArray, sectionTitle}) {
                     style = {borderStyle}
                     key = {eachIndex}
                 >
-                    <CarouselCard key={eachIndex} eachPark={favPark} />
+                    <CarouselCard 
+                        key={eachIndex} 
+                        eachPark={eachPark} 
+                        sectionTitle = {sectionTitle}
+                    />
                 </div>
             )
         })
     }
 
+    let iconName;
+    switch (sectionTitle) {
+        case 'Favorite Parks':
+            iconName = 'heart';
+            break;
+        case 'Recent Parks':
+            iconName = 'clock outline';
+            break;
+    
+        default:
+            iconName = null;
+            break;
+    }
     // Write switch statement to detect section title
     // assign variable based on section title string
     // this variable controls heart icon render in title
@@ -52,7 +69,7 @@ function Carousel ({dataArray, sectionTitle}) {
             <div className="parkCardContainer">
                 <div className="titleContainer">    
                     <div className="title">
-                        <Icon name = "heart"/>
+                        <Icon name = {iconName}/>
                         {sectionTitle}
                     </div>
                 </div>

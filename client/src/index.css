@@ -507,9 +507,165 @@
   font-weight: 400;
 }
 .parksContainer .recentsContainer {
-  background-color: orangered;
+  background-color: #E5E7E6;
   width: 100%;
   height: 30vh;
+}
+.parksContainer .recentsContainer .carouselContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.parksContainer .recentsContainer .carouselContainer .leftArrowContainer {
+  position: relative;
+  flex: 7%;
+  height: 100%;
+  background-color: #E5E7E6;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.parksContainer .recentsContainer .carouselContainer .leftArrowContainer:hover {
+  cursor: pointer;
+  background-color: #D6D6D6;
+}
+.parksContainer .recentsContainer .carouselContainer .leftArrowContainer .icon {
+  position: absolute;
+  font-size: 14vh;
+  left: -0.7vw;
+}
+.parksContainer .recentsContainer .carouselContainer .rightArrowContainer {
+  position: relative;
+  flex: 7%;
+  height: 100%;
+  background-color: #E5E7E6;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.parksContainer .recentsContainer .carouselContainer .rightArrowContainer:hover {
+  cursor: pointer;
+  background-color: #D6D6D6;
+}
+.parksContainer .recentsContainer .carouselContainer .rightArrowContainer:after {
+  content: "";
+  position: absolute;
+  right: 100%;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #E5E7E6 90%);
+  z-index: 2;
+}
+.parksContainer .recentsContainer .carouselContainer .rightArrowContainer .icon {
+  position: absolute;
+  font-size: 14vh;
+  right: -0.7vw;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer {
+  flex: 86%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  position: relative;
+  max-width: 86%;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .titleContainer {
+  flex: 10%;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .titleContainer .title {
+  top: 1.6vh;
+  position: absolute;
+  width: auto;
+  font-size: 3vh;
+  left: 1.5vw;
+  font-weight: 400;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer {
+  flex: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer {
+  flex: 0 0 20vw;
+  position: relative;
+  height: 21vh;
+  width: 16vw;
+  display: flex;
+  max-height: 21vh;
+  max-width: 16vw;
+  top: 0%;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  margin-top: 6vh;
+  margin-bottom: 3vh;
+  transition: margin-left 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer.hidden {
+  opacity: 0;
+  margin-left: -18vw;
+  transform: scale(0);
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .parkImage {
+  width: 100%;
+  height: 85%;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer {
+  bottom: 0%;
+  height: 15%;
+  width: 100%;
+  background-color: #91972A;
+  display: flex;
+  flex-direction: row;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer {
+  flex: 20%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .heartIcon {
+  position: relative;
+  font-size: 2.3vh;
+  margin-left: 0.5vh;
+  line-height: 1em;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .heartIcon:hover {
+  color: #D6D6D6;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .uncheckIcon {
+  position: absolute;
+  transform: scale(0.6);
+  left: 40%;
+  top: -30%;
+  color: red;
+  z-index: 1;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label {
+  height: 100%;
+  flex: 80%;
+  display: flex;
+  align-items: center;
+  font-size: 2.6vh;
+  font-weight: 400;
 }
 .parksContainer .reviewsContainer {
   background-color: green;

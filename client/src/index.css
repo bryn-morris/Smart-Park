@@ -498,6 +498,19 @@
   color: red;
   z-index: 1;
 }
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .dateContainer {
+  flex: 20%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .dateContainer .date {
+  font-size: 2.3vh;
+  margin-left: 0.5vh;
+  line-height: 1em;
+}
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label {
   height: 100%;
   flex: 80%;
@@ -658,6 +671,19 @@
   top: -30%;
   color: red;
   z-index: 1;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .dateContainer {
+  flex: 20%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .dateContainer .date {
+  font-size: 2.3vh;
+  margin-left: 0.5vh;
+  line-height: 1em;
 }
 .parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label {
   height: 100%;

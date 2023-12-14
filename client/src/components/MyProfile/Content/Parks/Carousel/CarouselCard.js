@@ -51,7 +51,16 @@ function CarouselCard({eachPark, sectionTitle}){
                             />
                         </Icon>
                     </div>
-                    : null
+                    : 
+                    <div
+                        className="dateContainer"
+                    >
+                        <div
+                            className="date"
+                        >
+                            {eachPark.date_of_visit}
+                        </div>
+                    </div>
                 }
                 <div className="label">{eachPark.name}</div>
             </div>

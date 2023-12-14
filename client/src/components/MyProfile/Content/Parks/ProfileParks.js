@@ -7,7 +7,7 @@ function ProfileParks () {
 
     const {favoritedParksByUser, recentParks} = useContext(DogParkContext)
 
-    // console.log(recentParks)
+    console.log(recentParks)
     // console.log(favoritedParksByUser)
 
     return(

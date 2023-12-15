@@ -5,6 +5,8 @@ from models.user import User
 from config import db, api, app
 from auth_dec import Authentication_Decorator
 
+from helpers.datetime_converter import convert_datetime
+
 visit_routes = Blueprint('visit_routes', __name__)
 
 class Recent_Parks(Resource):
@@ -14,7 +16,7 @@ class Recent_Parks(Resource):
         
         serialized_recent_visits = [
             {
-                'date_of_visit' : entry['date_of_visit'],
+                'date_of_visit' : convert_datetime(entry['date_of_visit']),
                 'id' : entry['dog_park_data'].id,
                 'name' : entry['dog_park_data'].name,
                 'image' : entry['dog_park_data'].image

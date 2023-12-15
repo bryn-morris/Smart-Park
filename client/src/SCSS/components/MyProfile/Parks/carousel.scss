@@ -79,18 +79,17 @@
             
                     .parkImage {
                         width: 100%;
-                        height: 85%;
+                        height: 80%;
                     }
                     .labelContainer{
                         
                         bottom: 0%;
-                        height: 15%;
+                        height: 20%;
                         width: 100%;
                         background-color: $accent1;
                         display: flex;
                         flex-direction: row;
-                        // justify-content: center;
-                        // align-items: center;
+                        border-top: solid 1px $dark;
             
                         .iconContainer{
                             flex: 20%;
@@ -125,7 +124,7 @@
                         }
             
                         .dateContainer{
-                            flex: 20%;
+                            flex: 40%;
                             height:100%;
                             display:flex;
                             flex-wrap: nowrap;
@@ -133,7 +132,7 @@
                             align-items: center;
 
                             .date{
-                                font-size: 2.3vh;
+                                font-size: 2vh;
                                 margin-left: .5vh;
                                 line-height: 1em;
                             }
@@ -141,7 +140,7 @@
 
                         .label{
                             height:100%;
-                            flex:80%;   
+                            flex:60%;   
                             display: flex;
                             align-items: center;  
                             font-size: 2.6vh;

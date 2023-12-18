@@ -158,6 +158,7 @@
   height: 2vh;
   top: 2.5vh;
   left: 99%;
+  z-index: 10;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container .pointyBit {
   position: absolute;
@@ -165,7 +166,7 @@
   height: 1.5vh;
   background-color: #D6D6D6;
   clip-path: polygon(0vw 0.25vh, 1.5vw 0.75vh, 0vw 1.5vh);
-  z-index: 5;
+  z-index: 10;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container .borderElement {
   position: absolute;
@@ -174,7 +175,7 @@
   left: 0.1vw;
   background-color: #E5E7E6;
   clip-path: polygon(0vw 0vh, 1.75vw 0.75vh, 0vw 1.75vh);
-  z-index: -1;
+  z-index: 9;
 }
 .MyProfile .ProfileBody .ContentContainer .Window {
   background-color: #D6D6D6;
@@ -368,7 +369,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  z-index: 3;
 }
 .parksContainer .favoritesContainer .carouselContainer .leftArrowContainer .icon {
   position: absolute;
@@ -390,7 +390,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  z-index: 3;
 }
 .parksContainer .favoritesContainer .carouselContainer .rightArrowContainer:after {
   content: "";
@@ -550,7 +549,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  z-index: 3;
 }
 .parksContainer .recentsContainer .carouselContainer .leftArrowContainer .icon {
   position: absolute;
@@ -572,7 +570,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  z-index: 3;
 }
 .parksContainer .recentsContainer .carouselContainer .rightArrowContainer:after {
   content: "";

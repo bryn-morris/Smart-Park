@@ -73,6 +73,7 @@
                         height:2vh;
                         top: 2.5vh;
                         left:99%;
+                        z-index:10;
     
                         .pointyBit{
     
@@ -81,7 +82,7 @@
                             height:1.5vh;
                             background-color: $hovered;
                             clip-path: polygon(0vw .25vh,1.5vw 0.75vh,0vw 1.5vh);
-                            z-index: 5;
+                            z-index: 10;
     
                         }
                         .borderElement{
@@ -91,7 +92,7 @@
                             left:.1vw;
                             background-color: $light;
                             clip-path: polygon(0vw 0vh,1.75vw .75vh,0vw 1.75vh);
-                            z-index: -1;
+                            z-index: 9;
                         }
                     }
                 }

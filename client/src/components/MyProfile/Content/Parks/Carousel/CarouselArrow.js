@@ -11,10 +11,6 @@ function CarouselArrow({
     arrowLogic
 }) {
 
-    // can't target anchor tags or pseudoselectors with
-    // inline styling, will need to use something 
-    // like radium to handle removing pseudoselector upon arrowLogic change. 
-
     const aCS = arrowLogic ? css`
         &:hover{
             cursor: pointer;
@@ -22,8 +18,6 @@ function CarouselArrow({
         }
     ` :
     null
-
-        // need to assign fade in and fade out transitions to icons
 
     return(
         <div 

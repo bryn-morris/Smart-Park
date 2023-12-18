@@ -94,11 +94,6 @@
     align-items: center;
     z-index: 3;
 
-    // &:hover{
-    //     cursor: pointer;
-    //     background-color:$hovered;
-    // }
-
     @if $class == 'right'{
 
         &:after {

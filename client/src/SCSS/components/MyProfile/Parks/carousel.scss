@@ -68,44 +68,38 @@
                     margin-left: -18vw;
                     transform: scale(0);
                 }
-                
-                .cardFlexContainer{
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    flex-direction: row;
-
-                    .dateContainer{
-
-                        flex: 14%;
-                        max-width: 14%;
-                        border-right: solid 2px $dark;
-                        background-color: $accent1;
-
-                        .date{
-                            height: 100%;
-                            font-size: 3vh;
-                            writing-mode: vertical-lr;
-                            transform: rotate(180deg);
-                            display: flex;
-                            flex-wrap: wrap;
-                            justify-content: center;
-                            align-content: center;
-                        }
-                    }
 
                     .card{
-            
                         width:100%;
                         height: 100%;
                         display: flex;
                         flex-direction: column;
                         flex-wrap: nowrap;
-                
-                        .parkImage {
+                        position:relative;
+
+                        .imageContainer{
                             width: 100%;
                             height: 80%;
+
+                            &:hover::before{
+                                content:"";
+                                position:absolute;
+                                top:0;
+                                left:0;
+                                width:100%;
+                                height:100%;
+                                z-index: 1;
+                                background-color: grey;
+                                opacity: 40%;
+                            }
+
+                            .parkImage {
+                                width: 100%;
+                                height: 100%;
+                            }
                         }
+
+
                         .labelContainer{
                             
                             bottom: 0%;
@@ -163,10 +157,6 @@
                             }
                         }
                     }
-
-                }
-
-                
             }    
         }
     }

@@ -26,21 +26,18 @@ function CarouselCard({eachPark, sectionTitle}){
         ]
     )
 
+        // need to use radium to add content to the before pseudoelement
+        // attached to the imageContainer
+
     return(
-        <div className="cardFlexContainer">
-            {
-            sectionTitle === 'Favorite Parks' ? 
-            null :
-            <div className="dateContainer">
-                <div className="date">{eachPark.date_of_visit}</div>
-            </div>
-            }
             <div className="card">
-                <img 
-                    src = {eachPark.image}
-                    alt = "park"
-                    className="parkImage"
-                />
+                <div className="imageContainer">
+                    <img 
+                        src = {eachPark.image}
+                        alt = "park"
+                        className="parkImage"
+                    />
+                </div>
                 <div className="labelContainer">
                     {
                         sectionTitle === 'Favorite Parks' ? 
@@ -65,7 +62,6 @@ function CarouselCard({eachPark, sectionTitle}){
                     <div className="label">{eachPark.name}</div>
                 </div>
             </div>
-        </div>
     )
 }
 

@@ -368,6 +368,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 }
 .parksContainer .favoritesContainer .carouselContainer .leftArrowContainer:hover {
   cursor: pointer;
@@ -388,6 +389,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 }
 .parksContainer .favoritesContainer .carouselContainer .rightArrowContainer:hover {
   cursor: pointer;
@@ -452,40 +454,34 @@
   margin-left: -18vw;
   transform: scale(0);
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .dateContainer {
-  flex: 14%;
-  max-width: 14%;
-  border-right: solid 2px #212121;
-  background-color: #91972A;
-}
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .dateContainer .date {
-  height: 100%;
-  font-size: 3vh;
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-}
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  position: relative;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .parkImage {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer {
   width: 100%;
   height: 80%;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: grey;
+  opacity: 40%;
+}
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer .parkImage {
+  width: 100%;
+  height: 100%;
+}
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer {
   bottom: 0%;
   height: 20%;
   width: 100%;
@@ -495,7 +491,7 @@
   border-top: solid 2px #212121;
   position: relative;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .iconContainer {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer {
   width: 20%;
   height: 100%;
   left: 0%;
@@ -504,18 +500,18 @@
   justify-content: center;
   align-items: center;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .iconContainer .heartIcon {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .heartIcon {
   position: relative;
   font-size: 2.3vh;
   margin-left: 0.5vh;
   line-height: 1em;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .iconContainer .heartIcon:hover {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .heartIcon:hover {
   color: #D6D6D6;
   cursor: pointer;
   transform: scale(1.2);
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .iconContainer .uncheckIcon {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .uncheckIcon {
   position: absolute;
   transform: scale(0.6);
   left: 40%;
@@ -523,7 +519,7 @@
   color: red;
   z-index: 1;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .label {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label {
   position: absolute;
   height: 100%;
   width: 80%;
@@ -557,6 +553,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 }
 .parksContainer .recentsContainer .carouselContainer .leftArrowContainer:hover {
   cursor: pointer;
@@ -577,6 +574,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 }
 .parksContainer .recentsContainer .carouselContainer .rightArrowContainer:hover {
   cursor: pointer;
@@ -641,40 +639,34 @@
   margin-left: -18vw;
   transform: scale(0);
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .dateContainer {
-  flex: 14%;
-  max-width: 14%;
-  border-right: solid 2px #212121;
-  background-color: #91972A;
-}
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .dateContainer .date {
-  height: 100%;
-  font-size: 3vh;
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-}
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  position: relative;
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .parkImage {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer {
   width: 100%;
   height: 80%;
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: grey;
+  opacity: 40%;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer .parkImage {
+  width: 100%;
+  height: 100%;
+}
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer {
   bottom: 0%;
   height: 20%;
   width: 100%;
@@ -684,7 +676,7 @@
   border-top: solid 2px #212121;
   position: relative;
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .iconContainer {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer {
   width: 20%;
   height: 100%;
   left: 0%;
@@ -693,18 +685,18 @@
   justify-content: center;
   align-items: center;
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .iconContainer .heartIcon {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .heartIcon {
   position: relative;
   font-size: 2.3vh;
   margin-left: 0.5vh;
   line-height: 1em;
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .iconContainer .heartIcon:hover {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .heartIcon:hover {
   color: #D6D6D6;
   cursor: pointer;
   transform: scale(1.2);
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .iconContainer .uncheckIcon {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .iconContainer .uncheckIcon {
   position: absolute;
   transform: scale(0.6);
   left: 40%;
@@ -712,7 +704,7 @@
   color: red;
   z-index: 1;
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .cardFlexContainer .card .labelContainer .label {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label {
   position: absolute;
   height: 100%;
   width: 80%;

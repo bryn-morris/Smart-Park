@@ -369,6 +369,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  border-radius: 5%;
 }
 .parksContainer .favoritesContainer .carouselContainer .leftArrowContainer .icon {
   position: absolute;
@@ -390,6 +391,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  border-radius: 5%;
 }
 .parksContainer .favoritesContainer .carouselContainer .rightArrowContainer:after {
   content: "";
@@ -549,6 +551,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  border-radius: 5%;
 }
 .parksContainer .recentsContainer .carouselContainer .leftArrowContainer .icon {
   position: absolute;
@@ -570,6 +573,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  border-radius: 5%;
 }
 .parksContainer .recentsContainer .carouselContainer .rightArrowContainer:after {
   content: "";
@@ -707,11 +711,28 @@
   font-weight: 400;
 }
 .parksContainer .reviewsContainer {
-  background-color: green;
+  background-color: #E5E7E6;
   width: 100%;
   height: 40vh;
+  position: relative;
 }
-
+.parksContainer .reviewsContainer .titleContainer {
+  position: absolute;
+  display: flex;
+  left: 7.5vw;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+}
+.parksContainer .reviewsContainer .titleContainer .title {
+  font-size: 3vh;
+}
+.parksContainer .reviewsContainer .titleContainer .starIcon {
+  font-size: 2.3vh;
+}
+.parksContainer .reviewsContainer .container {
+  flex: 90%;
+}
 .home {
   width: 85%;
   position: relative;

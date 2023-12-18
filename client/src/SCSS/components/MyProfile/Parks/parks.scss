@@ -26,8 +26,42 @@
     }
 
     .reviewsContainer{
-        background-color: green;
+        background-color: $light;
         width:100%;
         height: 40vh;
+        position:relative;
+
+        .titleContainer{
+            position:absolute;
+            display:flex;
+            left:7.5vw;
+            flex-direction: row;
+            width: auto;
+            height: auto;
+
+            .title{
+                font-size: 3vh;
+            }
+            .starIcon{
+                font-size: 2.3vh;
+            }
+        }
+
+        .container{
+            flex:90%;
+
+            .rating{
+
+            }
+            .username{
+
+            }
+            .text{
+
+            }
+            .dogPark{
+
+            }
+        }
     }
 }

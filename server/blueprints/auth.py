@@ -45,7 +45,7 @@ class Login(Resource):
             session['user_id'] = user.id
 
             resp = make_response(
-                user.to_dict(rules=('dogs','-_password','reviews','-favorited',)),
+                user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',)),
                 200
             )
 

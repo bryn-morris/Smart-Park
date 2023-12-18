@@ -27,42 +27,43 @@ function CarouselCard({eachPark, sectionTitle}){
     )
 
     return(
-        <div className="card">
-            <img 
-                src = {eachPark.image}
-                alt = "park"
-                className="parkImage"
-            />
-            <div className="labelContainer">
-                {
-                    sectionTitle === 'Favorite Parks' ? 
-                    <div
-                        className="iconContainer"
-                    >
-                        <Icon
-                            className="heartIcon"
-                            name="heart"
-                            title = "Remove Park from Favorites"
-                            onClick = {()=>{unFavorite(favEntryID)}}
+        <div className="cardFlexContainer">
+            {
+            sectionTitle === 'Favorite Parks' ? 
+            null :
+            <div className="dateContainer">
+                <div className="date">{eachPark.date_of_visit}</div>
+            </div>
+            }
+            <div className="card">
+                <img 
+                    src = {eachPark.image}
+                    alt = "park"
+                    className="parkImage"
+                />
+                <div className="labelContainer">
+                    {
+                        sectionTitle === 'Favorite Parks' ? 
+                        <div
+                            className="iconContainer"
                         >
                             <Icon
-                                className="uncheckIcon"
-                                name = "times circle outline"
-                            />
-                        </Icon>
-                    </div>
-                    : 
-                    <div
-                        className="dateContainer"
-                    >
-                        <div
-                            className="date"
-                        >
-                            {eachPark.date_of_visit}
+                                className="heartIcon"
+                                name="heart"
+                                title = "Remove Park from Favorites"
+                                onClick = {()=>{unFavorite(favEntryID)}}
+                            >
+                                <Icon
+                                    className="uncheckIcon"
+                                    name = "times circle outline"
+                                />
+                            </Icon>
                         </div>
-                    </div>
-                }
-                <div className="label">{eachPark.name}</div>
+                        : 
+                        null
+                    }
+                    <div className="label">{eachPark.name}</div>
+                </div>
             </div>
         </div>
     )

@@ -34,7 +34,7 @@ function CarouselCard({eachPark, sectionTitle}){
         position: relative;
 
         &:hover::before{
-            content:'test';
+            content:'Visit Date: ${eachPark.date_of_visit}';
             position:absolute;
             top:0;
             left:0;
@@ -42,15 +42,15 @@ function CarouselCard({eachPark, sectionTitle}){
             height:100%;
             z-index: 1;
             background-color: grey;
-            opacity: 40%;
+            opacity: 90%;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
             color: white;
+            font-size: 2.5vh;
         }
     `;
-        // need to use radium to add content to the before pseudoelement
-        // attached to the imageContainer
 
     return(
             <div className="card">

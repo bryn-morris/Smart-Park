@@ -1,5 +1,6 @@
 import Carousel from "./Carousel/Carousel"
 import { useContext } from "react"
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 
 import { DogParkContext } from "../../../../context/DogParkContext"
 import { AuthContext } from "../../../../context/AuthContext"
@@ -21,8 +22,15 @@ function ProfileParks () {
                 >
                     <div className="rating">{eachReview.rating}</div>
                     <div className="username">{currentUser.username}</div>
-                    <div className="text">{eachReview.comment}</div>
+                    <div className="textContainer">
+                        <div className="text">- {eachReview.comment}</div>
+                    </div>
                     <div className="dogPark">{eachReview.dog_park.name}</div>
+                    <ArrowRightIcon
+                        className = "modalLink"
+                        onClick = {()=>{console.log('redirect to dog park modal')}}
+                        title = "Click here to navigate to your review"
+                    />
                 </div>
             )
         })
@@ -48,12 +56,14 @@ function ProfileParks () {
             <div className = "reviewsContainer">
                 <div className="titleContainer">
                     <Icon 
-                        name="star icon"
+                        name="star"
                         className="starIcon"
                     />
                     <div className='title'>Reviews</div>
                 </div>
-                {generateReviewCards(currentUser.reviews)}
+                <div className="cardsContainer">
+                    {generateReviewCards(currentUser.reviews)}
+                </div>
             </div>
         </div>
     )

@@ -715,6 +715,9 @@
   width: 100%;
   height: 40vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .parksContainer .reviewsContainer .titleContainer {
   position: absolute;
@@ -730,9 +733,69 @@
 .parksContainer .reviewsContainer .titleContainer .starIcon {
   font-size: 2.3vh;
 }
-.parksContainer .reviewsContainer .container {
-  flex: 90%;
+.parksContainer .reviewsContainer .cardsContainer {
+  position: absolute;
+  top: 10%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
 }
+.parksContainer .reviewsContainer .cardsContainer .container {
+  position: relative;
+  width: 100%;
+  min-height: 16vh;
+  border: 4px solid #D6D6D6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+.parksContainer .reviewsContainer .cardsContainer .container .rating {
+  position: absolute;
+  top: 3vh;
+  left: 6.7vw;
+  font-size: 2.4vh;
+}
+.parksContainer .reviewsContainer .cardsContainer .container .username {
+  position: absolute;
+  right: 6.7vw;
+  top: 3vh;
+  font-size: 1.8vh;
+}
+.parksContainer .reviewsContainer .cardsContainer .container .textContainer {
+  position: absolute;
+  background-color: #D6D6D6;
+  border-radius: 2%;
+  width: 80%;
+  height: 20%;
+  top: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parksContainer .reviewsContainer .cardsContainer .container .textContainer .text {
+  font-size: 2.4vh;
+  text-align: center;
+  font-style: italic;
+}
+.parksContainer .reviewsContainer .cardsContainer .container .dogPark {
+  position: absolute;
+  top: 3vh;
+  font-size: 2.4vh;
+  font-weight: bold;
+}
+.parksContainer .reviewsContainer .cardsContainer .container .modalLink {
+  position: absolute;
+  top: 65%;
+  right: 3vw;
+  transform: scale(3.7);
+}
+.parksContainer .reviewsContainer .cardsContainer .container .modalLink:hover {
+  cursor: pointer;
+  transform: scale(3);
+}
+
 .home {
   width: 85%;
   position: relative;

@@ -85,7 +85,10 @@ with app.app_context():
     r3 = Review(comment='Great spot for my doggo to get his energy out! Cannot beat unlimited tennis balls.', rating=4, dog_park=dp5, user = u3)
     r4 = Review(comment='Basil had the time of his life.. he took a nap in the sun and could not have been happier.', rating=4, dog_park=dp2, user = u2)
     r5 = Review(comment='What da hecko.. I luv dirt and could dig dig dig here! Doggos go here now!', rating=5, dog_park=dp3, user = u4)
-
+    r6  = Review(comment = 'What a tester of a comment, my goodness this comment couldn\'t even get any testier', rating=3, dog_park=dp1, user = u2)
+    r6  = Review(comment = 'What a tester of a comment', rating=2, dog_park=dp3, user = u2)
+    r6  = Review(comment = 'What a tester of a comment, my goodness this comment couldn\'t even get any testier', rating=3, dog_park=dp4, user = u2)
+    r6  = Review(comment = 'What a tester of a comment, my goodness this comment couldn\'t even get any testier', rating=5, dog_park=dp5, user = u2)
     # reviews_list = [Review(name= faker.user_name(),  comment= faker.sentence(), rating = randint(1,5), dog_park_id=randint(1,5)) for _ in range(1,10)]
 
     print("Creating Favorites...")

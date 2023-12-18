@@ -713,7 +713,7 @@
 .parksContainer .reviewsContainer {
   background-color: #E5E7E6;
   width: 100%;
-  height: 40vh;
+  min-height: 40vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -721,11 +721,13 @@
 }
 .parksContainer .reviewsContainer .titleContainer {
   position: absolute;
+  left: 0;
   display: flex;
   left: 7.5vw;
   flex-direction: row;
   width: auto;
   height: auto;
+  margin-bottom: 4vh;
 }
 .parksContainer .reviewsContainer .titleContainer .title {
   font-size: 3vh;
@@ -734,7 +736,6 @@
   font-size: 2.3vh;
 }
 .parksContainer .reviewsContainer .cardsContainer {
-  position: absolute;
   top: 10%;
   width: 80%;
   display: flex;
@@ -748,7 +749,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 2vh;
+  margin-top: 4vh;
   margin-bottom: 2vh;
 }
 .parksContainer .reviewsContainer .cardsContainer .container .rating {

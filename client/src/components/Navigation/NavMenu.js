@@ -24,7 +24,7 @@ function NavMenu({isActive, toggleButton}){
                     break;
                 }
                 case 'Profile': {
-                    navRoute = '/profile'
+                    navRoute = '/profile/parks'
                     break;
                 }
                 case 'Settings': {

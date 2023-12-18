@@ -466,18 +466,13 @@
   width: 100%;
   height: 80%;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer:hover::before {
-  content: "";
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer .parkImage {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  background-color: grey;
-  opacity: 40%;
 }
-.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer .parkImage {
+.parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .parkImage {
+  position: absolute;
   width: 100%;
   height: 100%;
 }
@@ -651,18 +646,13 @@
   width: 100%;
   height: 80%;
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer:hover::before {
-  content: "";
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer .parkImage {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  background-color: grey;
-  opacity: 40%;
 }
-.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .imageContainer .parkImage {
+.parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .parkImage {
+  position: absolute;
   width: 100%;
   height: 100%;
 }

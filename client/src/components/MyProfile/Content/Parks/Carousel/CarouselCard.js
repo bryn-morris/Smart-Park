@@ -2,6 +2,8 @@ import { useContext, useState, useEffect } from "react"
 import { Icon } from "semantic-ui-react"
 import { AuthContext } from "../../../../../context/AuthContext"
 import { DogParkContext } from "../../../../../context/DogParkContext"
+import { css } from "@emotion/react"
+import styled from "@emotion/styled"
 
 function CarouselCard({eachPark, sectionTitle}){
 
@@ -26,18 +28,49 @@ function CarouselCard({eachPark, sectionTitle}){
         ]
     )
 
+    const CarouselImageContainer = styled.div`
+        width: 100%;
+        height: 80%;
+        position: relative;
+
+        &:hover::before{
+            content:'test';
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            z-index: 1;
+            background-color: grey;
+            opacity: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+    `;
         // need to use radium to add content to the before pseudoelement
         // attached to the imageContainer
 
     return(
             <div className="card">
-                <div className="imageContainer">
-                    <img 
-                        src = {eachPark.image}
-                        alt = "park"
-                        className="parkImage"
-                    />
-                </div>
+                {
+                    sectionTitle === 'Favorite Parks' ? 
+                    <div className="imageContainer">
+                        <img 
+                            src = {eachPark.image}
+                            alt = "park"
+                            className="parkImage"
+                        />
+                    </div> :
+                    <CarouselImageContainer>
+                        <img 
+                            src = {eachPark.image}
+                            alt = "park"
+                            className="parkImage"
+                        />
+                    </CarouselImageContainer>
+                }
                 <div className="labelContainer">
                     {
                         sectionTitle === 'Favorite Parks' ? 

@@ -373,7 +373,12 @@
 .parksContainer .favoritesContainer .carouselContainer .leftArrowContainer .icon {
   position: absolute;
   font-size: 14vh;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
   left: -0.7vw;
+}
+.parksContainer .favoritesContainer .carouselContainer .leftArrowContainer .icon.hidden {
+  transform: scale(0);
+  opacity: 0;
 }
 .parksContainer .favoritesContainer .carouselContainer .rightArrowContainer {
   position: relative;
@@ -399,7 +404,12 @@
 .parksContainer .favoritesContainer .carouselContainer .rightArrowContainer .icon {
   position: absolute;
   font-size: 14vh;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
   right: -0.7vw;
+}
+.parksContainer .favoritesContainer .carouselContainer .rightArrowContainer .icon.hidden {
+  transform: scale(0);
+  opacity: 0;
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer {
   flex: 86%;
@@ -545,7 +555,12 @@
 .parksContainer .recentsContainer .carouselContainer .leftArrowContainer .icon {
   position: absolute;
   font-size: 14vh;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
   left: -0.7vw;
+}
+.parksContainer .recentsContainer .carouselContainer .leftArrowContainer .icon.hidden {
+  transform: scale(0);
+  opacity: 0;
 }
 .parksContainer .recentsContainer .carouselContainer .rightArrowContainer {
   position: relative;
@@ -571,7 +586,12 @@
 .parksContainer .recentsContainer .carouselContainer .rightArrowContainer .icon {
   position: absolute;
   font-size: 14vh;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
   right: -0.7vw;
+}
+.parksContainer .recentsContainer .carouselContainer .rightArrowContainer .icon.hidden {
+  transform: scale(0);
+  opacity: 0;
 }
 .parksContainer .recentsContainer .carouselContainer .parkCardContainer {
   flex: 86%;

@@ -116,6 +116,12 @@
 
         position: absolute;
         font-size: 14vh;
+        transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+
+        &.hidden{
+            transform: scale(0);
+            opacity: 0;
+        }
 
         @if $class == 'left'{
             left: -.7vw;

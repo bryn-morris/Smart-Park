@@ -23,6 +23,8 @@ function CarouselArrow({
     ` :
     null
 
+        // need to assign fade in and fade out transitions to icons
+
     return(
         <div 
             className={`${arrowDirection}ArrowContainer`}
@@ -33,18 +35,15 @@ function CarouselArrow({
             css = {aCS}
         >
             {
-                arrowLogic ?
-                    arrowDirection === "right" ? 
-                    <ArrowRightIcon 
-                        className='icon'
-                    /> : 
-                    <ArrowLeftIcon 
-                        className='icon'
-                    />
-                 : 
-                null
+                arrowDirection === "right" ? 
+                <ArrowRightIcon 
+                    className={`icon ${arrowLogic ? '' : 'hidden'}`}
+                /> : 
+                <ArrowLeftIcon 
+                    className={`icon ${arrowLogic ? '' : 'hidden'}`}
+                />
             }
-            
+        
         </div>
     )
 }

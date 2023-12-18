@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from "react"
 import { Icon } from "semantic-ui-react"
 import { AuthContext } from "../../../../../context/AuthContext"
 import { DogParkContext } from "../../../../../context/DogParkContext"
-import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 
 function CarouselCard({eachPark, sectionTitle}){

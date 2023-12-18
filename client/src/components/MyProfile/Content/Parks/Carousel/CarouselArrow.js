@@ -1,5 +1,9 @@
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import {css} from "@emotion/react";
+
+// Jsx Pragma needed for emotion css
+/** @jsxImportSource @emotion/react */
 
 function CarouselArrow({
     arrowDirection,
@@ -11,6 +15,14 @@ function CarouselArrow({
     // inline styling, will need to use something 
     // like radium to handle removing pseudoselector upon arrowLogic change. 
 
+    const aCS = arrowLogic ? css`
+        &:hover{
+            cursor: pointer;
+            background-color:#D6D6D6 !important;
+        }
+    ` :
+    null
+
     return(
         <div 
             className={`${arrowDirection}ArrowContainer`}
@@ -18,14 +30,21 @@ function CarouselArrow({
                 arrowLogic === true ?
                 carArrowFunction: null
             }
+            css = {aCS}
         >
-            {arrowDirection === "right" ? 
-            <ArrowRightIcon 
-                className='icon'
-            /> : 
-            <ArrowLeftIcon 
-                className='icon'
-            />}
+            {
+                arrowLogic ?
+                    arrowDirection === "right" ? 
+                    <ArrowRightIcon 
+                        className='icon'
+                    /> : 
+                    <ArrowLeftIcon 
+                        className='icon'
+                    />
+                 : 
+                null
+            }
+            
         </div>
     )
 }

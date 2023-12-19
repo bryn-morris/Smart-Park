@@ -6,12 +6,21 @@ import Title from "./Title"
 import { DogParkContext } from "../../../../context/DogParkContext"
 import { AuthContext } from "../../../../context/AuthContext"
 import { Icon } from "semantic-ui-react"
+import { useState } from "react"
 
 
 function ProfileParks () {
 
     const {currentUser} = useContext(AuthContext)
     const {favoritedParksByUser, recentParks} = useContext(DogParkContext)
+
+    const [sectionObject, setSectionObject] = useState({
+        'Favorite Parks': false,
+        'Recent Parks': false,
+        'Park Reviews': false,
+    })
+
+    console.log(sectionObject)
 
     function generateReviewStars(starNumber){
        return(
@@ -66,29 +75,37 @@ function ProfileParks () {
 
     return(
         <div className = "parksContainer">
-            <Title iconName="heart" title = "Favorite Parks"/>
+            <Title 
+                iconName="heart" 
+                title = "Favorite Parks"
+                setSectionObject = {setSectionObject}
+                sectionObject = {sectionObject}
+            />
             <div className = "favoritesContainer">
                 <Carousel 
                     dataArray = {favoritedParksByUser}
                     sectionTitle="Favorite Parks"
                 />
             </div>
-            <Title iconName="clock outline" title = "Recent Parks"/>
+            <Title 
+                iconName="clock outline" 
+                title = "Recent Parks"
+                setSectionObject = {setSectionObject}
+                sectionObject = {sectionObject}
+            />
             <div className = "recentsContainer">
                 <Carousel
                     dataArray = {recentParks}
                     sectionTitle={"Recent Parks"}
                 />
             </div>
-            <Title iconName="star" title = "Park Reviews"/>
+            <Title 
+                iconName="star" 
+                title = "Park Reviews"
+                setSectionObject = {setSectionObject}
+                sectionObject = {sectionObject}
+            />
             <div className = "reviewsContainer">
-                {/* <div className="titleContainer">
-                    <Icon 
-                        name="star"
-                        className="starIcon"
-                    />
-                    <div className='title'>Reviews</div>
-                </div> */}
                 <div className="cardsContainer">
                     {generateReviewCards(currentUser.reviews)}
                 </div>

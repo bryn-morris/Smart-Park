@@ -1,6 +1,12 @@
 import { Icon } from "semantic-ui-react"
 
-function Title ({iconName, title}) {
+function Title ({
+    iconName, 
+    title, 
+    sectionObject, 
+    setSectionObject
+}) {
+
     return(
         <div className="titleContainer">    
             <div className="title">
@@ -9,6 +15,20 @@ function Title ({iconName, title}) {
                     className = "titleIcon"
                 />
                 {title}
+            </div>
+            <div 
+                className = "expandIconContainer"
+                onClick={()=>{
+                    setSectionObject((prevState)=>({
+                        ...prevState,
+                        [title]: !prevState[title]
+                    }));
+                }}
+            >
+                <Icon 
+                    name = {sectionObject[title] ? "minus" : "plus"}
+                    className = "expandIcon"
+                />
             </div>
         </div>
     )

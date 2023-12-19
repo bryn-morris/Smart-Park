@@ -20,6 +20,7 @@
         background-color: $light;
         
         .title{
+            flex:95%;
             width: auto;
             font-size:3vh;
             font-weight: 400;
@@ -27,6 +28,22 @@
         }
         .titleIcon{
             font-size: 2.3vh;
+        }
+
+        .expandIconContainer{
+
+            flex:5%;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            &:hover{
+                cursor: pointer;
+            }
+
+            .expandIcon{
+                font-size: 2.3vh;
+            }
         }
     }
 
@@ -38,6 +55,8 @@
         position:relative;
         display:flex;
         flex-direction: row;
+        border-top: solid 3px $accent2;
+        border-bottom: solid 3px $accent2;
 
         @import "./carousel.scss";
 
@@ -50,6 +69,8 @@
         position:relative;
         display:flex;
         flex-direction: row;
+        border-top: solid 3px $accent2;
+        border-bottom: solid 3px $accent2;
 
         @import "./carousel.scss";
     }
@@ -61,6 +82,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        border-top: solid 3px $accent2;
+        border-bottom: solid 3px $accent2;
 
         @import "./reviewParks.scss";
     }

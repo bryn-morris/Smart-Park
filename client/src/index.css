@@ -363,12 +363,25 @@
   background-color: #E5E7E6;
 }
 .parksContainer .titleContainer .title {
+  flex: 95%;
   width: auto;
   font-size: 3vh;
   font-weight: 400;
   margin-left: 1vw;
 }
 .parksContainer .titleContainer .titleIcon {
+  font-size: 2.3vh;
+}
+.parksContainer .titleContainer .expandIconContainer {
+  flex: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.parksContainer .titleContainer .expandIconContainer:hover {
+  cursor: pointer;
+}
+.parksContainer .titleContainer .expandIconContainer .expandIcon {
   font-size: 2.3vh;
 }
 .parksContainer .favoritesContainer {
@@ -378,6 +391,8 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  border-top: solid 3px #1D7874;
+  border-bottom: solid 3px #1D7874;
 }
 .parksContainer .favoritesContainer .carouselContainer {
   position: relative;
@@ -562,6 +577,8 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  border-top: solid 3px #1D7874;
+  border-bottom: solid 3px #1D7874;
 }
 .parksContainer .recentsContainer .carouselContainer {
   position: relative;
@@ -746,6 +763,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: solid 3px #1D7874;
+  border-bottom: solid 3px #1D7874;
 }
 .parksContainer .reviewsContainer .cardsContainer {
   position: relative;

@@ -20,17 +20,21 @@ function ProfileParks () {
                     className = "container"
                     key={eachReview.id}
                 >
-                    <div className="rating">{eachReview.rating}</div>
-                    <div className="username">{currentUser.username}</div>
-                    <div className="textContainer">
-                        <div className="text">- {eachReview.comment}</div>
+                    <div className="content">
+                        <div className="rating">{eachReview.rating}</div>
+                        <div className="username">{currentUser.username}</div>
+                        <div className="textContainer">
+                            <div className="text">- {eachReview.comment}</div>
+                        </div>
+                        <div className="dogPark">{eachReview.dog_park.name}</div>
                     </div>
-                    <div className="dogPark">{eachReview.dog_park.name}</div>
-                    <ArrowRightIcon
-                        className = "modalLink"
-                        onClick = {()=>{console.log('redirect to dog park modal')}}
-                        title = "Click here to navigate to your review"
-                    />
+                    <div className="linkContainer">
+                        <ArrowRightIcon
+                            className = "modalLink"
+                            onClick = {()=>{console.log('redirect to dog park modal')}}
+                            title = "Click here to navigate to your review"
+                        />
+                    </div>
                 </div>
             )
         })

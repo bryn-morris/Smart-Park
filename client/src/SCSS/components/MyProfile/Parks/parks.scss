@@ -62,64 +62,81 @@
 
             .container{
             
-                position: relative;
                 width:100%;
                 min-height: 16vh;
-                border: 4px solid $hovered;
-                display:flex;
-                flex-wrap: wrap;
-                justify-content: center;
+                border-right: 0px;
                 margin-top: 4vh;
                 margin-bottom: 2vh;
-    
-                .rating{
-                    position: absolute;
-                    top: 3vh;
-                    left: 6.7vw;
-                    font-size: 2.4vh;
-                }
-                .username{
-                    position:absolute;
-                    right: 6.7vw;
-                    top: 3vh;
-                    font-size: 1.8vh;
-                }
-                .textContainer{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
 
-                    position:absolute;
-                    background-color: $hovered;
-                    border-radius: 2%;
-                    width: 80%;
-                    min-height: 25%;
-                    height: auto;
-                    top: 60%;
+                .content{
+
+                    border: 4px solid $hovered;
+                    flex: 96%;
+                    position: relative;
                     display:flex;
+                    flex-wrap: wrap;
                     justify-content: center;
-                    align-items: center;
+                    border-right: solid 2px $hovered;
 
-                    .text{
+                    .rating{
+                        position: absolute;
+                        top: 3vh;
+                        left: 6.7vw;
                         font-size: 2.4vh;
-                        text-align: center;
-                        font-style: italic;
-                        line-height: 1.2;
+                    }
+                    .username{
+                        position:absolute;
+                        right: 6.7vw;
+                        top: 3vh;
+                        font-size: 1.8vh;
+                    }
+                    .textContainer{
+    
+                        position:absolute;
+                        top:50%;
+                        background-color: $hovered;
+                        border-radius: 2%;
+                        width: 80%;
+                        display:flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 2vh;
+    
+                        .text{
+                            font-size: 2.4vh;
+                            text-align: center;
+                            font-style: italic;
+                            line-height: 1.2;
+                        }
+                    }
+                    .dogPark{
+                        position:absolute;
+                        top: 3vh;
+                        font-size: 2.4vh;
+                        font-weight: bold;
                     }
                 }
-                .dogPark{
-                    position:absolute;
-                    top: 3vh;
-                    font-size: 2.4vh;
-                    font-weight: bold;
-                }
-                .modalLink{
-                    position:absolute;
-                    top: 50%;
-                    right: 3vw;
-                    font-size: 7vh;
+                .linkContainer{
+                    
+                    flex: 6%;
+                    display: flex;
+                    align-items: center;
+                    border-right: solid 4px $hovered;
+                    border-top: solid 4px $hovered;
+                    border-bottom: solid 4px $hovered;
                     transition: 0.2s transform ease-in-out;
 
                     &:hover{
                         cursor: pointer;
-                        transform: scale(1.2);
+                        transform: scaleX(1.3) translateX(1vw);
+                    }
+                    
+                    .modalLink{
+                        font-size: 20vh;
+                        transition: 0.2s transform ease-in-out;
                     }
                 }
             }

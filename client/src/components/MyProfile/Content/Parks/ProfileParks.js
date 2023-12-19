@@ -69,8 +69,6 @@ function ProfileParks () {
     // map over reviews and create a card that links to
     // specific review for park that pops up in a modal
 
-    // state to manage collapsable menus for each of the parks elements
-
     return(
         <div className = "parksContainer">
             <Title 

@@ -21,7 +21,6 @@ function ProfileParks () {
                         <Icon
                             key={index}
                             name="star"
-                            
                         /> 
                 ))}
             </div>  

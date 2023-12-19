@@ -15,7 +15,7 @@ function ProfileParks () {
     const {favoritedParksByUser, recentParks} = useContext(DogParkContext)
 
     const [sectionObject, setSectionObject] = useState({
-        'Favorite Parks': false,
+        'Favorite Parks': true,
         'Recent Parks': false,
         'Park Reviews': false,
     })

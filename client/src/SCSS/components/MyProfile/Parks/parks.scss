@@ -15,29 +15,21 @@
     .favoritesContainer{
 
         background-color: $light;
-        transition: (
-            opacity 0.5s ease-in-out, 
-            height 0.5s ease-in-out, 
-            transform 1s ease-in-out,
-        );
+        transition-duration: 0.5s;
         width:100%;
         height: 26.5vh;
         max-height: 26.5vh;
         position:relative;
         display:flex;
         flex-direction: row;
-        border-top: solid 3px $accent2;
-        border-bottom: solid 3px $accent2;
+
+        transform-origin: top;
 
         @import "./carousel.scss";
 
         &.hidden{
-            height:0;  
-            
-            .carouselContainer{
-                transform: scale(0);
-                visibility: hidden;
-            }
+            height:0;
+            transform: scaleY(0);  
         }
     }
 
@@ -50,18 +42,15 @@
 
         display:flex;
         flex-direction: row;
-        border-top: solid 3px $accent2;
-        border-bottom: solid 3px $accent2;
         transition-duration: 0.5s;
+
+        transform-origin: top;
 
         @import "./carousel.scss";
 
         &.hidden{
             height:0;
-            
-            .carouselContainer{
-                transform: scale(0);
-            }
+            transform: scaleY(0);
         }
     }
 
@@ -74,17 +63,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-top: solid 3px $accent2;
-        border-bottom: solid 3px $accent2;
+
+        transform-origin: top;
 
         @import "./reviewParks.scss";
         
         &.hidden{
             height:0;
-            
-            .cardsContainer{
-                transform: scale(0);
-            }
+            transform: scaleY(0);
         }
     }
 

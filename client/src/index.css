@@ -364,6 +364,8 @@
   max-height: 5.4vh;
   padding-top: 1vh;
   padding-bottom: 1vh;
+  border-bottom: solid 2px #3AA8C1;
+  border-top: solid 2px #3AA8C1;
 }
 .parksContainer .titleContainer .title {
   flex: 95%;
@@ -416,15 +418,14 @@
 }
 .parksContainer .favoritesContainer {
   background-color: #E5E7E6;
-  transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out, transform 1s ease-in-out;
+  transition-duration: 0.5s;
   width: 100%;
   height: 26.5vh;
   max-height: 26.5vh;
   position: relative;
   display: flex;
   flex-direction: row;
-  border-top: solid 3px #1D7874;
-  border-bottom: solid 3px #1D7874;
+  transform-origin: top;
 }
 .parksContainer .favoritesContainer .carouselContainer {
   position: relative;
@@ -604,10 +605,7 @@
 }
 .parksContainer .favoritesContainer.hidden {
   height: 0;
-}
-.parksContainer .favoritesContainer.hidden .carouselContainer {
-  transform: scale(0);
-  visibility: hidden;
+  transform: scaleY(0);
 }
 .parksContainer .recentsContainer {
   background-color: #E5E7E6;
@@ -617,9 +615,8 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  border-top: solid 3px #1D7874;
-  border-bottom: solid 3px #1D7874;
   transition-duration: 0.5s;
+  transform-origin: top;
 }
 .parksContainer .recentsContainer .carouselContainer {
   position: relative;
@@ -799,9 +796,7 @@
 }
 .parksContainer .recentsContainer.hidden {
   height: 0;
-}
-.parksContainer .recentsContainer.hidden .carouselContainer {
-  transform: scale(0);
+  transform: scaleY(0);
 }
 .parksContainer .reviewsContainer {
   background-color: #E5E7E6;
@@ -812,8 +807,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: solid 3px #1D7874;
-  border-bottom: solid 3px #1D7874;
+  transform-origin: top;
 }
 .parksContainer .reviewsContainer .cardsContainer {
   position: relative;
@@ -904,9 +898,7 @@
 }
 .parksContainer .reviewsContainer.hidden {
   height: 0;
-}
-.parksContainer .reviewsContainer.hidden .cardsContainer {
-  transform: scale(0);
+  transform: scaleY(0);
 }
 
 .home {

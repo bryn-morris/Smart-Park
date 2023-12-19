@@ -1,10 +1,12 @@
 import Carousel from "./Carousel/Carousel"
 import { useContext } from "react"
 import ArrowRightIcon from '@mui/icons-material/ArrowRight'
+import Title from "./Title"
 
 import { DogParkContext } from "../../../../context/DogParkContext"
 import { AuthContext } from "../../../../context/AuthContext"
 import { Icon } from "semantic-ui-react"
+
 
 function ProfileParks () {
 
@@ -59,31 +61,34 @@ function ProfileParks () {
     // grab users reviews from backend when user logs in
     // map over reviews and create a card that links to
     // specific review for park that pops up in a modal
-    
+
     // state to manage collapsable menus for each of the parks elements
 
     return(
         <div className = "parksContainer">
+            <Title iconName="heart" title = "Favorite Parks"/>
             <div className = "favoritesContainer">
                 <Carousel 
                     dataArray = {favoritedParksByUser}
                     sectionTitle="Favorite Parks"
                 />
             </div>
+            <Title iconName="clock outline" title = "Recent Parks"/>
             <div className = "recentsContainer">
                 <Carousel
                     dataArray = {recentParks}
                     sectionTitle={"Recent Parks"}
                 />
             </div>
+            <Title iconName="star" title = "Park Reviews"/>
             <div className = "reviewsContainer">
-                <div className="titleContainer">
+                {/* <div className="titleContainer">
                     <Icon 
                         name="star"
                         className="starIcon"
                     />
                     <div className='title'>Reviews</div>
-                </div>
+                </div> */}
                 <div className="cardsContainer">
                     {generateReviewCards(currentUser.reviews)}
                 </div>

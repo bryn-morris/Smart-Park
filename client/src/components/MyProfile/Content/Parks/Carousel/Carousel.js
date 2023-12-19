@@ -1,4 +1,3 @@
-import { Icon } from "semantic-ui-react"
 import { useState, useEffect } from "react"
 
 import CarouselCard from "./CarouselCard"
@@ -52,20 +51,6 @@ function Carousel ({dataArray, sectionTitle}) {
         })
     }
 
-    let iconName;
-    switch (sectionTitle) {
-        case 'Favorite Parks':
-            iconName = 'heart';
-            break;
-        case 'Recent Parks':
-            iconName = 'clock outline';
-            break;
-    
-        default:
-            iconName = null;
-            break;
-    }
-
     return(
         <div className = "carouselContainer">
             <CarouselArrow 
@@ -74,12 +59,6 @@ function Carousel ({dataArray, sectionTitle}) {
                 arrowLogic={decrementArrowLogic}
             />
             <div className="parkCardContainer">
-                <div className="titleContainer">    
-                    <div className="title">
-                        <Icon name = {iconName}/>
-                        {sectionTitle}
-                    </div>
-                </div>
                 <div className="cardsContainer">
                     {generateFavParkContainers(countObj)}
                 </div>

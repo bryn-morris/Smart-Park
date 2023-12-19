@@ -78,7 +78,13 @@ function ProfileParks () {
                 title = "Favorite Parks"
                 setSectionObject = {setSectionObject}
             />
-            <div className = "favoritesContainer">
+            <div 
+                className = {`favoritesContainer ${ 
+                    sectionObject['Favorite Parks'] ? 
+                    '' : 
+                    'hidden'
+                }`}
+            >
                 <Carousel 
                     dataArray = {favoritedParksByUser}
                     sectionTitle="Favorite Parks"
@@ -89,7 +95,13 @@ function ProfileParks () {
                 title = "Recent Parks"
                 setSectionObject = {setSectionObject}
             />
-            <div className = "recentsContainer">
+            <div 
+                className = {`recentsContainer ${
+                    sectionObject['Recent Parks'] ? 
+                    '' : 
+                    'hidden'
+                }`}
+            >
                 <Carousel
                     dataArray = {recentParks}
                     sectionTitle={"Recent Parks"}
@@ -100,7 +112,13 @@ function ProfileParks () {
                 title = "Park Reviews"
                 setSectionObject = {setSectionObject}
             />
-            <div className = "reviewsContainer">
+            <div 
+                className = {`reviewsContainer ${
+                    sectionObject['Park Reviews'] ? 
+                    '' : 
+                    'hidden'
+                }`}
+            >
                 <div className="cardsContainer">
                     {generateReviewCards(currentUser.reviews)}
                 </div>

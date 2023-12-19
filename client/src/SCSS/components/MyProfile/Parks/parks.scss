@@ -10,81 +10,12 @@
     flex-direction: column;
     border: 4px solid $light;
 
-    .titleContainer{
-        position:relative;
-        width:100%;
-        height: 10vh;
-        display:flex;
-        flex-direction: row;
-        line-height: 1.2;
-        background-color: $light;
-        
-        .title{
-            flex:95%;
-            width: auto;
-            font-size:3vh;
-            font-weight: 400;
-            margin-left: 1vw;
-        }
-        .titleIcon{
-            font-size: 2.3vh;
-        }
-
-        .expandIconContainer{
-
-            flex:5%;
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-
-            .containerButton{
-
-                position: relative;
-                height:3vh;
-                width:2vw;
-                transition-duration: 0.5s;
-
-                &:hover{
-                    cursor: pointer;
-                }
-
-                .horizontalLine{
-
-                    position:absolute;
-                    transition-duration: 0.5s;
-                    height: 0.4vh;
-                    width: 1.1vw;
-                    top: 1.25vh;
-                    left: 0.3vw;
-                    background-color: $dark;
-                }
-                .verticalLine{
-                    position:absolute;
-                    transition-duration: 0.5s;
-                    height: 1.1vw;
-                    width: 0.4vh;
-                    top: 0.5vh;
-                    left: 0.75vw;
-                    background-color: $dark;
-                }
-
-                &.active{
-                    .horizontalLine{
-                        transform: rotateZ(540deg)
-                    }
-                    .verticalLine{
-                        transform: rotateZ(270deg)
-                    }
-                }
-            }
-
-
-        }
-    }
+    @import "./title.scss";
 
     .favoritesContainer{
 
         background-color: $light;
+        transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out, transform 1s ease-in-out;
         width:100%;
         height: 34vh;
         position:relative;
@@ -95,6 +26,13 @@
 
         @import "./carousel.scss";
 
+        &.hidden{
+            height:0;  
+            
+            .carouselContainer{
+                transform: scale(0);
+            }
+        }
     }
 
     .recentsContainer{
@@ -102,16 +40,27 @@
         width:100%;
         height: 34vh;
         position:relative;
+
         display:flex;
         flex-direction: row;
         border-top: solid 3px $accent2;
         border-bottom: solid 3px $accent2;
+        transition-duration: 0.5s;
 
         @import "./carousel.scss";
+
+        &.hidden{
+            height:0;
+            
+            .carouselContainer{
+                transform: scale(0);
+            }
+        }
     }
 
     .reviewsContainer{
         background-color: $light;
+        transition-duration: 0.5s;
         width:100%;
         position:relative;
         display: flex;
@@ -121,5 +70,14 @@
         border-bottom: solid 3px $accent2;
 
         @import "./reviewParks.scss";
+        
+        &.hidden{
+            height:0;
+            
+            .cardsContainer{
+                transform: scale(0);
+            }
+        }
     }
+
 }

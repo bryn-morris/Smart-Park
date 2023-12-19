@@ -356,11 +356,14 @@
 .parksContainer .titleContainer {
   position: relative;
   width: 100%;
-  height: 10vh;
+  height: 5.4vh;
   display: flex;
   flex-direction: row;
   line-height: 1.2;
   background-color: #E5E7E6;
+  max-height: 5.4vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }
 .parksContainer .titleContainer .title {
   flex: 95%;
@@ -413,6 +416,7 @@
 }
 .parksContainer .favoritesContainer {
   background-color: #E5E7E6;
+  transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out, transform 1s ease-in-out;
   width: 100%;
   height: 34vh;
   position: relative;
@@ -597,6 +601,12 @@
   font-size: 3vh;
   font-weight: 400;
 }
+.parksContainer .favoritesContainer.hidden {
+  height: 0;
+}
+.parksContainer .favoritesContainer.hidden .carouselContainer {
+  transform: scale(0);
+}
 .parksContainer .recentsContainer {
   background-color: #E5E7E6;
   width: 100%;
@@ -606,6 +616,7 @@
   flex-direction: row;
   border-top: solid 3px #1D7874;
   border-bottom: solid 3px #1D7874;
+  transition-duration: 0.5s;
 }
 .parksContainer .recentsContainer .carouselContainer {
   position: relative;
@@ -783,8 +794,15 @@
   font-size: 3vh;
   font-weight: 400;
 }
+.parksContainer .recentsContainer.hidden {
+  height: 0;
+}
+.parksContainer .recentsContainer.hidden .carouselContainer {
+  transform: scale(0);
+}
 .parksContainer .reviewsContainer {
   background-color: #E5E7E6;
+  transition-duration: 0.5s;
   width: 100%;
   position: relative;
   display: flex;
@@ -880,6 +898,12 @@
   right: 0%;
   font-size: 20vh;
   transition: 0.2s transform ease-in-out;
+}
+.parksContainer .reviewsContainer.hidden {
+  height: 0;
+}
+.parksContainer .reviewsContainer.hidden .cardsContainer {
+  transform: scale(0);
 }
 
 .home {

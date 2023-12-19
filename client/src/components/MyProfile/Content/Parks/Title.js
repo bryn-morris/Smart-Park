@@ -36,10 +36,6 @@ function Title ({
                     <div className='horizontalLine'/>
                     <div className='verticalLine'/>
                 </div>
-                {/* <Icon 
-                    name = {sectionObject[title] ? "minus" : "plus"}
-                    className = "expandIcon"
-                /> */}
             </div>
         </div>
     )

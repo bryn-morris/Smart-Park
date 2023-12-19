@@ -31,7 +31,6 @@ function Carousel ({dataArray, sectionTitle}) {
     function generateFavParkContainers(ctObj){
         
         const parkArray = Array.from({length: dataArray.length}, (_,index)=>index);
-        const borderStyle = {border: "2px solid #212121"}
 
         return parkArray.map((eachIndex)=>{
 
@@ -41,7 +40,6 @@ function Carousel ({dataArray, sectionTitle}) {
             return(
                 <div 
                     className={`cardContainer ${isVisible ? '' : 'hidden'}`}
-                    style = {borderStyle}
                     key = {eachIndex}
                 >
                     <CarouselCard 

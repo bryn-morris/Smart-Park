@@ -15,6 +15,9 @@
         background-color: $light;
         width:80%;
         height: 30vh;
+        position:relative;
+        display:flex;
+        flex-direction: row;
         margin-top: 6vh;
 
         @import "./carousel.scss";
@@ -25,6 +28,9 @@
         background-color: $light;
         width:80%;
         height: 30vh;
+        position:relative;
+        display:flex;
+        flex-direction: row;
 
         @import "./carousel.scss";
     }

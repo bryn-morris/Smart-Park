@@ -2,6 +2,7 @@
 
     position:absolute;
     left:0;
+    top:3%;
     display:flex;
     left:7.5vw;
     flex-direction: row;
@@ -19,7 +20,8 @@
 
 .cardsContainer{
     
-    top:10%;
+    position:relative;
+    top:3%;
     width:80%;
     height:auto;
     display:flex;

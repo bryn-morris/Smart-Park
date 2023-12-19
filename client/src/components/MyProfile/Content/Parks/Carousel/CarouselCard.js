@@ -33,7 +33,7 @@ function CarouselCard({eachPark, sectionTitle}){
         position: relative;
 
         &:hover::before{
-            content:'Visit Date: ${eachPark.date_of_visit}';
+            content:'Last Visit: ${eachPark.date_of_visit}';
             position:absolute;
             top:0;
             left:0;

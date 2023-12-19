@@ -27,7 +27,7 @@
             flex-direction: column;
             background-color: $hovered;
             flex:10%;
-            border-right: 2px solid $accent3;
+            border-right: 2px solid $accent2;
 
             .tabContainer{
                 position:relative;
@@ -91,7 +91,7 @@
                             width:2.8vw;
                             height:1.8vh;
                             left:.1vw;
-                            background-color: $accent3;
+                            background-color: $accent2;
                             clip-path: polygon(0vw 0vh,1.75vw .75vh,0vw 1.75vh);
                             z-index: 9;
                         }

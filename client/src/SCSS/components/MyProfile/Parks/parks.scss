@@ -16,7 +16,7 @@
     .favoritesContainer{
 
         background-color: $light;
-        transition-duration: 0.5s;
+        transition: transform 0.5s ease-in-out, height 0.3s ease-in-out;
         width:100%;
         height: 26.5vh;
         max-height: 26.5vh;

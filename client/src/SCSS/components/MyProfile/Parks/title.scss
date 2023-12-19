@@ -4,7 +4,7 @@
     height: 5.4vh;
     display:flex;
     flex-direction: row;
-    line-height: 1.2;
+    line-height: 0.8;
     background-color: $light;
     max-height: 5.4vh;
     padding-top: 1vh;
@@ -17,9 +17,10 @@
         font-size:3vh;
         font-weight: 400;
         margin-left: 1vw;
+        
     }
     .titleIcon{
-        font-size: 3.4vh;
+        font-size: 4vh;
     }
 
     .expandIconContainer{
@@ -46,7 +47,7 @@
                 transition-duration: 0.5s;
                 height: 0.4vh;
                 width: 1.1vw;
-                top: 1.3vh;
+                top: 1.45vh;
                 left: 0.3vw;
                 background-color: $dark;
             }

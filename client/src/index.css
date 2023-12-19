@@ -116,7 +116,7 @@
   flex-direction: column;
   background-color: #D6D6D6;
   flex: 10%;
-  border-right: 2px solid #3AA8C1;
+  border-right: 2px solid #1D7874;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer {
   position: relative;
@@ -173,7 +173,7 @@
   width: 2.8vw;
   height: 1.8vh;
   left: 0.1vw;
-  background-color: #3AA8C1;
+  background-color: #1D7874;
   clip-path: polygon(0vw 0vh, 1.75vw 0.75vh, 0vw 1.75vh);
   z-index: 9;
 }
@@ -360,7 +360,7 @@
   height: 5.4vh;
   display: flex;
   flex-direction: row;
-  line-height: 1.2;
+  line-height: 0.8;
   background-color: #E5E7E6;
   max-height: 5.4vh;
   padding-top: 1vh;
@@ -375,7 +375,7 @@
   margin-left: 1vw;
 }
 .parksContainer .titleContainer .titleIcon {
-  font-size: 3.4vh;
+  font-size: 4vh;
 }
 .parksContainer .titleContainer .expandIconContainer {
   flex: 5%;
@@ -397,7 +397,7 @@
   transition-duration: 0.5s;
   height: 0.4vh;
   width: 1.1vw;
-  top: 1.3vh;
+  top: 1.45vh;
   left: 0.3vw;
   background-color: #212121;
 }
@@ -418,7 +418,7 @@
 }
 .parksContainer .favoritesContainer {
   background-color: #E5E7E6;
-  transition-duration: 0.5s;
+  transition: transform 0.5s ease-in-out, height 0.3s ease-in-out;
   width: 100%;
   height: 26.5vh;
   max-height: 26.5vh;
@@ -603,6 +603,7 @@
   justify-content: center;
   font-size: 3vh;
   font-weight: 400;
+  line-height: 1;
 }
 .parksContainer .favoritesContainer.hidden {
   height: 0;
@@ -795,6 +796,7 @@
   justify-content: center;
   font-size: 3vh;
   font-weight: 400;
+  line-height: 1;
 }
 .parksContainer .recentsContainer.hidden {
   height: 0;

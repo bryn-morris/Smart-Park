@@ -11,12 +11,8 @@ function CarouselArrow({
     arrowLogic
 }) {
 
-    const aCS = arrowLogic ? css`
-        &:hover{
-            cursor: pointer;
-            background-color:#D6D6D6 !important;
-        }
-    ` :
+    const aCS = arrowLogic ? 
+    css`&:hover{cursor: pointer;` :
     null
 
     return(

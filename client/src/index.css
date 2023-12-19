@@ -345,11 +345,15 @@
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .parksContainer .favoritesContainer {
   background-color: #E5E7E6;
-  width: 100%;
+  width: 80%;
   height: 30vh;
+  margin-top: 6vh;
 }
 .parksContainer .favoritesContainer .carouselContainer {
   position: relative;
@@ -539,7 +543,7 @@
 }
 .parksContainer .recentsContainer {
   background-color: #E5E7E6;
-  width: 100%;
+  width: 80%;
   height: 30vh;
 }
 .parksContainer .recentsContainer .carouselContainer {
@@ -730,12 +734,12 @@
 }
 .parksContainer .reviewsContainer {
   background-color: #E5E7E6;
-  width: 100%;
-  min-height: 40vh;
+  width: 80%;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 6vh;
 }
 .parksContainer .reviewsContainer .titleContainer {
   position: absolute;
@@ -756,6 +760,7 @@
 .parksContainer .reviewsContainer .cardsContainer {
   top: 10%;
   width: 80%;
+  height: auto;
   display: flex;
   flex-direction: column;
 }

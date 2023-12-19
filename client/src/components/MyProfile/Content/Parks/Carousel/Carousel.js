@@ -9,13 +9,13 @@ function Carousel ({dataArray, sectionTitle}) {
 
     const [countObj, setCountObj] = useState({
         startIndex : 0,
-        endIndex : Math.min(4, dataArray.length),
+        endIndex : Math.min(3, dataArray.length),
     })
 
     const [incrementArrowLogic, setIncrementArrowLogic] = useState(false)
 
     useEffect(()=>{
-        if (dataArray.length < 4){
+        if (dataArray.length < 3){
             setIncrementArrowLogic(false)
         } else {
             setIncrementArrowLogic(countObj.endIndex !== dataArray.length + 1)

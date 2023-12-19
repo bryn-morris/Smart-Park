@@ -6,12 +6,16 @@
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 
     .favoritesContainer{
 
         background-color: $light;
-        width:100%;
+        width:80%;
         height: 30vh;
+        margin-top: 6vh;
 
         @import "./carousel.scss";
 
@@ -19,7 +23,7 @@
 
     .recentsContainer{
         background-color: $light;
-        width:100%;
+        width:80%;
         height: 30vh;
 
         @import "./carousel.scss";
@@ -27,12 +31,12 @@
 
     .reviewsContainer{
         background-color: $light;
-        width:100%;
-        min-height: 40vh;
+        width:80%;
         position:relative;
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 6vh;
 
         @import "./reviewParks.scss";
     }

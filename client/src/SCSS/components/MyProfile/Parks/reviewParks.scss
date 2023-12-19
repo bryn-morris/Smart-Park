@@ -49,7 +49,12 @@
                 position: absolute;
                 top: 4vh;
                 left: 6.7vw;
-                font-size: 2.4vh;
+                display: flex;
+                flex-wrap: nowrap;
+
+                .reviewStar{
+                    font-size: 2.2vh;
+                }
             }
             .username{
                 position:absolute;

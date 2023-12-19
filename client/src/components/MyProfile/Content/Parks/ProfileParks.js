@@ -11,7 +11,23 @@ function ProfileParks () {
     const {currentUser} = useContext(AuthContext)
     const {favoritedParksByUser, recentParks} = useContext(DogParkContext)
 
-    console.log(currentUser)
+    function generateReviewStars(starNumber){
+       return(
+            <div
+                className="reviewStar"
+            >
+                {
+                    Array(starNumber).fill().map((_, index)=>(
+                        <Icon
+                            key={index}
+                            name="star"
+                            
+                        /> 
+                ))}
+            </div>  
+        )
+    }
+
 
     function generateReviewCards(reviews){
         return reviews.map((eachReview)=>{
@@ -21,7 +37,10 @@ function ProfileParks () {
                     key={eachReview.id}
                 >
                     <div className="content">
-                        <div className="rating">{eachReview.rating}</div>
+                        {/* <div className="rating">{eachReview.rating}</div> */}
+                        <div className="rating">
+                            {generateReviewStars(eachReview.rating)}
+                        </div>
                         <div className="username">{currentUser.username}</div>
                         <div className="textContainer">
                             <div className="text">- {eachReview.comment}</div>

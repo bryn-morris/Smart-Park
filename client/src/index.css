@@ -866,7 +866,7 @@
   flex: 100%;
   color: #1D7874;
   height: auto;
-  transform: scale(13);
+  font-size: 34vh;
 }
 .checkInModalContainer .checkInButton #checkInFeature1 {
   position: absolute;
@@ -879,6 +879,7 @@
   font-family: Tahoma;
   font-weight: 700;
   color: #91972A;
+  font-size: 5vh;
   transform: scale(2) rotate(330deg);
   opacity: 0;
   z-index: 2;
@@ -897,6 +898,7 @@
   font-family: Tahoma;
   font-weight: 700;
   color: #91972A;
+  font-size: 5vh;
   transform: scale(2) rotate(340deg);
   opacity: 0;
   z-index: 2;
@@ -906,7 +908,7 @@
 }
 .checkInModalContainer .checkInButton #checkInFeature3 {
   position: absolute;
-  height: 23vh;
+  height: 24vh;
   width: 3vw;
   text-align: center;
   left: 15vw;
@@ -915,6 +917,7 @@
   font-family: Tahoma;
   font-weight: 700;
   color: #91972A;
+  font-size: 5vh;
   transform: scale(2) rotate(20deg);
   opacity: 0;
   z-index: 2;
@@ -933,6 +936,7 @@
   font-family: Tahoma;
   font-weight: 700;
   color: #91972A;
+  font-size: 5vh;
   transform: scale(2) rotate(30deg);
   opacity: 0;
   z-index: 2;

@@ -27,7 +27,6 @@ function ProfileParks () {
         )
     }
 
-
     function generateReviewCards(reviews){
         return reviews.map((eachReview)=>{
             return(

@@ -27,19 +27,19 @@
             flex:100%;
             color: $accent2;
             height:auto;
-            transform: scale(13);
+            font-size: 34vh;
         }
 
         @for $i from 1 to 5 {
             #checkInFeature#{$i} {
                 @if $i == 1 {
-                    @include checkInIconStyle(23vh, 3vw, 6.5vw, 12vh, rotate(330deg))
+                    @include checkInIconStyle(23vh, 3vw, 6.5vw, 12vh, rotate(330deg), 5vh)
                 } @else if $i == 2 {
-                    @include checkInIconStyle(23vh, 3vw, 12vw, 10vh, rotate(340deg))
+                    @include checkInIconStyle(23vh, 3vw, 12vw, 10vh, rotate(340deg), 5vh)
                 } @else if $i == 3 {
-                    @include checkInIconStyle(23vh, 3vw, 15vw, 10vh, rotate(20deg))
+                    @include checkInIconStyle(24vh, 3vw, 15vw, 10vh, rotate(20deg), 5vh)
                 } @else if $i == 4 {
-                    @include checkInIconStyle(23vh, 3vw, 20vw, 12vh, rotate(30deg), table-cell, bottom)
+                    @include checkInIconStyle(23vh, 3vw, 20vw, 12vh, rotate(30deg), 5vh, table-cell, bottom)
                 }
 
                 &:hover {

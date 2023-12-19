@@ -9,7 +9,7 @@
     }
 }
 
-@mixin checkInIconStyle($height, $width, $left, $top, $transform, $display: null, $vertical-align: null) {
+@mixin checkInIconStyle($height, $width, $left, $top, $transform, $font-size,$display: null, $vertical-align: null) {
     position: absolute;
     height: $height;
     width: $width;
@@ -20,6 +20,7 @@
     font-family: Tahoma;
     font-weight: 700;
     color: $accent1;
+    font-size: $font-size;
     transform: scale(2) #{$transform};
     opacity: 0;
     z-index: 2;

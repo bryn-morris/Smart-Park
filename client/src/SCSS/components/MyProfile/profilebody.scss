@@ -14,11 +14,12 @@
 
         display:flex;
         flex-direction: row;
-        height: 89%;
+        height: 87%;
         max-height: 65vh;
         width: 90%;
         overflow: hidden;
-        border:.3vh solid $hovered;
+        // border:.3vh solid $hovered;
+        border: 3px solid $accent3;
         border-radius:1%;
 
         .TabNav{
@@ -26,7 +27,7 @@
             flex-direction: column;
             background-color: $hovered;
             flex:10%;
-            border-right: 2px solid $light;
+            border-right: 2px solid $accent3;
 
             .tabContainer{
                 position:relative;
@@ -90,7 +91,7 @@
                             width:2.8vw;
                             height:1.8vh;
                             left:.1vw;
-                            background-color: $light;
+                            background-color: $accent3;
                             clip-path: polygon(0vw 0vh,1.75vw .75vh,0vw 1.75vh);
                             z-index: 9;
                         }
@@ -107,6 +108,7 @@
             align-items: center;
             flex-wrap: wrap;
             justify-content: space-around;
+            
         }
     }
 

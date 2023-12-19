@@ -9,8 +9,7 @@
     max-height: 5.4vh;
     padding-top: 1vh;
     padding-bottom: 1vh;
-    border-bottom: solid 2px $accent3;
-    border-top: solid 2px $accent3;
+    border-bottom: solid 2px $accent2;
     
     .title{
         flex:95%;
@@ -20,7 +19,7 @@
         margin-left: 1vw;
     }
     .titleIcon{
-        font-size: 2.3vh;
+        font-size: 3.4vh;
     }
 
     .expandIconContainer{
@@ -47,7 +46,7 @@
                 transition-duration: 0.5s;
                 height: 0.4vh;
                 width: 1.1vw;
-                top: 1.4vh;
+                top: 1.3vh;
                 left: 0.3vw;
                 background-color: $dark;
             }
@@ -56,8 +55,8 @@
                 transition-duration: 0.5s;
                 height: 1.1vw;
                 width: 0.4vh;
-                top: 0.5vh;
-                left: 0.75vw;
+                top: 0.55vh;
+                left: 0.73vw;
                 background-color: $dark;
             }
 

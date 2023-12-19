@@ -44,10 +44,12 @@ function CarouselCard({eachPark, sectionTitle}){
             opacity: 90%;
             display: flex;
             align-items: center;
+            text-align: center;
             justify-content: center;
             flex-wrap: wrap;
             color: white;
-            font-size: 2.5vh;
+            line-height: 1.2;
+            font-size: 2.4vh;
         }
     `;
 

@@ -104,11 +104,11 @@
 .MyProfile .ProfileBody .ContentContainer {
   display: flex;
   flex-direction: row;
-  height: 89%;
+  height: 87%;
   max-height: 65vh;
   width: 90%;
   overflow: hidden;
-  border: 0.3vh solid #D6D6D6;
+  border: 3px solid #3AA8C1;
   border-radius: 1%;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav {
@@ -116,7 +116,7 @@
   flex-direction: column;
   background-color: #D6D6D6;
   flex: 10%;
-  border-right: 2px solid #E5E7E6;
+  border-right: 2px solid #3AA8C1;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer {
   position: relative;
@@ -173,7 +173,7 @@
   width: 2.8vw;
   height: 1.8vh;
   left: 0.1vw;
-  background-color: #E5E7E6;
+  background-color: #3AA8C1;
   clip-path: polygon(0vw 0vh, 1.75vw 0.75vh, 0vw 1.75vh);
   z-index: 9;
 }
@@ -351,7 +351,8 @@
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  border: 4px solid #E5E7E6;
+  border: 3px solid #3AA8C1;
+  z-index: 1;
 }
 .parksContainer .titleContainer {
   position: relative;
@@ -364,8 +365,7 @@
   max-height: 5.4vh;
   padding-top: 1vh;
   padding-bottom: 1vh;
-  border-bottom: solid 2px #3AA8C1;
-  border-top: solid 2px #3AA8C1;
+  border-bottom: solid 2px #1D7874;
 }
 .parksContainer .titleContainer .title {
   flex: 95%;
@@ -375,7 +375,7 @@
   margin-left: 1vw;
 }
 .parksContainer .titleContainer .titleIcon {
-  font-size: 2.3vh;
+  font-size: 3.4vh;
 }
 .parksContainer .titleContainer .expandIconContainer {
   flex: 5%;
@@ -397,7 +397,7 @@
   transition-duration: 0.5s;
   height: 0.4vh;
   width: 1.1vw;
-  top: 1.4vh;
+  top: 1.3vh;
   left: 0.3vw;
   background-color: #212121;
 }
@@ -406,8 +406,8 @@
   transition-duration: 0.5s;
   height: 1.1vw;
   width: 0.4vh;
-  top: 0.5vh;
-  left: 0.75vw;
+  top: 0.55vh;
+  left: 0.73vw;
   background-color: #212121;
 }
 .parksContainer .titleContainer .expandIconContainer .containerButton.active .horizontalLine {
@@ -434,6 +434,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  border-bottom: solid 2px #1D7874;
 }
 .parksContainer .favoritesContainer .carouselContainer .leftArrowContainer {
   position: relative;
@@ -589,7 +590,7 @@
   transform: scale(0.6);
   left: 40%;
   top: -30%;
-  color: red;
+  color: #CE4027;
   z-index: 1;
 }
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label {
@@ -625,6 +626,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  border-bottom: solid 2px #1D7874;
 }
 .parksContainer .recentsContainer .carouselContainer .leftArrowContainer {
   position: relative;
@@ -780,7 +782,7 @@
   transform: scale(0.6);
   left: 40%;
   top: -30%;
-  color: red;
+  color: #CE4027;
   z-index: 1;
 }
 .parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer .card .labelContainer .label {
@@ -845,6 +847,7 @@
 }
 .parksContainer .reviewsContainer .cardsContainer .container .content .rating .reviewStar {
   font-size: 2.2vh;
+  color: #CE4027;
 }
 .parksContainer .reviewsContainer .cardsContainer .container .content .username {
   position: absolute;

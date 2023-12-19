@@ -19,8 +19,6 @@ function ProfileHeader () {
           />
         </div>
         <div className="AccentLine">
-          {/* <div className="cover1"/>
-          <div className="cover2"/> */}
         </div>
         <div className = "DetailsContainer">
           <div className='BadgeContainer'>

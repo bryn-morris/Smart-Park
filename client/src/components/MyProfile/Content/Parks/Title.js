@@ -4,10 +4,10 @@ import { useState } from "react";
 function Title ({
     iconName, 
     title, 
-    setSectionObject
+    setSectionObject,
 }) {
     
-    const [isActive, setIsActive] = useState(false)
+    const [isActive, setIsActive] = useState(title === "Favorite Parks")
 
     function handleExpandButtonClick () {
         setSectionObject((prevState)=>({

@@ -15,9 +15,14 @@
     .favoritesContainer{
 
         background-color: $light;
-        transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out, transform 1s ease-in-out;
+        transition: (
+            opacity 0.5s ease-in-out, 
+            height 0.5s ease-in-out, 
+            transform 1s ease-in-out,
+        );
         width:100%;
-        height: 34vh;
+        height: 26.5vh;
+        max-height: 26.5vh;
         position:relative;
         display:flex;
         flex-direction: row;
@@ -31,6 +36,7 @@
             
             .carouselContainer{
                 transform: scale(0);
+                visibility: hidden;
             }
         }
     }
@@ -38,7 +44,8 @@
     .recentsContainer{
         background-color: $light;
         width:100%;
-        height: 34vh;
+        height: 26.5vh;
+        max-height: 26.5vh;
         position:relative;
 
         display:flex;
@@ -62,6 +69,7 @@
         background-color: $light;
         transition-duration: 0.5s;
         width:100%;
+        height: auto;
         position:relative;
         display: flex;
         flex-direction: column;

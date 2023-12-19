@@ -418,7 +418,8 @@
   background-color: #E5E7E6;
   transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out, transform 1s ease-in-out;
   width: 100%;
-  height: 34vh;
+  height: 26.5vh;
+  max-height: 26.5vh;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -512,10 +513,10 @@
 .parksContainer .favoritesContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer {
   flex: 0 0 20vw;
   position: relative;
-  height: 21vh;
+  height: 20vh;
   width: 16vw;
   display: flex;
-  max-height: 21vh;
+  max-height: 20vh;
   max-width: 16vw;
   top: 0%;
   margin-right: 2vw;
@@ -606,11 +607,13 @@
 }
 .parksContainer .favoritesContainer.hidden .carouselContainer {
   transform: scale(0);
+  visibility: hidden;
 }
 .parksContainer .recentsContainer {
   background-color: #E5E7E6;
   width: 100%;
-  height: 34vh;
+  height: 26.5vh;
+  max-height: 26.5vh;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -705,10 +708,10 @@
 .parksContainer .recentsContainer .carouselContainer .parkCardContainer .cardsContainer .cardContainer {
   flex: 0 0 20vw;
   position: relative;
-  height: 21vh;
+  height: 20vh;
   width: 16vw;
   display: flex;
-  max-height: 21vh;
+  max-height: 20vh;
   max-width: 16vw;
   top: 0%;
   margin-right: 2vw;
@@ -804,6 +807,7 @@
   background-color: #E5E7E6;
   transition-duration: 0.5s;
   width: 100%;
+  height: auto;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -813,7 +817,6 @@
 }
 .parksContainer .reviewsContainer .cardsContainer {
   position: relative;
-  top: 3%;
   width: 80%;
   height: auto;
   display: flex;

@@ -32,12 +32,13 @@
     
             .cardContainer {
 
+                // flex:0 0 20vw;
                 flex:0 0 20vw;
                 position:relative;
-                height:21vh;
+                height:20vh;
                 width: 16vw;
                 display: flex;
-                max-height: 21vh;
+                max-height: 20vh;
                 max-width: 16vw;
             
                 top:0%;
@@ -147,5 +148,5 @@
         }
     }
 
-    
+
 }

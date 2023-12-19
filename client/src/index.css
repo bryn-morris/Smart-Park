@@ -769,7 +769,8 @@
   background-color: #D6D6D6;
   border-radius: 2%;
   width: 80%;
-  height: 20%;
+  min-height: 25%;
+  height: auto;
   top: 60%;
   display: flex;
   justify-content: center;
@@ -779,6 +780,7 @@
   font-size: 2.4vh;
   text-align: center;
   font-style: italic;
+  line-height: 1.2;
 }
 .parksContainer .reviewsContainer .cardsContainer .container .dogPark {
   position: absolute;
@@ -788,13 +790,14 @@
 }
 .parksContainer .reviewsContainer .cardsContainer .container .modalLink {
   position: absolute;
-  top: 65%;
+  top: 50%;
   right: 3vw;
-  transform: scale(3.7);
+  font-size: 7vh;
+  transition: 0.2s transform ease-in-out;
 }
 .parksContainer .reviewsContainer .cardsContainer .container .modalLink:hover {
   cursor: pointer;
-  transform: scale(3);
+  transform: scale(1.2);
 }
 
 .home {

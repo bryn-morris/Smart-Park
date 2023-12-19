@@ -20,8 +20,6 @@ function ProfileParks () {
         'Park Reviews': false,
     })
 
-    console.log(sectionObject)
-
     function generateReviewStars(starNumber){
        return(
             <div
@@ -79,7 +77,6 @@ function ProfileParks () {
                 iconName="heart" 
                 title = "Favorite Parks"
                 setSectionObject = {setSectionObject}
-                sectionObject = {sectionObject}
             />
             <div className = "favoritesContainer">
                 <Carousel 
@@ -91,7 +88,6 @@ function ProfileParks () {
                 iconName="clock outline" 
                 title = "Recent Parks"
                 setSectionObject = {setSectionObject}
-                sectionObject = {sectionObject}
             />
             <div className = "recentsContainer">
                 <Carousel
@@ -103,7 +99,6 @@ function ProfileParks () {
                 iconName="star" 
                 title = "Park Reviews"
                 setSectionObject = {setSectionObject}
-                sectionObject = {sectionObject}
             />
             <div className = "reviewsContainer">
                 <div className="cardsContainer">

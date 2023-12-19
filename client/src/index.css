@@ -378,11 +378,38 @@
   flex-direction: column;
   justify-content: center;
 }
-.parksContainer .titleContainer .expandIconContainer:hover {
+.parksContainer .titleContainer .expandIconContainer .containerButton {
+  position: relative;
+  height: 3vh;
+  width: 2vw;
+  transition-duration: 0.5s;
+}
+.parksContainer .titleContainer .expandIconContainer .containerButton:hover {
   cursor: pointer;
 }
-.parksContainer .titleContainer .expandIconContainer .expandIcon {
-  font-size: 2.3vh;
+.parksContainer .titleContainer .expandIconContainer .containerButton .horizontalLine {
+  position: absolute;
+  transition-duration: 0.5s;
+  height: 0.4vh;
+  width: 1.1vw;
+  top: 1.25vh;
+  left: 0.3vw;
+  background-color: #212121;
+}
+.parksContainer .titleContainer .expandIconContainer .containerButton .verticalLine {
+  position: absolute;
+  transition-duration: 0.5s;
+  height: 1.1vw;
+  width: 0.4vh;
+  top: 0.5vh;
+  left: 0.75vw;
+  background-color: #212121;
+}
+.parksContainer .titleContainer .expandIconContainer .containerButton.active .horizontalLine {
+  transform: rotateZ(540deg);
+}
+.parksContainer .titleContainer .expandIconContainer .containerButton.active .verticalLine {
+  transform: rotateZ(270deg);
 }
 .parksContainer .favoritesContainer {
   background-color: #E5E7E6;

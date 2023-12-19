@@ -36,14 +36,49 @@
             display:flex;
             flex-direction: column;
             justify-content: center;
-            
-            &:hover{
-                cursor: pointer;
+
+            .containerButton{
+
+                position: relative;
+                height:3vh;
+                width:2vw;
+                transition-duration: 0.5s;
+
+                &:hover{
+                    cursor: pointer;
+                }
+
+                .horizontalLine{
+
+                    position:absolute;
+                    transition-duration: 0.5s;
+                    height: 0.4vh;
+                    width: 1.1vw;
+                    top: 1.25vh;
+                    left: 0.3vw;
+                    background-color: $dark;
+                }
+                .verticalLine{
+                    position:absolute;
+                    transition-duration: 0.5s;
+                    height: 1.1vw;
+                    width: 0.4vh;
+                    top: 0.5vh;
+                    left: 0.75vw;
+                    background-color: $dark;
+                }
+
+                &.active{
+                    .horizontalLine{
+                        transform: rotateZ(540deg)
+                    }
+                    .verticalLine{
+                        transform: rotateZ(270deg)
+                    }
+                }
             }
 
-            .expandIcon{
-                font-size: 2.3vh;
-            }
+
         }
     }
 

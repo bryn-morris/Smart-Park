@@ -1,18 +1,36 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
+import { DogParkContext } from "./DogParkContext";
 import fetchData from "../utils/fetch_util";
 
 const CheckInContext = createContext()
 
 function CheckInProvider({children}) {
 
-    const { setIsReLogOpen } = useContext(AuthContext)
+    const { setIsReLogOpen} = useContext(AuthContext)
+    const { recentParks, setRecentParks } = useContext(DogParkContext)
 
     const [accidentalCheckin, setAccidentalCheckin ] = useState(false)
     const [currentCheckInID, setCurrentCheckInID] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [seconds, setSeconds] = useState(0)
     const [intervalID, setIntervalID] = useState(null)
+
+    ////////////////////////////////////////////////
+
+    useEffect(()=>{
+
+      if(currentCheckInID) {
+        startTimer();
+      }
+
+      return(()=>{
+        if(currentCheckInID){
+          clearInterval(intervalID);
+        }
+      })
+
+    },[currentCheckInID])
 
     ///////////// Check-In Functions ///////////////
 
@@ -31,6 +49,8 @@ function CheckInProvider({children}) {
         })
     }
 
+    console.log(recentParks)
+
     function handleCheckInFormSubmission(formObj){
 
         const getVisitConfigObj = {
@@ -43,7 +63,21 @@ function CheckInProvider({children}) {
           .then(newVisit => {
             setCurrentCheckInID(newVisit.id)
             setAccidentalCheckin(true)
-            sessionStorage.setItem('currentCheckInID', newVisit.id)
+            sessionStorage.setItem('currentCheckInID', newVisit.id) 
+
+            console.log(newVisit)
+
+            setRecentParks(()=>{return(
+              [...recentParks]
+            )})
+          // update recent parks with resaponse
+          // If user accidentally checks in. It is a delete, otherwise is a patch
+          // parks needs to be updated on response from backend, if deletion request
+          // for checkin occurs on
+          // backend, then parks needs to be removed from recent parks
+        
+
+
         })
     }
 
@@ -60,7 +94,7 @@ function CheckInProvider({children}) {
     
     function startTimer(){
         setIntervalID(setInterval(()=>{
-          setSeconds(seconds => seconds+1)
+          setSeconds((prevSeconds) => prevSeconds+1)
         }, 1000))
       }
     

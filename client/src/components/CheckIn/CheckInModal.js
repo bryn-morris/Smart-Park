@@ -8,7 +8,7 @@ function CheckInModal () {
     const {
         currentCheckInID,
         accidentalCheckin,
-        startTimer,
+        // startTimer,
         setAccidentalCheckin,
         deleteCheckIn,
         endTimer,
@@ -83,7 +83,7 @@ function CheckInModal () {
                   <Button
                     form="checkInForm" 
                     type="submit"
-                    onClick={startTimer} 
+                    // onClick={startTimer} 
                     content = "Submit"
                   />
                   <Button 

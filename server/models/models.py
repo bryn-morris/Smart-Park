@@ -61,7 +61,7 @@ class Visit(db.Model, SmartParkBase, SerializerMixin):
     serialize_rules = ('-dog_park','dog', '-created_at','-updated_at')
     
     length_of_stay = db.Column(db.Integer)
-    actual_length_of_stay = db.Column(db.Integer)
+    actual_length_of_stay = db.Column(db.DateTime)
 
     dogs_id = db.Column(db.Integer, db.ForeignKey('dogs.id'))
     dog_parks_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'))

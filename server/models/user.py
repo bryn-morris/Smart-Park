@@ -1,5 +1,5 @@
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, UniqueConstraint
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 
@@ -24,10 +24,14 @@ class User(db.Model, SmartParkBase, SerializerMixin):
         # '-wsroom', 
     )
 
-    username = db.Column(db.String, unique = True)
+    username = db.Column(db.String)
     _password = db.Column(db.String)
     image = db.Column(db.String)
     admin = db.Column(db.Boolean)
+
+    __table_args__=(UniqueConstraint(
+        'username', name='unique_username_constraint'
+    ),)
 
     dogs = db.relationship('Dog', back_populates = 'user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates = 'user', cascade = "all, delete-orphan")

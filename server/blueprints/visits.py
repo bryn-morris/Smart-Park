@@ -4,6 +4,7 @@ from models.models import Visit, Dog, Dog_Park
 from models.user import User
 from config import db, api, app
 from auth_dec import Authentication_Decorator
+from datetime import datetime
 
 from helpers.datetime_converter import convert_datetime
 
@@ -38,7 +39,9 @@ class Check_In_To_Park(Resource):
         ) 
         db.session.add(newVisit)
         db.session.commit()
-        return make_response(newVisit.to_dict(), 200)
+        return make_response(newVisit.to_dict(
+            only = ('id','dog_park')
+        ), 200)
     
 api.add_resource(Check_In_To_Park, '/visits')
 
@@ -58,6 +61,18 @@ def visit_by_id(id):
         return make_response({}, 200)
     
     if request.method == 'PATCH':
+
+        ## instead of tracking user stay length with a timer, 
+        ## take time of request, convert to datetime, and
+        ## subtract from the datetime of the created_at time entry for the 
+        ## visit/checkin to minimize user experience
+
+        ## would make more sense to use POST instead of patch to bring
+        ## closer in line with RESTFUL conventions
+
+        request_timestamp = datetime.utcnow()
+
+        import ipdb;ipdb.set_trace()
 
         selVisit.actual_length_of_stay = request.get_json()['actualLengthOfStay']
         

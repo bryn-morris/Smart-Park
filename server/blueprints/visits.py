@@ -71,10 +71,9 @@ def visit_by_id(id):
         ## closer in line with RESTFUL conventions
 
         request_timestamp = datetime.utcnow()
+        delta_datetime = request_timestamp - selVisit.created_at
 
-        import ipdb;ipdb.set_trace()
-
-        selVisit.actual_length_of_stay = request.get_json()['actualLengthOfStay']
+        selVisit.actual_length_of_stay = (int(delta_datetime.total_seconds()))
         
         db.session.add(selVisit)
         db.session.commit()

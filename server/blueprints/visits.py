@@ -62,14 +62,6 @@ def visit_by_id(id):
     
     if request.method == 'PATCH':
 
-        ## instead of tracking user stay length with a timer, 
-        ## take time of request, convert to datetime, and
-        ## subtract from the datetime of the created_at time entry for the 
-        ## visit/checkin to minimize user experience
-
-        ## would make more sense to use POST instead of patch to bring
-        ## closer in line with RESTFUL conventions
-
         request_timestamp = datetime.utcnow()
         delta_datetime = request_timestamp - selVisit.created_at
 

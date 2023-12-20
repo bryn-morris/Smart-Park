@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext} from "react";
 import { AuthContext } from "./AuthContext";
 import { DogParkContext } from "./DogParkContext";
 import fetchData from "../utils/fetch_util";
@@ -13,24 +13,6 @@ function CheckInProvider({children}) {
     const [accidentalCheckin, setAccidentalCheckin ] = useState(false)
     const [currentCheckInID, setCurrentCheckInID] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [seconds, setSeconds] = useState(0)
-    const [intervalID, setIntervalID] = useState(null)
-
-    ////////////////////////////////////////////////
-
-    useEffect(()=>{
-
-      if(currentCheckInID) {
-        startTimer();
-      }
-
-      return(()=>{
-        if(currentCheckInID){
-          clearInterval(intervalID);
-        }
-      })
-
-    },[currentCheckInID])
 
     ///////////// Check-In Functions ///////////////
 
@@ -39,7 +21,7 @@ function CheckInProvider({children}) {
         const configObj = {
           method: 'PATCH',
           headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({actualLengthOfStay: seconds})
+          body: {}
         }
     
         fetchData(`/visits/${parseInt(currentCheckInID)}`,setIsReLogOpen, configObj)
@@ -90,19 +72,6 @@ function CheckInProvider({children}) {
         })
     }
 
-    ///////////// Timer Functions ///////////////
-    
-    function startTimer(){
-        setIntervalID(setInterval(()=>{
-          setSeconds((prevSeconds) => prevSeconds+1)
-        }, 1000))
-      }
-    
-    function endTimer(){
-        clearInterval(intervalID)
-        setSeconds(0)
-    }
-
     return (
         <CheckInContext.Provider 
             value ={{
@@ -111,8 +80,6 @@ function CheckInProvider({children}) {
                       currentCheckInID,
                       setCurrentCheckInID,
                       checkOut,
-                      startTimer,
-                      endTimer,
                       handleCheckInFormSubmission,
                       deleteCheckIn,
                       isModalOpen,

@@ -8,10 +8,8 @@ function CheckInModal () {
     const {
         currentCheckInID,
         accidentalCheckin,
-        // startTimer,
         setAccidentalCheckin,
         deleteCheckIn,
-        endTimer,
         checkOut,
         isModalOpen,
         setIsModalOpen,
@@ -23,7 +21,6 @@ function CheckInModal () {
         setIsModalOpen(false)
         setAccidentalCheckin(false)
         deleteCheckIn()
-        endTimer()
       }
     
       const handleModalClose = () => {
@@ -34,7 +31,6 @@ function CheckInModal () {
       const handleCheckOut = () => {
         setIsModalOpen(false)
         checkOut()
-        endTimer()
       }
 
     return(              
@@ -83,7 +79,6 @@ function CheckInModal () {
                   <Button
                     form="checkInForm" 
                     type="submit"
-                    // onClick={startTimer} 
                     content = "Submit"
                   />
                   <Button 

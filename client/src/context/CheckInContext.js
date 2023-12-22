@@ -31,8 +31,6 @@ function CheckInProvider({children}) {
         })
     }
 
-    console.log(recentParks)
-
     function handleCheckInFormSubmission(formObj){
 
         const getVisitConfigObj = {
@@ -50,16 +48,14 @@ function CheckInProvider({children}) {
             console.log(newVisit)
 
             setRecentParks(()=>{return(
-              [...recentParks]
+              [newVisit.newVisit,...recentParks]
             )})
-          // update recent parks with resaponse
-          // If user accidentally checks in. It is a delete, otherwise is a patch
+
+          // If is a delete, otherwise is a patch
           // parks needs to be updated on response from backend, if deletion request
           // for checkin occurs on
           // backend, then parks needs to be removed from recent parks
         
-
-
         })
     }
 

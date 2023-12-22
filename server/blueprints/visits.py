@@ -39,9 +39,27 @@ class Check_In_To_Park(Resource):
         ) 
         db.session.add(newVisit)
         db.session.commit()
-        return make_response(newVisit.to_dict(
-            only = ('id','dog_park')
-        ), 200)
+
+        response_dict = {
+            'id' : newVisit.id,
+            'newVisit' : {
+                 'date_of_visit' : convert_datetime(newVisit.created_at),
+                 'id' : newVisit.dog_park.id,
+                 'name' : newVisit.dog_park.name,
+                 'image' : newVisit.dog_park.image,
+            },
+        }
+
+        return make_response(response_dict, 201)
+        # return make_response(newVisit.to_dict(
+        #     only = (
+        #         'id',
+        #         'created_at',
+        #         'dog_park.id',
+        #         'dog_park.name',
+        #         'dog_park.image',
+        #     )
+        # ), 200)
     
 api.add_resource(Check_In_To_Park, '/visits')
 

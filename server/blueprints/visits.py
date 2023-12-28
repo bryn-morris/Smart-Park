@@ -71,12 +71,14 @@ def visit_by_id(id):
 
     if request.method == 'DELETE':
 
+        response_body = {
+            'park_id' : selVisit.dog_park.id
+        }
+        
         db.session.delete(selVisit)
         db.session.commit()
 
-        import ipdb;ipdb.set_trace()
-
-        return make_response({}, 200)
+        return make_response(response_body, 200)
     
     if request.method == 'PATCH':
 

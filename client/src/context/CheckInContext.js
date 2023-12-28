@@ -43,26 +43,27 @@ function CheckInProvider({children}) {
           .then(newVisit => {
             setCurrentCheckInID(newVisit.id)
             setAccidentalCheckin(true)
-            sessionStorage.setItem('currentCheckInID', newVisit.id) 
-
-            console.log(newVisit)
+            sessionStorage.setItem('currentCheckInID', newVisit.id)
 
             setRecentParks(()=>{return(
               [newVisit.newVisit,...recentParks]
-            )})
-
-          // If is a delete, otherwise is a patch
-          // parks needs to be updated on response from backend, if deletion request
-          // for checkin occurs on
-          // backend, then parks needs to be removed from recent parks
-        
+            )})      
         })
     }
 
     function deleteCheckIn(){
 
         fetchData(`/visits/${parseInt(currentCheckInID)}`, setIsReLogOpen, {method: 'DELETE'})
-          .then(()=>{
+          .then((deletedPark)=>{
+
+            setRecentParks(()=>{
+              return(
+                [...recentParks].filter((eachPark)=>{
+                  return(eachPark.id !== deletedPark.park_id)
+                })
+              )
+            })
+            
             setCurrentCheckInID(null)
             sessionStorage.clear()
         })

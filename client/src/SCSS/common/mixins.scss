@@ -94,6 +94,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 5%;
+    z-index: 1;
 
     &:hover {
         .icon {
@@ -126,6 +127,7 @@
         position: absolute;
         font-size: 14vh;
         transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+        z-index: 1;
 
         &.hidden{
             transform: scale(0);

@@ -448,6 +448,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 5%;
+  z-index: 1;
 }
 .parksContainer .favoritesContainer .carouselContainer .leftArrowContainer:hover .icon {
   transform: translateX(-0.5vw) scale(1.2);
@@ -456,6 +457,7 @@
   position: absolute;
   font-size: 14vh;
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  z-index: 1;
   left: -0.7vw;
 }
 .parksContainer .favoritesContainer .carouselContainer .leftArrowContainer .icon.hidden {
@@ -473,6 +475,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 5%;
+  z-index: 1;
 }
 .parksContainer .favoritesContainer .carouselContainer .rightArrowContainer:hover .icon {
   transform: translateX(-0.5vw) scale(1.2);
@@ -493,6 +496,7 @@
   position: absolute;
   font-size: 14vh;
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  z-index: 1;
   right: -0.7vw;
 }
 .parksContainer .favoritesContainer .carouselContainer .rightArrowContainer .icon.hidden {
@@ -641,6 +645,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 5%;
+  z-index: 1;
 }
 .parksContainer .recentsContainer .carouselContainer .leftArrowContainer:hover .icon {
   transform: translateX(-0.5vw) scale(1.2);
@@ -649,6 +654,7 @@
   position: absolute;
   font-size: 14vh;
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  z-index: 1;
   left: -0.7vw;
 }
 .parksContainer .recentsContainer .carouselContainer .leftArrowContainer .icon.hidden {
@@ -666,6 +672,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 5%;
+  z-index: 1;
 }
 .parksContainer .recentsContainer .carouselContainer .rightArrowContainer:hover .icon {
   transform: translateX(-0.5vw) scale(1.2);
@@ -686,6 +693,7 @@
   position: absolute;
   font-size: 14vh;
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  z-index: 1;
   right: -0.7vw;
 }
 .parksContainer .recentsContainer .carouselContainer .rightArrowContainer .icon.hidden {

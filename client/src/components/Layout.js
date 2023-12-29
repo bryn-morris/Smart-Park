@@ -32,8 +32,8 @@ function Layout() {
       fetchData('/recent_parks', setIsReLogOpen)
       .then(recentParksData => setRecentParks(recentParksData))
 
-      //use sessionStorage to check if currently checked in 
-      const sessionCheckInID = sessionStorage.getItem('currentCheckInID')
+      //use localStorage to check if currently checked in 
+      const sessionCheckInID = localStorage.getItem('checkInID')
       if (sessionCheckInID){
         setCurrentCheckInID(sessionCheckInID)
       }

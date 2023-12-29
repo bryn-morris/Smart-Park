@@ -27,7 +27,7 @@ function CheckInProvider({children}) {
         fetchData(`/visits/${parseInt(currentCheckInID)}`,setIsReLogOpen, configObj)
           .then(updatedVisit => {
             setCurrentCheckInID(null)
-            sessionStorage.clear()
+            localStorage.clear()
         })
     }
 
@@ -43,7 +43,7 @@ function CheckInProvider({children}) {
           .then(newVisit => {
             setCurrentCheckInID(newVisit.id)
             setAccidentalCheckin(true)
-            sessionStorage.setItem('currentCheckInID', newVisit.id)
+            localStorage.setItem('checkInID', newVisit.id)
 
             setRecentParks(()=>{return(
               [newVisit.newVisit,...recentParks]
@@ -65,7 +65,7 @@ function CheckInProvider({children}) {
             })
             
             setCurrentCheckInID(null)
-            sessionStorage.clear()
+            localStorage.clear()
         })
     }
 

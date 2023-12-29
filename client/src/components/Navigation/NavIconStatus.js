@@ -4,16 +4,16 @@ import { CheckInContext } from "../../context/CheckInContext"
 
 function NavIconStatus () {
 
-    const {currentCheckInID} = useContext(CheckInContext)
+    const {checkInID} = useContext(CheckInContext)
 
-    const color_value = currentCheckInID ? "#CE4027" : "green"
+    const color_value = checkInID ? "#CE4027" : "green"
 
     return(
         <Icon
             style = {{color: color_value}}
             className = "navIconStatus"
             name = {
-                currentCheckInID ?
+                checkInID ?
                 "times circle outline" :
                 "check circle outline"
             }

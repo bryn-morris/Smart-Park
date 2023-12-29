@@ -8,7 +8,7 @@ import { CheckInContext } from "../../context/CheckInContext"
 function MenuIcon ({labelIconString, listCount, onClickFunction}) {
 
     const {currentUser} = useContext(AuthContext)
-    const {currentCheckInID} = useContext(CheckInContext)
+    const {checkInID} = useContext(CheckInContext)
 
     let tooltipContent;
 
@@ -19,7 +19,7 @@ function MenuIcon ({labelIconString, listCount, onClickFunction}) {
         }
         case ('paw'):{
 
-            tooltipContent = currentCheckInID ?
+            tooltipContent = checkInID ?
                 "Let's Check Out!" :
                 "Let's Check In!"
             break;

@@ -11,7 +11,7 @@ function CheckInProvider({children}) {
     const { recentParks, setRecentParks } = useContext(DogParkContext)
 
     const [accidentalCheckin, setAccidentalCheckin ] = useState(false)
-    const [currentCheckInID, setCurrentCheckInID] = useState(0)
+    const [checkInID, setCheckInID] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     ///////////// Check-In Functions ///////////////
@@ -21,12 +21,12 @@ function CheckInProvider({children}) {
         const configObj = {
           method: 'PATCH',
           headers: {'Content-Type':'application/json'},
-          body: {}
+          body: {},
         }
     
-        fetchData(`/visits/${parseInt(currentCheckInID)}`,setIsReLogOpen, configObj)
+        fetchData(`/visits/${parseInt(checkInID)}`,setIsReLogOpen, configObj)
           .then(updatedVisit => {
-            setCurrentCheckInID(null)
+            setCheckInID(null)
             localStorage.clear()
         })
     }
@@ -41,7 +41,7 @@ function CheckInProvider({children}) {
     
         fetchData('/visits', setIsReLogOpen, getVisitConfigObj)
           .then(newVisit => {
-            setCurrentCheckInID(newVisit.id)
+            setCheckInID(newVisit.id)
             setAccidentalCheckin(true)
             localStorage.setItem('checkInID', newVisit.id)
 
@@ -53,7 +53,7 @@ function CheckInProvider({children}) {
 
     function deleteCheckIn(){
 
-        fetchData(`/visits/${parseInt(currentCheckInID)}`, setIsReLogOpen, {method: 'DELETE'})
+        fetchData(`/visits/${parseInt(checkInID)}`, setIsReLogOpen, {method: 'DELETE'})
           .then((deletedPark)=>{
 
             setRecentParks(()=>{
@@ -64,7 +64,7 @@ function CheckInProvider({children}) {
               )
             })
             
-            setCurrentCheckInID(null)
+            setCheckInID(null)
             localStorage.clear()
         })
     }
@@ -74,8 +74,8 @@ function CheckInProvider({children}) {
             value ={{
                       accidentalCheckin,
                       setAccidentalCheckin,
-                      currentCheckInID,
-                      setCurrentCheckInID,
+                      checkInID,
+                      setCheckInID,
                       checkOut,
                       handleCheckInFormSubmission,
                       deleteCheckIn,

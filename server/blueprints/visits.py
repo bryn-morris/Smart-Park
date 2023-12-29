@@ -11,8 +11,31 @@ from helpers.datetime_converter import convert_datetime
 visit_routes = Blueprint('visit_routes', __name__)
 
 class Check_In_Status_By_User(Resource):
-    def get():
-        pass
+    @Authentication_Decorator
+    def get(self):
+
+        currentUser = User.query.filter(
+            User.id == session['user_id']
+        ).one()
+
+        # Grab the most recent visit entry associated with the logged in user
+        most_recent_visit = currentUser.recentParks()[0]
+
+        # If that entry does NOT have an actual_time_of_visit value, or if that value is null
+        # they must still be checked in, and never checked out
+        # return the visit id value to update localStorage to the server value
+
+        if most_recent_visit.actual_length_of_stay:
+            return make_response({
+                'checkInID':most_recent_visit.id
+            },200)
+
+        ## If entry DOES have actual_time_of_visit value,
+        ## return 204 response code (No Content to return)
+        ## frontend will check and act accordingly
+
+        return make_response({}, 204)
+
 
 api.add_resource(Check_In_Status_By_User, '/check_in_status')
 

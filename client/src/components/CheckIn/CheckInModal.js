@@ -6,7 +6,7 @@ import { CheckInContext } from "../../context/CheckInContext"
 function CheckInModal () {
     
     const {
-        currentCheckInID,
+        checkInID,
         accidentalCheckin,
         setAccidentalCheckin,
         deleteCheckIn,
@@ -45,8 +45,8 @@ function CheckInModal () {
               // }
               size= 'small'
           >
-          <Modal.Header>{currentCheckInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>
-              {currentCheckInID && accidentalCheckin === false ?
+          <Modal.Header>{checkInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>
+              {checkInID && accidentalCheckin === false ?
                 <Modal.Content>
                   <Button
                     onClick={handleCheckOut}
@@ -59,7 +59,7 @@ function CheckInModal () {
                     <CheckOutForm/>}
                 </Modal.Content>
               }
-              {currentCheckInID ?
+              {checkInID ?
                 <Modal.Actions>
                   {accidentalCheckin ?
                     <div>

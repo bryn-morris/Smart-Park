@@ -8,7 +8,7 @@ import HomeSearch from './HomeSearch'
 function Home() {
 
   const [selectedIcon, setSelectedIcon] =useState(1)
-  const { currentCheckInID, setIsModalOpen } = useContext(CheckInContext)
+  const { checkInID, setIsModalOpen } = useContext(CheckInContext)
 
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Home() {
       <div className='home Header'>Smart Park</div>
       {/* <PawPrintIcons selectedIcon={selectedIcon}/> */}
       {
-        currentCheckInID ? 
+        checkInID ? 
         <div className='checkInText'>
           You're all checked in!
         </div> : 

@@ -10,6 +10,12 @@ from helpers.datetime_converter import convert_datetime
 
 visit_routes = Blueprint('visit_routes', __name__)
 
+class Check_In_Status_By_User(Resource):
+    def get():
+        pass
+
+api.add_resource(Check_In_Status_By_User, '/check_in_status')
+
 class Recent_Parks(Resource):
     @Authentication_Decorator
     def get(self):
@@ -51,15 +57,6 @@ class Check_In_To_Park(Resource):
         }
 
         return make_response(response_dict, 201)
-        # return make_response(newVisit.to_dict(
-        #     only = (
-        #         'id',
-        #         'created_at',
-        #         'dog_park.id',
-        #         'dog_park.name',
-        #         'dog_park.image',
-        #     )
-        # ), 200)
     
 api.add_resource(Check_In_To_Park, '/visits')
 

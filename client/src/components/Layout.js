@@ -9,6 +9,7 @@ import { AuthContext } from "../context/AuthContext";
 import Settings from "./Settings";
 import { CheckInContext } from "../context/CheckInContext";
 import SiteModals from "./SiteModals";
+import NotFound from "./NotFound";
 
 function Layout() {
 
@@ -66,8 +67,10 @@ function Layout() {
         <Route path="/settings">
           <Settings/>
         </Route>
+        <Route path = "*">
+          <NotFound />
+        </Route>
       </Switch>
-
     </div>
   );
 }

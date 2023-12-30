@@ -17,11 +17,11 @@ function Layout() {
   const { setFriendsList, setPendingFriendsList } = useContext(FriendsContext)
   const { setIsReLogOpen } = useContext(AuthContext) 
   const { setCheckInID } = useContext(CheckInContext)
-  
+
   useEffect(()=>{
 
       const httpStatusHandlers = {
-        204: ()=>{
+        202: ()=>{
           localStorage.clear()
           setCheckInID(null)
         }
@@ -40,13 +40,11 @@ function Layout() {
       .then(recentParksData => setRecentParks(recentParksData))
 
       fetchData('/check_in_status', setIsReLogOpen, {}, httpStatusHandlers)
-      .then(checkInData => localStorage.setItem('checkInID', checkInData.check_in_id))
-      
-      //use localStorage to check if currently checked in 
-      // const sessionCheckInID = localStorage.getItem('checkInID')
-      // if (sessionCheckInID){
-      //   setCurrentCheckInID(sessionCheckInID)
-      // }
+      .then(checkInData => {
+        if (checkInData){
+          localStorage.setItem('checkInID', checkInData.check_in_ID)
+        }
+    })
     }, [
       setDogParks, 
       setFriendsList, 

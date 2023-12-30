@@ -70,11 +70,11 @@ with app.app_context():
     
     print("Creating Visits...")
     
-    v1 = Visit(dog = d1, dog_park = dp2, actual_length_of_stay = 30)
-    v2 = Visit(dog = d2, dog_park = dp5, actual_length_of_stay = 60)
-    v3 = Visit(dog = d3, dog_park = dp1, actual_length_of_stay = 45)
-    v4 = Visit(dog = d2, dog_park = dp4, actual_length_of_stay = 35)
-    v5 = Visit(dog = d4, dog_park = dp4, actual_length_of_stay = 45)
+    v1 = Visit(dog = d1, dog_park = dp2, actual_length_of_stay = 30, length_of_stay = 30)
+    v2 = Visit(dog = d2, dog_park = dp5, actual_length_of_stay = 60, length_of_stay = 30)
+    v3 = Visit(dog = d3, dog_park = dp1, actual_length_of_stay = 45, length_of_stay = 30)
+    v4 = Visit(dog = d2, dog_park = dp4, actual_length_of_stay = 35, length_of_stay = 30)
+    v5 = Visit(dog = d4, dog_park = dp4, actual_length_of_stay = 45, length_of_stay = 30)
 
     # visits_list = [Visit(dogs_id = randint(1,10), dog_parks_id = randint(1,5), length_of_stay = randint(1,120)) for _ in range(1,20)]
     

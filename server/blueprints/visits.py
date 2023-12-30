@@ -18,24 +18,22 @@ class Check_In_Status_By_User(Resource):
             User.id == session['user_id']
         ).one()
 
+        dog_id_list = [dog.id for dog in currentUser.dogs]
         # Grab the most recent visit entry associated with the logged in user
-        most_recent_visit = currentUser.recentParks()[0]
+        most_recent_visit = (Visit.query.filter(
+            Visit.dogs_id.in_(dog_id_list)
+        ).order_by(Visit.created_at.desc())
+        .distinct(Visit.id)
+        .limit(1)
+        .one())
 
-        # If that entry does NOT have an actual_time_of_visit value, or if that value is null
-        # they must still be checked in, and never checked out
-        # return the visit id value to update localStorage to the server value
-
+        # import ipdb;ipdb.set_trace()
         if most_recent_visit.actual_length_of_stay:
-            return make_response({
-                'checkInID':most_recent_visit.id
-            },200)
+            return make_response({}, 202)
 
-        ## If entry DOES have actual_time_of_visit value,
-        ## return 204 response code (No Content to return)
-        ## frontend will check and act accordingly
-
-        return make_response({}, 204)
-
+        return make_response({
+            'check_in_ID':most_recent_visit.id
+        },200)
 
 api.add_resource(Check_In_Status_By_User, '/check_in_status')
 

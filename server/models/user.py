@@ -41,9 +41,6 @@ class User(db.Model, SmartParkBase, SerializerMixin):
     favorited = db.relationship('Favorited', back_populates = 'user', cascade = "all, delete-orphan")
     favorited_parks = association_proxy('favorited', 'dog_park')
 
-    # recentparks - query Visits table and grab all unique dogpark instances, 
-    # if a user checks in use websocket to update the recent parks data in their active session
-
     friends_1 = db.relationship('User',
             secondary = 'friends',
             primaryjoin = 'Friends.friend_1_id == User.id',

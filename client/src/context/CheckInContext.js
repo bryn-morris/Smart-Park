@@ -2,6 +2,7 @@ import { createContext, useState, useContext, useEffect} from "react";
 import { AuthContext } from "./AuthContext";
 import { DogParkContext } from "./DogParkContext";
 import fetchData from "../utils/fetch_util";
+import handleLocalStorage from "../utils/handleLocalStorage_util";
 
 const CheckInContext = createContext()
 
@@ -20,23 +21,26 @@ function CheckInProvider({children}) {
 
     useEffect(()=>{
 
-      function handleStorageUpdate(e){
-        if(e.key === 'checkInID'){
-          setCheckInID(localStorage.getItem('checkInID'))
-        } else if(e.key === null){
-          // if localStorage is cleared
-          setCheckInID(null)
-        }
+      function updateCheckInKey(e){
+        setCheckInID(localStorage.getItem('checkInID'))
+      }
+
+      function clearCheckInKey(e){
+        setCheckInID(null)
       }
 
       // creates event listener to listen to storage event
       // which is how we will be able to tell if 
       // localStorage is updated
-      window.addEventListener('storage', handleStorageUpdate)
+      window.addEventListener('ciKEY', updateCheckInKey)
+      window.addEventListener('clearStorage', clearCheckInKey)
 
       //cleanup function
-      return(window.removeEventListener('storage', handleStorageUpdate))
-    })
+      return(()=> {
+        window.removeEventListener('ciKEY', updateCheckInKey)
+        window.removeEventListener('clearStorage', clearCheckInKey)
+      })
+    }, [])
 
     ///////////// Check-In Functions ///////////////
 
@@ -50,8 +54,7 @@ function CheckInProvider({children}) {
     
         fetchData(`/visits/${parseInt(checkInID)}`,setIsReLogOpen, configObj)
           .then(updatedVisit => {
-            setCheckInID(null)
-            localStorage.clear()
+            handleLocalStorage('clearStorage')
         })
     }
 
@@ -65,9 +68,9 @@ function CheckInProvider({children}) {
     
         fetchData('/visits', setIsReLogOpen, getVisitConfigObj)
           .then(newVisit => {
-            setCheckInID(newVisit.id)
+            // setCheckInID(newVisit.id)
             setAccidentalCheckin(true)
-            localStorage.setItem('checkInID', newVisit.id)
+            handleLocalStorage('checkInID', newVisit.id, 'ciKEY')
 
             setRecentParks(()=>{return(
               [newVisit.newVisit,...recentParks]
@@ -88,8 +91,7 @@ function CheckInProvider({children}) {
               )
             })
             
-            setCheckInID(null)
-            localStorage.clear()
+            handleLocalStorage('clearStorage')
         })
     }
 

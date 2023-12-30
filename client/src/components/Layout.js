@@ -10,21 +10,21 @@ import Settings from "./Settings";
 import { CheckInContext } from "../context/CheckInContext";
 import SiteModals from "./SiteModals";
 import NotFound from "./NotFound";
+import handleLocalStorage from "../utils/handleLocalStorage_util";
 
 function Layout() {
 
   const { setDogParks, setRecentParks } = useContext(DogParkContext)
   const { setFriendsList, setPendingFriendsList } = useContext(FriendsContext)
   const { setIsReLogOpen } = useContext(AuthContext) 
-  const { setCheckInID } = useContext(CheckInContext)
+  const { checkInID } = useContext(CheckInContext)
+
+  console.log(checkInID)
 
   useEffect(()=>{
 
       const httpStatusHandlers = {
-        202: ()=>{
-          localStorage.clear()
-          setCheckInID(null)
-        }
+        202: ()=>handleLocalStorage('clearStorage')
       }
 
       fetchData('http://127.0.0.1:5555/dogparks', setIsReLogOpen)
@@ -42,7 +42,7 @@ function Layout() {
       fetchData('/check_in_status', setIsReLogOpen, {}, httpStatusHandlers)
       .then(checkInData => {
         if (checkInData){
-          localStorage.setItem('checkInID', checkInData.check_in_ID)
+          handleLocalStorage('checkInID', checkInData.check_in_ID, 'ciKEY')
         }
     })
     }, [
@@ -50,7 +50,6 @@ function Layout() {
       setFriendsList, 
       setPendingFriendsList, 
       setIsReLogOpen,
-      setCheckInID,
       setRecentParks,
     ]
   )

@@ -21,15 +21,15 @@ function CheckInProvider({children}) {
 
     useEffect(()=>{
 
-      function updateCheckInKey(e){
+      function updateCheckInKey(){
         setCheckInID(localStorage.getItem('checkInID'))
       }
 
-      function clearCheckInKey(e){
+      function clearCheckInKey(){
         setCheckInID(null)
       }
 
-      // creates event listener to listen to storage event
+      // creates event listeners to listen to storage event
       // which is how we will be able to tell if 
       // localStorage is updated
       window.addEventListener('ciKEY', updateCheckInKey)

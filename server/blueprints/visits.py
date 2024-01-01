@@ -27,7 +27,6 @@ class Check_In_Status_By_User(Resource):
         .limit(1)
         .one())
 
-        # import ipdb;ipdb.set_trace()
         if most_recent_visit.actual_length_of_stay:
             return make_response({}, 202)
 

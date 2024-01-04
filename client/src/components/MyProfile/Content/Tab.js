@@ -43,7 +43,7 @@ function Tab ({tabLabel, selectedTab, setSelectedTab}) {
                 }
                    
             </NavLink>
-            {tabLabel !== 'pets' ? <NavDivider optionalStyling = {{top:"100%", position:"absolute"}} /> : null}
+            {tabLabel !== 'pets' ? <NavDivider optionalStyling = {{top:"100%", position:"absolute", backgroundColor: "#D6D6D6"}} /> : null}
         </div>
             
     )

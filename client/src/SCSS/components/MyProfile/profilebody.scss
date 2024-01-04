@@ -44,6 +44,7 @@
                     align-content: center;
                     justify-content: center;
                     z-index: 1;
+                    background-color: $accent2;
                     
                     .innerNav{
 
@@ -59,12 +60,13 @@
 
                         .tabIcon{
                             font-size: 4vh;
-                            color: $accent3;
+                            color: $hovered;
                             margin: 0px;
                         }
 
                         .text{
                             font-size: 3vh;
+                            color: $light;
                         }  
                     }
                     .container{
@@ -81,7 +83,7 @@
                             position:absolute;
                             width:2.5vw;
                             height:1.5vh;
-                            background-color: $hovered;
+                            background-color: $accent2;
                             clip-path: polygon(0vw .25vh,1.5vw 0.75vh,0vw 1.5vh);
                             z-index: 10;
     

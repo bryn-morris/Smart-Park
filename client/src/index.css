@@ -132,6 +132,7 @@
   align-content: center;
   justify-content: center;
   z-index: 1;
+  background-color: #1D7874;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav {
   position: relative;
@@ -146,11 +147,12 @@
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .tabIcon {
   font-size: 4vh;
-  color: #3AA8C1;
+  color: #D6D6D6;
   margin: 0px;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .innerNav .text {
   font-size: 3vh;
+  color: #E5E7E6;
 }
 .MyProfile .ProfileBody .ContentContainer .TabNav .tabContainer .Tab .container {
   position: absolute;
@@ -164,7 +166,7 @@
   position: absolute;
   width: 2.5vw;
   height: 1.5vh;
-  background-color: #D6D6D6;
+  background-color: #1D7874;
   clip-path: polygon(0vw 0.25vh, 1.5vw 0.75vh, 0vw 1.5vh);
   z-index: 10;
 }

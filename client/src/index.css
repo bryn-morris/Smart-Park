@@ -366,7 +366,7 @@
   max-height: 5.4vh;
   padding-top: 1vh;
   padding-bottom: 1vh;
-  border-bottom: solid 2px #1D7874;
+  border-bottom: solid 2px #D6D6D6;
 }
 .parksContainer .titleContainer .title {
   flex: 95%;
@@ -435,7 +435,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  border-bottom: solid 2px #1D7874;
+  border-bottom: solid 2px #E5E7E6;
 }
 .parksContainer .favoritesContainer .carouselContainer .leftArrowContainer {
   position: relative;
@@ -632,7 +632,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  border-bottom: solid 2px #1D7874;
+  border-bottom: solid 2px #E5E7E6;
 }
 .parksContainer .recentsContainer .carouselContainer .leftArrowContainer {
   position: relative;

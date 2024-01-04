@@ -40,7 +40,10 @@ class Login(Resource):
             data = request.get_json()
 
             user = User.query.filter(User.username == data['username']).first()
-            user.authenticate(data['password'])
+
+            if not user.authenticate(data['password']):
+                raise ValueError
+            
 
             session['user_id'] = user.id
 

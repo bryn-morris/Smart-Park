@@ -12,7 +12,7 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
     const [logIn, setLogIn] = useState(true)
   
     const {  setDogs } = useContext(DogContext)
-    const { setFriendSocket } = useContext(WebSocketContext)
+    const { friendSocket, setFriendSocket } = useContext(WebSocketContext)
   
     // const history = useHistory()
 
@@ -58,14 +58,22 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
           authConfigObj,
         )
         .then(user=>{
-          setCurrentUser(user);
-          setDogs(user.dogs);
-          setFriendSocket(()=> io.connect(
-            'http://localhost:5555/friends-socket',{
-                transport: ['websocket'],
-                withCredentials: true,
+            try{
+                setCurrentUser(user);
+                setDogs(user.dogs);
+                setFriendSocket(()=> io.connect(
+                    'http://localhost:5555/friends-socket',{
+                        transport: ['websocket'],
+                        withCredentials: true,
+                    }
+                ))
+            } catch {
+                setCurrentUser(null);
+                setDogs(null);
+                if (friendSocket){
+                    friendSocket.disconnect()
+                }   
             }
-          ))
         //   history.push("/");
         })
         

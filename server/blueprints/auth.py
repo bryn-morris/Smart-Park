@@ -44,7 +44,6 @@ class Login(Resource):
             if not user.authenticate(data['password']):
                 raise ValueError
             
-
             session['user_id'] = user.id
 
             resp = make_response(

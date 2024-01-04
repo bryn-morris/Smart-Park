@@ -22,7 +22,6 @@ async function fetchData(
             const errorObj = await response.json();
             throw new Error(`HTTP Error: ${response.status} - ${errorObj.error}`);
         }
-
         // successful status, don't want return value
         if (httpStatusHandlers[response.status]){
             httpStatusHandlers[response.status]()

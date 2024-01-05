@@ -51,4 +51,7 @@ jspm_packages
 .pytest_cache
 
 # database
-./server/instance/app.db
+server/instance
+
+#hidden instructions
+hidden.txt

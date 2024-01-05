@@ -14,6 +14,7 @@ ipdb = "*"
 flask-alembic = "*"
 flask-bcrypt = "*"
 flask-sqlalchemy-session = "*"
+flask-jwt-extended = "*"
 
 [dev-packages]
 

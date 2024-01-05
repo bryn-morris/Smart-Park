@@ -66,9 +66,14 @@ Smart Park offers users the ability to log in and efficiently manage their dogs 
 
 ### In Development
 
-**Real-time Communication:** Smart Park leverages the power of real-time websocket communication through Socket.io. This feature allows dog owners at the park to connect, share experiences, and arrange playdates for their furry friends. (Currently in Development)
+**Redesign:** Smart Park is currenly undergoing a drastic visual redesign to provide a more seamless user experience across the application! (In Progress)
+
+**Secure Authentication Management** I am currently redesigning authentication services to incorporate JWT and more secure data management! (In Progress)
+
 
 ### Future Development
+
+**Real-time Communication:** Smart Park leverages the power of real-time websocket communication through Socket.io. This feature allows dog owners at the park to connect, share experiences, and arrange playdates for their furry friends. 
 
 **Push Notifications:** 
 

@@ -1,5 +1,7 @@
 # Standard library imports
 
+import os
+
 # Remote library imports
 from flask import Flask
 from flask_cors import CORS
@@ -9,6 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import MetaData
 from flask_socketio import SocketIO
+from flask_jwt_extended import JWTManager
 
 # Local imports
 
@@ -19,7 +22,13 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
-app.secret_key = "ex13^xe80xc8@x8x&x1b*x9d$rx8IZxcxeft"
+
+#export this to non-prod config variable file down the line
+development_secret = "ex13^xe80xc8@x8x&x1b*x9d$rx8IZxcxeft"
+
+# Grabs secret key from the environment variable, otherwise grab development secret
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', development_secret)
+
 
 # Define metadata, instantiate db
 metadata = MetaData(naming_convention={
@@ -37,7 +46,11 @@ socketio = SocketIO(
     cors_credentials = True,
 )
 
+#Bcrypt Setup
 bcrypt = Bcrypt(app)
+
+#JWT-Extended Instantiation
+jwt = JWTManager(app)
 
 # Instantiate REST API
 api = Api(app)

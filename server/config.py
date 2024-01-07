@@ -30,8 +30,10 @@ development_secret = "ex13^xe80xc8@x8x&x1b*x9d$rx8IZxcxeft"
 # Grabs secret key from the environment variable, otherwise grab development secret
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', development_secret)
 
-# Set Default Key Expiry time for flask_JWT_Extended tokens
+## JWT Config Tools
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(minutes=20)
+app.config['JWT_REFRESH_TOKEN_EXPIRES'] = datetime.timedelta(minutes=20)
+app.config['JWT_ALGORITHM'] = "HS256"
 
 
 # Define metadata, instantiate db

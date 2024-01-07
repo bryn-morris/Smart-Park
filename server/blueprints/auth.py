@@ -27,15 +27,18 @@ class Signup(Resource):
                 identity=user.id,
                 
             )
-
-            session['user_id'] = user.id
-            
+            import ipdb;ipdb.set_trace()
+            # session['user_id'] = user.id
+            response = make_response(
+                new_user.to_dict(rules=('dogs','-_password',)),
+                200
+            )
+            response.headers['Authorization'] = f'Bearer {jwt_access_token}'
+            return response
         except:
-            return {'error': 'Must enter a valid username, password, and url'}, 401
-        return make_response(
-            new_user.to_dict(rules=('dogs','-_password',)),
-            200
-        )
+            return {'error': 'Must enter a valid username, password, and image url'}, 401
+            
+    
 api.add_resource(Signup, '/signup')
         
 class Login(Resource):
@@ -50,12 +53,19 @@ class Login(Resource):
             if not user.authenticate(data['password']):
                 raise ValueError
             
-            session['user_id'] = user.id
+            jwt_access_token = create_access_token(
+                identity=user.id,
+                
+            )
+            import ipdb;ipdb.set_trace()
+            
+            # session['user_id'] = user.id
 
             resp = make_response(
                 user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',)),
                 200
             )
+            resp.headers['Authorization'] = f'Bearer {jwt_access_token}'
 
             return resp
         except:

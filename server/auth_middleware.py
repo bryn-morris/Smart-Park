@@ -34,5 +34,6 @@ def authenticate_user():
     if not verify_jwt_in_request():
         return make_response({"error": "Authentication failed - Please Log Back In"} ,401)
     
-    ##
+    ## decrypt secret to check validity of JWT in headers
+    
     

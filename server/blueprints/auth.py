@@ -1,5 +1,6 @@
 from flask import Blueprint, make_response, request, session
 from flask_restful import Resource
+from flask_jwt_extended import create_access_token
 
 from config import api, db
 from models.user import User
@@ -21,6 +22,11 @@ class Signup(Resource):
             db.session.commit()
 
             user = User.query.filter(User.username == data['username']).first()
+
+            jwt_access_token = create_access_token(
+                identity=user.id,
+                
+            )
 
             session['user_id'] = user.id
             

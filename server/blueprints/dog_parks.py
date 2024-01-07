@@ -1,7 +1,7 @@
 from flask import make_response, request, Blueprint
 from flask_restful import Resource
 
-from auth_dec import Admin_Authentication_Decorator
+from auth_middleware import Admin_Authentication_Decorator
 from config import db, api, app
 from models.models import Dog_Park
 

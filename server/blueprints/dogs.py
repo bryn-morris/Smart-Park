@@ -1,6 +1,6 @@
 from flask import make_response, request, Blueprint
 from flask_restful import Resource
-from auth_dec import Authentication_Decorator
+from auth_middleware import Authentication_Decorator
 
 from config import db, api
 from models.models import Dog

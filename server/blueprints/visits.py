@@ -3,7 +3,7 @@ from flask_restful import Resource
 from models.models import Visit, Dog, Dog_Park
 from models.user import User
 from config import db, api, app
-from auth_dec import Authentication_Decorator
+from auth_middleware import Authentication_Decorator
 from datetime import datetime
 
 from helpers.datetime_converter import convert_datetime

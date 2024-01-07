@@ -3,7 +3,7 @@ from flask_restful import Resource
 
 from config import db, api
 from models.user import User
-from auth_dec import Authentication_Decorator
+from auth_middleware import Authentication_Decorator
 
 friendship_routes = Blueprint('friendship_routes', __name__)
 

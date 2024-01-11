@@ -27,13 +27,14 @@ class Signup(Resource):
                 identity=user.id,
                 
             )
-            import ipdb;ipdb.set_trace()
+            
             # session['user_id'] = user.id
             response = make_response(
                 new_user.to_dict(rules=('dogs','-_password',)),
                 200
             )
             response.headers['Authorization'] = f'Bearer {jwt_access_token}'
+            
             return response
         except:
             return {'error': 'Must enter a valid username, password, and image url'}, 401
@@ -57,7 +58,6 @@ class Login(Resource):
                 identity=user.id,
                 
             )
-            import ipdb;ipdb.set_trace()
             
             # session['user_id'] = user.id
 

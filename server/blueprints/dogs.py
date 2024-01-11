@@ -8,7 +8,7 @@ from models.models import Dog
 dog_routes = Blueprint("dog_routes", __name__,)
 
 class Dogs(Resource):
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def get(self):
         dogs = Dog.query.all()
 
@@ -16,7 +16,7 @@ class Dogs(Resource):
             [dog.to_dict(rules = ('user','dog_parks')) for dog in dogs],
             200
         )
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def post(self):
         data = request.get_json()
         new_dog = Dog(
@@ -39,7 +39,7 @@ api.add_resource(Dogs, '/dogs')
 
 class DogById(Resource):
 
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def delete(self, id):
         dog = Dog.query.filter_by(id=id).first()
         if not dog:
@@ -54,7 +54,7 @@ class DogById(Resource):
             200
         )
     
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def patch(self, id):
 
         data = request.get_json()

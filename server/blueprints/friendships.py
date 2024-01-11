@@ -1,5 +1,6 @@
 from flask import make_response, session, request, Blueprint, jsonify
 from flask_restful import Resource
+from flask_jwt_extended import get_jwt_identity
 
 from config import db, api
 from models.user import User
@@ -9,8 +10,9 @@ friendship_routes = Blueprint('friendship_routes', __name__)
 
 class Friendship(Resource):
 
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def get(self):
+        import ipdb;ipdb.set_trace()
         currentUser = User.query.filter(User.id == session['user_id']).one()
 
         serialized_friendships = [

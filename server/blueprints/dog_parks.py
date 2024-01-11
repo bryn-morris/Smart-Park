@@ -30,7 +30,7 @@ class Dog_Parks(Resource):
 
         return make_response(dog_parks, 200)
     
-    @Admin_Authentication_Decorator
+    # @Admin_Authentication_Decorator
     def post(self):
 
         try:
@@ -51,7 +51,7 @@ class Dog_Parks(Resource):
 api.add_resource(Dog_Parks, '/dogparks')
 
 @app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'], endpoint = "dog_park_by_id")
-@Admin_Authentication_Decorator
+# @Admin_Authentication_Decorator
 def dog_park_by_id(id):
 
     try:

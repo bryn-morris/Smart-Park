@@ -1,6 +1,6 @@
 from flask import Blueprint, make_response, request, session
 from flask_restful import Resource
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, unset_jwt_cookies
 
 from config import api, db
 from models.user import User
@@ -78,7 +78,8 @@ class Logout(Resource):
         session.clear()
 
         response = make_response({}, 200)
-        response.set_cookie('session', '', expires=0)
+        unset_jwt_cookies(response)
+        # response.set_cookie('session', '', expires=0)
 
         return response
 api.add_resource(Logout, '/logout')

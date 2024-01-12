@@ -2,7 +2,7 @@ import { createContext, useState, useContext, useEffect} from "react";
 import { AuthContext } from "./AuthContext";
 import { DogParkContext } from "./DogParkContext";
 import fetchData from "../utils/fetch_util";
-import handleLocalStorage from "../utils/handleLocalStorage_util";
+import handleLocalStorage from "../utils/localStorage_util";
 
 const CheckInContext = createContext()
 

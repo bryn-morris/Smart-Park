@@ -9,7 +9,7 @@ import { AuthContext } from "../context/AuthContext";
 import Settings from "./Settings";
 import SiteModals from "./SiteModals";
 import NotFound from "./NotFound";
-import handleLocalStorage from "../utils/handleLocalStorage_util";
+import handleLocalStorage from "../utils/localStorage_util";
 
 function Layout() {
 

@@ -44,11 +44,14 @@ def authenticate_user():
         return make_response({"error": "Authentication failed - Please Log Back In"} ,401)
     
     ## grab the user id from the jwt
-    user_id = get_jwt_identity()
+    try:
+        user_id = get_jwt_identity()
 
-    ## use a database lookup to create a current user variable
-    currentUser = User.query.filter(User.id == user_id).one()
+        ## use a database lookup to create a current user variable
+        currentUser = User.query.filter(User.id == user_id).one()
 
-    ## assign the user variable to the request context so that it can be used in the following route
-    g.current_user = currentUser
+        ## assign the user variable to the request context so that it can be used in the following route
+        g.current_user = currentUser
+    except:
+        return make_response({"error": "Authentication failed - Please Contact Admin, Error Code: #0000001"} ,401)
     

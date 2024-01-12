@@ -11,7 +11,7 @@ from helpers.datetime_converter import convert_datetime
 visit_routes = Blueprint('visit_routes', __name__)
 
 class Check_In_Status_By_User(Resource):
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def get(self):
 
         currentUser = User.query.filter(
@@ -37,7 +37,7 @@ class Check_In_Status_By_User(Resource):
 api.add_resource(Check_In_Status_By_User, '/check_in_status')
 
 class Recent_Parks(Resource):
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
         
@@ -55,7 +55,7 @@ class Recent_Parks(Resource):
 api.add_resource(Recent_Parks, '/recent_parks')
 
 class Check_In_To_Park(Resource):
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def post(self):
 
         newVisit = Visit(
@@ -81,7 +81,7 @@ class Check_In_To_Park(Resource):
 api.add_resource(Check_In_To_Park, '/visits')
 
 @app.route('/visits/<int:id>', methods = ['DELETE', 'PATCH'], endpoint = "visit_by_id")
-@Authentication_Decorator
+# @Authentication_Decorator
 def visit_by_id(id):
 
     selVisit = Visit.query.filter(Visit.id == id).one()

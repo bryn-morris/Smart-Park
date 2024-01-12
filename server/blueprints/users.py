@@ -9,7 +9,7 @@ user_routes = Blueprint('user_routes', __name__)
 
 class Users(Resource):
 
-     @Authentication_Decorator
+     # @Authentication_Decorator
      def get(self):
 
          serialized_users = [user.to_dict(only = (

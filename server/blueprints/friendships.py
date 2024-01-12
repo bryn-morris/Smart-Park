@@ -38,7 +38,7 @@ api.add_resource(Friendship, '/friends')
 
 class Pending_Friends(Resource):
     
-    @Authentication_Decorator
+    # @Authentication_Decorator
     def get(self):
         currentUser = User.query.filter(User.id == session['user_id']).one()
 

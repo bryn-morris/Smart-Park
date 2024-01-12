@@ -1,4 +1,4 @@
-from flask import Blueprint, request, make_response, session
+from flask import Blueprint, request, make_response, session, g
 from flask_restful import Resource
 from models.models import Visit, Dog, Dog_Park
 from models.user import User
@@ -13,7 +13,7 @@ visit_routes = Blueprint('visit_routes', __name__)
 class Check_In_Status_By_User(Resource):
     # @Authentication_Decorator
     def get(self):
-
+        
         currentUser = User.query.filter(
             User.id == session['user_id']
         ).one()
@@ -39,6 +39,7 @@ api.add_resource(Check_In_Status_By_User, '/check_in_status')
 class Recent_Parks(Resource):
     # @Authentication_Decorator
     def get(self):
+        import ipdb;ipdb.set_trace()
         currentUser = User.query.filter(User.id == session['user_id']).one()
         
         serialized_recent_visits = [

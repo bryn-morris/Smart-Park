@@ -45,20 +45,17 @@ class Login(Resource):
 
             user = User.query.filter(User.username == data['username']).first()
 
+            filtered_user =  user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',))
+            
             if not user.authenticate(data['password']):
                 raise ValueError
-            
-            jwt_access_token = create_access_token(
-                identity=user.id,
-                
-            )
-            
+
             # session['user_id'] = user.id
 
-            resp = make_response(
-                user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',)),
-                200
-            )
+            resp = make_response(filtered_user, 200)
+
+            jwt_access_token = create_access_token(identity=filtered_user)
+
             resp.headers['Authorization'] = f'Bearer {jwt_access_token}'
 
             return resp

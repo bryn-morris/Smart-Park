@@ -12,7 +12,7 @@ class Friendship(Resource):
 
     # @Authentication_Decorator
     def get(self):
-        import ipdb;ipdb.set_trace()
+        # import ipdb;ipdb.set_trace()
         currentUser = User.query.filter(User.id == session['user_id']).one()
 
         serialized_friendships = [

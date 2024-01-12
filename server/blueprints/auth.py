@@ -21,12 +21,12 @@ class Signup(Resource):
             db.session.add(new_user)
             db.session.commit()
 
-            # user = User.query.filter(User.username == data['username']).one_or_none()
-            new_filtered_user = new_user.to_dict(rules=('dogs','-_password',))
+            user = User.query.filter(User.username == data['username']).one_or_none()
+            
             # session['user_id'] = user.id
-            response = make_response(new_filtered_user,200)
+            response = make_response(new_user.to_dict(rules=('dogs','-_password',)),200)
 
-            jwt_access_token = create_access_token(identity=new_filtered_user)
+            jwt_access_token = create_access_token(identity=user.id)
             response.headers['Authorization'] = f'Bearer {jwt_access_token}'
             
             return response
@@ -45,16 +45,14 @@ class Login(Resource):
 
             user = User.query.filter(User.username == data['username']).first()
 
-            filtered_user =  user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',))
-            
             if not user.authenticate(data['password']):
                 raise ValueError
 
             # session['user_id'] = user.id
 
-            resp = make_response(filtered_user, 200)
+            resp = make_response(user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',)), 200)
 
-            jwt_access_token = create_access_token(identity=filtered_user)
+            jwt_access_token = create_access_token(identity=user.id)
 
             resp.headers['Authorization'] = f'Bearer {jwt_access_token}'
 

@@ -9,7 +9,7 @@ async function fetchData(
     try {
 
         const response = await fetch(fetchString, configObj)
-
+        
         if (!response.ok) {
             
             if (response.status === 401) {

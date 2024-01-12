@@ -18,7 +18,7 @@ class FriendNamespace(Namespace):
 
     def on_connect(self):
 
-        auth_ws_connection()
+        # auth_ws_connection()
 
         self.room_name = f'{session.get("user_id")}'
         join_room(self.room_name)
@@ -41,7 +41,7 @@ class FriendNamespace(Namespace):
 
     def on_friend_request(self, data):
 
-        auth_ws_connection()
+        # auth_ws_connection()
 
         user_id = session.get('user_id')
         friend_id = data.get('friend_id')
@@ -112,7 +112,7 @@ class FriendNamespace(Namespace):
 
     def on_delete_request(self, data):
 
-        auth_ws_connection()
+        # auth_ws_connection()
 
         user_id = session.get('user_id')
         friend_id = data.get('friend_id')
@@ -168,7 +168,7 @@ class FriendNamespace(Namespace):
 
     def on_accept_friend_request(self,data):
 
-        auth_ws_connection()
+        # auth_ws_connection()
 
         pass
     ## User B (sender -> False )can accept or decline

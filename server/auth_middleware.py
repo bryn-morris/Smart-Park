@@ -26,8 +26,13 @@ def Authentication_Decorator(func):
 
 def authenticate_user():
 
+    public_views = [
+        'login',
+        'signup',
+    ]
+
     ## skip authentication is login or signup route is pinged
-    if request.endpoint in ['login', 'signup']:
+    if request.endpoint in public_views:
         return
     
     ## check if JWT is valid
@@ -35,5 +40,6 @@ def authenticate_user():
         return make_response({"error": "Authentication failed - Please Log Back In"} ,401)
     
     ## decrypt secret to check validity of JWT in headers
+    ## Manually load the user object into the 
     
     

@@ -16,7 +16,8 @@ function WebSocketProvider({children}) {
     const {
         setCurrentUser, 
         setIsReLogOpen, 
-        setIsLogOutModalRendered
+        setIsLogOutModalRendered,
+        authConfigObj,
     } = useContext(AuthContext)
     const {
         setDogParks,
@@ -66,7 +67,7 @@ function WebSocketProvider({children}) {
                 fetchData(
                     '/logout', 
                     setIsReLogOpen,
-                    {method:"DELETE",},
+                    {...authConfigObj, method:"DELETE",},
                 )
                 setCurrentUser(null)
                 setDogParks([])

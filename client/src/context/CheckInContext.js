@@ -8,7 +8,7 @@ const CheckInContext = createContext()
 
 function CheckInProvider({children}) {
 
-    const { setIsReLogOpen} = useContext(AuthContext)
+    const { setIsReLogOpen, authConfigObj} = useContext(AuthContext)
     const { recentParks, setRecentParks } = useContext(DogParkContext)
 
     const [accidentalCheckin, setAccidentalCheckin ] = useState(false)
@@ -22,6 +22,7 @@ function CheckInProvider({children}) {
     function checkOut () {
 
         const configObj = {
+          ...authConfigObj,
           method: 'PATCH',
           headers: {'Content-Type':'application/json'},
           body: {},
@@ -36,6 +37,7 @@ function CheckInProvider({children}) {
     function handleCheckInFormSubmission(formObj){
 
         const getVisitConfigObj = {
+          ...authConfigObj,
           method: 'POST',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify(formObj)
@@ -55,7 +57,7 @@ function CheckInProvider({children}) {
 
     function deleteCheckIn(){
 
-        fetchData(`/visits/${parseInt(checkInID)}`, setIsReLogOpen, {method: 'DELETE'})
+        fetchData(`/visits/${parseInt(checkInID)}`, setIsReLogOpen, {...authConfigObj,method: 'DELETE'})
           .then((deletedPark)=>{
 
             setRecentParks(()=>{

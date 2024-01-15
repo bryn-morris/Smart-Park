@@ -7,7 +7,7 @@ const ReviewContext = createContext()
 
 function ReviewProvider({children}) {
 
-    const {currentUser, setIsReLogOpen} = useContext(AuthContext)
+    const {currentUser, setIsReLogOpen, authConfigObj} = useContext(AuthContext)
     const {dogParks, setDogParks} = useContext(DogParkContext)
 
     const [isReviewFormRendered, setIsReviewFormRendered] = useState(false)
@@ -18,6 +18,7 @@ function ReviewProvider({children}) {
         formObject.user_id = parseInt(currentUser.id);
 
         const addReviewConfigObj = {
+            ...authConfigObj,
             method: 'POST',
             credentials: 'include',
             headers: {"Content-Type": "application/json"},

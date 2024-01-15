@@ -6,7 +6,7 @@ import { DogContext } from '../../../../context/DogContext'
 
 function NewDogForm() {
 
-  const {currentUser, setIsReLogOpen} = useContext(AuthContext)
+  const {currentUser, setIsReLogOpen, authConfigObj} = useContext(AuthContext)
   const { createDog } = useContext(DogContext)
   
     const [name, setName] = useState("")
@@ -30,6 +30,7 @@ function NewDogForm() {
       e.preventDefault()
 
       const dogPostConfigObj = {
+        ...authConfigObj,
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newDog)

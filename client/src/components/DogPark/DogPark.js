@@ -14,7 +14,7 @@ function DogPark() {
 
   const [createdDogPark, setCreatedDogPark] = useState({})
   const {isDPModalOpen, setIsDPModalOpen } = useContext(ReviewContext)
-  const {setIsReLogOpen} = useContext(AuthContext)
+  const {setIsReLogOpen, authConfigObj} = useContext(AuthContext)
 
   const {
     handleAddReview, 
@@ -32,6 +32,7 @@ function DogPark() {
   function handleAddDogPark (newDogPark) {
 
     const dpConfigObj = {
+      ...authConfigObj,
       method: 'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newDogPark)

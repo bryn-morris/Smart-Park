@@ -7,11 +7,12 @@ import fetchData from "../../../utils/fetch_util"
 function ReviewDeleteButton ({eachDogPark, review, setAddReviewDisabled}) {
 
     const {dogParks, setDogParks} = useContext(DogParkContext)
-    const {setIsReLogOpen} = useContext(AuthContext)
+    const {setIsReLogOpen, authConfigObj} = useContext(AuthContext)
 
     function handleDeleteReview (review_id) {
 
       const delRevConfigObj = {
+        ...authConfigObj,
         method : 'DELETE',
         headers : {"Content-Type": "application/json"},
         body: JSON.stringify({id: review_id}) 

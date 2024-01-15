@@ -10,7 +10,7 @@ import fetchData from "../../../../../utils/fetch_util"
 function FriendListElement() {
 
     const { friendsList } = useContext(FriendsContext);
-    const { setIsReLogOpen } =useContext(AuthContext);
+    const { setIsReLogOpen, authConfigObj } =useContext(AuthContext);
 
     const [userList, setUserList] = useState([]);
     const [searchedTerm, setSearchedTerm] = useState('')
@@ -29,7 +29,7 @@ function FriendListElement() {
 
     useEffect(()=>{
 
-        fetchData('/users', setIsReLogOpen, {signal: signal})
+        fetchData('/users', setIsReLogOpen, {...authConfigObj, signal: signal})
             .then(users => setUserList(users))
             
         return( ()=>{
@@ -38,7 +38,7 @@ function FriendListElement() {
         }
         )
     }
-    ,[signal, controller, setIsReLogOpen])
+    ,[signal, controller, setIsReLogOpen, authConfigObj])
 
     const handleSeachUser = (e) => {
         setSearchedTerm(e.target.value)

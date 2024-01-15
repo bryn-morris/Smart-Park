@@ -13,7 +13,7 @@ function DogParkCard({eachDogPark}){
   const [showFront, setShowFront] = useState(true);
   const [isEditModalOpen, setIsEditModalOpen ] = useState(false);
 
-  const { currentUser, setIsReLogOpen } = useContext(AuthContext)
+  const { currentUser, setIsReLogOpen, authConfigObj } = useContext(AuthContext)
   const { dogParks, setDogParks, unFavorite } = useContext(DogParkContext)
   
   const favoritedEntryArray = eachDogPark.favorited.filter((each)=>each.user_id === currentUser.id)
@@ -29,6 +29,7 @@ function DogParkCard({eachDogPark}){
     } else {
 
       const favConfigObj = {
+        ...authConfigObj,
         method: 'POST',
         headers : {'Content-Type':'application/json'},
         body: JSON.stringify({
@@ -50,7 +51,7 @@ function DogParkCard({eachDogPark}){
   }
 
   const handleDelete = (e) => {
-    fetchData(`/dogparks/${eachDogPark.id}`, setIsReLogOpen, {method : "DELETE"})
+    fetchData(`/dogparks/${eachDogPark.id}`, setIsReLogOpen, {...authConfigObj, method : "DELETE"})
       .then(setDogParks(dogParks.filter((eachDP)=>{return eachDP.id !== eachDogPark.id})))
   }
 

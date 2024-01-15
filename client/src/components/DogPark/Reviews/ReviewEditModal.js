@@ -13,7 +13,7 @@ function ReviewEditModal ({
 }) {
 
     const {dogParks, setDogParks} = useContext(DogParkContext)
-    const {currentUser, setIsReLogOpen} = useContext(AuthContext)
+    const {currentUser, setIsReLogOpen, authConfigObj} = useContext(AuthContext)
 
     function handleSubmitEdit () {
         setIsEditModalOpen(false)
@@ -21,6 +21,7 @@ function ReviewEditModal ({
         editModalFormObject.user_id = parseInt(currentUser.id);
         
       const editRevDogParkConfigObj = {
+        ...authConfigObj,
         method: 'PATCH',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(editModalFormObject)

@@ -19,13 +19,14 @@ function EditDogParkForm({eachDogPark, setIsEditModalOpen}){
     const [dpFormObject, setDPFormObject] = useState(startingDPFormObject)
 
     const {dogParks, setDogParks} = useContext(DogParkContext)
-    const { setIsReLogOpen } = useContext(AuthContext)
+    const { setIsReLogOpen, authConfigObj } = useContext(AuthContext)
 
 
     const handleSubmitDPEdit = (e) => {
         e.preventDefault();
 
         const dpEditConfigObj = {
+            ...authConfigObj,
             method : 'PATCH',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(dpFormObject)

@@ -15,7 +15,7 @@ function Layout() {
 
   const { setDogParks, setRecentParks } = useContext(DogParkContext)
   const { setFriendsList, setPendingFriendsList } = useContext(FriendsContext)
-  const { setIsReLogOpen } = useContext(AuthContext) 
+  const { setIsReLogOpen, authConfigObj } = useContext(AuthContext) 
 
   useEffect(()=>{
 
@@ -23,19 +23,29 @@ function Layout() {
         202: ()=>clearLocalStorageKey('ciKey'),
       }
 
-      fetchData('http://127.0.0.1:5555/dogparks', setIsReLogOpen)
+      if (
+        !authConfigObj ||
+        !authConfigObj.headers || 
+        !authConfigObj.headers.Authorization
+        ) {
+          // Don't execute fetches if JWT key has not been assigned
+          // This if statement is synchornous so should fire first
+          return;
+      }
+
+      fetchData('http://127.0.0.1:5555/dogparks', setIsReLogOpen, {...authConfigObj})
         .then(data => setDogParks(data))
 
-      fetchData('/friends', setIsReLogOpen)
+      fetchData('/friends', setIsReLogOpen, {...authConfigObj})
         .then(friendsData => setFriendsList(friendsData))
       
-      fetchData('/pending_friends', setIsReLogOpen)  
+      fetchData('/pending_friends', setIsReLogOpen, {...authConfigObj})  
       .then(pendingFriendshipsData => setPendingFriendsList(pendingFriendshipsData))
 
-      fetchData('/recent_parks', setIsReLogOpen)
+      fetchData('/recent_parks', setIsReLogOpen, {...authConfigObj})
       .then(recentParksData => setRecentParks(recentParksData))
 
-      fetchData('/check_in_status', setIsReLogOpen, {}, httpStatusHandlers)
+      fetchData('/check_in_status', setIsReLogOpen, {...authConfigObj}, httpStatusHandlers)
       .then(checkInData => {
         if (checkInData){
           addOrUpdateLocalStorageKey('ciKey', checkInData.check_in_ID)
@@ -47,6 +57,7 @@ function Layout() {
       setPendingFriendsList, 
       setIsReLogOpen,
       setRecentParks,
+      authConfigObj,
     ]
   )
 

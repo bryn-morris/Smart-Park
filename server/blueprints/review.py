@@ -1,4 +1,4 @@
-from flask import Blueprint, make_response, request, session
+from flask import Blueprint, make_response, request, g
 from flask_restful import Resource
 from auth_middleware import Authentication_Decorator
 
@@ -40,7 +40,7 @@ def add_review_and_patch_dog_park_rating(id):
     if request.method == 'POST':
        
         ## Shouldn't ever be tripped, but leaving in for redundancy
-        if Review.query.filter(db.and_(session['user_id'] == Review.user_id, id == Review.dog_park_id)).first():
+        if Review.query.filter(db.and_(g.current_user.id == Review.user_id, id == Review.dog_park_id)).first():
             return make_response({'error':'duplicate record'}, 409)
 
         rating_list = [rev.rating for rev in Review.query.filter(Review.dog_park_id == id)]

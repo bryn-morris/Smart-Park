@@ -11,6 +11,7 @@ async function fetchData(
     try {
         
         const response = await fetch(fetchString, configObj)
+        
         if (fetchString === '/login' || fetchString === '/signup') {
             addOrUpdateLocalStorageKey('aKey', 
                 stripJWT(response.headers.get('Authorization'))

@@ -14,9 +14,7 @@ class Check_In_Status_By_User(Resource):
     # @Authentication_Decorator
     def get(self):
         
-        currentUser = User.query.filter(
-            User.id == session['user_id']
-        ).one()
+        currentUser = g.current_user
 
         dog_id_list = [dog.id for dog in currentUser.dogs]
         # Grab the most recent visit entry associated with the logged in user
@@ -39,8 +37,8 @@ api.add_resource(Check_In_Status_By_User, '/check_in_status')
 class Recent_Parks(Resource):
     # @Authentication_Decorator
     def get(self):
-        import ipdb;ipdb.set_trace()
-        currentUser = User.query.filter(User.id == session['user_id']).one()
+        
+        currentUser = g.current_user
         
         serialized_recent_visits = [
             {

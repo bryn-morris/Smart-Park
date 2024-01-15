@@ -33,24 +33,24 @@ function Layout() {
           return;
       }
 
-      fetchData('http://127.0.0.1:5555/dogparks', setIsReLogOpen, {...authConfigObj})
+      fetchData('/dogparks', setIsReLogOpen, {...authConfigObj})
         .then(data => setDogParks(data))
 
       fetchData('/friends', setIsReLogOpen, {...authConfigObj})
         .then(friendsData => setFriendsList(friendsData))
       
       fetchData('/pending_friends', setIsReLogOpen, {...authConfigObj})  
-      .then(pendingFriendshipsData => setPendingFriendsList(pendingFriendshipsData))
+        .then(pendingFriendshipsData => setPendingFriendsList(pendingFriendshipsData))
 
       fetchData('/recent_parks', setIsReLogOpen, {...authConfigObj})
-      .then(recentParksData => setRecentParks(recentParksData))
+        .then(recentParksData => setRecentParks(recentParksData))
 
       fetchData('/check_in_status', setIsReLogOpen, {...authConfigObj}, httpStatusHandlers)
-      .then(checkInData => {
-        if (checkInData){
-          addOrUpdateLocalStorageKey('ciKey', checkInData.check_in_ID)
-        }
-    })
+        .then(checkInData => {
+          if (checkInData){
+            addOrUpdateLocalStorageKey('ciKey', checkInData.check_in_ID)
+          }
+      })
     }, [
       setDogParks, 
       setFriendsList, 

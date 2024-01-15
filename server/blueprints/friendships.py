@@ -1,4 +1,4 @@
-from flask import make_response, session, request, Blueprint, jsonify
+from flask import make_response, session, request, Blueprint, jsonify, g
 from flask_restful import Resource
 from flask_jwt_extended import get_jwt_identity
 
@@ -12,8 +12,8 @@ class Friendship(Resource):
 
     # @Authentication_Decorator
     def get(self):
-        # import ipdb;ipdb.set_trace()
-        currentUser = User.query.filter(User.id == session['user_id']).one()
+
+        currentUser = g.current_user
 
         serialized_friendships = [
             {
@@ -40,7 +40,8 @@ class Pending_Friends(Resource):
     
     # @Authentication_Decorator
     def get(self):
-        currentUser = User.query.filter(User.id == session['user_id']).one()
+
+        currentUser = g.current_user
 
         serialized_pending_friendships = [
             {

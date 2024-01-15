@@ -9,7 +9,7 @@ import { AuthContext } from "../context/AuthContext";
 import Settings from "./Settings";
 import SiteModals from "./SiteModals";
 import NotFound from "./NotFound";
-import handleLocalStorage from "../utils/localStorage_util";
+import {clearLocalStorageKey, addOrUpdateLocalStorageKey} from "../utils/localStorage_util";
 
 function Layout() {
 
@@ -20,7 +20,7 @@ function Layout() {
   useEffect(()=>{
 
       const httpStatusHandlers = {
-        202: ()=>handleLocalStorage('clearStorage'),
+        202: ()=>clearLocalStorageKey('ciKey'),
       }
 
       fetchData('http://127.0.0.1:5555/dogparks', setIsReLogOpen)
@@ -38,7 +38,7 @@ function Layout() {
       fetchData('/check_in_status', setIsReLogOpen, {}, httpStatusHandlers)
       .then(checkInData => {
         if (checkInData){
-          handleLocalStorage('checkInID', checkInData.check_in_ID, 'ciKEY')
+          addOrUpdateLocalStorageKey('ciKey', checkInData.check_in_ID)
         }
     })
     }, [

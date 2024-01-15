@@ -2,7 +2,7 @@ import { createContext, useState, useContext} from "react";
 import { AuthContext } from "./AuthContext";
 import { DogParkContext } from "./DogParkContext";
 import fetchData from "../utils/fetch_util";
-import handleLocalStorage from "../utils/localStorage_util";
+import { clearLocalStorageKey, addOrUpdateLocalStorageKey } from "../utils/localStorage_util";
 
 const CheckInContext = createContext()
 
@@ -29,7 +29,7 @@ function CheckInProvider({children}) {
     
         fetchData(`/visits/${parseInt(checkInID)}`,setIsReLogOpen, configObj)
           .then(updatedVisit => {
-            handleLocalStorage('clearStorage')
+            clearLocalStorageKey('ciKey')
         })
     }
 
@@ -45,7 +45,7 @@ function CheckInProvider({children}) {
           .then(newVisit => {
             // setCheckInID(newVisit.id)
             setAccidentalCheckin(true)
-            handleLocalStorage('checkInID', newVisit.id, 'ciKEY')
+            addOrUpdateLocalStorageKey('ciKey', newVisit.id)
 
             setRecentParks(()=>{return(
               [newVisit.newVisit,...recentParks]
@@ -66,7 +66,7 @@ function CheckInProvider({children}) {
               )
             })
             
-            handleLocalStorage('clearStorage')
+            clearLocalStorageKey('ciKey')
         })
     }
 

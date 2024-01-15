@@ -6,6 +6,7 @@ async function fetchData(
     configObj = {},
     httpStatusHandlers = {},
 ) {
+
     try {
 
         const response = await fetch(fetchString, configObj)

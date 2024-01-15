@@ -9,6 +9,12 @@ function AuthProvider({children}) {
     const [isLogOutModalRendered, setIsLogOutModalRendered] = useState(false)
     const [authKey, setAuthKey] = useState(localStorage.getItem('aKey') || null)
 
+    const authConfigObj = {
+        headers:{
+            Authorization: `Bearer ${authKey}`
+        }
+    }
+
     return (
         <AuthContext.Provider 
             value ={{
@@ -20,6 +26,7 @@ function AuthProvider({children}) {
                         setIsLogOutModalRendered,
                         authKey,
                         setAuthKey,
+                        authConfigObj,
                     }}
         >
             {children}

@@ -13,24 +13,22 @@ import LocalStorageHandlers from './LocalStorageHandlers'
 function App() {
 
   return (
-    <div>
-      <LocalStorageHandlers />
       <AuthProvider>
         <DogProvider>
           <DogParkProvider>
-            <ReviewProvider>
-              <FriendsProvider>
-                <WebSocketProvider>
-                  <CheckInProvider>
-                    <Logging />
-                  </CheckInProvider>
-                </WebSocketProvider>
-              </FriendsProvider> 
-            </ReviewProvider>
+            <CheckInProvider>
+              <LocalStorageHandlers />
+              <ReviewProvider>
+                <FriendsProvider>
+                  <WebSocketProvider>
+                      <Logging />
+                  </WebSocketProvider>
+                </FriendsProvider> 
+              </ReviewProvider>
+            </CheckInProvider>
           </DogParkProvider>
         </DogProvider>
       </AuthProvider>
-    </div>
   );
 }
 

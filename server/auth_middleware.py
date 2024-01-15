@@ -4,27 +4,27 @@ from flask import session, make_response, request, g
 from flask_jwt_extended import verify_jwt_in_request
 from flask_jwt_extended import get_jwt_identity
 
-# def Admin_Authentication_Decorator(func):
+def Admin_Authentication_Decorator(func):
 
-#     def wrapper_func(*args, **kwargs):
+    def wrapper_func(*args, **kwargs):
         
-#         sel_user = User.query.filter(session['user_id']==User.id).one()
-#         if sel_user.admin==False:
-#             return make_response({"error": "Authentication failed - User is not admin"},401)
-#         return func(*args, **kwargs)
+        sel_user = User.query.filter(session['user_id']==User.id).one()
+        if sel_user.admin==False:
+            return make_response({"error": "Authentication failed - User is not admin"},401)
+        return func(*args, **kwargs)
 
-#     return wrapper_func
+    return wrapper_func
 
-# def Authentication_Decorator(func):
+def Authentication_Decorator(func):
 
-#     def wrapper_func(*args, **kwargs):
+    def wrapper_func(*args, **kwargs):
 
-#         if not User.query.filter(session['user_id']==User.id).first():
-#             return make_response({"error":"User is not logged in!"}, 401)            
+        if not User.query.filter(session['user_id']==User.id).first():
+            return make_response({"error":"User is not logged in!"}, 401)            
 
-#         return func(*args, **kwargs)
+        return func(*args, **kwargs)
 
-#     return wrapper_func
+    return wrapper_func
 
 @app.before_request
 def authenticate_user():

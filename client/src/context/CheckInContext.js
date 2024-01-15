@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect} from "react";
+import { createContext, useState, useContext} from "react";
 import { AuthContext } from "./AuthContext";
 import { DogParkContext } from "./DogParkContext";
 import fetchData from "../utils/fetch_util";
@@ -13,34 +13,9 @@ function CheckInProvider({children}) {
 
     const [accidentalCheckin, setAccidentalCheckin ] = useState(false)
     const [checkInID, setCheckInID] = useState(()=>{
-      return localStorage.getItem('checkInID') || null
+      return localStorage.getItem('ciKey') || null
     })
     const [isModalOpen, setIsModalOpen] = useState(false)
-
-    ///////////// useEffect for updating checkInID ///////////////
-
-    useEffect(()=>{
-
-      function updateCheckInKey(){
-        setCheckInID(localStorage.getItem('checkInID'))
-      }
-
-      function clearCheckInKey(){
-        setCheckInID(null)
-      }
-
-      // creates event listeners to listen to storage event
-      // which is how we will be able to tell if 
-      // localStorage is updated
-      window.addEventListener('ciKEY', updateCheckInKey)
-      window.addEventListener('clearStorage', clearCheckInKey)
-
-      //cleanup function
-      return(()=> {
-        window.removeEventListener('ciKEY', updateCheckInKey)
-        window.removeEventListener('clearStorage', clearCheckInKey)
-      })
-    }, [])
 
     ///////////// Check-In Functions ///////////////
 

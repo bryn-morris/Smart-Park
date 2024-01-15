@@ -13,9 +13,9 @@ function LocalStorageHandlers(){
             //   setCheckInID(null)
             // }
       
-            // // creates event listeners to listen to storage event
-            // // which is how we will be able to tell if 
-            // // localStorage is updated
+            // creates event listeners to listen to storage event
+            // which is how we will be able to tell if 
+            // localStorage is updated
             // window.addEventListener('ciKEY', updateCheckInKey)
             // window.addEventListener('clearStorage', clearCheckInKey)
       

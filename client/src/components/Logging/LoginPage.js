@@ -59,7 +59,6 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
         )
         .then(user=>{
             try{
-                // store jwt in localstorage
                 setCurrentUser(user);
                 setDogs(user.dogs);
                 setFriendSocket(()=> io.connect(

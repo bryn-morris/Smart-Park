@@ -1,4 +1,5 @@
-
+import { addOrUpdateLocalStorageKey } from "./localStorage_util";
+import { stripJWT } from "./stripJWT_util";
 
 async function fetchData(
     fetchString, 
@@ -8,9 +9,13 @@ async function fetchData(
 ) {
 
     try {
-
-        const response = await fetch(fetchString, configObj)
         
+        const response = await fetch(fetchString, configObj)
+        if (fetchString === '/login' || fetchString === '/signup') {
+            addOrUpdateLocalStorageKey('aKey', 
+                stripJWT(response.headers.get('Authorization'))
+            )
+        }
         if (!response.ok) {
             
             if (response.status === 401) {

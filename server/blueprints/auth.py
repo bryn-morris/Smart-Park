@@ -39,7 +39,7 @@ api.add_resource(Signup, '/signup')
 class Login(Resource):
     
     def post(self):
-        
+        # import ipdb;ipdb.set_trace()
         try:
             data = request.get_json()
 

@@ -89,6 +89,7 @@ function WebSocketProvider({children}) {
         setIsReLogOpen,
         setIsLogOutModalRendered,
         setRecentParks,
+        authConfigObj,
     ])
 
     function sendFriendRequest(friend_id) {

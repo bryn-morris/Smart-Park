@@ -1,6 +1,6 @@
 from flask import Blueprint, make_response, request, g
 from flask_restful import Resource
-from auth_middleware import Authentication_Decorator
+# from auth_middleware import Authentication_Decorator
 
 from config import api, app, db
 from models.models import (

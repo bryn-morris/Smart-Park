@@ -1,6 +1,6 @@
 from flask import make_response, Blueprint
 from flask_restful import Resource
-from auth_middleware import Authentication_Decorator
+# from auth_middleware import Authentication_Decorator
 
 from models.user import User
 from config import api

@@ -4,7 +4,7 @@ from flask_jwt_extended import get_jwt_identity
 
 from config import db, api
 from models.user import User
-from auth_middleware import Authentication_Decorator
+# from auth_middleware import Authentication_Decorator
 
 friendship_routes = Blueprint('friendship_routes', __name__)
 

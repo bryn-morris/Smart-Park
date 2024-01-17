@@ -10,6 +10,7 @@ auth_views = Blueprint('auth_views', __name__, url_prefix="/auth")
 class Signup(Resource):
     def post(self):
         try:
+            import ipdb;ipdb.set_trace()
             data = request.get_json()
       
             new_user = User(

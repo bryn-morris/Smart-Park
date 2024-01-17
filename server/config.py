@@ -14,15 +14,19 @@ from sqlalchemy import MetaData
 from flask_socketio import SocketIO
 from flask_jwt_extended import JWTManager
 
+
 # Local imports
-
-
+# from auth_middleware import authenticate_user
+from auth_middleware import authenticate_user
 
 # Instantiate app, set attributes
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
+
+#Middleware Function
+app.before_request(authenticate_user)
 
 #export this to non-prod config variable file down the line
 development_secret = "ex13^xe80xc8@x8x&x1b*x9d$rx8IZxcxeft"
@@ -67,3 +71,5 @@ api = Api(app)
 
 # Instantiate CORS
 CORS(app, supports_credentials=True, origins="http://localhost:4000", methods=['POST', 'GET', 'OPTIONS'])
+
+

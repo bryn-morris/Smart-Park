@@ -27,4 +27,5 @@ app.register_blueprint(user_routes)
 app.register_blueprint(visit_routes)
 
 if __name__ == '__main__':
+    # print(app.before_request_funcs)
     socketio.run(app, port=5555, debug=True)

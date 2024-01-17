@@ -14,7 +14,6 @@ from sqlalchemy import MetaData
 from flask_socketio import SocketIO
 from flask_jwt_extended import JWTManager
 
-
 # Local imports
 # from auth_middleware import authenticate_user
 from auth_middleware import authenticate_user

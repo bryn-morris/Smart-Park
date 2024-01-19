@@ -22,9 +22,6 @@ api.add_resource(Reviews, '/reviews')
 @app.route('/review_dog_park/<int:id>', methods = ['POST', 'PATCH', 'DELETE', 'GET'])
 # @Authentication_Decorator
 def add_review_and_patch_dog_park_rating(id):
-    
-    # import ipdb;ipdb.set_trace()
-
     data = request.get_json()
     
     if request.method in ['POST', 'PATCH']:

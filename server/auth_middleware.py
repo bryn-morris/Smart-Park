@@ -5,8 +5,6 @@ from flask_jwt_extended import get_jwt_identity
 
 def authenticate_user():
 
-    import pdb;pdb.set_trace()
-
     public_views = [
         'login',
         'signup',
@@ -14,7 +12,6 @@ def authenticate_user():
     
     ## skip authentication is login or signup route is pinged
     if request.endpoint in public_views:
-        # import ipdb;ipdb.set_trace()
         return
     
     ## validate signed secret to check validity & presence of JWT in headers

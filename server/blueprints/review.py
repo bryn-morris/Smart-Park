@@ -26,8 +26,7 @@ def add_review_and_patch_dog_park_rating(id):
     
     if request.method in ['POST', 'PATCH']:
         new_rating = float(data['rating'])
-        
-           
+         
     if request.method in ['PATCH', 'DELETE']:
         try:
             sel_review = Review.query.filter(Review.id == data['id']).one()   

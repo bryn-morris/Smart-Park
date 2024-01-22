@@ -4,6 +4,8 @@ import { AuthContext } from "./AuthContext";
 import { DogParkContext } from "./DogParkContext"
 import { FriendsContext } from "./FriendsContext"
 import { useHistory } from "react-router-dom"
+import { addOrUpdateLocalStorageKey } from "../utils/localStorage_util";
+import { stripJWT } from "../utils/stripJWT_util";
 
 import fetchData from "../utils/fetch_util"; 
 
@@ -69,14 +71,19 @@ function WebSocketProvider({children}) {
                     setIsReLogOpen,
                     {...authConfigObj, method:"DELETE",},
                 )
-                setCurrentUser(null)
-                setDogParks([])
-                setFriendsList([])
-                setRecentParks([])
-                friendSocket.disconnect()
-                history.push("/")
-                setIsLogOutModalRendered(false)
-                setFriendSocket(null)
+                .then(response => {
+                    addOrUpdateLocalStorageKey('aKey',
+                        stripJWT(response.headers.get('Authorization'))
+                    )
+                    setCurrentUser(null)
+                    setDogParks([])
+                    setFriendsList([])
+                    setRecentParks([])
+                    friendSocket.disconnect()
+                    history.push("/")
+                    setIsLogOutModalRendered(false)
+                    setFriendSocket(null)
+                })
             })
         }
     }, [

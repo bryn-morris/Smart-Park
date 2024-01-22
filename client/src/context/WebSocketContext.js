@@ -4,8 +4,8 @@ import { AuthContext } from "./AuthContext";
 import { DogParkContext } from "./DogParkContext"
 import { FriendsContext } from "./FriendsContext"
 import { useHistory } from "react-router-dom"
-import { addOrUpdateLocalStorageKey } from "../utils/localStorage_util";
-import { stripJWT } from "../utils/stripJWT_util";
+import { clearLocalStorageKey } from "../utils/localStorage_util";
+// import { stripJWT } from "../utils/stripJWT_util";
 
 import fetchData from "../utils/fetch_util"; 
 
@@ -64,26 +64,23 @@ function WebSocketProvider({children}) {
 
             })
 
-            friendSocket.on('friend_socket_disconnect', ()=>{
+            friendSocket.on('friend_socket_disconnect', async ()=>{
 
-                fetchData(
-                    '/logout', 
-                    setIsReLogOpen,
-                    {...authConfigObj, method:"DELETE",},
-                )
-                .then(response => {
-                    addOrUpdateLocalStorageKey('aKey',
-                        stripJWT(response.headers.get('Authorization'))
-                    )
-                    setCurrentUser(null)
-                    setDogParks([])
-                    setFriendsList([])
-                    setRecentParks([])
-                    friendSocket.disconnect()
-                    history.push("/")
-                    setIsLogOutModalRendered(false)
-                    setFriendSocket(null)
-                })
+                fetchData('/logout', setIsReLogOpen, {...authConfigObj, method:"DELETE",})
+                    .then(response => clearLocalStorageKey('aKey'))
+                
+
+                // const strippedToken = stripJWT(response.headers.get('Authorization'));
+                // addOrUpdateLocalStorageKey('aKey', strippedToken)
+                
+                setCurrentUser(null)
+                setDogParks([])
+                setFriendsList([])
+                setRecentParks([])
+                friendSocket.disconnect()
+                history.push("/")
+                setIsLogOutModalRendered(false)
+                setFriendSocket(null)
             })
         }
     }, [

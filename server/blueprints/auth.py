@@ -68,14 +68,14 @@ class Logout(Resource):
         # session.clear()
 
         # set JWT expiry time to zero to immediately invalidate it
-        immediate_expiry_time = datetime.timedelta(seconds=0)
-        new_token=create_refresh_token(
-            g.current_user.id, 
-            expires_delta=immediate_expiry_time
-        )
+        # immediate_expiry_time = datetime.timedelta(seconds=0)
+        # new_token=create_refresh_token(
+        #     g.current_user.id, 
+        #     expires_delta=immediate_expiry_time
+        # )
 
         response = make_response({}, 200)
-        response.headers['Authorization'] = f'Bearer ${new_token}'
+        # response.headers['Authorization'] = f'Bearer ${new_token}'
 
         # Currently not using cookies
         # unset_jwt_cookies(response)

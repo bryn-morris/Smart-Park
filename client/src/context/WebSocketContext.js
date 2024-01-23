@@ -69,7 +69,6 @@ function WebSocketProvider({children}) {
                 fetchData('/logout', setIsReLogOpen, {...authConfigObj, method:"DELETE",})
                     .then(response => clearLocalStorageKey('aKey'))
                 
-
                 // const strippedToken = stripJWT(response.headers.get('Authorization'));
                 // addOrUpdateLocalStorageKey('aKey', strippedToken)
                 
@@ -77,10 +76,10 @@ function WebSocketProvider({children}) {
                 setDogParks([])
                 setFriendsList([])
                 setRecentParks([])
-                friendSocket.disconnect()
-                history.push("/")
                 setIsLogOutModalRendered(false)
                 setFriendSocket(null)
+                friendSocket.disconnect()
+                history.push("/")
             })
         }
     }, [

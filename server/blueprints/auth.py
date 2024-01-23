@@ -3,7 +3,6 @@ from flask_restful import Resource
 from flask_jwt_extended import create_access_token, unset_jwt_cookies, create_refresh_token
 import datetime
 
-
 from config import api, db
 from models.user import User
 
@@ -25,7 +24,7 @@ class Signup(Resource):
 
             user = User.query.filter(User.username == data['username']).one_or_none()
             
-            # session['user_id'] = user.id
+            session['user_id'] = user.id
             response = make_response(new_user.to_dict(rules=('dogs','-_password',)),200)
 
             jwt_access_token = create_access_token(identity=user.id)
@@ -49,7 +48,7 @@ class Login(Resource):
             if not user.authenticate(data['password']):
                 raise ValueError
 
-            # session['user_id'] = user.id
+            session['user_id'] = user.id
 
             resp = make_response(user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',)), 200)
 
@@ -65,7 +64,7 @@ api.add_resource(Login, '/login')
 class Logout(Resource):
     def delete(self):
 
-        # session.clear()
+        session.clear()
 
         # set JWT expiry time to zero to immediately invalidate it
         # immediate_expiry_time = datetime.timedelta(seconds=0)

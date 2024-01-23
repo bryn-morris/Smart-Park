@@ -1,7 +1,12 @@
 from models.user import User
-from flask import make_response, request, g
+from flask import make_response, request, g, session
 from flask_jwt_extended import verify_jwt_in_request
 from flask_jwt_extended import get_jwt_identity
+
+class AuthError(Exception):
+    def __init__(self, message = "Custom Auth Error"):
+        self.message = message
+        super().__init__(self.message)
 
 def authenticate_user():
 
@@ -22,6 +27,9 @@ def authenticate_user():
     try:
         user_id = get_jwt_identity()
 
+        ## Raise specific error if session['id'] != user_id
+        if session['user_id'] != user_id:
+            raise AuthError({"error" : "Authentication Failed, please log in!"})
         ## use a database lookup to create a current user variable
         currentUser = User.query.filter(User.id == user_id).one()
 

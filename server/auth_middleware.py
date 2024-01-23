@@ -28,8 +28,8 @@ def authenticate_user():
         user_id = get_jwt_identity()
 
         ## Raise specific error if session['id'] != user_id
-        if session['user_id'] != user_id:
-            raise AuthError({"error" : "Authentication Failed, please log in!"})
+        # if session['user_id'] != user_id:
+        #     raise AuthError({"error" : "Authentication Failed, please log in!"})
         ## use a database lookup to create a current user variable
         currentUser = User.query.filter(User.id == user_id).one()
 

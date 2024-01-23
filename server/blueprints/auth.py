@@ -24,7 +24,6 @@ class Signup(Resource):
 
             user = User.query.filter(User.username == data['username']).one_or_none()
             
-            session['user_id'] = user.id
             response = make_response(new_user.to_dict(rules=('dogs','-_password',)),200)
 
             jwt_access_token = create_access_token(identity=user.id)
@@ -47,8 +46,6 @@ class Login(Resource):
 
             if not user.authenticate(data['password']):
                 raise ValueError
-
-            session['user_id'] = user.id
 
             resp = make_response(user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',)), 200)
 

@@ -1,7 +1,6 @@
 from flask import make_response, request, Blueprint
 from flask_restful import Resource
 
-# from auth_middleware import Admin_Authentication_Decorator
 from config import db, api, app
 from models.models import Dog_Park
 
@@ -30,7 +29,6 @@ class Dog_Parks(Resource):
 
         return make_response(dog_parks, 200)
     
-    # @Admin_Authentication_Decorator
     def post(self):
 
         try:
@@ -51,7 +49,6 @@ class Dog_Parks(Resource):
 api.add_resource(Dog_Parks, '/dogparks')
 
 @app.route('/dogparks/<int:id>', methods = ['DELETE', 'PATCH'], endpoint = "dog_park_by_id")
-# @Admin_Authentication_Decorator
 def dog_park_by_id(id):
 
     try:

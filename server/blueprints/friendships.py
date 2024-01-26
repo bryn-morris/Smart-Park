@@ -1,16 +1,13 @@
-from flask import make_response, session, request, Blueprint, jsonify, g
+from flask import make_response, Blueprint, jsonify, g
 from flask_restful import Resource
-from flask_jwt_extended import get_jwt_identity
 
-from config import db, api
+from config import  api
 from models.user import User
-# from auth_middleware import Authentication_Decorator
 
 friendship_routes = Blueprint('friendship_routes', __name__)
 
 class Friendship(Resource):
 
-    # @Authentication_Decorator
     def get(self):
 
         currentUser = g.current_user
@@ -38,7 +35,6 @@ api.add_resource(Friendship, '/friends')
 
 class Pending_Friends(Resource):
     
-    # @Authentication_Decorator
     def get(self):
 
         currentUser = g.current_user

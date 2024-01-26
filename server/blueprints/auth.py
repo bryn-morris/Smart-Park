@@ -1,7 +1,6 @@
 from flask import Blueprint, make_response, request, session, g
 from flask_restful import Resource
 from flask_jwt_extended import create_access_token, unset_jwt_cookies, create_refresh_token
-import datetime
 
 from config import api, db
 from models.user import User

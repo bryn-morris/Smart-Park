@@ -15,12 +15,13 @@ from flask_socketio import SocketIO
 from flask_jwt_extended import JWTManager
 
 # Local imports
-
 # Instantiate app, set attributes
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
+
+app.config['REDIS_URL'] = "redis://localhost:6379/0"
 
 #export this to non-prod config variable file down the line
 development_secret = "ex13^xe80xc8@x8x&x1b*x9d$rx8IZxcxeft"

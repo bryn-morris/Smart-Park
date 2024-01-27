@@ -13,6 +13,7 @@ from flask_bcrypt import Bcrypt
 from sqlalchemy import MetaData
 from flask_socketio import SocketIO
 from flask_jwt_extended import JWTManager
+from flask_redis import FlaskRedis
 
 # Local imports
 # Instantiate app, set attributes
@@ -59,6 +60,9 @@ jwt = JWTManager(app)
 
 # Instantiate REST API
 api = Api(app)
+
+# Redis Instatiation
+redis_client = FlaskRedis(app)
 
 # Need to serve backend over https for this to work
 # # Allow for cross-site session cookie

@@ -4,7 +4,7 @@ from flask_jwt_extended import create_access_token, unset_jwt_cookies, create_re
 
 import datetime
 
-from config import api, db
+from config import api, db, redis_client
 from models.user import User
 
 auth_views = Blueprint('auth_views', __name__, url_prefix="/auth")
@@ -27,8 +27,11 @@ class Signup(Resource):
             
             response = make_response(new_user.to_dict(rules=('dogs','-_password',)),200)
 
-            jwt_access_token = create_access_token(identity=user.id)
-            response.headers['Authorization'] = f'Bearer {jwt_access_token}'
+            temp_jwt_access_token = create_access_token(identity=user.id)
+            
+            redis_client.setex("temp_jwt_access_token", 120, temp_jwt_access_token)
+            
+            response.headers['Authorization'] = f'Bearer {temp_jwt_access_token}'
             
             return response
         except:
@@ -52,6 +55,8 @@ class Login(Resource):
 
             temp_jwt_access_token = create_access_token(identity=user.id, expires_delta=datetime.timedelta(seconds=30))
 
+            redis_client.setex("temp_jwt_access_token", 120, temp_jwt_access_token)
+
             resp.headers['Authorization'] = f'Bearer {temp_jwt_access_token}'
 
             return resp
@@ -63,6 +68,7 @@ class Logout(Resource):
     def delete(self):
 
         #clear redis
+        redis_client.delete("temp_jwt_access_token")
         # session.clear()
 
         # set JWT expiry time to zero to immediately invalidate it

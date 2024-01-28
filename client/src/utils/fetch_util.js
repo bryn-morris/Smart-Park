@@ -13,10 +13,11 @@ async function fetchData(
         const response = await fetch(fetchString, configObj)
         
         if (fetchString === '/login' || fetchString === '/signup') {
-            addOrUpdateLocalStorageKey('aKey', 
+            await addOrUpdateLocalStorageKey('aKey', 
                 stripJWT(response.headers.get('Authorization'))
             )
         }
+
         if (!response.ok) {
             
             if (response.status === 401) {
@@ -30,6 +31,7 @@ async function fetchData(
             const errorObj = await response.json();
             throw new Error(`HTTP Error: ${response.status} - ${errorObj.error}`);
         }
+
         // successful status, don't want return value
         if (httpStatusHandlers[response.status]){
             httpStatusHandlers[response.status]()

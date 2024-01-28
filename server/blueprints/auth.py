@@ -70,7 +70,6 @@ class Logout(Resource):
         #clear redis
         if redis_client.exists(f"user_{g.current_user.id}_temp_jwt_access_token"):
             redis_client.delete(f"user_{g.current_user.id}_temp_jwt_access_token")
-        # session.clear()
 
         # set JWT expiry time to zero to immediately invalidate it
         # immediate_expiry_time = datetime.timedelta(seconds=0)

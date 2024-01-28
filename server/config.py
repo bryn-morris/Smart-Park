@@ -22,6 +22,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
+# This is the default port that redis is launched on
+# in a production enviro, will likely need to swap this
+# out to a different port, or use redis cloud
 app.config['REDIS_URL'] = "redis://localhost:6379/0"
 
 #export this to non-prod config variable file down the line

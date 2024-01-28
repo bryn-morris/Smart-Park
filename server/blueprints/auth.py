@@ -1,6 +1,8 @@
-from flask import Blueprint, make_response, request, session, g
+from flask import Blueprint, make_response, request, g
 from flask_restful import Resource
 from flask_jwt_extended import create_access_token, unset_jwt_cookies, create_refresh_token
+
+import datetime
 
 from config import api, db
 from models.user import User
@@ -48,9 +50,9 @@ class Login(Resource):
 
             resp = make_response(user.to_dict(rules=('dogs','-_password','reviews','reviews.dog_park','-favorited',)), 200)
 
-            jwt_access_token = create_access_token(identity=user.id)
+            temp_jwt_access_token = create_access_token(identity=user.id, expires_delta=datetime.timedelta(seconds=30))
 
-            resp.headers['Authorization'] = f'Bearer {jwt_access_token}'
+            resp.headers['Authorization'] = f'Bearer {temp_jwt_access_token}'
 
             return resp
         except:
@@ -60,7 +62,8 @@ api.add_resource(Login, '/login')
 class Logout(Resource):
     def delete(self):
 
-        session.clear()
+        #clear redis
+        # session.clear()
 
         # set JWT expiry time to zero to immediately invalidate it
         # immediate_expiry_time = datetime.timedelta(seconds=0)

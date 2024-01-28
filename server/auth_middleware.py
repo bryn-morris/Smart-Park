@@ -1,5 +1,5 @@
 from models.user import User
-from flask import make_response, request, g, session
+from flask import make_response, request, g
 from flask_jwt_extended import verify_jwt_in_request
 from flask_jwt_extended import get_jwt_identity
 

@@ -1,5 +1,5 @@
 import { addOrUpdateLocalStorageKey } from "./localStorage_util";
-import { stripJWT } from "./stripJWT_util";
+import { socketConnect_util } from "./socketConnect_util";
 
 async function fetchData(
     fetchString, 
@@ -13,9 +13,7 @@ async function fetchData(
         const response = await fetch(fetchString, configObj)
         
         if (fetchString === '/login' || fetchString === '/signup') {
-            await addOrUpdateLocalStorageKey('aKey', 
-                stripJWT(response.headers.get('Authorization'))
-            )
+            socketConnect_util(response)
         }
 
         if (!response.ok) {

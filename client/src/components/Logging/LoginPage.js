@@ -57,8 +57,9 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
           setIsReLogOpen,
           authConfigObj,
         )
-        .then(user=>{
+        .then( async user=>{
             try{
+                
                 setCurrentUser(user);
                 setDogs(user.dogs);
                 setFriendSocket(()=> io.connect(
@@ -67,6 +68,14 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
                         withCredentials: true,
                     }
                 ))
+            //     () => {
+            //          setFriendSocket(()=> io.connect(
+            //             'http://localhost:5555/friends-socket',{
+            //                 transport: ['websocket'],
+            //                 withCredentials: true,
+            //             }
+            //         ))
+            //     }
             } catch {
                 setCurrentUser(null);
                 setDogs(null);

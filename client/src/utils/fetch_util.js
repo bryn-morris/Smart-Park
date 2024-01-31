@@ -1,5 +1,6 @@
 import { addOrUpdateLocalStorageKey } from "./localStorage_util";
 import { socketConnect_util } from "./socketConnect_util";
+import { stripJWT } from "./stripJWT_util";
 
 async function fetchData(
     fetchString, 
@@ -13,7 +14,15 @@ async function fetchData(
         const response = await fetch(fetchString, configObj)
         
         if (fetchString === '/login' || fetchString === '/signup') {
-            socketConnect_util(response)
+            
+            // grab the temp key
+            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
+    
+            socketConnect_util(tempAKey)
+
+            // Grab return value of more permanent token
+
+            // update localStorage across application
         }
 
         if (!response.ok) {

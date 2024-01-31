@@ -1,18 +1,15 @@
-import { stripJWT } from "./stripJWT_util";
+
 import { io } from "socket.io-client";
 
-export async function socketConnect_util (response){
+export async function socketConnect_util (tempAKey){
 
     // Update Local Storage
-            // await addOrUpdateLocalStorageKey('aKey', 
-            //     stripJWT(response.headers.get('Authorization'))
-            // )
-
-            // grab the temp key
-            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
+    // await addOrUpdateLocalStorageKey('aKey', 
+    //     stripJWT(response.headers.get('Authorization'))
+    // )
 
             // use tempKey Connect to Websocket
-            const friendSocketInstance = await new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
                 
                 const socket = io.connect(
                     'http://localhost:5555/friends-socket',{
@@ -22,10 +19,19 @@ export async function socketConnect_util (response){
                     }
                 )   
                 
-            }
-            )
-            // Grab return value of more permanent token
+                // If connection is successful resolve promise
 
-            // update localStorage across application
+                socket.on('connect', () => {
+                    resolve(socket); // Resolve the Promise with the socket instance
+                });
+
+                // If connection is unsuccessful raise an error
+                // and prompt user to login again
+
+                socket.on('connect_error', (error) => {
+                    reject(error)
+                })
+                
+            })
 
 }

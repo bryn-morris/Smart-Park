@@ -1,4 +1,5 @@
 from models.user import User
+from config import redis_client
 from flask import make_response, request, g
 from flask_jwt_extended import verify_jwt_in_request
 from flask_jwt_extended import get_jwt_identity
@@ -31,10 +32,12 @@ def authenticate_user():
         # if session['user_id'] != user_id:
         #     raise AuthError({"error" : "Authentication Failed, please log in!"})
         ## use a database lookup to create a current user variable
-        currentUser = User.query.filter(User.id == user_id).one()
+        
+        # currentUser = User.query.filter(User.id == user_id).one()
 
+        current_user = redis_client.get(f"user_{user_id}")
         ## assign the user variable to the request context so that it can be used in the following route
-        g.current_user = currentUser
+        g.current_user = current_user
     except:
         return make_response({"error": "Authentication failed - Please Contact Admin, Error Code: #0000001"} ,401)
     

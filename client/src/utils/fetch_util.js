@@ -12,18 +12,6 @@ async function fetchData(
     try {
         
         const response = await fetch(fetchString, configObj)
-        
-        if (fetchString === '/login' || fetchString === '/signup') {
-            
-            // grab the temp key
-            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
-    
-            socketConnect_util(tempAKey)
-
-            // Grab return value of more permanent token
-
-            // update localStorage across application
-        }
 
         if (!response.ok) {
             
@@ -37,6 +25,19 @@ async function fetchData(
             // if response is not 401 but not ok
             const errorObj = await response.json();
             throw new Error(`HTTP Error: ${response.status} - ${errorObj.error}`);
+        }
+
+        if (fetchString === '/login' || fetchString === '/signup') {
+            
+            // grab the temp key
+            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
+            
+            // need to return this to put it into state in logincomponent
+            const socketInstance = socketConnect_util(tempAKey)
+
+            // Grab return value of more permanent token
+
+            // update localStorage across application
         }
 
         // successful status, don't want return value

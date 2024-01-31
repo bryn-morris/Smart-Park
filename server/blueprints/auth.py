@@ -29,8 +29,10 @@ class Signup(Resource):
 
             temp_jwt_access_token = create_access_token(identity=user.id)
             
-            redis_client.setex(f"user_{user.id}_temp_jwt_access_token", 120, temp_jwt_access_token)
+            redis_client.setex(f"user_{user.id}_jwt_access_token", 120, temp_jwt_access_token)
             
+            redis_client.set(f"user_{user.id}", user)
+
             response.headers['Authorization'] = f'Bearer {temp_jwt_access_token}'
             
             return response
@@ -55,7 +57,9 @@ class Login(Resource):
 
             temp_jwt_access_token = create_access_token(identity=user.id, expires_delta=datetime.timedelta(seconds=30))
 
-            redis_client.setex(f"user_{user.id}_temp_jwt_access_token", 120, temp_jwt_access_token, 120, temp_jwt_access_token)
+            redis_client.setex(f"user_{user.id}_jwt_access_token", 120, temp_jwt_access_token)
+
+            redis_client.set(f"user_{user.id}", user)
 
             resp.headers['Authorization'] = f'Bearer {temp_jwt_access_token}'
 
@@ -68,9 +72,10 @@ class Logout(Resource):
     def delete(self):
 
         #clear redis
-        if redis_client.exists(f"user_{g.current_user.id}_temp_jwt_access_token"):
-            redis_client.delete(f"user_{g.current_user.id}_temp_jwt_access_token")
+        if redis_client.exists(f"user_{g.current_user.id}_jwt_access_token"):
+            redis_client.delete(f"user_{g.current_user.id}_jwt_access_token")
 
+        redis_client.delete(f"user_{g.current_user.id}")
         # set JWT expiry time to zero to immediately invalidate it
         # immediate_expiry_time = datetime.timedelta(seconds=0)
         # new_token=create_refresh_token(

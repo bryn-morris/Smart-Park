@@ -1,37 +1,46 @@
 
+import { addOrUpdateLocalStorageKey } from "./localStorage_util";
+import { stripJWT } from "./stripJWT_util";
 import { io } from "socket.io-client";
 
-export async function socketConnect_util (tempAKey){
+export async function socketConnect_util (tempAKey, response){
 
-    // Update Local Storage
-    // await addOrUpdateLocalStorageKey('aKey', 
-    //     stripJWT(response.headers.get('Authorization'))
-    // )
+    // use tempKey Connect to Websocket
+    return new Promise((resolve, reject) => {
+        
+        const socket = io.connect(
+            'http://localhost:5555/friends-socket',{
+                transport: ['websocket'],
+                Authorization: `Bearer ${tempAKey}`,
+                withCredentials: true,
+            }
+        )
 
-            // use tempKey Connect to Websocket
-            return new Promise((resolve, reject) => {
-                
-                const socket = io.connect(
-                    'http://localhost:5555/friends-socket',{
-                        transport: ['websocket'],
-                        Authorization: `Bearer ${tempAKey}`,
-                        withCredentials: true,
-                    }
-                )   
-                
-                // If connection is successful resolve promise
+        // socket.on('connect', () => {
+        //     resolve(socket); // Resolve the Promise with the socket instance
+        // });
 
-                socket.on('connect', () => {
-                    resolve(socket); // Resolve the Promise with the socket instance
-                });
+        socket.on('connection_status', (data)=>{
+            console.log(data.message)
 
-                // If connection is unsuccessful raise an error
-                // and prompt user to login again
+            // Update Local Storage
+            // DATA NEEDS TO BE UPDATED ON BACKEND
+            // TO HOLD THE NEW TOKEN IN HEADER
+            addOrUpdateLocalStorageKey('aKey', 
+                stripJWT(data.headers.get('Authorization'))
+            )
 
-                socket.on('connect_error', (error) => {
-                    reject(error)
-                })
-                
-            })
+            // If connection is successful resolve promise
+            resolve(socket)
+        })
+
+        // If connection is unsuccessful raise an error
+        // and prompt user to login again
+
+        socket.on('connect_error', (error) => {
+            reject(error)
+        })
+        
+    })
 
 }

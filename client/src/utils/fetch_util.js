@@ -1,4 +1,3 @@
-import { addOrUpdateLocalStorageKey } from "./localStorage_util";
 import { socketConnect_util } from "./socketConnect_util";
 import { stripJWT } from "./stripJWT_util";
 
@@ -33,7 +32,7 @@ async function fetchData(
             const tempAKey =  await stripJWT(response.headers.get('Authorization'))
             
             // need to return this to put it into state in logincomponent
-            const socketInstance = socketConnect_util(tempAKey)
+            const socketInstance = socketConnect_util(tempAKey, response)
 
             // Grab return value of more permanent token
 

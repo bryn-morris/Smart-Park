@@ -16,7 +16,7 @@ def authenticate_user():
         'signup',
     ]
     
-    ## skip authentication is login or signup route is pinged
+    ## skip JWT_authentication if login or signup route is pinged
     if request.endpoint in public_views:
         return
     
@@ -33,11 +33,10 @@ def authenticate_user():
         #     raise AuthError({"error" : "Authentication Failed, please log in!"})
         ## use a database lookup to create a current user variable
         
-        # currentUser = User.query.filter(User.id == user_id).one()
+        currentUser = User.query.filter(User.id == user_id).one()
 
-        current_user = redis_client.get(f"user_{user_id}")
         ## assign the user variable to the request context so that it can be used in the following route
-        g.current_user = current_user
+        g.current_user = currentUser
     except:
         return make_response({"error": "Authentication failed - Please Contact Admin, Error Code: #0000001"} ,401)
     

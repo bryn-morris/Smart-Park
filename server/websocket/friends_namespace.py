@@ -18,10 +18,12 @@ class FriendNamespace(Namespace):
 
     def on_connect(self):
 
-        # auth_ws_connection()
+        auth_ws_connection()
 
         self.room_name = f'{session.get("user_id")}'
         join_room(self.room_name)
+
+        # create JWT with much longer expiry time and communicate it back to the frontend
         
         self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'}, room = self.room_name)
         

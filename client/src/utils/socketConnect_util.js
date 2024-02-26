@@ -10,9 +10,13 @@ export async function socketConnect_util (tempAKey, response){
         
         const socket = io.connect(
             'http://localhost:5555/friends-socket',{
-                transport: ['websocket'],
-                Authorization: `Bearer ${tempAKey}`,
-                withCredentials: true,
+                transportOptions: {
+                    transport: ['websocket'],
+                    withCredentials: true,
+                },
+                websocket: {
+                    Authorization: `Bearer ${tempAKey}`,
+                }
             }
         )
 

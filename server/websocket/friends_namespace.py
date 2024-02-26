@@ -1,5 +1,5 @@
 from flask_socketio import Namespace
-from flask import session
+from flask import session, request
 from config import db
 from models.models import Pending_Friendships, Friends
 from models.user import User
@@ -15,6 +15,12 @@ class FriendNamespace(Namespace):
 
     ## eventually will change user_id to uuid with postgres to make this 
     ## more secure, leaving code as is for later implementation
+
+    #********
+    # May need to check flask-socketio configuration options 
+    # to allow for extraheaders option
+    # documentation states they may be getting ignored
+    #**********
 
     def on_connect(self):
 

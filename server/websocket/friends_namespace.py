@@ -18,7 +18,24 @@ class FriendNamespace(Namespace):
 
     def on_connect(self):
 
-        auth_ws_connection()
+        # auth_ws_connection()
+
+        import ipdb;ipdb.set_trace()
+
+        # On Connect
+        # grab the temporary aKey stored in header of WS connection
+        
+        # self.request.Authorization
+
+        # if verify_jwt_in_request():
+
+        #     user_id = get_jwt_identity()
+            # cached_auth_token = redis_client.get(f"user_{user_id}_jwt_access_token")
+        
+        # compare against aKey in redis
+        # if correct, proceed with generating more resilient key with
+            # longer expiry time
+        # then pass that back through server emission
 
         self.room_name = f'{session.get("user_id")}'
         join_room(self.room_name)

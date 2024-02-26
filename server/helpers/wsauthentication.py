@@ -12,7 +12,7 @@ def auth_ws_connection() :
 
     authToken = request.headers.get('Authorization')
 
-    import ipdb;ipdb.set_trace()
+    # import ipdb;ipdb.set_trace()
 
     try:
 

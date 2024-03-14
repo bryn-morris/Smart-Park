@@ -9,14 +9,14 @@ export async function socketConnect_util (tempAKey, response){
     return new Promise((resolve, reject) => {
         
         const socket = io.connect(
-            'http://localhost:5555/friends-socket',{
-                transportOptions: {
-                    transport: ['websocket'],
-                    withCredentials: true,
-                },
-                websocket: {
-                    Authorization: `Bearer ${tempAKey}`,
-                }
+            `http://localhost:5555/friends-socket?token=${tempAKey}`,{
+                // transportOptions: {
+                //     transport: ['websocket'],
+                //     withCredentials: true,
+                // },
+                // websocket: {
+                //     Authorization: `Bearer ${tempAKey}`,
+                // }
             }
         )
 

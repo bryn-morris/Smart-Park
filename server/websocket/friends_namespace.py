@@ -1,9 +1,10 @@
 from flask_socketio import Namespace
 from flask import session, request
-from config import db
+from config import db, redis_client
 from models.models import Pending_Friendships, Friends
 from models.user import User
 from helpers.wsauthentication import auth_ws_connection
+from flask_jwt_extended import get_jti, decode_token
 from flask_socketio import (
     join_room, 
     leave_room,
@@ -24,19 +25,25 @@ class FriendNamespace(Namespace):
 
     def on_connect(self):
 
+        # If connection already exists, kill it
+
         # auth_ws_connection()
 
-        import ipdb;ipdb.set_trace()
-
         # On Connect
-        # grab the temporary aKey stored in header of WS connection
+        # grab the temporary aKey stored in uri of WS connection
         
-        # self.request.Authorization
+        tempAKey = request.args.get('token')
 
-        # if verify_jwt_in_request():
+        if tempAKey:
 
-        #     user_id = get_jwt_identity()
-            # cached_auth_token = redis_client.get(f"user_{user_id}_jwt_access_token")
+            # bitString = tempAKey.encode('utf-8')
+
+            # Attemtping to get ID for JWT is not producing expected results
+
+            user_id = decode_token(tempAKey)
+            import ipdb;ipdb.set_trace()
+
+            cached_auth_token = redis_client.get(f"user_{user_id}_jwt_access_token")
         
         # compare against aKey in redis
         # if correct, proceed with generating more resilient key with

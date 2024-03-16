@@ -4,7 +4,7 @@ from config import db, redis_client
 from models.models import Pending_Friendships, Friends
 from models.user import User
 from helpers.wsauthentication import auth_ws_connection
-from flask_jwt_extended import get_jti, decode_token
+from flask_jwt_extended import decode_token
 from flask_socketio import (
     join_room, 
     leave_room,
@@ -17,47 +17,40 @@ class FriendNamespace(Namespace):
     ## eventually will change user_id to uuid with postgres to make this 
     ## more secure, leaving code as is for later implementation
 
-    #********
-    # May need to check flask-socketio configuration options 
-    # to allow for extraheaders option
-    # documentation states they may be getting ignored
-    #**********
-
     def on_connect(self):
 
         # If connection already exists, kill it
 
-        # auth_ws_connection()
 
-        # On Connect
-        # grab the temporary aKey stored in uri of WS connection
-        
+
+        # Grab the temporary aKey stored in uri of WS connection
         tempAKey = request.args.get('token')
 
         if tempAKey:
 
-            # bitString = tempAKey.encode('utf-8')
-
-            # Attemtping to get ID for JWT is not producing expected results
-
-            user_id = decode_token(tempAKey)
-            import ipdb;ipdb.set_trace()
+            user_id = decode_token(tempAKey)['sub']
+            # import ipdb;ipdb.set_trace()
 
             cached_auth_token = redis_client.get(f"user_{user_id}_jwt_access_token")
         
         # compare against aKey in redis
-        # if correct, proceed with generating more resilient key with
+            if cached_auth_token != tempAKey:
+                pass
+
+        
+        # proceed with generating more resilient key with
             # longer expiry time
+            # overwrite redis aKey entry
         # then pass that back through server emission
 
         self.room_name = f'{session.get("user_id")}'
         join_room(self.room_name)
-
-        # create JWT with much longer expiry time and communicate it back to the frontend
         
         self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'}, room = self.room_name)
         
     def on_start_disconnect(self):
+
+        # wipe redis key for this user
 
         leave_room(self.room_name)
         close_room(self.room_name)

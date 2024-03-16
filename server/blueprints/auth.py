@@ -27,7 +27,7 @@ class Signup(Resource):
             
             response = make_response(new_user.to_dict(rules=('dogs','-_password',)),200)
 
-            temp_jwt_access_token = create_access_token(identity=user.id)
+            temp_jwt_access_token = create_access_token(identity=user.id, expires_delta=datetime.timedelta(seconds=30))
             
             redis_client.setex(f"user_{user.id}_jwt_access_token", 120, temp_jwt_access_token)
 

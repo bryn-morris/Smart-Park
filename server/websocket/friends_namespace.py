@@ -1,10 +1,10 @@
 from flask_socketio import Namespace
 from flask import session, request
 from config import db, redis_client
+import datetime
 from models.models import Pending_Friendships, Friends
 from models.user import User
-from helpers.wsauthentication import auth_ws_connection
-from flask_jwt_extended import decode_token
+from flask_jwt_extended import decode_token, create_access_token
 from flask_socketio import (
     join_room, 
     leave_room,
@@ -35,12 +35,18 @@ class FriendNamespace(Namespace):
         
         # compare against aKey in redis
             if cached_auth_token != tempAKey:
+                # raise Error to be caught by error handler
+                # Auth Error - 401 http status code?
+                # write frontend to handle that auth status in websocket with
+                # logout functionality
                 pass
 
-        
-        # proceed with generating more resilient key with
-            # longer expiry time
-            # overwrite redis aKey entry
+        # proceed with generating more resilient key with longer expiry time
+        resilient_aKey = create_access_token(
+            identity = user_id, 
+            expires_delta = datetime.timedelta(minutes=10)
+        )
+        # overwrite redis aKey entry
         # then pass that back through server emission
 
         self.room_name = f'{session.get("user_id")}'

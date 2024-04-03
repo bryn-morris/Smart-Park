@@ -1,7 +1,7 @@
 from flask_socketio import Namespace
 from flask import session, request
 from config import db, redis_client
-import datetime
+# import datetime
 from models.models import Pending_Friendships, Friends
 from models.user import User
 from flask_jwt_extended import decode_token, create_access_token
@@ -19,9 +19,7 @@ class FriendNamespace(Namespace):
 
     def on_connect(self):
 
-        # If connection already exists, kill it
-
-
+        # If a connection instance already exists, kill it
 
         # Grab the temporary aKey stored in uri of WS connection
         tempAKey = request.args.get('token')
@@ -44,9 +42,16 @@ class FriendNamespace(Namespace):
         # proceed with generating more resilient key with longer expiry time
         resilient_aKey = create_access_token(
             identity = user_id, 
-            expires_delta = datetime.timedelta(minutes=10)
+            # should be using the expiry timeline listed in config.py
+            # expires_delta = datetime.timedelta(minutes=10)
         )
         # overwrite redis aKey entry
+        # store redis token for 10 minutes, same as default
+        # time of expiry for actual websocket token
+        # likely store this as a variable in a config file somewhere
+
+        redis_client.set(f"user_{user_id}_jwt_access_token", resilient_aKey)
+
         # then pass that back through server emission
 
         self.room_name = f'{session.get("user_id")}'
@@ -197,7 +202,7 @@ class FriendNamespace(Namespace):
         self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : user_serialized_friendships}, room = self.room_name)
         self.emit('friend_request_response',{"config_key": "friend_delete_response","friend_state" : friend_serialized_friendships}, room = f'{friend_id}')  
 
-    def on_accept_friend_request(self,data):
+    def on_accept_friend_request(self, data):
 
         # auth_ws_connection()
 

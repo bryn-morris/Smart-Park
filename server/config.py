@@ -34,8 +34,8 @@ development_secret = "ex13^xe80xc8@x8x&x1b*x9d$rx8IZxcxeft"
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', development_secret)
 
 ## JWT Config Tools
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(minutes=20)
-app.config['JWT_REFRESH_TOKEN_EXPIRES'] = datetime.timedelta(minutes=20)
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(minutes=10)
+app.config['JWT_REFRESH_TOKEN_EXPIRES'] = datetime.timedelta(minutes=10)
 app.config['JWT_ALGORITHM'] = "HS256"
 
 

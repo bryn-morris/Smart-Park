@@ -25,7 +25,7 @@ export async function socketConnect_util (tempAKey, response){
         // });
 
         socket.on('connection_status', (data)=>{
-            console.log(data.message)
+            console.log(data.aKey)
 
             // Update Local Storage
             // DATA NEEDS TO BE UPDATED ON BACKEND

@@ -46,18 +46,18 @@ class FriendNamespace(Namespace):
             # expires_delta = datetime.timedelta(minutes=10)
         )
         # overwrite redis aKey entry
-        # store redis token for 10 minutes, same as default
-        # time of expiry for actual websocket token
-        # likely store this as a variable in a config file somewhere
-
+        
         redis_client.set(f"user_{user_id}_jwt_access_token", resilient_aKey)
-
+        
         # then pass that back through server emission
 
         self.room_name = f'{session.get("user_id")}'
         join_room(self.room_name)
         
-        self.emit('connection_status', {'message': f'Sucessfully Connected to room {self.room_name}'}, room = self.room_name)
+        self.emit('connection_status', {
+            # 'message': f'Sucessfully Connected to room {self.room_name}',
+            'aKey' : resilient_aKey,
+        }, room = self.room_name)
         
     def on_start_disconnect(self):
 

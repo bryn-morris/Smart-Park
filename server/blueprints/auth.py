@@ -29,7 +29,7 @@ class Signup(Resource):
 
             temp_jwt_access_token = create_access_token(identity=user.id, expires_delta=datetime.timedelta(seconds=30))
             
-            redis_client.setex(f"user_{user.id}_jwt_access_token", 120, temp_jwt_access_token)
+            redis_client.setex(f"user_{user.id}_jwt_access_token", 30, temp_jwt_access_token)
 
             response.headers['Authorization'] = f'Bearer {temp_jwt_access_token}'
             

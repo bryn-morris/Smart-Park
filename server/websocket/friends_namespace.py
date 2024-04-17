@@ -11,6 +11,7 @@ from flask_socketio import (
     disconnect,
     close_room,
 )
+from helpers.auth_error import AuthError
 
 class FriendNamespace(Namespace):
 
@@ -21,33 +22,24 @@ class FriendNamespace(Namespace):
 
         # If a connection instance already exists, kill it
 
-        # Grab the temporary aKey stored in uri of WS connection
         tempAKey = request.args.get('token')
 
         if tempAKey:
-
-            user_id = decode_token(tempAKey)['sub']
-            # import ipdb;ipdb.set_trace()
-
-            cached_auth_token = redis_client.get(f"user_{user_id}_jwt_access_token")
+            self.user_id = decode_token(tempAKey)['sub']
+            cached_auth_token = redis_client.get(f"user_{self.user_id}_jwt_access_token")
         
         # compare against aKey in redis
-            if cached_auth_token != tempAKey:
-                # raise Error to be caught by error handler
-                # Auth Error - 401 http status code?
-                # write frontend to handle that auth status in websocket with
-                # logout functionality
-                pass
+        if cached_auth_token != tempAKey:
+            raise AuthError('Authentication Error! Please reach out to Admin')
 
         # proceed with generating more resilient key with longer expiry time
         resilient_aKey = create_access_token(
-            identity = user_id, 
+            identity = self.user_id, 
             # should be using the expiry timeline listed in config.py
             # expires_delta = datetime.timedelta(minutes=10)
         )
         # overwrite redis aKey entry
-        
-        redis_client.set(f"user_{user_id}_jwt_access_token", resilient_aKey)
+        redis_client.set(f"user_{self.user_id}_jwt_access_token", resilient_aKey)
         
         # then pass that back through server emission
 
@@ -62,6 +54,7 @@ class FriendNamespace(Namespace):
     def on_start_disconnect(self):
 
         # wipe redis key for this user
+        redis_client.set(f"user_{self.user_id}_jwt_access_token", None)
 
         leave_room(self.room_name)
         close_room(self.room_name)

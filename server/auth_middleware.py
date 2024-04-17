@@ -3,11 +3,7 @@ from config import redis_client
 from flask import make_response, request, g
 from flask_jwt_extended import verify_jwt_in_request
 from flask_jwt_extended import get_jwt_identity
-
-class AuthError(Exception):
-    def __init__(self, message = "Custom Auth Error"):
-        self.message = message
-        super().__init__(self.message)
+from helpers.auth_error import AuthError
 
 def authenticate_user():
 

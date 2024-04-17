@@ -57,7 +57,7 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
           setIsReLogOpen,
           authConfigObj,
         )
-        .then( async user=>{
+        .then(user=>{
             try{
                 
                 setCurrentUser(user);

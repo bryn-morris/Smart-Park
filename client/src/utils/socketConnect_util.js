@@ -28,11 +28,7 @@ export async function socketConnect_util (tempAKey, response){
             console.log(data.aKey)
 
             // Update Local Storage
-            // DATA NEEDS TO BE UPDATED ON BACKEND
-            // TO HOLD THE NEW TOKEN IN HEADER
-            addOrUpdateLocalStorageKey('aKey', 
-                stripJWT(data.headers.get('Authorization'))
-            )
+            addOrUpdateLocalStorageKey('aKey',data.aKey)
 
             // If connection is successful resolve promise
             resolve(socket)

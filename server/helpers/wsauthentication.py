@@ -23,7 +23,6 @@ def auth_ws_connection() :
 
             user_id = get_jwt_identity()
             cached_auth_token = redis_client.get(f"user_{user_id}_jwt_access_token")
-    
         
     except:
         disconnect(user_id)

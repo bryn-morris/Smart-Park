@@ -65,7 +65,7 @@ jwt = JWTManager(app)
 api = Api(app)
 
 # Redis Instatiation
-redis_client = FlaskRedis(app)
+redis_client = FlaskRedis(app, decode_responses=True)
 
 # Need to serve backend over https for this to work
 # # Allow for cross-site session cookie

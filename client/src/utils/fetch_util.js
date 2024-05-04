@@ -7,53 +7,49 @@ async function fetchData(
     configObj = {},
     httpStatusHandlers = {},
 ) {
-
-    try {
         
-        const response = await fetch(fetchString, configObj)
+    const response = await fetch(fetchString, configObj)
 
-        // Unsuccessful Status Code Response
-        if (!response.ok) {
-            
-            if (response.status === 401) {reLogModalStateFunc(true)}
-            if (httpStatusHandlers[response.status]) {
-                httpStatusHandlers[response.status]()
-            }
-            
-            // if response is not 401 but not ok
-            const errorObj = await response.json();
-            throw new Error(`HTTP Error: ${response.status} - ${errorObj.error}`);
-        }
-
-        // successful status, don't want return value
+    // Unsuccessful Status Code Response
+    if (!response.ok) {
+        
+        if (response.status === 401) {reLogModalStateFunc(true)}
         if (httpStatusHandlers[response.status]) {
             httpStatusHandlers[response.status]()
-            return
         }
-
-        if (fetchString === '/login' || fetchString === '/signup') {
-
-            // grab the temp key
-            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
-            
-            // Establish Websocket Connection
-            socketConnect_util(tempAKey)
-                .then(socketInstance => {
-                    return({
-                        socketInstance : socketInstance,
-                        userData : response.json()
-                    })
-                })
-                .catch(error => {
-                    throw new Error(error)
-                })
-        }
-
-        return await response.json();
-
-    } catch (error) {
-        throw new Error (error)
+        
+        // if response is not 401 but not ok
+        const errorObj = await response.json();
+        throw new Error(`HTTP Error: ${response.status} - ${errorObj.error}`);
     }
+
+    // successful status, don't want return value
+    if (httpStatusHandlers[response.status]) {
+        httpStatusHandlers[response.status]()
+        return
+    }
+
+    // Handle Websocket Connection & Auth
+    if (fetchString === '/login' || fetchString === '/signup') {
+
+        try{
+            console.log('test1')
+            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
+            console.log('test2')
+            const socketInstance = await socketConnect_util(tempAKey)
+            console.log('test3')
+            const userData = await response.json()
+            console.log('test4')
+            return {userData, socketInstance}
+        }
+        catch {
+            console.log('testerror')
+        }
+
+
+    }
+
+    return await response.json();
 }
 
 export default fetchData

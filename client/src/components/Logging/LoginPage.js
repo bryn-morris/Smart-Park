@@ -1,8 +1,6 @@
 import { useState, useContext } from "react"
 import { Form, Input, Icon } from "semantic-ui-react"
 import { handleFormInputChange } from "../helpers/inputChangeHelper"
-// import { useHistory } from "react-router-dom";
-import io from 'socket.io-client'
 import { DogContext } from '../../context/DogContext';
 import { WebSocketContext } from '../../context/WebSocketContext';
 import fetchData from '../../utils/fetch_util';
@@ -11,7 +9,7 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
 
     const [logIn, setLogIn] = useState(true)
   
-    const {  setDogs } = useContext(DogContext)
+    const { setDogs } = useContext(DogContext)
     const { friendSocket, setFriendSocket } = useContext(WebSocketContext)
   
     // const history = useHistory()
@@ -59,6 +57,7 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
         )
         .then(bundle=>{
             try{
+                console.log(bundle)
                 setCurrentUser(bundle.userData);
                 setDogs(bundle.userData.dogs);
                 setFriendSocket(bundle.socketInstance);
@@ -66,13 +65,13 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
                 // Auth Error 
                 console.error(error);
                 alert(error);
+                
                 setCurrentUser(null);
                 setDogs(null);
                 if (friendSocket){
                     friendSocket.disconnect()
                 }   
             }
-        //   history.push("/");
         })
         setUserFormObject(emptyFormObject)
     }

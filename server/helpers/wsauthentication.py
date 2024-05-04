@@ -1,46 +1,30 @@
 from flask import request
-from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity
 from config import redis_client
-from flask_socketio import disconnect
+from flask_jwt_extended import decode_token, create_access_token
 
-# def auth_ws_connection() : 
-#     if not session.get('user_id'):
-#         raise ValueError('Please relog! Unable to find user ID')
-#         # disconnect()
+def auth_ws_connection(self) :
 
-def auth_ws_connection() :
+    tempAKey = request.args.get('token')
 
-    authToken = request.headers.get('Authorization')
-
-    # import ipdb;ipdb.set_trace()
-
-    try:
-
-        ## flask_jwt_extended and websocket may not be compatible with each other
-        ## verify_jwt_in_request is not detecting the JWT
-        ## RuntimeError: You must call `@jwt_required()` or `verify_jwt_in_request()` before using this method
-        if verify_jwt_in_request():
-
-            user_id = get_jwt_identity()
-            cached_auth_token = redis_client.get(f"user_{user_id}_jwt_access_token")
+    if tempAKey:
+        self.user_id = decode_token(tempAKey)['sub']
+        cached_auth_token = redis_client.get(f"user_{self.user_id}_jwt_access_token")
+    
+    # compare against aKey in redis
+    if cached_auth_token != tempAKey:
         
-    except:
-        disconnect(user_id)
-        raise ValueError('Please relog! Unable to locate user')
-    
-    if not verify_jwt_in_request() or authToken != cached_auth_token:
-        disconnect(user_id)
-        raise ValueError('Please relog! Unable to locate user')
-    
-    ## compare agains the token stored in redis
-    # token named : "user_{user.id}_jwt_access_token"
+        self.emit("connect_error", 
+            'Authentication Error! Please Relog! If Issue Persists, Reach out to Admin'
+        ,room = self.room_name)
 
-    # if authToken != redis.get("user_{user.id}_jwt_access_token")
+    # Resilient key with longer expiry time
+    resilient_aKey = create_access_token(
+        identity = self.user_id, 
+    )
+    # overwrite redis aKey entry
+    redis_client.set(f"user_{self.user_id}_jwt_access_token", resilient_aKey)
     
-    # if true:
-        # proceed
-    
-    # if false:
-        # Authentication error, handle on frontend
-
-    pass
+    self.emit('connection_status', {
+        # 'message': f'Sucessfully Connected to room {self.room_name}',
+        'aKey' : resilient_aKey,
+    }, room = self.room_name)

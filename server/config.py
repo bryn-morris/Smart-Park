@@ -38,7 +38,6 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(minutes=10)
 app.config['JWT_REFRESH_TOKEN_EXPIRES'] = datetime.timedelta(minutes=10)
 app.config['JWT_ALGORITHM'] = "HS256"
 
-
 # Define metadata, instantiate db
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",

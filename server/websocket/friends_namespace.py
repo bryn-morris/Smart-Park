@@ -1,17 +1,21 @@
 from flask_socketio import Namespace
-from flask import session, request
+from flask import session
 from config import db, redis_client
 # import datetime
 from models.models import Pending_Friendships, Friends
 from models.user import User
-from flask_jwt_extended import decode_token, create_access_token
+from helpers.wsauthentication import auth_ws_connection
+from helpers.wsmanager_helpers import (
+    validate_ws_instance,
+    add_to_wsmanager, 
+    remove_from_wsmanager,
+)
 from flask_socketio import (
     join_room, 
     leave_room,
     disconnect,
     close_room,
 )
-from helpers.auth_error import AuthError
 
 class FriendNamespace(Namespace):
 
@@ -20,51 +24,34 @@ class FriendNamespace(Namespace):
 
     def on_connect(self):
 
+        self.room_type = 'friend_room'
+        user_id = session.get("user_id")
+
         # If a connection instance already exists, kill it
+        validate_ws_instance(self, user_id)
 
-        tempAKey = request.args.get('token')
-
-        if tempAKey:
-            self.user_id = decode_token(tempAKey)['sub']
-            cached_auth_token = redis_client.get(f"user_{self.user_id}_jwt_access_token")
-        
-        # compare against aKey in redis
-        if cached_auth_token != tempAKey:
-            
-            self.emit("connect_error", 
-                'Authentication Error! Please Relog! If Issue Persists, Reach out to Admin'
-            ,room = self.room_name)
-
-        # proceed with generating more resilient key with longer expiry time
-        resilient_aKey = create_access_token(
-            identity = self.user_id, 
-            # should be using the expiry timeline listed in config.py
-            # expires_delta = datetime.timedelta(minutes=10)
-        )
-        # overwrite redis aKey entry
-        redis_client.set(f"user_{self.user_id}_jwt_access_token", resilient_aKey)
-        
-        # then pass that back through server emission
-
-        self.room_name = f'{session.get("user_id")}'
+        self.room_name = f'{self.room_type} + {user_id}'
         join_room(self.room_name)
-        
-        self.emit('connection_status', {
-            # 'message': f'Sucessfully Connected to room {self.room_name}',
-            'aKey' : resilient_aKey,
-        }, room = self.room_name)
+
+        auth_ws_connection(self)
+
+        add_to_wsmanager(user_id)
         
     def on_start_disconnect(self):
 
         # wipe redis key for this user
-        redis_client.set(f"user_{self.user_id}_jwt_access_token", None)
-
+        redis_client.delete(f"user_{self.user_id}_jwt_access_token")
+        
         leave_room(self.room_name)
         close_room(self.room_name)
         if self.room_name:
             del self.room_name
 
-        disconnect(session.get("user_id"))
+        user_id = session.get("user_id")
+
+        disconnect()
+        remove_from_wsmanager(user_id)
+
         self.emit('friend_socket_disconnect')
         
     def on_error(self, e):

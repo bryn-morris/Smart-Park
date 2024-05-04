@@ -11,13 +11,30 @@ async function fetchData(
     try {
         
         const response = await fetch(fetchString, configObj)
+        
+        const return_bundle = {
+            user_data: null,
+        }
+        
+        if (fetchString === '/login' || fetchString === '/signup') {
+            
+            // grab the temp key
+            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
+            
+            // Return outside of this function to assign in LoginPage Component
+            socketConnect_util(tempAKey, response)
+                .then(socketInstance => {
+                    return_bundle.socketInstance = socketInstance
+                })
+                .catch(error => {
+                    throw new Error(error)
+                })
+        }
 
         if (!response.ok) {
             
-            if (response.status === 401) {
-                reLogModalStateFunc(true)
-            }
-            if (httpStatusHandlers[response.status]){
+            if (response.status === 401) {reLogModalStateFunc(true)}
+            if (httpStatusHandlers[response.status]) {
                 httpStatusHandlers[response.status]()
             }
             
@@ -26,27 +43,23 @@ async function fetchData(
             throw new Error(`HTTP Error: ${response.status} - ${errorObj.error}`);
         }
 
-        if (fetchString === '/login' || fetchString === '/signup') {
-            
-            // grab the temp key
-            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
-            
-            // need to return this to put it into state in logincomponent
-            const socketInstance = socketConnect_util(tempAKey, response)
-
-            // Grab return value of more permanent token
-
-            // update localStorage across application
-        }
-
         // successful status, don't want return value
-        if (httpStatusHandlers[response.status]){
+        if (httpStatusHandlers[response.status]) {
             httpStatusHandlers[response.status]()
             return
         }
+
         // successful http status, want return value
-        return await response.json();
+        return_bundle.user_data = await response.json();
+
+        return return_bundle
+
     } catch (error) {
+        // Auth Issue
+        //  Prompt User to Relog
+        // If issue Persists
+        // Reach out to Admin
+
         console.error(error);
         alert(error);
     }

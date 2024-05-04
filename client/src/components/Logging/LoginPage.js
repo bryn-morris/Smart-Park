@@ -59,23 +59,17 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
         )
         .then(user=>{
             try{
-                
                 setCurrentUser(user);
                 setDogs(user.dogs);
-                setFriendSocket(()=> io.connect(
-                    'http://localhost:5555/friends-socket',{
-                        transport: ['websocket'],
-                        withCredentials: true,
-                    }
-                ))
-            //     () => {
-            //          setFriendSocket(()=> io.connect(
-            //             'http://localhost:5555/friends-socket',{
-            //                 transport: ['websocket'],
-            //                 withCredentials: true,
-            //             }
-            //         ))
-            //     }
+                setFriendSocket(
+                //     ()=> io.connect(
+                //     'http://localhost:5555/friends-socket',{
+                //         transport: ['websocket'],
+                //         withCredentials: true,
+                //     }
+                // )
+                )
+
             } catch {
                 setCurrentUser(null);
                 setDogs(null);
@@ -85,7 +79,6 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
             }
         //   history.push("/");
         })
-        
         setUserFormObject(emptyFormObject)
     }
 

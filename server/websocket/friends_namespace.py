@@ -30,7 +30,9 @@ class FriendNamespace(Namespace):
         
         # compare against aKey in redis
         if cached_auth_token != tempAKey:
-            raise AuthError('Authentication Error! Please reach out to Admin')
+            self.emit("connect_error", 
+                'Authentication Error! Please Relog! If Issue Persists, Reach out to Admin'
+            )
 
         # proceed with generating more resilient key with longer expiry time
         resilient_aKey = create_access_token(

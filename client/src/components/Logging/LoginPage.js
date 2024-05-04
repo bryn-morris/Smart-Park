@@ -57,20 +57,15 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
           setIsReLogOpen,
           authConfigObj,
         )
-        .then(user=>{
+        .then(bundle=>{
             try{
-                setCurrentUser(user);
-                setDogs(user.dogs);
-                setFriendSocket(
-                //     ()=> io.connect(
-                //     'http://localhost:5555/friends-socket',{
-                //         transport: ['websocket'],
-                //         withCredentials: true,
-                //     }
-                // )
-                )
-
-            } catch {
+                setCurrentUser(bundle.userData);
+                setDogs(bundle.userData.dogs);
+                setFriendSocket(bundle.socketInstance);
+            } catch (error) {
+                // Auth Error 
+                console.error(error);
+                alert(error);
                 setCurrentUser(null);
                 setDogs(null);
                 if (friendSocket){

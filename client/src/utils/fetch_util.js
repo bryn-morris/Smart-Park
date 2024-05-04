@@ -11,26 +11,8 @@ async function fetchData(
     try {
         
         const response = await fetch(fetchString, configObj)
-        
-        const return_bundle = {
-            user_data: null,
-        }
-        
-        if (fetchString === '/login' || fetchString === '/signup') {
-            
-            // grab the temp key
-            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
-            
-            // Return outside of this function to assign in LoginPage Component
-            socketConnect_util(tempAKey, response)
-                .then(socketInstance => {
-                    return_bundle.socketInstance = socketInstance
-                })
-                .catch(error => {
-                    throw new Error(error)
-                })
-        }
 
+        // Unsuccessful Status Code Response
         if (!response.ok) {
             
             if (response.status === 401) {reLogModalStateFunc(true)}
@@ -49,19 +31,28 @@ async function fetchData(
             return
         }
 
-        // successful http status, want return value
-        return_bundle.user_data = await response.json();
+        if (fetchString === '/login' || fetchString === '/signup') {
 
-        return return_bundle
+            // grab the temp key
+            const tempAKey =  await stripJWT(response.headers.get('Authorization'))
+            
+            // Establish Websocket Connection
+            socketConnect_util(tempAKey)
+                .then(socketInstance => {
+                    return({
+                        socketInstance : socketInstance,
+                        userData : response.json()
+                    })
+                })
+                .catch(error => {
+                    throw new Error(error)
+                })
+        }
+
+        return await response.json();
 
     } catch (error) {
-        // Auth Issue
-        //  Prompt User to Relog
-        // If issue Persists
-        // Reach out to Admin
-
-        console.error(error);
-        alert(error);
+        throw new Error (error)
     }
 }
 

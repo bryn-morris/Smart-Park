@@ -15,17 +15,13 @@ export async function socketConnect_util (tempAKey){
             // Update Local Storage
             addOrUpdateLocalStorageKey('aKey', data.aKey)
 
-            // If connection is successful resolve promise
-            // and return socket instance
+            // Return Socket Instance
             resolve(socket)
         })
 
-        // If connection is unsuccessful raise an error
-        // and prompt user to login again
+        // Auth Error from Backend
         socket.on('connect_error', (error) => {
             reject(error)
         })
-        
     })
-
 }

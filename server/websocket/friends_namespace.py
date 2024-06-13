@@ -38,21 +38,17 @@ class FriendNamespace(Namespace):
         add_to_wsmanager(user_id)
         
     def on_start_disconnect(self):
-
+        
         # wipe redis key for this user
         redis_client.delete(f"user_{self.user_id}_jwt_access_token")
+        self.emit('friend_socket_disconnect')
+
+        remove_from_wsmanager(self.user_id)
         
         leave_room(self.room_name)
         close_room(self.room_name)
         if self.room_name:
-            del self.room_name
-
-        user_id = session.get("user_id")
-
-        disconnect()
-        remove_from_wsmanager(user_id)
-
-        self.emit('friend_socket_disconnect')
+            del self.room_name      
         
     def on_error(self, e):
         ## May want to include what the error type is, so that action can be taken on the frontend

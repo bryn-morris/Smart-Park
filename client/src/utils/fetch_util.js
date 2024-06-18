@@ -33,13 +33,9 @@ async function fetchData(
     if (fetchString === '/login' || fetchString === '/signup') {
 
         try{
-            console.log('test1')
             const tempAKey =  await stripJWT(response.headers.get('Authorization'))
-            console.log('test2')
             const socketInstance = await socketConnect_util(tempAKey)
-            console.log('test3')
             const userData = await response.json()
-            console.log('test4')
             return {userData, socketInstance}
         }
         catch {

@@ -38,11 +38,6 @@ function CheckInModal () {
               onClose={() => handleModalClose()}
               onOpen={() => setIsModalOpen(true)}
               open={isModalOpen}
-              // trigger={
-              //   <div className="checkInModalContainer">
-              //     <CheckInButton/>
-              //   </div>
-              // }
               size= 'small'
           >
           <Modal.Header>{checkInID && accidentalCheckin === false ? 'Let\'s Check Out!' : 'Let\'s Check in!'}</Modal.Header>

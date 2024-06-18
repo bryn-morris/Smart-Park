@@ -22,12 +22,14 @@ function CheckInProvider({children}) {
     function checkOut () {
 
         const configObj = {
-          ...authConfigObj,
           method: 'PATCH',
-          headers: {'Content-Type':'application/json'},
+          headers: {
+            'Content-Type':'application/json',
+            ...authConfigObj.headers,
+          },
           body: {},
         }
-    
+
         fetchData(`/visits/${parseInt(checkInID)}`,setIsReLogOpen, configObj)
           .then(updatedVisit => {
             clearLocalStorageKey('ciKey')
@@ -37,9 +39,11 @@ function CheckInProvider({children}) {
     function handleCheckInFormSubmission(formObj){
 
         const getVisitConfigObj = {
-          ...authConfigObj,
           method: 'POST',
-          headers: {'Content-Type':'application/json'},
+          headers: {
+            'Content-Type':'application/json',
+            ...authConfigObj.headers,
+          },
           body: JSON.stringify(formObj)
         }
     

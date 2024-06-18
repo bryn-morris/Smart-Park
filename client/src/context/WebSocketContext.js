@@ -69,9 +69,6 @@ function WebSocketProvider({children}) {
                 fetchData('/logout', setIsReLogOpen, {...authConfigObj, method:"DELETE",})
                     .then(response => clearLocalStorageKey('aKey'))
                 
-                // const strippedToken = stripJWT(response.headers.get('Authorization'));
-                // addOrUpdateLocalStorageKey('aKey', strippedToken)
-                
                 setCurrentUser(null)
                 setDogParks([])
                 setFriendsList([])

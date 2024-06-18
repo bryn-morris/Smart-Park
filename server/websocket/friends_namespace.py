@@ -26,12 +26,11 @@ class FriendNamespace(Namespace):
 
         self.room_type = 'friend_room'
         user_id = session.get("user_id")
+        self.room_name = f'{self.room_type} + {user_id}'
+        join_room(self.room_name)
 
         # If a connection instance already exists, kill it
         validate_ws_instance(self, user_id)
-
-        self.room_name = f'{self.room_type} + {user_id}'
-        join_room(self.room_name)
 
         auth_ws_connection(self)
 

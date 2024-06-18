@@ -15,6 +15,8 @@ def authenticate_user():
     ## skip JWT_authentication if login or signup route is pinged
     if request.endpoint in public_views:
         return
+
+    # import ipdb;ipdb.set_trace()
     
     ## validate signed secret to check validity & presence of JWT in headers
     if not verify_jwt_in_request():

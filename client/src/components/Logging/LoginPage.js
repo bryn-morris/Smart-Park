@@ -57,7 +57,6 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
         )
         .then(bundle=>{
             try{
-                console.log(bundle)
                 setCurrentUser(bundle.userData);
                 setDogs(bundle.userData.dogs);
                 setFriendSocket(bundle.socketInstance);

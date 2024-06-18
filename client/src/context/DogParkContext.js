@@ -31,8 +31,6 @@ function DogParkProvider({children}) {
         })
     }
 
-    // console.log(`Favorite Parks: ${favoritedParksByUser}`)
-
     return (
         <DogParkContext.Provider 
             value ={{

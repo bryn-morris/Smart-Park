@@ -12,7 +12,6 @@ export async function socketConnect_util (tempAKey){
 
         socket.on('connection_status', (data)=>{
             // Update Local Storage
-            console.log('test')
             addOrUpdateLocalStorageKey('aKey', data.aKey)
             // Return Socket Instance
             resolve(socket)
@@ -20,7 +19,6 @@ export async function socketConnect_util (tempAKey){
 
         // Auth Error from Backend
         socket.on('connect_error', (error) => {
-            console.log('errortest')
             reject(error)
         })
     })

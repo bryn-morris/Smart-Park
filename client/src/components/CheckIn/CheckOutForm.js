@@ -20,100 +20,16 @@ export default function CheckOutForm(){
 
     const [formObject, setFormObject] = useState(emptyFormObject)
 
-    // const [selectedDogPark, setSelectedDogPark] = useState('')
-    // const [selectedDogName, setSelectedDogName] = useState('')
-    // const [selectedLOS, setSelectedLOS] = useState('')
-
     const handleFormSubmit = (e) => {
         e.preventDefault();
         handleCheckInFormSubmission(formObject)
         setFormObject(emptyFormObject)
-        // setSelectedDogPark('')
-        // setSelectedDogName('')
-        // setSelectedLOS('')
     }
-
-    // const handleDogParkChange = (e) => {
-    //     console.log(e.target)
-    //     setSelectedDogPark(e.target.value)
-
-    // }
-
-    // const handleFormInputChange = (e) => { 
-    //     setFormObject(
-    //         ()=>{return{...formObject, [e.target.name]: e.target.value}}
-    //     )
-    // }
-
-    // const dogParkOptions = dogParks.map((eachDP)=>{
-    //     return {
-    //         key: eachDP.id,
-    //         icon: 'tree',
-    //         text: eachDP.name,
-    //         value: eachDP.name, 
-    //     }
-    // })
-
-    // const dogNameOptions = dogs.map((eachDog)=>{
-    //     return {
-    //         key: eachDog.id,
-    //         icon: 'paw',
-    //         text: eachDog.name,
-    //         value: eachDog.name, 
-    //     }
-    // })
-
-    // const losOptions = [
-    //     {
-    //         key: 1,
-    //         icon: 'time',
-    //         text: '15 min',
-    //         value: '15 min', 
-    //     },
-    //     {
-    //         key: 2,
-    //         icon: 'time',
-    //         text: '30 min',
-    //         value: '30 min', 
-    //     },
-    //     {
-    //         key: 3,
-    //         icon: 'time',
-    //         text: '45 min',
-    //         value: '45 min', 
-    //     },
-    //     {
-    //         key: 4,
-    //         icon: 'time',
-    //         text: '60 min',
-    //         value: '60 min', 
-    //     },
-    //     {
-    //         key: 5,
-    //         icon: 'time',
-    //         text: '75 min',
-    //         value: '75 min', 
-    //     },
-    //     {
-    //         key: 6,
-    //         icon: 'time',
-    //         text: '90 min',
-    //         value: '90 min', 
-    //     },
-    // ]
     
     return(
         <div>
             <Form id = "checkInForm" onSubmit={handleFormSubmit} className ="ui form">
                 <label>Dog Park:</label>
-                {/* <Dropdown
-                    placeholder = 'Choose Your Dog Park!'
-                    fluid
-                    selection
-                    options = {dogParkOptions}
-                    value = {selectedDogPark}
-                    onChange = {handleDogParkChange}
-                /> */}
                 <select onChange={handleFormInputChange(formObject, setFormObject)} name="dogParkName" value={formObject.dogParkName}>
                     <option defaultValue='Dog Park' hidden>Dog Park</option>
                     {dogParks.map((eachDP)=>{
@@ -122,14 +38,6 @@ export default function CheckOutForm(){
                 </select>
                 <br/>
                 <label>Dog:</label>
-                {/* <Dropdown
-                    placeholder = 'Choose Your Dog!'
-                    fluid
-                    selection
-                    options = {dogNameOptions}
-                    value = {selectedDogName}
-                    onChange = {(e)=>setSelectedDogName(e.target.value)}
-                /> */}
                 <select onChange={handleFormInputChange(formObject, setFormObject)} name="dogName" value={formObject.dogName}>
                     <option defaultValue = 'Dog' hidden>Dog</option>
                     {dogs.map((eachD)=>{
@@ -138,14 +46,6 @@ export default function CheckOutForm(){
                 </select>
                 <br/>
                 <label>Estimated Length of Stay:</label>
-                {/* <Dropdown
-                    placeholder = 'Choose Your Time!'
-                    fluid
-                    selection
-                    options = {losOptions}
-                    value = {selectedDogName}
-                    onChange = {(e)=>setSelectedLOS(e.target.value)}
-                /> */}
                 <select onChange={handleFormInputChange(formObject, setFormObject)} name="lengthOfStay" value={formObject.lengthOfStay}>
                     <option defaultValue = 'Length of Stay in Minutes' hidden>Length of Stay</option>
                     <option>15 min</option>

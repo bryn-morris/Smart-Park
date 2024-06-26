@@ -1,7 +1,6 @@
 from flask import Blueprint, request, make_response, session, g
 from flask_restful import Resource
 from models.models import Visit, Dog, Dog_Park
-from models.user import User
 from config import db, api, app
 from datetime import datetime
 

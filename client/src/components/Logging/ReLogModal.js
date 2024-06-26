@@ -21,16 +21,16 @@ function ReLogModal () {
             dimmer = "blurring"
         >
             <Modal.Header>
-                <p>It looks like you're Signed out!</p>
+                <p>It looks like you're not Signed in!</p>
             </Modal.Header>
             <Modal.Content>
-                <p>Please Hit LogOut Below to Re-Log</p>
+                <p>Please Log Back in with the button below!</p>
             </Modal.Content>
             <Modal.Actions>
                 <Button
                     onClick={handleReLog}
                 >
-                    LogOut
+                    Log me back in!
                 </Button>
             </Modal.Actions>
         </Modal>

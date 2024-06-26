@@ -4,14 +4,16 @@ import { handleFormInputChange } from "../helpers/inputChangeHelper"
 import { DogContext } from '../../context/DogContext';
 import { WebSocketContext } from '../../context/WebSocketContext';
 import fetchData from '../../utils/fetch_util';
+import { AuthContext } from "../../context/AuthContext";
 
-function LoginPage ({setCurrentUser, setIsReLogOpen}) {
+function LoginPage () {
 
     const [logIn, setLogIn] = useState(true)
   
     const { setDogs } = useContext(DogContext)
     const { friendSocket, setFriendSocket } = useContext(WebSocketContext)
-  
+    const {setCurrentUser, setIsReLogOpen} = useContext(AuthContext)
+
     // const history = useHistory()
 
     const emptyFormObject = logIn ?
@@ -63,7 +65,7 @@ function LoginPage ({setCurrentUser, setIsReLogOpen}) {
             } catch (error) {
                 // Auth Error 
                 console.error(error);
-                alert(error);
+                setIsReLogOpen(prev => !prev)
                 
                 setCurrentUser(null);
                 setDogs(null);

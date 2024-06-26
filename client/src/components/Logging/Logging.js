@@ -6,15 +6,12 @@ import LoginPage from './LoginPage';
 
 function Logging() {
 
-  const { currentUser, setCurrentUser, setIsReLogOpen } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   return (
     currentUser ? 
       <Layout /> : 
-      <LoginPage 
-        setCurrentUser = {setCurrentUser}
-        setIsReLogOpen = {setIsReLogOpen}
-      />
+      <LoginPage />
   )
 }      
 

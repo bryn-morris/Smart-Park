@@ -78,6 +78,9 @@ function Layout() {
         {/* <Route path="/aboutus">
           <AboutUs/>
         </Route> */}
+        {/* <Route path="/admin">
+          <Admin/>
+        </Route> */}
         <Route path="/settings">
           <Settings/>
         </Route>

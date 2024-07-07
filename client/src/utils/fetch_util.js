@@ -12,19 +12,25 @@ async function fetchData(
 
     // Unsuccessful Status Code Response
     if (!response.ok) {
-        
-        if (response.status === 401) {
-            reLogModalStateFunc(true)
+
+        switch (response.status) {
+
+            case (401):
+                reLogModalStateFunc(true)
+                // pass some or all of error data into message in relog modal
+                break
+
+            case (httpStatusHandlers[response.status]):
+                httpStatusHandlers[response.status]()
+                // pass some or all of error data into message in relog modal
+                break
+
+            default:
+                // some kind of popup // display error message in user friendly way
+                const errorObj = await response.json();
+                console.error(`HTTP Error: ${response.status} - ${errorObj.error}`);
+                break
         }
-        
-        if (httpStatusHandlers[response.status]) {
-            httpStatusHandlers[response.status]()
-        }
-        
-        // if response is not 401 but not ok
-        const errorObj = await response.json();
-        console.error(`HTTP Error: ${response.status} - ${errorObj.error}`);
-    
     }
 
     // successful status, don't want return value
@@ -43,10 +49,8 @@ async function fetchData(
             return {userData, socketInstance}
         }
         catch {
-            console.log('testerror')
+            console.error('JWT Handshake Error')
         }
-
-
     }
 
     return await response.json();

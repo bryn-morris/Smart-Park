@@ -23,6 +23,9 @@ function Layout() {
         202: ()=>clearLocalStorageKey('ciKey'),
       }
 
+      fetchData('/test401', setIsReLogOpen, {...authConfigObj})
+      // fetchData('/test501', setIsReLogOpen, {...authConfigObj})
+
       if (
         !authConfigObj ||
         !authConfigObj.headers || 

@@ -12,6 +12,6 @@ api.add_resource(Test401, '/test401')
 
 class Test501(Resource):
     def get(self):
-        return make_response({"error":"server error"}, 501)
+        return make_response({"error":"501 test server error"}, 501)
 
 api.add_resource(Test501, '/test501')
